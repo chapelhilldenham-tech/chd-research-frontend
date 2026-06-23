@@ -62,7 +62,7 @@ export const mockAnalysts: Analyst[] = [
     title: "Analyst",
     coverage: ["Oil & Gas", "FMCGs"],
     bio: "Bolade Agboola supports coverage across oil & gas and FMCG, with a focus on market developments, company fundamentals and sector themes.",
-    photo_path: "/assets/img/analysts/bolade-agboola.png",
+    photo_path: "/assets/img/analysts/bolade-agboola.jpg",
     photo_position: "50% 0%"
   }
 ];

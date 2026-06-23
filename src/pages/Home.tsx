@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 import AnalystStrip from '../components/AnalystStrip';
 import ReportCard from '../components/ReportCard';
+import Icon from '../components/Icon';
 import { mockAnalysts, mockReports } from '../data/mockData';
 
 export default function Home() {
@@ -24,7 +24,7 @@ export default function Home() {
             <div className="hero-actions">
               <Link className="btn btn-navy" to="/reports">Explore Research</Link>
               <Link className="btn btn-border" to="/analytics">Data &amp; Analytics</Link>
-              <Link className="text-link" to="/login">Research Access <ArrowRight size={16} /></Link>
+              <Link className="text-link" to="/login">Research Access <Icon name="arrow" /></Link>
             </div>
           </div>
 
@@ -34,7 +34,7 @@ export default function Home() {
               <h3>{latestReports[0].title}</h3>
               <p>{latestReports[0].synopsis}</p>
               <Link className="text-link" to={`/report/${latestReports[0].id}`}>
-                Read Report <ArrowRight size={16} />
+                Read Report <Icon name="arrow" />
               </Link>
             </div>
           </aside>
@@ -64,7 +64,7 @@ export default function Home() {
         <div className="container">
           <div className="section-head">
             <h2>Latest Research</h2>
-            <Link className="text-link" to="/reports">View All Reports <ArrowRight size={16} /></Link>
+            <Link className="text-link" to="/reports">View All Reports <Icon name="arrow" /></Link>
           </div>
           <div className="report-grid report-grid-compact">
             {latestReports.map(report => (
@@ -88,25 +88,35 @@ export default function Home() {
         <div className="container">
           <h2>Research by Coverage</h2>
           <div className="category-grid">
-            <Link className="tile coverage-tile" to="/reports?category=equity">
+            <Link className="tile coverage-tile" to="/reports?category=equity" aria-label="View Equity Research">
               <h3>Equity Research</h3>
               <p>In-depth company analysis, earnings reviews and stock coverage.</p>
-              <span className="text-link">Explore <ArrowRight size={16} /></span>
+              <span className="text-link">Explore <Icon name="arrow" /></span>
             </Link>
-            <Link className="tile coverage-tile" to="/reports?category=fixed_income">
+            <Link className="tile coverage-tile" to="/reports?category=fixed_income" aria-label="View Fixed Income">
               <h3>Fixed Income</h3>
               <p>FGN bond strategy, T-bill auctions and yield curve analysis.</p>
-              <span className="text-link">Explore <ArrowRight size={16} /></span>
+              <span className="text-link">Explore <Icon name="arrow" /></span>
             </Link>
-            <Link className="tile coverage-tile" to="/reports?category=macro">
+            <Link className="tile coverage-tile" to="/reports?category=macro" aria-label="View Macroeconomic Analysis">
               <h3>Macroeconomic Analysis</h3>
               <p>GDP, inflation, FX and monetary policy insights.</p>
-              <span className="text-link">Explore <ArrowRight size={16} /></span>
+              <span className="text-link">Explore <Icon name="arrow" /></span>
             </Link>
-            <Link className="tile coverage-tile" to="/reports?category=sector">
+            <Link className="tile coverage-tile" to="/reports?category=sector" aria-label="View Sector Updates">
               <h3>Sector Updates</h3>
               <p>Banking, telecoms, cement, FMCG, oil & gas and pension coverage.</p>
-              <span className="text-link">Explore <ArrowRight size={16} /></span>
+              <span className="text-link">Explore <Icon name="arrow" /></span>
+            </Link>
+            <Link className="tile coverage-tile" to="/reports?search=strategy" aria-label="View Strategy/Outlooks">
+              <h3>Strategy/Outlooks</h3>
+              <p>Top-down equity strategy and thematic investment research.</p>
+              <span className="text-link">Explore <Icon name="arrow" /></span>
+            </Link>
+            <Link className="tile coverage-tile" to="/analytics" aria-label="View Data & Analytics">
+              <h3>Data & Analytics</h3>
+              <p>Subscriber-only macro indicators, market data, and value-added analytics.</p>
+              <span className="text-link">Explore <Icon name="arrow" /></span>
             </Link>
           </div>
         </div>
@@ -116,14 +126,20 @@ export default function Home() {
         <div className="container">
           <h2>Meet the Research Team</h2>
           <AnalystStrip analysts={mockAnalysts} />
+          <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+            <Link className="text-link" to="/analysts">View All Analysts <Icon name="arrow" /></Link>
+          </div>
         </div>
       </section>
 
-      <section className="access-gate">
-        <div>
-          <h2>Gain Full Access</h2>
-          <p>Join institutional investors leveraging our insights.</p>
-          <Link className="btn btn-bronze" to="/contact">Subscribe Now</Link>
+      <section className="section access-section alt">
+        <div className="container access-container">
+          <h2>Subscriber Research Access</h2>
+          <p>Chapel Hill Denham research publications and live market intelligence are available exclusively to approved institutional clients and subscribers.</p>
+          <div className="access-actions">
+            <Link className="btn btn-navy" to="/login">Sign In</Link>
+            <Link className="btn btn-border" to="/contact">Request Access</Link>
+          </div>
         </div>
       </section>
     </main>

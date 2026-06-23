@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import Icon from './Icon';
 
 export default function Navigation() {
   const location = useLocation();
@@ -10,7 +10,6 @@ export default function Navigation() {
   const navClass = isHome ? 'site-nav nav-transparent' : 'site-nav nav-solid';
   const logoSrc = isHome ? '/assets/img/logo-white-transparent.png' : '/assets/img/logo-navy-transparent.png';
 
-  // Close drawer on navigation
   useEffect(() => {
     setIsDrawerOpen(false);
   }, [location]);
@@ -38,11 +37,10 @@ export default function Navigation() {
           aria-label="Open menu" 
           onClick={() => setIsDrawerOpen(true)}
         >
-          <Menu size={24} />
+          <Icon name="menu" />
         </button>
       </nav>
 
-      {/* Mobile Drawer */}
       {isDrawerOpen && (
         <div className="drawer-overlay" onClick={() => setIsDrawerOpen(false)}></div>
       )}
@@ -53,7 +51,7 @@ export default function Navigation() {
           aria-label="Close menu" 
           onClick={() => setIsDrawerOpen(false)}
         >
-          <X size={24} />
+          x
         </button>
         <Link to="/">Home</Link>
         <Link to="/reports">Reports</Link>
