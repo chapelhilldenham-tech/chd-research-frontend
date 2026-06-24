@@ -20,7 +20,7 @@ export default function Home() {
         <div className="container hero-inner">
           <div className="hero-copy">
             <h1>Chapel Hill Denham<br/>Research</h1>
-            <p className="hero-val">Institutional research, market intelligence, investment insights, and controlled subscriber access for professional investors.</p>
+            <p className="hero-val">Institutional research, market intelligence, and investment insights for professional investors.</p>
             <div className="hero-actions">
               <Link className="btn btn-navy" to="/reports">Explore Research</Link>
               <Link className="btn btn-border" to="/analytics">Data &amp; Analytics</Link>
@@ -134,11 +134,11 @@ export default function Home() {
 
       <section className="section access-section alt">
         <div className="container access-container">
-          <h2>Subscriber Research Access</h2>
+          <h2>Subscriber Sign In and Sign Up</h2>
           <p>Chapel Hill Denham research publications and live market intelligence are available exclusively to approved institutional clients and subscribers.</p>
           <div className="access-actions">
             <Link className="btn btn-navy" to="/login">Sign In</Link>
-            <Link className="btn btn-border" to="/subscribe">Request Access</Link>
+            <Link className="btn btn-border" to="/signup">Sign Up</Link>
           </div>
         </div>
       </section>

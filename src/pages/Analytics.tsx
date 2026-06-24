@@ -13,6 +13,10 @@ type ChartPoint = {
   secondary?: number;
 };
 
+function sourceStatus(item: object) {
+  return 'sourceStatus' in item ? String(item.sourceStatus) : '';
+}
+
 function rangeFor(points: ChartPoint[]) {
   const values = points.flatMap((point) => [point.value, point.secondary]).filter((value): value is number => typeof value === 'number');
   const min = Math.min(...values);
@@ -36,6 +40,24 @@ function polyline(points: ChartPoint[], min: number, max: number, key: 'value' |
     .join(' ');
 }
 
+function barGeometry(points: ChartPoint[], min: number, max: number) {
+  const xStart = 54;
+  const xEnd = 704;
+  const yTop = 44;
+  const yBottom = 238;
+  const slot = (xEnd - xStart) / Math.max(points.length, 1);
+  const width = Math.min(44, slot * 0.54);
+  return points.map((point, index) => {
+    const height = ((point.value - min) / (max - min || 1)) * (yBottom - yTop);
+    return {
+      x: xStart + index * slot + (slot - width) / 2,
+      y: yBottom - height,
+      width,
+      height,
+    };
+  });
+}
+
 function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
   const points: ChartPoint[] = activeTab === 'Inflation vs MPR'
     ? analyticsSnapshot.macroChart.inflationMpr.map((point) => ({
@@ -49,6 +71,7 @@ function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
       }));
   const { min, max } = rangeFor(points);
   const yLabels = Array.from({ length: 6 }, (_, index) => max - ((max - min) / 5) * index);
+  const isGdpChart = activeTab === 'GDP Growth';
 
   return (
     <div className="chart-shell chart-shell-tall analytics-svg-chart" aria-label={`${activeTab} chart`}>
@@ -84,10 +107,26 @@ function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
             points={polyline(points, min, max, 'secondary')}
           />
         )}
-        <polyline
-          className="chart-line-primary"
-          points={polyline(points, min, max, 'value')}
-        />
+        {isGdpChart ? (
+          <g className="chart-bars">
+            {barGeometry(points, min, max).map((bar, index) => (
+              <rect
+                key={points[index].label}
+                className="chart-line-primary-fill"
+                x={bar.x}
+                y={bar.y}
+                width={bar.width}
+                height={bar.height}
+                rx="2"
+              />
+            ))}
+          </g>
+        ) : (
+          <polyline
+            className="chart-line-primary"
+            points={polyline(points, min, max, 'value')}
+          />
+        )}
       </svg>
     </div>
   );
@@ -195,12 +234,13 @@ export default function Analytics() {
             <div className="market-layout">
               <div>
                 <div className="market-summary-row">
-                  {analyticsSnapshot.market.summary.map((item) => (
-                    <article className="analytics-kpi compact" key={item.label}>
-                      <span>{item.label}</span>
-                      <strong>{item.value}</strong>
-                    </article>
-                  ))}
+                {analyticsSnapshot.market.summary.map((item) => (
+                  <article className="analytics-kpi compact" key={item.label}>
+                    <span>{item.label}</span>
+                    <strong>{item.value}</strong>
+                    {sourceStatus(item) && <small>{sourceStatus(item)}</small>}
+                  </article>
+                ))}
                 </div>
                 <div className="analytics-table-scroll">
                   <table>
@@ -215,7 +255,7 @@ export default function Analytics() {
                     <tbody>
                       {analyticsSnapshot.market.rows.length > 0 ? analyticsSnapshot.market.rows.map((row) => (
                         <tr key={row.ticker}>
-                          <td>{row.ticker}</td>
+                          <td>{row.ticker}{row.sourceStatus && <small style={{ display: 'block' }}>{row.sourceStatus}</small>}</td>
                           <td className="num">{row.price}</td>
                           <td className="num">{row.change}</td>
                           <td className="num">{row.percent}</td>
@@ -234,14 +274,9 @@ export default function Analytics() {
                   <article className="market-stat-card" key={stat.label}>
                     <span>{stat.label}</span>
                     <strong>{stat.value}</strong>
-                    <small>{stat.change}</small>
+                    <small>{sourceStatus(stat) || stat.change}</small>
                   </article>
                 ))}
-                <article className="market-stat-card">
-                  <span>Top Gainer / Loser</span>
-                  <strong>Pending update</strong>
-                  <small>Not included in workbook</small>
-                </article>
               </aside>
             </div>
           </section>
@@ -305,6 +340,7 @@ export default function Analytics() {
                 <div key={item.label}>
                   <span>{item.label}</span>
                   <strong>{item.value}</strong>
+                  {item.sourceStatus && <small>{item.sourceStatus}</small>}
                 </div>
               ))}
             </div>
@@ -330,10 +366,10 @@ export default function Analytics() {
                 <tbody>
                   {analyticsSnapshot.paramount.weights.map((row) => (
                     <tr key={row.ticker}>
-                      <td>{row.ticker}</td>
+                      <td>{row.ticker}{sourceStatus(row) && <small style={{ display: 'block' }}>{sourceStatus(row)}</small>}</td>
                       <td className="num">{row.weight}</td>
-                      <td className="num">Pending update</td>
-                      <td className="num">Pending update</td>
+                      <td className="num">{row.lastPrice}</td>
+                      <td className="num">{row.change}</td>
                     </tr>
                   ))}
                 </tbody>

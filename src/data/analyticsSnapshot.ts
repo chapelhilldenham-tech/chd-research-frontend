@@ -3,6 +3,7 @@ export type SnapshotMetric = {
   value: string;
   change?: string;
   effectiveDate?: string;
+  sourceStatus?: string;
 };
 
 export type SnapshotSector = {
@@ -14,8 +15,9 @@ export type SnapshotSector = {
 
 export const analyticsSnapshot = {
   sourceLabel: 'Adefolarin.xlsx',
+  fallbackLabel: 'Previous snapshot — pending update',
   statusNote:
-    'Staging data snapshot. Figures are manually loaded from the latest provided spreadsheet. Some sector metrics are pending update and are intentionally not displayed until confirmed.',
+    'Staging data snapshot. Figures are manually loaded from the latest provided spreadsheet. Some fields use previous snapshot values and are clearly marked pending update until confirmed.',
   headlineKpis: [
     { label: 'NGX ASI', value: '240,743.19', change: '+1.06%', effectiveDate: '23 Jun 2026' },
     { label: 'FX', value: '1,370.64', change: '+0.11%', effectiveDate: '23 Jun 2026' },
@@ -66,8 +68,20 @@ export const analyticsSnapshot = {
     ],
     stats: [
       { label: 'NGX ASI Change', value: '+2,524.00 / +1.06%', change: 'Day change' },
+      { label: 'Top Gainer', value: 'LAFARGE +3.04%', change: 'Leading advance', sourceStatus: 'Previous snapshot — pending update' },
+      { label: 'Top Loser', value: 'BUACEMENT -1.07%', change: 'Steepest decline', sourceStatus: 'Previous snapshot — pending update' },
+      { label: 'Total Gainers', value: '8.00', change: 'Advancing issues', sourceStatus: 'Previous snapshot — pending update' },
+      { label: 'Total Losers', value: '2.00', change: 'Declining issues', sourceStatus: 'Previous snapshot — pending update' },
     ],
-    rows: [] as Array<{ ticker: string; price: string; change: string; percent: string }>,
+    rows: [
+      { ticker: 'DANGCEM', price: '751.00', change: '+12.00', percent: '+1.62%', sourceStatus: 'Previous snapshot — pending update' },
+      { ticker: 'MTNN', price: '248.50', change: '-2.10', percent: '-0.84%', sourceStatus: 'Previous snapshot — pending update' },
+      { ticker: 'GTCO', price: '64.30', change: '+1.80', percent: '+2.88%', sourceStatus: 'Previous snapshot — pending update' },
+      { ticker: 'ACCESSCORP', price: '24.45', change: '+0.35', percent: '+1.45%', sourceStatus: 'Previous snapshot — pending update' },
+      { ticker: 'ZENITHBANK', price: '52.80', change: '+0.95', percent: '+1.83%', sourceStatus: 'Previous snapshot — pending update' },
+      { ticker: 'NGXGROUP', price: '31.20', change: '+0.80', percent: '+2.63%', sourceStatus: 'Previous snapshot — pending update' },
+      { ticker: 'SEPLAT', price: '5,240.00', change: '+90.00', percent: '+1.75%', sourceStatus: 'Previous snapshot — pending update' },
+    ],
   },
   sectors: {
     Banking: {
@@ -114,32 +128,32 @@ export const analyticsSnapshot = {
   paramount: {
     effectiveDate: 'Q1 2026',
     summary: [
-      { label: 'Index Value', value: 'Pending update' },
-      { label: '1D', value: 'Pending update' },
-      { label: '1W', value: 'Pending update' },
-      { label: '1M', value: 'Pending update' },
-      { label: 'YTD', value: 'Pending update' },
+      { label: 'Index Value', value: '2,750.40', sourceStatus: 'Previous snapshot — pending update' },
+      { label: '1D', value: '+1.15%', sourceStatus: 'Previous snapshot — pending update' },
+      { label: '1W', value: '+3.10%', sourceStatus: 'Previous snapshot — pending update' },
+      { label: '1M', value: '+5.40%', sourceStatus: 'Previous snapshot — pending update' },
+      { label: 'YTD', value: '+36.50%', sourceStatus: 'Previous snapshot — pending update' },
     ],
     weights: [
-      { ticker: 'ARADEL', weight: '13.21%' },
-      { ticker: 'MTNN', weight: '12.60%' },
-      { ticker: 'GTCO', weight: '12.21%' },
-      { ticker: 'ZENITHBANK', weight: '10.07%' },
-      { ticker: 'SEPLAT', weight: '9.05%' },
-      { ticker: 'AIRTELAFRI', weight: '5.81%' },
-      { ticker: 'UBA', weight: '4.79%' },
-      { ticker: 'DANGCEM', weight: '4.72%' },
-      { ticker: 'FBNH', weight: '4.68%' },
-      { ticker: 'ACCESS', weight: '3.55%' },
-      { ticker: 'BUAFOODS', weight: '3.15%' },
-      { ticker: 'FIDELITYBK', weight: '2.81%' },
-      { ticker: 'NESTLE', weight: '2.34%' },
-      { ticker: 'PRESCO', weight: '2.06%' },
-      { ticker: 'STANBIC', weight: '1.99%' },
-      { ticker: 'OKOMUOIL', weight: '1.86%' },
-      { ticker: 'NB', weight: '1.83%' },
-      { ticker: 'WAPCO', weight: '1.71%' },
-      { ticker: 'GEREGU', weight: '1.58%' },
+      { ticker: 'ARADEL', weight: '13.21%', lastPrice: 'Pending update', change: 'Pending update' },
+      { ticker: 'MTNN', weight: '12.60%', lastPrice: '720.00', change: '-0.69%', sourceStatus: 'Previous snapshot — pending update' },
+      { ticker: 'GTCO', weight: '12.21%', lastPrice: '110.00', change: '-0.45%', sourceStatus: 'Previous snapshot — pending update' },
+      { ticker: 'ZENITHBANK', weight: '10.07%', lastPrice: '105.50', change: '+1.15%', sourceStatus: 'Previous snapshot — pending update' },
+      { ticker: 'SEPLAT', weight: '9.05%', lastPrice: '3,600.00', change: '+2.85%', sourceStatus: 'Previous snapshot — pending update' },
+      { ticker: 'AIRTELAFRI', weight: '5.81%', lastPrice: '2,100.00', change: '0.00%', sourceStatus: 'Previous snapshot — pending update' },
+      { ticker: 'UBA', weight: '4.79%', lastPrice: 'Pending update', change: 'Pending update' },
+      { ticker: 'DANGCEM', weight: '4.72%', lastPrice: '950.00', change: '+1.60%', sourceStatus: 'Previous snapshot — pending update' },
+      { ticker: 'FBNH', weight: '4.68%', lastPrice: 'Pending update', change: 'Pending update' },
+      { ticker: 'ACCESS', weight: '3.55%', lastPrice: 'Pending update', change: 'Pending update' },
+      { ticker: 'BUAFOODS', weight: '3.15%', lastPrice: 'Pending update', change: 'Pending update' },
+      { ticker: 'FIDELITYBK', weight: '2.81%', lastPrice: 'Pending update', change: 'Pending update' },
+      { ticker: 'NESTLE', weight: '2.34%', lastPrice: 'Pending update', change: 'Pending update' },
+      { ticker: 'PRESCO', weight: '2.06%', lastPrice: 'Pending update', change: 'Pending update' },
+      { ticker: 'STANBIC', weight: '1.99%', lastPrice: 'Pending update', change: 'Pending update' },
+      { ticker: 'OKOMUOIL', weight: '1.86%', lastPrice: 'Pending update', change: 'Pending update' },
+      { ticker: 'NB', weight: '1.83%', lastPrice: 'Pending update', change: 'Pending update' },
+      { ticker: 'WAPCO', weight: '1.71%', lastPrice: 'Pending update', change: 'Pending update' },
+      { ticker: 'GEREGU', weight: '1.58%', lastPrice: 'Pending update', change: 'Pending update' },
     ],
   },
 } as const;
