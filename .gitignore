@@ -34,3 +34,5 @@ supabase-gate1-inspection.sql
 supabase-schema-check.sql
 research-import-package/
 research-import-package/
+supabase/.temp/
+supabase/.temp/
