@@ -2,6 +2,7 @@ import ReportCard from '../components/ReportCard';
 import { mockReports } from '../data/mockData';
 import { fetchPublicResearchReportBundle } from '../lib/supabase';
 import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 const categories = [
   { value: 'equity', label: 'Equity Research' },
@@ -9,13 +10,22 @@ const categories = [
   { value: 'macro', label: 'Macroeconomic Analysis' },
   { value: 'sector', label: 'Sector Research' },
   { value: 'index', label: 'The Paramount Index' },
+  { value: 'other', label: 'Other' },
 ];
 
 export default function Reports() {
-  const [search, setSearch] = useState('');
-  const [selected, setSelected] = useState<string[]>([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [search, setSearch] = useState(() => searchParams.get('search') || '');
+  const [selected, setSelected] = useState<string[]>(() => {
+    const values = searchParams.getAll('category')
+      .flatMap(value => value.split(','))
+      .map(value => value.trim())
+      .filter(Boolean);
+    return values;
+  });
   const [reports, setReports] = useState(mockReports);
   const [loading, setLoading] = useState(true);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -54,6 +64,49 @@ export default function Reports() {
     setSelected(current => current.includes(category) ? current.filter(item => item !== category) : [...current, category]);
   };
 
+  useEffect(() => {
+    const params = new URLSearchParams();
+    selected.forEach(category => params.append('category', category));
+    if (search.trim() !== '') {
+      params.set('search', search.trim());
+    }
+    setSearchParams(params, { replace: true });
+  }, [search, selected, setSearchParams]);
+
+  const clearFilters = () => {
+    setSearch('');
+    setSelected([]);
+  };
+
+  const filterControls = (prefix = '') => (
+    <div className="form-grid">
+      <div className="field">
+        <label htmlFor={`${prefix}report-search`}>Search</label>
+        <input
+          id={`${prefix}report-search`}
+          value={search}
+          onChange={event => setSearch(event.target.value)}
+          placeholder="Search by title, analyst or keyword..."
+        />
+      </div>
+      <fieldset className="filter-checks">
+        <legend>Category</legend>
+        {categories.map(category => (
+          <div className={`checkbox-item${selected.includes(category.value) ? ' active' : ''}`} key={`${prefix}${category.value}`}>
+            <input
+              id={`${prefix}cat-${category.value}`}
+              type="checkbox"
+              checked={selected.includes(category.value)}
+              onChange={() => toggleCategory(category.value)}
+            />
+            <label htmlFor={`${prefix}cat-${category.value}`}>{category.label}</label>
+          </div>
+        ))}
+      </fieldset>
+      <button className="btn btn-border" type="button" onClick={clearFilters}>Clear Filters</button>
+    </div>
+  );
+
   return (
     <main>
       <header className="page-hero">
@@ -64,39 +117,17 @@ export default function Reports() {
 
       <section className="section">
         <div className="container">
+          <button className="btn btn-navy filter-mobile" type="button" onClick={() => setIsSheetOpen(true)}>
+            Filters
+          </button>
           <div className="filter-layout">
             <aside className="filter-sidebar">
-              <div className="form-grid">
-                <div className="field">
-                  <label htmlFor="report-search">Search</label>
-                  <input
-                    id="report-search"
-                    value={search}
-                    onChange={event => setSearch(event.target.value)}
-                    placeholder="Search by title, analyst or keyword..."
-                  />
-                </div>
-                <fieldset className="filter-checks">
-                  <legend>Category</legend>
-                  {categories.map(category => (
-                    <div className="checkbox-item" key={category.value}>
-                      <input
-                        id={`cat-${category.value}`}
-                        type="checkbox"
-                        checked={selected.includes(category.value)}
-                        onChange={() => toggleCategory(category.value)}
-                      />
-                      <label htmlFor={`cat-${category.value}`}>{category.label}</label>
-                    </div>
-                  ))}
-                </fieldset>
-                <button className="btn btn-border" type="button" onClick={() => { setSearch(''); setSelected([]); }}>Clear Filters</button>
-              </div>
+              {filterControls()}
             </aside>
             <section>
               <div className="report-discovery-toolbar">
                 <strong>Research Library</strong>
-                <span className="text-muted">{loading ? 'Loading published reports...' : `Showing ${filteredReports.length} reports`}</span>
+                <span className="text-muted">{loading ? 'Loading published reports...' : `Showing ${filteredReports.length} of ${reports.length} reports`}</span>
               </div>
               {filteredReports.length === 0 && (
                 <p className="notice report-filter-empty">No reports match your current filters.</p>
@@ -107,6 +138,10 @@ export default function Reports() {
                 ))}
               </div>
             </section>
+          </div>
+          <div className={`bottom-sheet${isSheetOpen ? ' open' : ''}`}>
+            <button className="drawer-close" type="button" onClick={() => setIsSheetOpen(false)}>x</button>
+            {filterControls('mobile-')}
           </div>
         </div>
       </section>

@@ -18,7 +18,7 @@ export default function Login() {
                 <label>Password</label>
                 <input type="password" />
               </div>
-              <Link className="text-link" to="/contact">Forgot password?</Link>
+              <Link className="text-link" to="/reset-password">Forgot password?</Link>
               <button
                 className="btn btn-navy"
                 type="button"
@@ -29,7 +29,7 @@ export default function Login() {
               </button>
             </form>
             <p className="auth-create-row">
-              <Link className="text-link" to="/contact">
+              <Link className="text-link" to="/signup">
                 Don't have an account? Create one <span aria-hidden="true">-&gt;</span>
               </Link>
             </p>

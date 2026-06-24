@@ -138,7 +138,7 @@ export default function Home() {
           <p>Chapel Hill Denham research publications and live market intelligence are available exclusively to approved institutional clients and subscribers.</p>
           <div className="access-actions">
             <Link className="btn btn-navy" to="/login">Sign In</Link>
-            <Link className="btn btn-border" to="/contact">Request Access</Link>
+            <Link className="btn btn-border" to="/subscribe">Request Access</Link>
           </div>
         </div>
       </section>

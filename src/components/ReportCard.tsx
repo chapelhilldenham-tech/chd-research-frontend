@@ -36,7 +36,7 @@ export default function ReportCard({ report, compact = false }: { report: Report
           <Icon name="lock" />
           <strong>Restricted metadata only</strong>
           <Link className="text-link" to={`/report/${report.id}`}>Details</Link>
-          <Link className="text-link" to="/login">Access</Link>
+          <Link className="text-link" to="/subscribe">Access</Link>
         </div>
       ) : (
         <div className="report-card-actions report-action">

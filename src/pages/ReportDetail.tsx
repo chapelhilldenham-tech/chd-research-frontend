@@ -94,6 +94,10 @@ export default function ReportDetail() {
                   <p className="eyebrow">Subscriber Access</p>
                   <h2>Download Locked</h2>
                   <p>The full report is available to active CHD Research subscribers. This static preview keeps downloads disabled.</p>
+                  <div className="locked-actions" style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginTop: '1rem', flexWrap: 'wrap' }}>
+                    <Link className="btn btn-bronze" to="/subscribe">Request Access</Link>
+                    <Link className="text-link" style={{ fontWeight: 600 }} to="/login">Sign in to continue</Link>
+                  </div>
                   <dl>
                     <div><dt>Type</dt><dd>{report.type}</dd></div>
                     <div><dt>Access</dt><dd>{report.access_level}</dd></div>

@@ -9,6 +9,9 @@ import Analysts from './pages/Analysts';
 import PriceLists from './pages/PriceLists';
 import Login from './pages/Login';
 import Contact from './pages/Contact';
+import Signup from './pages/Signup';
+import Subscribe from './pages/Subscribe';
+import ResetPassword from './pages/ResetPassword';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminReports from './pages/admin/AdminReports';
@@ -29,6 +32,9 @@ export default function App() {
         <Route path="analysts" element={<Analysts />} />
         <Route path="price-lists" element={<PriceLists />} />
         <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+        <Route path="subscribe" element={<Subscribe />} />
+        <Route path="reset-password" element={<ResetPassword />} />
         <Route path="contact" element={<Contact />} />
       </Route>
       <Route path="/admin/login" element={<AdminLogin />} />
