@@ -748,6 +748,20 @@ button:disabled,.btn:disabled{opacity:.62;cursor:not-allowed;transform:none}
 .analytics-page .methodology p{max-width:860px;color:rgba(16,37,48,.72);line-height:1.55}
 .analytics-page .analytics-table-scroll{max-width:100%;overflow-x:auto;overflow-y:auto}
 .analytics-page .analytics-table-scroll table{min-width:600px}
+.analytics-page .analytics-section-heading.with-meta{justify-content:flex-start;position:relative}
+.analytics-page .analytics-section-heading.with-meta small{margin-left:auto;color:rgba(16,37,48,.72);font-size:12px;font-weight:400}
+.analytics-page .analytics-svg-chart{border:0;background:#fff}
+.analytics-page .analytics-svg-chart svg{display:block;width:100%;height:100%}
+.analytics-page .chart-grid line{stroke:rgba(16,37,48,.12);stroke-width:1}
+.analytics-page .chart-axis-labels text,.analytics-page .chart-legend text{fill:rgba(67,86,111,.68);font-size:11px}
+.analytics-page .chart-x-labels text{text-anchor:middle}
+.analytics-page .chart-line-primary,.analytics-page .chart-line-secondary{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.3}
+.analytics-page .chart-line-primary{stroke:#c7752d}
+.analytics-page .chart-line-secondary{stroke:#c7a17c}
+.analytics-page .chart-line-primary-fill{fill:#c7752d}
+.analytics-page .chart-line-secondary-fill{fill:#c7a17c}
+.analytics-page .chart-area-primary{fill:url(#paramountArea)}
+.analytics-page .sector-commentary strong{color:var(--chd-navy-ui)}
 @media(min-width:390px){
 .analytics-page .market-stat-stack{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
@@ -1189,15 +1203,45 @@ button:disabled,.btn:disabled{opacity:.62;cursor:not-allowed;transform:none}
 .price-list-panel{display:grid;gap:16px}
 .price-list-panel h2{margin:0}
 .price-list-panel .notice{margin-top:4px}
+.price-list-shell{display:grid;gap:26px;max-width:800px;padding-top:28px;padding-bottom:48px}
+.price-list-card{padding:24px 24px 22px;border-radius:3px;box-shadow:0 8px 18px rgba(16,37,48,.08)}
+.price-list-card h2{font-size:32px;line-height:1.1;margin:0 0 6px}
+.price-list-form{display:flex;align-items:end;gap:16px;flex-wrap:wrap}
+.price-list-form .field{margin:0}
+.price-list-form input[type=date]{width:144px;height:47px}
+.price-list-form .btn{height:45px;padding:0 28px}
+.price-list-download-row{display:grid;grid-template-columns:minmax(0,1fr) 90px 120px;gap:18px;align-items:center;border:1px solid rgba(16,37,48,.12);border-radius:3px;padding:12px 14px}
+.price-list-download-row strong{font-size:13px}
+.price-list-download-row span{text-align:center;font-size:13px}
+.price-list-download-row .btn{min-height:43px}
 .auth-preview-container{display:grid;place-items:center;min-height:520px}
+.auth-page-section{min-height:685px;display:grid;align-items:start}
 .auth-card form{display:grid;gap:16px;margin-top:18px}
 .auth-card .btn{width:100%;justify-content:center}
 .auth-card .notice{margin-top:16px;text-align:center}
+.auth-card{border-radius:4px}
+.auth-card h1{font-size:28px;line-height:1.12;margin-top:8px}
+.auth-card img{margin-bottom:28px}
+.auth-card .field{margin-bottom:8px}
+.auth-card input{height:48px}
+.auth-card .text-link{font-weight:700}
+.auth-create-row{margin-top:22px}
 .contact-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:28px;align-items:start}
 .contact-layout .panel{display:grid;gap:18px}
 .contact-layout .btn{width:max-content}
+.contact-form-panel{display:grid;gap:18px}
+.contact-form-panel h2,.contact-card h2{font-size:32px;line-height:1.1}
+.contact-layout .form-grid{display:grid;gap:18px}
+.contact-layout input,.contact-layout select{height:48px}
+.contact-layout textarea{min-height:120px}
+.contact-layout .btn{width:100%;justify-content:center}
+.contact-card{border-radius:3px;padding:26px 24px 32px;box-shadow:0 8px 18px rgba(16,37,48,.08)}
+.contact-card .contact-map{height:300px;border-radius:3px;margin-top:8px}
 button:disabled,input:disabled,select:disabled,textarea:disabled{cursor:not-allowed;opacity:.72}
 .btn:disabled{opacity:.72}
 @media(max-width:900px){
   .price-list-grid,.contact-layout{grid-template-columns:1fr}
+  .price-list-shell{padding-top:0}
+  .price-list-download-row{grid-template-columns:1fr}
+  .price-list-download-row span{text-align:left}
 }

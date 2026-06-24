@@ -4,25 +4,29 @@ export default function AdminImport() {
       <section className="panel ingestion-note">
         <div>
           <h2>Live Research Ingestion</h2>
-          <p>PHP reference allowed single and bulk uploads. React MVP keeps this as a placeholder only.</p>
+          <p>Upload files, review extracted metadata, then save approved reports to the research library.</p>
         </div>
         <div>
-          <h2>Historical Import Package</h2>
-          <p>Legacy package review remains manual. No PDFs are uploaded and `reports_seed.sql` is not run from the UI.</p>
+          <h2>Historical Ingestion</h2>
+          <p>Historical ZIP batches stay outside this screen: ZIP -&gt; external processing -&gt; JSON -&gt; import script.</p>
         </div>
       </section>
 
       <section className="grid-2">
         <form className="panel form-grid">
           <h2>Single Upload Placeholder</h2>
-          <div className="drop-zone"><strong>Select one research file</strong><span>Disabled until storage, auth, and RLS are approved.</span></div>
-          <div className="field"><label>Title</label><input placeholder="Pending upload workflow" disabled /></div>
+          <div className="drop-zone upload-drop-zone"><strong>Select one research file</strong><span>PDF, DOCX, XLSX, PPTX, CSV or TXT - maximum 50MB. Metadata can be reviewed before publishing.</span><em>Browse file</em></div>
+          <p className="notice file-preview-notice">No file selected.</p>
+          <div className="field"><label>Title*</label><input placeholder="Pending upload workflow" disabled /></div>
           <div className="grid-2">
-            <div className="field"><label>Category</label><select disabled><option>Equity</option></select></div>
-            <div className="field"><label>Access Level</label><select disabled><option>Internal</option></select></div>
+            <div className="field"><label>Category*</label><select disabled><option>Equity</option></select></div>
+            <div className="field"><label>Access Level</label><select disabled><option>Subscriber</option></select></div>
           </div>
           <div className="field"><label>Abstract</label><textarea disabled /></div>
-          <button className="btn btn-bronze" type="button" disabled>Submit for Review Disabled</button>
+          <div className="button-row">
+            <button className="btn btn-navy" type="button" disabled>Save Draft</button>
+            <button className="btn btn-bronze" type="button" disabled>Submit for Review</button>
+          </div>
         </form>
 
         <aside className="panel upload-preview-panel">

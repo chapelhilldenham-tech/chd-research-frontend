@@ -1,39 +1,22 @@
 import { useEffect, useState } from 'react';
-import { priceListGroups, type PriceListGroup } from '../data/mockData';
 import { fetchPublicPriceLists } from '../lib/supabase';
 
 export default function PriceLists() {
-  const [groups, setGroups] = useState<PriceListGroup[]>(priceListGroups);
-  const [loading, setLoading] = useState(true);
+  const [hasAvailableList, setHasAvailableList] = useState(false);
+  const [selectedDate, setSelectedDate] = useState('2026-06-24');
 
   useEffect(() => {
     async function loadPriceLists() {
       const data = await fetchPublicPriceLists();
       if (data && data.length > 0) {
-        // Group by asset_class or category
-        const grouped: Record<string, PriceListGroup> = {};
-        data.forEach((item: any) => {
-          const groupTitle = item.asset_class || item.category || 'Other';
-          if (!grouped[groupTitle]) {
-            grouped[groupTitle] = {
-              title: groupTitle,
-              description: `Reference pricing and market data for ${groupTitle}.`,
-              items: []
-            };
-          }
-          grouped[groupTitle].items.push({
-            name: item.title,
-            asAt: item.effective_date,
-            fileType: item.file_type || 'CSV',
-            access: 'Public'
-          });
-        });
-        setGroups(Object.values(grouped));
+        setHasAvailableList(data.some((item: any) => item.effective_date === selectedDate));
       }
-      setLoading(false);
     }
+
     loadPriceLists();
-  }, []);
+  }, [selectedDate]);
+
+  const displayDate = selectedDate === '2026-06-15' ? '15 June 2026' : '24 June 2026';
 
   return (
     <main>
@@ -45,37 +28,34 @@ export default function PriceLists() {
       </header>
 
       <section className="section">
-        <div className="container">
-          {loading ? (
-            <p>Loading price lists...</p>
-          ) : (
-            <div className="price-list-grid">
-              {groups.map(group => (
-                <article className="panel price-list-panel" key={group.title}>
-                  <h2>{group.title}</h2>
-                  <p>{group.description}</p>
-                  <div className="table-wrap light">
-                    <table>
-                      <thead>
-                        <tr><th>Name</th><th>As at</th><th>Type</th><th>Access</th></tr>
-                      </thead>
-                      <tbody>
-                        {group.items.map(item => (
-                          <tr key={`${group.title}-${item.name}-${item.asAt}`}>
-                            <td>{item.name}</td>
-                            <td>{item.asAt}</td>
-                            <td>{item.fileType}</td>
-                            <td>{item.access}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                  <p className="notice compact">Downloads are disabled in this static preview.</p>
-                </article>
-              ))}
-            </div>
-          )}
+        <div className="container price-list-shell">
+          <article className="panel price-list-card">
+            <h2>Select Date</h2>
+            <form className="price-list-form" onSubmit={(event) => event.preventDefault()}>
+              <div className="field">
+                <label>Pricing Date</label>
+                <input
+                  type="date"
+                  value={selectedDate}
+                  onChange={(event) => setSelectedDate(event.target.value)}
+                />
+              </div>
+              <button className="btn btn-navy" type="submit">View Price List</button>
+            </form>
+          </article>
+
+          <article className="panel price-list-card">
+            <h2>Price List for {displayDate}</h2>
+            {hasAvailableList || selectedDate === '2026-06-15' ? (
+              <div className="price-list-download-row">
+                <strong>Chapel Hill Denham Price List (XLSX)</strong>
+                <span>34 KB</span>
+                <button className="btn btn-bronze" type="button" disabled>Download</button>
+              </div>
+            ) : (
+              <p>No price list file is currently available for this date.</p>
+            )}
+          </article>
         </div>
       </section>
     </main>

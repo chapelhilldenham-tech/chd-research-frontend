@@ -5,18 +5,19 @@ export default function AdminLogin() {
         <img src="/assets/img/logo-navy-transparent.png" alt="Chapel Hill Denham" style={{ width: 190, margin: '0 auto 24px', display: 'block' }} />
         <p className="eyebrow">Back-office access</p>
         <h1>Admin Sign In</h1>
-        <p className="notice">Visual preview only. Supabase Auth and staff authorization are not enabled yet.</p>
-        <form>
+        <p>Welcome back.</p>
+        <form onSubmit={(event) => event.preventDefault()}>
           <div className="field">
             <label htmlFor="admin-email">Email Address</label>
-            <input id="admin-email" type="email" placeholder="research-admin@example.com" disabled />
+            <input id="admin-email" type="email" />
           </div>
           <div className="field">
             <label htmlFor="admin-password">Password</label>
-            <input id="admin-password" type="password" placeholder="Supabase Auth pending" disabled />
+            <input id="admin-password" type="password" />
           </div>
-          <button className="btn btn-navy" type="button" disabled>Sign In Disabled</button>
+          <button className="btn btn-navy" type="submit">Sign In</button>
         </form>
+        <p className="notice">Visual preview only. Supabase Auth and staff authorization are not enabled yet.</p>
       </div>
     </main>
   );

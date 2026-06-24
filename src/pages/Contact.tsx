@@ -3,28 +3,27 @@ export default function Contact() {
     <main>
       <header className="page-hero">
         <div className="container">
-          <h1>Contact Us</h1>
           <p>Reach the Chapel Hill Denham team.</p>
         </div>
       </header>
 
       <section className="section">
         <div className="container contact-layout">
-          <div className="panel">
+          <div className="contact-form-panel">
             <h2>Send a Message</h2>
             <form onSubmit={(e) => e.preventDefault()}>
               <div className="form-grid">
                 <div className="field">
                   <label>Full Name</label>
-                  <input type="text" disabled />
+                  <input type="text" />
                 </div>
                 <div className="field">
                   <label>Email Address</label>
-                  <input type="email" disabled />
+                  <input type="email" />
                 </div>
                 <div className="field">
                   <label>Subject</label>
-                  <select disabled>
+                  <select defaultValue="General Enquiry">
                     <option>General Enquiry</option>
                     <option>Research Access</option>
                     <option>Media & Press</option>
@@ -34,12 +33,11 @@ export default function Contact() {
                 </div>
                 <div className="field">
                   <label>Message</label>
-                  <textarea disabled rows={5}></textarea>
+                  <textarea rows={5}></textarea>
                 </div>
-                <button className="btn btn-navy" disabled>Send Message</button>
+                <button className="btn btn-navy" type="submit">Send Message</button>
               </div>
             </form>
-            <p className="notice compact">Forms are disabled in this static preview.</p>
           </div>
           <aside className="panel contact-card">
             <h2>Chapel Hill Denham</h2>
