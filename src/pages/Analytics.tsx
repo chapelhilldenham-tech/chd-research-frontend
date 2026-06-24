@@ -1,118 +1,92 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
-  fetchPublicMarketDataPoints,
-  fetchPublicMarketDataSeries,
-} from '../lib/supabase';
+  analyticsSectorOrder,
+  analyticsSnapshot,
+  type AnalyticsSectorName,
+} from '../data/analyticsSnapshot';
 
-const AS_AT = 'As at: 2026-06-16 11:22';
 const macroTabs = ['Inflation vs MPR', 'GDP Growth'] as const;
-const sectors = [
-  'Banking',
-  // 'Insurance',
-  'Pension',
-  'Telecoms',
-  'Oil & Gas',
-  'Consumer Goods',
-] as const;
 
-const sectorMetrics = {
-  Banking: [
-    ['ROE', '26.50%'],
-    ['NIM', '8.80%'],
-    ['NPL Ratio', '4.30%'],
-    ['CAR', '18.10%'],
-    ['LDR', '60.50%'],
-    ['Total Assets', 'N135.20trn'],
-    ['Cost-to-Income', '42.50%'],
-  ],
-  Insurance: [
-    ['ROE', 'Pending'],
-    ['Claims Ratio', 'Pending'],
-    ['Solvency', 'Pending'],
-  ],
-  Pension: [
-    ['AUM', 'Pending'],
-    ['RSA Growth', 'Pending'],
-    ['Yield', 'Pending'],
-  ],
-  Telecoms: [
-    ['ARPU', 'Pending'],
-    ['Subscribers', 'Pending'],
-    ['Data Revenue', 'Pending'],
-  ],
-  'Oil & Gas': [
-    ['Brent', 'Pending'],
-    ['Production', 'Pending'],
-    ['Margins', 'Pending'],
-  ],
-  'Consumer Goods': [
-    ['Revenue Growth', 'Pending'],
-    ['Gross Margin', 'Pending'],
-    ['Volume Growth', 'Pending'],
-  ],
+type ChartPoint = {
+  label: string;
+  value: number;
+  secondary?: number;
 };
 
-const sectorCommentary = {
-  Banking: 'Q1 banking results showed resilience, with net interest margins expanding as a result of the high MPR.',
-  Insurance: 'Approved public insurance sector data is not currently available.',
-  Pension: 'Approved public pension sector data is not currently available.',
-  Telecoms: 'Approved public telecoms sector data is not currently available.',
-  'Oil & Gas': 'Approved public oil and gas sector data is not currently available.',
-  'Consumer Goods': 'Approved public consumer goods sector data is not currently available.',
-};
+function rangeFor(points: ChartPoint[]) {
+  const values = points.flatMap((point) => [point.value, point.secondary]).filter((value): value is number => typeof value === 'number');
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const pad = Math.max((max - min) * 0.12, 1);
+  return { min: Math.floor(min - pad), max: Math.ceil(max + pad) };
+}
 
-const marketRows = [
-  ['DANGCEM', '751.00', '+12.00', '+1.62%'],
-  ['MTNN', '248.50', '-2.10', '-0.84%'],
-  ['GTCO', '64.30', '+1.80', '+2.88%'],
-  ['ACCESSCORP', '24.45', '+0.35', '+1.45%'],
-  ['ZENITHBANK', '52.80', '+0.95', '+1.83%'],
-  ['NGXGROUP', '31.20', '+0.80', '+2.63%'],
-  ['SEPLAT', '5,240.00', '+90.00', '+1.75%'],
-];
+function polyline(points: ChartPoint[], min: number, max: number, key: 'value' | 'secondary') {
+  const xStart = 54;
+  const xEnd = 704;
+  const yTop = 44;
+  const yBottom = 238;
+  const xStep = points.length > 1 ? (xEnd - xStart) / (points.length - 1) : 0;
+  return points
+    .map((point, index) => {
+      const raw = key === 'value' ? point.value : point.secondary;
+      const y = yBottom - (((raw ?? point.value) - min) / (max - min || 1)) * (yBottom - yTop);
+      return `${xStart + index * xStep},${y}`;
+    })
+    .join(' ');
+}
 
-const paramountRows = [
-  ['DANGCEM', 'Dangote Cement', '26.40%', '950.00', '+1.60%'],
-  ['MTNN', 'MTN Nigeria', '17.20%', '720.00', '-0.69%'],
-  ['AIRTELAFRI', 'Airtel Africa', '16.50%', '2,100.00', '0.00%'],
-  ['BUACEMENT', 'BUA Cement', '9.60%', '210.00', '+0.50%'],
-  ['GTCO', 'GTCO Plc', '6.20%', '110.00', '-0.45%'],
-  ['ZENITHBANK', 'Zenith Bank', '5.80%', '105.50', '+1.15%'],
-  ['SEPLAT', 'Seplat Energy', '4.50%', '3,600.00', '+2.85%'],
-];
+function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
+  const points: ChartPoint[] = activeTab === 'Inflation vs MPR'
+    ? analyticsSnapshot.macroChart.inflationMpr.map((point) => ({
+        label: point.label,
+        value: point.inflation,
+        secondary: point.mpr,
+      }))
+    : analyticsSnapshot.macroChart.gdpGrowth.map((point) => ({
+        label: point.label,
+        value: point.value,
+      }));
+  const { min, max } = rangeFor(points);
+  const yLabels = Array.from({ length: 6 }, (_, index) => max - ((max - min) / 5) * index);
 
-function MacroChart() {
   return (
-    <div className="chart-shell chart-shell-tall analytics-svg-chart" aria-label="Inflation and MPR line chart">
+    <div className="chart-shell chart-shell-tall analytics-svg-chart" aria-label={`${activeTab} chart`}>
       <svg viewBox="0 0 760 300" role="img">
         <g className="chart-grid">
-          {[40, 78, 116, 154, 192, 230, 268].map((y) => (
+          {[44, 82, 120, 158, 196, 234].map((y) => (
             <line key={y} x1="44" x2="734" y1={y} y2={y} />
           ))}
         </g>
         <g className="chart-axis-labels chart-y-labels">
-          {['34.00%', '32.00%', '30.00%', '28.00%', '26.00%', '24.00%', '22.00%'].map((label, index) => (
-            <text key={label} x="0" y={45 + index * 38}>{label}</text>
+          {yLabels.map((label, index) => (
+            <text key={label} x="0" y={49 + index * 38}>{label.toFixed(2)}%</text>
           ))}
         </g>
         <g className="chart-axis-labels chart-x-labels">
-          {['Q3 2023', 'Q4 2023', 'Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024', 'Q1 2025', 'Q2 2025'].map((label, index) => (
-            <text key={label} x={50 + index * 94} y="292">{label}</text>
+          {points.map((point, index) => (
+            <text key={point.label} x={50 + index * (650 / Math.max(points.length - 1, 1))} y="292">{point.label}</text>
           ))}
         </g>
         <g className="chart-legend">
           <circle cx="350" cy="25" r="7" className="chart-line-primary-fill" />
-          <text x="362" y="29">Inflation</text>
-          <circle cx="418" cy="25" r="7" className="chart-line-secondary-fill" />
-          <text x="430" y="29">MPR</text>
+          <text x="362" y="29">{activeTab === 'Inflation vs MPR' ? 'Inflation' : 'GDP Growth'}</text>
+          {activeTab === 'Inflation vs MPR' && (
+            <>
+              <circle cx="438" cy="25" r="7" className="chart-line-secondary-fill" />
+              <text x="450" y="29">MPR</text>
+            </>
+          )}
         </g>
-        <polyline
-          className="chart-line-secondary"
-          points="54,260 124,266 194,245 264,202 334,156 404,132 474,126 544,126 614,126 704,126"
-        />
+        {activeTab === 'Inflation vs MPR' && (
+          <polyline
+            className="chart-line-secondary"
+            points={polyline(points, min, max, 'secondary')}
+          />
+        )}
         <polyline
           className="chart-line-primary"
-          points="54,172 124,148 194,120 264,88 334,56 404,50 474,66 544,88 614,145 704,202"
+          points={polyline(points, min, max, 'value')}
         />
       </svg>
     </div>
@@ -121,66 +95,22 @@ function MacroChart() {
 
 function ParamountChart() {
   return (
-    <div className="chart-shell chart-shell-paramount analytics-svg-chart paramount-svg-chart" aria-label="Paramount Index trend chart">
-      <svg viewBox="0 0 920 280" role="img">
-        <defs>
-          <linearGradient id="paramountArea" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stopColor="#c7752d" stopOpacity="0.22" />
-            <stop offset="100%" stopColor="#c7752d" stopOpacity="0.02" />
-          </linearGradient>
-        </defs>
-        <g className="chart-grid">
-          {[30, 68, 106, 144, 182, 220].map((y) => (
-            <line key={y} x1="48" x2="890" y1={y} y2={y} />
-          ))}
-        </g>
-        <g className="chart-axis-labels chart-y-labels">
-          {['3000.00', '2900.00', '2800.00', '2700.00', '2600.00', '2500.00'].map((label, index) => (
-            <text key={label} x="0" y={35 + index * 38}>{label}</text>
-          ))}
-        </g>
-        <g className="chart-axis-labels chart-x-labels">
-          {['Jun 2024', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan 2025', 'Feb', 'Mar', 'Apr', 'May'].map((label, index) => (
-            <text key={label} x={48 + index * 76} y="264">{label}</text>
-          ))}
-        </g>
-        <path
-          className="chart-area-primary"
-          d="M48 220 L124 198 L200 176 L276 154 L352 132 L428 108 L504 78 L580 48 L656 42 L732 82 L808 128 L808 238 L48 238 Z"
-        />
-        <polyline
-          className="chart-line-primary"
-          points="48,220 124,198 200,176 276,154 352,132 428,108 504,78 580,48 656,42 732,82 808,128"
-        />
-      </svg>
+    <div
+      className="chart-shell chart-shell-paramount analytics-svg-chart paramount-svg-chart"
+      aria-label="Paramount Index trend pending update"
+      style={{ display: 'grid', placeItems: 'center' }}
+    >
+      <p className="notice" style={{ maxWidth: 520 }}>
+        Paramount Index trend data is pending update. Confirmed Q1 2026 constituent weights are shown below.
+      </p>
     </div>
   );
 }
 
 export default function Analytics() {
-  const [dataReadStatus, setDataReadStatus] = useState('Latest available update');
   const [activeMacroTab, setActiveMacroTab] = useState<(typeof macroTabs)[number]>('Inflation vs MPR');
-  const [activeSector, setActiveSector] = useState<(typeof sectors)[number]>('Banking');
-
-  useEffect(() => {
-    let mounted = true;
-
-    async function loadReadOnlyMarketData() {
-      const [series, points] = await Promise.all([
-        fetchPublicMarketDataSeries(),
-        fetchPublicMarketDataPoints(),
-      ]);
-
-      if (mounted && series && points) {
-        setDataReadStatus('Latest available update');
-      }
-    }
-
-    loadReadOnlyMarketData();
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  const [activeSector, setActiveSector] = useState<AnalyticsSectorName>('Banking');
+  const selectedSector = analyticsSnapshot.sectors[activeSector];
 
   return (
     <main className="analytics-page">
@@ -199,34 +129,19 @@ export default function Analytics() {
             </p>
           </aside>
         </section>
+        <p className="notice" style={{ marginBottom: '2rem' }}>
+          {analyticsSnapshot.statusNote}
+        </p>
 
         <section className="analytics-dashboard-kpis" aria-label="Dashboard summary">
-          <span className="kpi-strip-as-at">{AS_AT}</span>
-          <article>
-            <span>NGX ASI</span>
-            <strong>109,847.23</strong>
-            <small>+0.39%</small>
-          </article>
-          <article>
-            <span>FX</span>
-            <strong>1,385.00</strong>
-            <small>+0.0ppt</small>
-          </article>
-          <article>
-            <span>Inflation</span>
-            <strong>15.38%</strong>
-            <small>+0.32ppt</small>
-          </article>
-          <article>
-            <span>MPR</span>
-            <strong>26.50%</strong>
-            <small>-0.50ppt</small>
-          </article>
-          <article>
-            <span>Commodities</span>
-            <strong>Brent $84.10</strong>
-            <small>+0.00</small>
-          </article>
+          <span className="kpi-strip-as-at">Manual snapshot: {analyticsSnapshot.sourceLabel}</span>
+          {analyticsSnapshot.headlineKpis.map((kpi) => (
+            <article key={kpi.label}>
+              <span>{kpi.label}</span>
+              <strong>{kpi.value}</strong>
+              <small>{kpi.change} | {kpi.effectiveDate}</small>
+            </article>
+          ))}
         </section>
 
         <div className="analytics-dashboard-grid">
@@ -234,7 +149,7 @@ export default function Analytics() {
             <div className="analytics-section-heading with-meta">
               <span>01</span>
               <h2>Key Macro Indicators</h2>
-              <small>{AS_AT}</small>
+              <small>Mixed effective dates</small>
             </div>
             <div className="macro-layout">
               <div className="macro-panel-main">
@@ -251,35 +166,22 @@ export default function Analytics() {
                     </button>
                   ))}
                 </div>
-                <MacroChart />
-                <p className="analytics-commentary-date">March 2026</p>
+                <MacroChart activeTab={activeMacroTab} />
+                <p className="analytics-commentary-date">{activeMacroTab === 'Inflation vs MPR' ? analyticsSnapshot.macroChart.effectiveDate : 'Q1 2026'}</p>
                 <p className="analytics-commentary">
                   {activeMacroTab === 'Inflation vs MPR'
-                    ? 'Inflation reversed its downward trend, climbing to 15.38% in March. The CBN reduced the MPR by 50 bps to 26.50% in February, keeping it steady through Q1. The naira traded around N1,385 at the official window.'
-                    : 'GDP growth data is included in the approved macro indicator summary. The full public chart will be enabled when reviewed historical series are available.'}
+                    ? 'Inflation reached 15.93% in May 2026 while MPR remained at 26.50%. This is a manually loaded staging snapshot from the provided workbook.'
+                    : 'GDP growth reached 3.89% in Q1 2026, compared with 4.07% in Q4 2025, based on the provided workbook.'}
                 </p>
               </div>
               <div className="macro-kpi-grid">
-                <article className="analytics-kpi">
-                  <span>GDP Growth (%)</span>
-                  <strong>3.80%</strong>
-                  <small>&uarr; +0.20ppt</small>
-                </article>
-                <article className="analytics-kpi">
-                  <span>CPI / Inflation (%)</span>
-                  <strong>15.38%</strong>
-                  <small>&uarr; +0.32ppt</small>
-                </article>
-                <article className="analytics-kpi">
-                  <span>Credit Growth (%)</span>
-                  <strong>18.60%</strong>
-                  <small>&uarr; +1.80ppt</small>
-                </article>
-                <article className="analytics-kpi">
-                  <span>Debt/GDP (%)</span>
-                  <strong>38.50%</strong>
-                  <small>&darr; -0.40ppt</small>
-                </article>
+                {analyticsSnapshot.macroIndicators.map((indicator) => (
+                  <article className="analytics-kpi" key={indicator.label}>
+                    <span>{indicator.label}</span>
+                    <strong>{indicator.value}</strong>
+                    <small>{indicator.change} | {indicator.effectiveDate}</small>
+                  </article>
+                ))}
               </div>
             </div>
           </section>
@@ -288,23 +190,17 @@ export default function Analytics() {
             <div className="analytics-section-heading with-meta">
               <span>02</span>
               <h2>Market Data</h2>
-              <small>{dataReadStatus}</small>
+              <small>{analyticsSnapshot.market.effectiveDate}</small>
             </div>
             <div className="market-layout">
               <div>
                 <div className="market-summary-row">
-                  <article className="analytics-kpi compact">
-                    <span>NGX ASI</span>
-                    <strong>109,847.23</strong>
-                  </article>
-                  <article className="analytics-kpi compact">
-                    <span>Market Cap</span>
-                    <strong>N61.30trn</strong>
-                  </article>
-                  <article className="analytics-kpi compact">
-                    <span>Volume</span>
-                    <strong>387.40mn</strong>
-                  </article>
+                  {analyticsSnapshot.market.summary.map((item) => (
+                    <article className="analytics-kpi compact" key={item.label}>
+                      <span>{item.label}</span>
+                      <strong>{item.value}</strong>
+                    </article>
+                  ))}
                 </div>
                 <div className="analytics-table-scroll">
                   <table>
@@ -317,43 +213,34 @@ export default function Analytics() {
                       </tr>
                     </thead>
                     <tbody>
-                      {marketRows.map(([ticker, price, change, percent]) => (
-                        <tr key={ticker}>
-                          <td>{ticker}</td>
-                          <td className="num">{price}</td>
-                          <td className="num">{change}</td>
-                          <td className="num">{percent}</td>
+                      {analyticsSnapshot.market.rows.length > 0 ? analyticsSnapshot.market.rows.map((row) => (
+                        <tr key={row.ticker}>
+                          <td>{row.ticker}</td>
+                          <td className="num">{row.price}</td>
+                          <td className="num">{row.change}</td>
+                          <td className="num">{row.percent}</td>
                         </tr>
-                      ))}
+                      )) : (
+                        <tr>
+                          <td colSpan={4}>Ticker-level market rows are pending update for this staging snapshot.</td>
+                        </tr>
+                      )}
                     </tbody>
                   </table>
                 </div>
               </div>
               <aside className="market-stat-stack">
+                {analyticsSnapshot.market.stats.map((stat) => (
+                  <article className="market-stat-card" key={stat.label}>
+                    <span>{stat.label}</span>
+                    <strong>{stat.value}</strong>
+                    <small>{stat.change}</small>
+                  </article>
+                ))}
                 <article className="market-stat-card">
-                  <span>NGX ASI Change</span>
-                  <strong>+428.11 / +0.39%</strong>
-                  <small>Day change</small>
-                </article>
-                <article className="market-stat-card">
-                  <span>Top Gainer</span>
-                  <strong>LAFARGE +3.04%</strong>
-                  <small>Leading advance</small>
-                </article>
-                <article className="market-stat-card">
-                  <span>Top Loser</span>
-                  <strong>BUACEMENT -1.07%</strong>
-                  <small>Steepest decline</small>
-                </article>
-                <article className="market-stat-card">
-                  <span>Total Gainers</span>
-                  <strong>8.00</strong>
-                  <small>Advancing issues</small>
-                </article>
-                <article className="market-stat-card">
-                  <span>Total Losers</span>
-                  <strong>2.00</strong>
-                  <small>Declining issues</small>
+                  <span>Top Gainer / Loser</span>
+                  <strong>Pending update</strong>
+                  <small>Not included in workbook</small>
                 </article>
               </aside>
             </div>
@@ -363,12 +250,12 @@ export default function Analytics() {
             <div className="analytics-section-heading with-meta">
               <span>03</span>
               <h2>Sector Data &amp; Analytics</h2>
-              <small>{AS_AT}</small>
+              <small>{selectedSector.effectiveDate || 'Pending update'}</small>
             </div>
             <div className="sector-panel-layout">
               <aside className="sector-pill-column">
                 <div className="sector-pill-group">
-                  {sectors.map((sector) => (
+                  {analyticsSectorOrder.map((sector) => (
                     <button
                       className={`sector-pill${activeSector === sector ? ' active' : ''}`}
                       type="button"
@@ -386,16 +273,22 @@ export default function Analytics() {
                   <h3>{activeSector}</h3>
                 </div>
                 <div className="sector-stat-grid">
-                  {sectorMetrics[activeSector].map(([label, value]) => (
-                    <article className="sector-stat-box" key={label}>
-                      <span>{label}</span>
-                      <strong>{value}</strong>
+                  {selectedSector.status === 'available' ? selectedSector.metrics.map((metric) => (
+                    <article className="sector-stat-box" key={metric.label}>
+                      <span>{metric.label}</span>
+                      <strong>{metric.value}</strong>
+                      <small>{metric.change} | {metric.effectiveDate}</small>
                     </article>
-                  ))}
+                  )) : (
+                    <article className="sector-stat-box">
+                      <span>{activeSector}</span>
+                      <strong>Pending update</strong>
+                    </article>
+                  )}
                 </div>
                 <div className="sector-commentary">
                   <p><strong>Sector Commentary</strong></p>
-                  <p>{sectorCommentary[activeSector]}</p>
+                  <p>{selectedSector.commentary}</p>
                 </div>
               </div>
             </div>
@@ -405,29 +298,15 @@ export default function Analytics() {
             <div className="analytics-section-heading with-meta">
               <span>04</span>
               <h2>Paramount Index</h2>
-              <small>{AS_AT}</small>
+              <small>{analyticsSnapshot.paramount.effectiveDate}</small>
             </div>
             <div className="paramount-strip">
-              <div>
-                <span>Index Value</span>
-                <strong>2,750.40</strong>
-              </div>
-              <div>
-                <span>1D</span>
-                <strong>+1.15%</strong>
-              </div>
-              <div>
-                <span>1W</span>
-                <strong>+3.10%</strong>
-              </div>
-              <div>
-                <span>1M</span>
-                <strong>+5.40%</strong>
-              </div>
-              <div>
-                <span>YTD</span>
-                <strong>+36.50%</strong>
-              </div>
+              {analyticsSnapshot.paramount.summary.map((item) => (
+                <div key={item.label}>
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
+                </div>
+              ))}
             </div>
             <ParamountChart />
             <details className="methodology" open>
@@ -443,20 +322,18 @@ export default function Analytics() {
                 <thead>
                   <tr>
                     <th>Ticker</th>
-                    <th>Company</th>
                     <th className="num">Weight %</th>
                     <th className="num">Last Price</th>
                     <th className="num">1D Change</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {paramountRows.map(([ticker, company, weight, lastPrice, change]) => (
-                    <tr key={ticker}>
-                      <td>{ticker}</td>
-                      <td>{company}</td>
-                      <td className="num">{weight}</td>
-                      <td className="num">{lastPrice}</td>
-                      <td className="num">{change}</td>
+                  {analyticsSnapshot.paramount.weights.map((row) => (
+                    <tr key={row.ticker}>
+                      <td>{row.ticker}</td>
+                      <td className="num">{row.weight}</td>
+                      <td className="num">Pending update</td>
+                      <td className="num">Pending update</td>
                     </tr>
                   ))}
                 </tbody>
