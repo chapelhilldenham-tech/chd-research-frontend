@@ -5,6 +5,61 @@ import {
 } from '../lib/supabase';
 
 const AS_AT = 'As at: 2026-06-16 11:22';
+const macroTabs = ['Inflation vs MPR', 'GDP Growth'] as const;
+const sectors = [
+  'Banking',
+  // 'Insurance',
+  'Pension',
+  'Telecoms',
+  'Oil & Gas',
+  'Consumer Goods',
+] as const;
+
+const sectorMetrics = {
+  Banking: [
+    ['ROE', '26.50%'],
+    ['NIM', '8.80%'],
+    ['NPL Ratio', '4.30%'],
+    ['CAR', '18.10%'],
+    ['LDR', '60.50%'],
+    ['Total Assets', 'N135.20trn'],
+    ['Cost-to-Income', '42.50%'],
+  ],
+  Insurance: [
+    ['ROE', 'Pending'],
+    ['Claims Ratio', 'Pending'],
+    ['Solvency', 'Pending'],
+  ],
+  Pension: [
+    ['AUM', 'Pending'],
+    ['RSA Growth', 'Pending'],
+    ['Yield', 'Pending'],
+  ],
+  Telecoms: [
+    ['ARPU', 'Pending'],
+    ['Subscribers', 'Pending'],
+    ['Data Revenue', 'Pending'],
+  ],
+  'Oil & Gas': [
+    ['Brent', 'Pending'],
+    ['Production', 'Pending'],
+    ['Margins', 'Pending'],
+  ],
+  'Consumer Goods': [
+    ['Revenue Growth', 'Pending'],
+    ['Gross Margin', 'Pending'],
+    ['Volume Growth', 'Pending'],
+  ],
+};
+
+const sectorCommentary = {
+  Banking: 'Q1 banking results showed resilience, with net interest margins expanding as a result of the high MPR.',
+  Insurance: 'Approved public insurance sector data is not currently available.',
+  Pension: 'Approved public pension sector data is not currently available.',
+  Telecoms: 'Approved public telecoms sector data is not currently available.',
+  'Oil & Gas': 'Approved public oil and gas sector data is not currently available.',
+  'Consumer Goods': 'Approved public consumer goods sector data is not currently available.',
+};
 
 const marketRows = [
   ['DANGCEM', '751.00', '+12.00', '+1.62%'],
@@ -104,6 +159,8 @@ function ParamountChart() {
 
 export default function Analytics() {
   const [dataReadStatus, setDataReadStatus] = useState('Latest available update');
+  const [activeMacroTab, setActiveMacroTab] = useState<(typeof macroTabs)[number]>('Inflation vs MPR');
+  const [activeSector, setActiveSector] = useState<(typeof sectors)[number]>('Banking');
 
   useEffect(() => {
     let mounted = true;
@@ -182,15 +239,24 @@ export default function Analytics() {
             <div className="macro-layout">
               <div className="macro-panel-main">
                 <div className="kmi-tabs" aria-label="Macro indicator views">
-                  <button className="kmi-tab active" type="button">Inflation vs MPR</button>
-                  <button className="kmi-tab" type="button">GDP Growth</button>
+                  {macroTabs.map((tab) => (
+                    <button
+                      className={`kmi-tab${activeMacroTab === tab ? ' active' : ''}`}
+                      type="button"
+                      key={tab}
+                      onClick={() => setActiveMacroTab(tab)}
+                      aria-pressed={activeMacroTab === tab}
+                    >
+                      {tab}
+                    </button>
+                  ))}
                 </div>
                 <MacroChart />
                 <p className="analytics-commentary-date">March 2026</p>
                 <p className="analytics-commentary">
-                  Inflation reversed its downward trend, climbing to 15.38% in March. The CBN reduced
-                  the MPR by 50 bps to 26.50% in February, keeping it steady through Q1. The naira
-                  traded around &#8358;1,385 at the official window.
+                  {activeMacroTab === 'Inflation vs MPR'
+                    ? 'Inflation reversed its downward trend, climbing to 15.38% in March. The CBN reduced the MPR by 50 bps to 26.50% in February, keeping it steady through Q1. The naira traded around N1,385 at the official window.'
+                    : 'GDP growth data is included in the approved macro indicator summary. The full public chart will be enabled when reviewed historical series are available.'}
                 </p>
               </div>
               <div className="macro-kpi-grid">
@@ -302,50 +368,34 @@ export default function Analytics() {
             <div className="sector-panel-layout">
               <aside className="sector-pill-column">
                 <div className="sector-pill-group">
-                  {['Banking', 'Insurance', 'Pension', 'Telecoms', 'Oil & Gas', 'Consumer Goods'].map((sector, index) => (
-                    <button className={`sector-pill${index === 0 ? ' active' : ''}`} type="button" key={sector}>
+                  {sectors.map((sector) => (
+                    <button
+                      className={`sector-pill${activeSector === sector ? ' active' : ''}`}
+                      type="button"
+                      key={sector}
+                      onClick={() => setActiveSector(sector)}
+                      aria-pressed={activeSector === sector}
+                    >
                       {sector}
                     </button>
                   ))}
                 </div>
               </aside>
-              <div className="sector-detail-panel">
-                <div className="sector-detail-head">
-                  <h3>Banking</h3>
+                <div className="sector-detail-panel">
+                  <div className="sector-detail-head">
+                  <h3>{activeSector}</h3>
                 </div>
                 <div className="sector-stat-grid">
-                  <article className="sector-stat-box">
-                    <span>ROE</span>
-                    <strong>26.50%</strong>
-                  </article>
-                  <article className="sector-stat-box">
-                    <span>NIM</span>
-                    <strong>8.80%</strong>
-                  </article>
-                  <article className="sector-stat-box">
-                    <span>NPL Ratio</span>
-                    <strong>4.30%</strong>
-                  </article>
-                  <article className="sector-stat-box">
-                    <span>CAR</span>
-                    <strong>18.10%</strong>
-                  </article>
-                  <article className="sector-stat-box">
-                    <span>LDR</span>
-                    <strong>60.50%</strong>
-                  </article>
-                  <article className="sector-stat-box">
-                    <span>Total Assets</span>
-                    <strong>N135.20trn</strong>
-                  </article>
-                  <article className="sector-stat-box">
-                    <span>Cost-to-Income</span>
-                    <strong>42.50%</strong>
-                  </article>
+                  {sectorMetrics[activeSector].map(([label, value]) => (
+                    <article className="sector-stat-box" key={label}>
+                      <span>{label}</span>
+                      <strong>{value}</strong>
+                    </article>
+                  ))}
                 </div>
                 <div className="sector-commentary">
                   <p><strong>Sector Commentary</strong></p>
-                  <p>Q1 banking results showed resilience, with net interest margins expanding as a result of the high MPR.</p>
+                  <p>{sectorCommentary[activeSector]}</p>
                 </div>
               </div>
             </div>

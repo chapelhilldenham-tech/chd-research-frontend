@@ -22,9 +22,9 @@ export default function Footer() {
       </div>
       <div>
         <h3>Access</h3>
-        <Link to="/login">Create Account</Link>
+        <Link to="/contact">Create Account</Link>
         <Link to="/login">Sign In</Link>
-        <Link to="/login">Subscribe</Link>
+        <Link to="/contact">Subscribe</Link>
       </div>
       <p className="copyright">&copy; {new Date().getFullYear()} Chapel Hill Denham Securities Limited.</p>
     </footer>

@@ -1,4 +1,6 @@
 export default function Contact() {
+  const mapsUrl = 'https://www.google.com/maps/search/?api=1&query=10%20Bankole%20Oki%20Road%2C%20Ikoyi%2C%20Lagos%2C%20Nigeria';
+
   return (
     <main>
       <header className="page-hero">
@@ -35,7 +37,14 @@ export default function Contact() {
                   <label>Message</label>
                   <textarea rows={5}></textarea>
                 </div>
-                <button className="btn btn-navy" type="submit">Send Message</button>
+                <button
+                  className="btn btn-navy"
+                  type="button"
+                  disabled
+                  title="Contact form submission is not enabled in this staging preview"
+                >
+                  Send Message
+                </button>
               </div>
             </form>
           </div>
@@ -45,7 +54,7 @@ export default function Contact() {
             <p>Tel: +234 (1) 2799561-4</p>
             <p>research@chapelhilldenham.com</p>
             <div className="contact-map" aria-hidden="true"></div>
-            <a className="text-link contact-map-link" href="#" onClick={(event) => event.preventDefault()}>Open in Maps</a>
+            <a className="text-link contact-map-link" href={mapsUrl} target="_blank" rel="noopener noreferrer">Open in Maps</a>
           </aside>
         </div>
       </section>

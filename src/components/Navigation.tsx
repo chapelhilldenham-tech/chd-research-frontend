@@ -29,7 +29,7 @@ export default function Navigation() {
           <Link to="/contact">Contact Us</Link>
         </div>
         
-        <Link className="btn btn-border nav-cta" to="/login">EXPLORE RESEARCH</Link>
+        <Link className="btn btn-border nav-cta" to="/reports">EXPLORE RESEARCH</Link>
         
         <button 
           className="nav-toggle" 
@@ -59,7 +59,7 @@ export default function Navigation() {
         <Link to="/analysts">Analysts</Link>
         <Link to="/price-lists">Price Lists</Link>
         <Link to="/contact">Contact Us</Link>
-        <Link to="/login">EXPLORE RESEARCH</Link>
+        <Link to="/reports">EXPLORE RESEARCH</Link>
       </aside>
     </>
   );

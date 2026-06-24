@@ -24,7 +24,7 @@ export default function Home() {
             <div className="hero-actions">
               <Link className="btn btn-navy" to="/reports">Explore Research</Link>
               <Link className="btn btn-border" to="/analytics">Data &amp; Analytics</Link>
-              <Link className="text-link" to="/login">Explore Research <Icon name="arrow" /></Link>
+              <Link className="text-link" to="/reports">Explore Research <Icon name="arrow" /></Link>
             </div>
           </div>
 

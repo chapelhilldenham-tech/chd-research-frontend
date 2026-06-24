@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Login() {
   return (
     <main>
@@ -16,13 +18,20 @@ export default function Login() {
                 <label>Password</label>
                 <input type="password" />
               </div>
-              <a className="text-link" href="#" onClick={(event) => event.preventDefault()}>Forgot password?</a>
-              <button className="btn btn-navy" type="submit">Sign In</button>
+              <Link className="text-link" to="/contact">Forgot password?</Link>
+              <button
+                className="btn btn-navy"
+                type="button"
+                disabled
+                title="Sign in is not enabled in this staging preview"
+              >
+                Sign In
+              </button>
             </form>
             <p className="auth-create-row">
-              <a className="text-link" href="#" onClick={(event) => event.preventDefault()}>
+              <Link className="text-link" to="/contact">
                 Don't have an account? Create one <span aria-hidden="true">-&gt;</span>
-              </a>
+              </Link>
             </p>
           </div>
         </div>

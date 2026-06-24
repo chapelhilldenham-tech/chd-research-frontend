@@ -4,19 +4,26 @@ import { fetchPublicPriceLists } from '../lib/supabase';
 export default function PriceLists() {
   const [hasAvailableList, setHasAvailableList] = useState(false);
   const [selectedDate, setSelectedDate] = useState('2026-06-24');
+  const [viewedDate, setViewedDate] = useState('2026-06-24');
 
   useEffect(() => {
     async function loadPriceLists() {
       const data = await fetchPublicPriceLists();
       if (data && data.length > 0) {
-        setHasAvailableList(data.some((item: any) => item.effective_date === selectedDate));
+        setHasAvailableList(data.some((item: any) => item.effective_date === viewedDate));
+      } else {
+        setHasAvailableList(false);
       }
     }
 
     loadPriceLists();
-  }, [selectedDate]);
+  }, [viewedDate]);
 
-  const displayDate = selectedDate === '2026-06-15' ? '15 June 2026' : '24 June 2026';
+  const displayDate = new Intl.DateTimeFormat('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(new Date(`${viewedDate}T00:00:00`));
 
   return (
     <main>
@@ -31,7 +38,13 @@ export default function PriceLists() {
         <div className="container price-list-shell">
           <article className="panel price-list-card">
             <h2>Select Date</h2>
-            <form className="price-list-form" onSubmit={(event) => event.preventDefault()}>
+            <form
+              className="price-list-form"
+              onSubmit={(event) => {
+                event.preventDefault();
+                setViewedDate(selectedDate);
+              }}
+            >
               <div className="field">
                 <label>Pricing Date</label>
                 <input
@@ -46,7 +59,7 @@ export default function PriceLists() {
 
           <article className="panel price-list-card">
             <h2>Price List for {displayDate}</h2>
-            {hasAvailableList || selectedDate === '2026-06-15' ? (
+            {hasAvailableList || viewedDate === '2026-06-15' ? (
               <div className="price-list-download-row">
                 <strong>Chapel Hill Denham Price List (XLSX)</strong>
                 <span>34 KB</span>
