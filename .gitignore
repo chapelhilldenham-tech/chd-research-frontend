@@ -31,3 +31,5 @@ dist-ssr
 .project-pipeline/
 skills-lock.json
 supabase-gate1-inspection.sql
+supabase-schema-check.sql
+research-import-package/
