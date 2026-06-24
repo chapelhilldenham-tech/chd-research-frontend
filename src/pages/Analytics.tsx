@@ -1,6 +1,46 @@
-import { marketMetrics } from '../data/mockData';
+import { useEffect, useState } from 'react';
+import { marketMetrics, type MarketMetric } from '../data/mockData';
+import { fetchPublicMarketDataSeries, fetchPublicMarketDataPoints } from '../lib/supabase';
 
 export default function Analytics() {
+  const [metrics, setMetrics] = useState<MarketMetric[]>(marketMetrics);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadAnalytics() {
+      const seriesData = await fetchPublicMarketDataSeries();
+      const pointsData = await fetchPublicMarketDataPoints();
+
+      if (seriesData && pointsData && seriesData.length > 0 && pointsData.length > 0) {
+        // Build the latest point for each series
+        const latestPoints: Record<string, any> = {};
+        pointsData.forEach((pt: any) => {
+          if (!latestPoints[pt.series_id] || new Date(pt.as_of_date) > new Date(latestPoints[pt.series_id].as_of_date)) {
+            latestPoints[pt.series_id] = pt;
+          }
+        });
+
+        const newMetrics: MarketMetric[] = [];
+        seriesData.forEach((s: any) => {
+          const point = latestPoints[s.id];
+          if (point) {
+            newMetrics.push({
+              label: s.name,
+              value: point.value.toString() + (s.unit === 'Percent' ? '%' : ''),
+              note: point.metadata?.note || s.frequency || 'latest print'
+            });
+          }
+        });
+
+        if (newMetrics.length > 0) {
+          setMetrics(newMetrics);
+        }
+      }
+      setLoading(false);
+    }
+    loadAnalytics();
+  }, []);
+
   return (
     <main>
       <section className="analytics-page">
@@ -13,15 +53,19 @@ export default function Analytics() {
             </div>
           </div>
 
-          <div className="analytics-dashboard-kpis">
-            {marketMetrics.map(metric => (
-              <article key={metric.label}>
-                <span>{metric.label}</span>
-                <strong>{metric.value}</strong>
-                <small>{metric.note}</small>
-              </article>
-            ))}
-          </div>
+          {loading ? (
+            <p>Loading analytics data...</p>
+          ) : (
+            <div className="analytics-dashboard-kpis">
+              {metrics.map(metric => (
+                <article key={metric.label}>
+                  <span>{metric.label}</span>
+                  <strong>{metric.value}</strong>
+                  <small>{metric.note}</small>
+                </article>
+              ))}
+            </div>
+          )}
 
           <div className="analytics-dashboard-grid">
             <section className="panel analytics-preview-gate">
@@ -38,9 +82,13 @@ export default function Analytics() {
                   <table>
                     <thead><tr><th>Indicator</th><th>Latest</th><th>Direction</th></tr></thead>
                     <tbody>
-                      <tr><td>Inflation</td><td>23.8%</td><td>Lower</td></tr>
-                      <tr><td>FX Rate</td><td>1,498</td><td>Stable</td></tr>
-                      <tr><td>NGX ASI</td><td>101,200</td><td>Higher</td></tr>
+                      {metrics.slice(0, 3).map(metric => (
+                        <tr key={metric.label}>
+                          <td>{metric.label}</td>
+                          <td>{metric.value}</td>
+                          <td>-</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
