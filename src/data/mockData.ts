@@ -1,8 +1,9 @@
 export interface Analyst {
-  id: number;
+  id: number | string;
   name: string;
   title: string;
   coverage: string[];
+  sectors?: string[];
   bio: string;
   photo_path: string;
   photo_position: string;

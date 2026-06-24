@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
-import AnalystStrip from '../components/AnalystStrip';
+import AnalystModal from '../components/AnalystModal';
+import Icon from '../components/Icon';
 import { mockAnalysts, type Analyst } from '../data/mockData';
 import { fetchPublicAnalysts } from '../lib/supabase';
 
 export default function Analysts() {
   const [analysts, setAnalysts] = useState<Analyst[]>(mockAnalysts);
   const [loading, setLoading] = useState(true);
+  const [usingFallback, setUsingFallback] = useState(false);
+  const [selectedAnalyst, setSelectedAnalyst] = useState<Analyst | null>(null);
 
   useEffect(() => {
     async function loadAnalysts() {
@@ -16,17 +19,25 @@ export default function Analysts() {
           name: a.full_name,
           title: a.title,
           coverage: a.coverage || [],
+          sectors: a.sectors || [],
           bio: a.bio,
           photo_path: a.avatar_url,
           photo_position: a.photo_position,
-          isHouseView: a.slug === 'house-view', // Or another indicator if present
+          isHouseView: a.slug === 'house-view',
         }));
         setAnalysts(mappedAnalysts);
+        setUsingFallback(false);
+      } else {
+        setUsingFallback(true);
       }
       setLoading(false);
     }
     loadAnalysts();
   }, []);
+
+  const getInitials = (name: string) => {
+    return name.split(' ').map(part => part[0]).join('').toUpperCase();
+  };
 
   return (
     <main>
@@ -45,13 +56,71 @@ export default function Analysts() {
               <h2>Coverage by sector and house view</h2>
             </div>
           </div>
+
+          {usingFallback && (
+            <p className="notice">Live analyst profiles are temporarily unavailable. Showing local preview profiles.</p>
+          )}
+
           {loading ? (
             <p>Loading analysts...</p>
           ) : (
-            <AnalystStrip analysts={analysts} />
+            <div className="analyst-grid" aria-label="Research team profiles">
+              {analysts.map(analyst => {
+                const coverage = analyst.coverage.length > 0 ? analyst.coverage : analyst.sectors || [];
+
+                return (
+                  <article
+                    key={analyst.id}
+                    className="analyst-card"
+                    data-analyst-card
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setSelectedAnalyst(analyst)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        setSelectedAnalyst(analyst);
+                      }
+                    }}
+                  >
+                    <div
+                      className={`analyst-photo ${analyst.isHouseView ? 'analyst-photo-house' : ''}`}
+                      style={{ '--analyst-photo-position': analyst.photo_position } as React.CSSProperties}
+                    >
+                      {analyst.isHouseView ? (
+                        <img className="analyst-house-logo" src={analyst.photo_path} alt="Chapel Hill Denham" />
+                      ) : analyst.photo_path ? (
+                        <img src={analyst.photo_path} alt={analyst.name} />
+                      ) : (
+                        <span className="analyst-initials">{getInitials(analyst.name)}</span>
+                      )}
+                    </div>
+                    <div className="analyst-info">
+                      <p className="analyst-role">{analyst.title}</p>
+                      <h3>{analyst.name}</h3>
+                      <div className="analyst-coverage" aria-label="Coverage sectors">
+                        {coverage.map((item, index) => (
+                          <span key={`${analyst.id}-${item}-${index}`}>{item}</span>
+                        ))}
+                      </div>
+                      <p className="analyst-bio-preview">
+                        {analyst.bio ? analyst.bio : `${analyst.name} is a member of the Chapel Hill Denham Research team.`}
+                      </p>
+                      <span className="text-link analyst-link">
+                        View Coverage <Icon name="arrow" />
+                      </span>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           )}
         </div>
       </section>
+
+      {selectedAnalyst && (
+        <AnalystModal analyst={selectedAnalyst} onClose={() => setSelectedAnalyst(null)} />
+      )}
     </main>
   );
 }
