@@ -1,30 +1,26 @@
 export default function Login() {
   return (
     <main>
-      <header className="page-hero">
-        <div className="container">
-          <h1>Sign In</h1>
-          <p>Access your institutional research account.</p>
-        </div>
-      </header>
-
       <section className="section">
-        <div className="container" style={{ maxWidth: '400px' }}>
-          <div className="card" style={{ padding: '2rem' }}>
+        <div className="container auth-preview-container">
+          <div className="auth-card">
+            <img src="/assets/img/logo-navy-transparent.png" alt="Chapel Hill Denham" />
+            <h1>Sign In</h1>
+            <p>Welcome back.</p>
             <form onSubmit={(e) => e.preventDefault()}>
-              <div style={{ marginBottom: '1rem' }}>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Email Address</label>
-                <input type="email" disabled placeholder="demo@example.com" style={{ width: '100%', padding: '0.75rem', border: '1px solid #cbd5e1', borderRadius: '4px' }} />
+              <div className="field">
+                <label>Email Address</label>
+                <input type="email" disabled />
               </div>
-              <div style={{ marginBottom: '1.5rem' }}>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Password</label>
-                <input type="password" disabled placeholder="••••••••" style={{ width: '100%', padding: '0.75rem', border: '1px solid #cbd5e1', borderRadius: '4px' }} />
+              <div className="field">
+                <label>Password</label>
+                <input type="password" disabled />
               </div>
-              <button className="btn btn-navy" disabled style={{ width: '100%', opacity: 0.7, cursor: 'not-allowed' }}>Sign In</button>
+              <a className="text-link" href="#" onClick={(event) => event.preventDefault()}>Forgot password?</a>
+              <button className="btn btn-navy" disabled>Sign In</button>
             </form>
-            <p style={{ fontSize: '0.875rem', textAlign: 'center', marginTop: '1rem', color: 'var(--color-navy-light)' }}>
-              Authentication is disabled in this static preview.
-            </p>
+            <p>Don't have an account? <a className="text-link" href="#" onClick={(event) => event.preventDefault()}>Create one</a></p>
+            <p className="notice compact">Authentication is disabled in this static preview.</p>
           </div>
         </div>
       </section>

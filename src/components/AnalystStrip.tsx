@@ -100,10 +100,12 @@ export default function AnalystStrip({ analysts }: { analysts: Analyst[] }) {
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSelectedAnalyst(analyst); }}
             >
               <div 
-                className="analyst-photo" 
+                className={`analyst-photo ${analyst.isHouseView ? 'analyst-photo-house' : ''}`}
                 style={{ '--analyst-photo-position': analyst.photo_position } as React.CSSProperties}
               >
-                {analyst.photo_path ? (
+                {analyst.isHouseView ? (
+                  <img className="analyst-house-logo" src={analyst.photo_path} alt="Chapel Hill Denham" />
+                ) : analyst.photo_path ? (
                   <img src={analyst.photo_path} alt={analyst.name} />
                 ) : (
                   <span className="analyst-initials">{getInitials(analyst.name)}</span>

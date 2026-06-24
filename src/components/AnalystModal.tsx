@@ -30,10 +30,12 @@ export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, o
       </button>
       <div className="analyst-modal-body">
         <div 
-          className="analyst-modal-photo"
+          className={`analyst-modal-photo ${analyst.isHouseView ? 'analyst-photo-house' : ''}`}
           style={{ '--analyst-photo-position': analyst.photo_position } as React.CSSProperties}
         >
-          {analyst.photo_path && <img src={analyst.photo_path} alt={analyst.name} />}
+          {analyst.photo_path && (
+            <img className={analyst.isHouseView ? 'analyst-house-logo' : ''} src={analyst.photo_path} alt={analyst.isHouseView ? 'Chapel Hill Denham' : analyst.name} />
+          )}
         </div>
         <div className="analyst-modal-heading">
           <p className="analyst-role">{analyst.title}</p>

@@ -5,7 +5,7 @@ import Icon from '../components/Icon';
 import { mockAnalysts, mockReports } from '../data/mockData';
 
 export default function Home() {
-  const latestReports = mockReports.slice(0, 4);
+  const latestReports = mockReports.slice(0, 6);
 
   return (
     <main className="enterprise-home">
@@ -20,11 +20,11 @@ export default function Home() {
         <div className="container hero-inner">
           <div className="hero-copy">
             <h1>Chapel Hill Denham<br/>Research</h1>
-            <p className="hero-val">Institutional research, market intelligence, and investment insights for professional investors.</p>
+            <p className="hero-val">Institutional research, market intelligence, investment insights, and controlled subscriber access for professional investors.</p>
             <div className="hero-actions">
               <Link className="btn btn-navy" to="/reports">Explore Research</Link>
               <Link className="btn btn-border" to="/analytics">Data &amp; Analytics</Link>
-              <Link className="text-link" to="/login">Research Access <Icon name="arrow" /></Link>
+              <Link className="text-link" to="/login">Explore Research <Icon name="arrow" /></Link>
             </div>
           </div>
 
@@ -45,15 +45,15 @@ export default function Home() {
         <div className="container">
           <div className="cred-grid">
             <div className="cred-card">
-              <span className="cred-val">Published</span>
+              <span className="cred-val">{mockReports.length}</span>
               <span className="cred-label">Research Reports</span>
             </div>
             <div className="cred-card">
-              <span className="cred-val">Comprehensive</span>
+              <span className="cred-val">6</span>
               <span className="cred-label">Sector Coverage</span>
             </div>
             <div className="cred-card">
-              <span className="cred-val">Live</span>
+              <span className="cred-val">4</span>
               <span className="cred-label">Market Analytics</span>
             </div>
           </div>

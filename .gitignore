@@ -26,3 +26,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.agents/
+.project-pipeline/
+skills-lock.json
+supabase-gate1-inspection.sql
