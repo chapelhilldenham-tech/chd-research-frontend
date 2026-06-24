@@ -1,17 +1,48 @@
 import { useParams, Link } from 'react-router-dom';
-import { getReportById, getAnalystById, relatedReportsFor } from '../data/mockData';
+import { getReportById, getAnalystById, relatedReportsFor, mockReports, type Report } from '../data/mockData';
+import { fetchPublicResearchReportBundle } from '../lib/supabase';
 import { ArrowLeft, Download } from 'lucide-react';
 import Icon from '../components/Icon';
+import { useEffect, useMemo, useState } from 'react';
+
+function relatedReportsFromList(report: Report, reports: Report[]) {
+  return reports
+    .filter(item => String(item.id) !== String(report.id) && (item.category === report.category || item.analyst_id === report.analyst_id))
+    .slice(0, 3);
+}
 
 export default function ReportDetail() {
   const { id } = useParams<{ id: string }>();
-  const report = getReportById(Number(id));
+  const [reports, setReports] = useState<Report[] | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function loadReportBundle() {
+      const data = await fetchPublicResearchReportBundle();
+      if (!mounted) return;
+      setReports(data);
+      setLoading(false);
+    }
+
+    loadReportBundle();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const reportList = reports || mockReports;
+  const report = useMemo(() => {
+    if (!id) return undefined;
+    return reportList.find(item => String(item.id) === id || item.uuid === id) || (!reports ? getReportById(id) : undefined);
+  }, [id, reportList, reports]);
 
   if (!report) {
     return (
       <main>
         <div className="container section">
-          <h2>Report not found</h2>
+          <h2>{loading ? 'Loading report...' : 'Report not found'}</h2>
           <Link to="/reports" className="text-link">Return to reports</Link>
         </div>
       </main>
@@ -19,7 +50,7 @@ export default function ReportDetail() {
   }
 
   const analyst = getAnalystById(report.analyst_id);
-  const relatedReports = relatedReportsFor(report);
+  const relatedReports = reports ? relatedReportsFromList(report, reportList) : relatedReportsFor(report);
   const isLocked = report.access_level === 'subscriber';
 
   return (

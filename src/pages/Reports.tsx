@@ -1,6 +1,7 @@
 import ReportCard from '../components/ReportCard';
 import { mockReports } from '../data/mockData';
-import { useMemo, useState } from 'react';
+import { fetchPublicResearchReportBundle } from '../lib/supabase';
+import { useEffect, useMemo, useState } from 'react';
 
 const categories = [
   { value: 'equity', label: 'Equity Research' },
@@ -13,10 +14,30 @@ const categories = [
 export default function Reports() {
   const [search, setSearch] = useState('');
   const [selected, setSelected] = useState<string[]>([]);
+  const [reports, setReports] = useState(mockReports);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function loadReports() {
+      const data = await fetchPublicResearchReportBundle();
+      if (!mounted) return;
+      if (data) {
+        setReports(data);
+      }
+      setLoading(false);
+    }
+
+    loadReports();
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   const filteredReports = useMemo(() => {
     const term = search.trim().toLowerCase();
-    return mockReports.filter(report => {
+    return reports.filter(report => {
       const categoryMatch = selected.length === 0 || selected.includes(report.category);
       const searchMatch = term === '' || [
         report.title,
@@ -27,7 +48,7 @@ export default function Reports() {
       ].join(' ').toLowerCase().includes(term);
       return categoryMatch && searchMatch;
     });
-  }, [search, selected]);
+  }, [reports, search, selected]);
 
   const toggleCategory = (category: string) => {
     setSelected(current => current.includes(category) ? current.filter(item => item !== category) : [...current, category]);
@@ -75,7 +96,7 @@ export default function Reports() {
             <section>
               <div className="report-discovery-toolbar">
                 <strong>Research Library</strong>
-                <span className="text-muted">Showing {filteredReports.length} reports</span>
+                <span className="text-muted">{loading ? 'Loading published reports...' : `Showing ${filteredReports.length} reports`}</span>
               </div>
               {filteredReports.length === 0 && (
                 <p className="notice report-filter-empty">No reports match your current filters.</p>

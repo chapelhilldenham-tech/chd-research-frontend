@@ -11,7 +11,7 @@ export interface Analyst {
 }
 
 export interface Report {
-  id: number;
+  id: number | string;
   uuid: string;
   title: string;
   type: string;
@@ -19,7 +19,7 @@ export interface Report {
   coverage: string;
   synopsis: string;
   date: string;
-  analyst_id: number;
+  analyst_id: number | string;
   analyst_name: string;
   access_level: 'public' | 'subscriber';
   tags: string[];
@@ -315,7 +315,7 @@ export const marketMetrics: MarketMetric[] = [
   { label: 'T-Bill Stop Rate', value: '18.4%', note: 'primary-market guide' }
 ];
 
-export const getAnalystById = (id: number) => mockAnalysts.find(a => a.id === id);
-export const getReportById = (id: number) => mockReports.find(r => r.id === id);
+export const getAnalystById = (id: number | string) => mockAnalysts.find(a => String(a.id) === String(id));
+export const getReportById = (id: number | string) => mockReports.find(r => String(r.id) === String(id) || r.uuid === id);
 export const relatedReportsFor = (report: Report) =>
   mockReports.filter(item => item.id !== report.id && (item.category === report.category || item.analyst_id === report.analyst_id)).slice(0, 3);
