@@ -4,38 +4,51 @@ export default function Contact() {
       <header className="page-hero">
         <div className="container">
           <h1>Contact Us</h1>
-          <p>Reach out to the Chapel Hill Denham Research team.</p>
+          <p>Reach the Chapel Hill Denham team.</p>
         </div>
       </header>
 
       <section className="section">
-        <div className="container" style={{ maxWidth: '600px' }}>
-          <div className="card" style={{ padding: '2rem' }}>
+        <div className="container contact-layout">
+          <div className="panel">
+            <h2>Send a Message</h2>
             <form onSubmit={(e) => e.preventDefault()}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
-                <div>
-                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>First Name</label>
-                  <input type="text" disabled style={{ width: '100%', padding: '0.75rem', border: '1px solid #cbd5e1', borderRadius: '4px' }} />
+              <div className="form-grid">
+                <div className="field">
+                  <label>Full Name</label>
+                  <input type="text" disabled />
                 </div>
-                <div>
-                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Last Name</label>
-                  <input type="text" disabled style={{ width: '100%', padding: '0.75rem', border: '1px solid #cbd5e1', borderRadius: '4px' }} />
+                <div className="field">
+                  <label>Email Address</label>
+                  <input type="email" disabled />
                 </div>
+                <div className="field">
+                  <label>Subject</label>
+                  <select disabled>
+                    <option>General Enquiry</option>
+                    <option>Research Access</option>
+                    <option>Media & Press</option>
+                    <option>Investment Enquiry</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div className="field">
+                  <label>Message</label>
+                  <textarea disabled rows={5}></textarea>
+                </div>
+                <button className="btn btn-navy" disabled>Send Message</button>
               </div>
-              <div style={{ marginBottom: '1rem' }}>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Email</label>
-                <input type="email" disabled style={{ width: '100%', padding: '0.75rem', border: '1px solid #cbd5e1', borderRadius: '4px' }} />
-              </div>
-              <div style={{ marginBottom: '1.5rem' }}>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Message</label>
-                <textarea disabled rows={5} style={{ width: '100%', padding: '0.75rem', border: '1px solid #cbd5e1', borderRadius: '4px' }}></textarea>
-              </div>
-              <button className="btn btn-navy" disabled style={{ opacity: 0.7, cursor: 'not-allowed' }}>Send Message</button>
             </form>
-            <p style={{ fontSize: '0.875rem', marginTop: '1rem', color: 'var(--color-navy-light)' }}>
-              Forms are disabled in this static preview.
-            </p>
+            <p className="notice compact">Forms are disabled in this static preview.</p>
           </div>
+          <aside className="panel contact-card">
+            <h2>Chapel Hill Denham</h2>
+            <p>10 Bankole Oki Road, Ikoyi, Lagos, Nigeria</p>
+            <p>Tel: +234 (1) 2799561-4</p>
+            <p>research@chapelhilldenham.com</p>
+            <div className="contact-map" aria-hidden="true"></div>
+            <a className="text-link contact-map-link" href="#" onClick={(event) => event.preventDefault()}>Open in Maps</a>
+          </aside>
         </div>
       </section>
     </main>

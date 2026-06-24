@@ -1,40 +1,67 @@
+import { marketMetrics } from '../data/mockData';
+
 export default function Analytics() {
   return (
     <main>
-      <header className="page-hero">
+      <section className="analytics-page">
         <div className="container">
-          <h1>Data & Analytics</h1>
-          <p>Subscriber access includes macro indicators, live market tracking, and valuation multiples.</p>
-        </div>
-      </header>
+          <div className="analytics-intro">
+            <div>
+              <p className="eyebrow">Subscriber Analytics</p>
+              <h1>Data &amp; Analytics</h1>
+              <p>Curated macro indicators, market data, and internal reference charts used by the Research Desk.</p>
+            </div>
+          </div>
 
-      <section className="section" style={{ backgroundColor: 'var(--color-neutral-bg)' }}>
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-            {/* Mock Chart Cards */}
-            <div className="card" style={{ padding: '2rem', backgroundColor: '#fff', textAlign: 'center' }}>
-              <div style={{ width: '100%', height: '200px', backgroundColor: '#f0f4f8', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#94a3b8' }}>
-                Chart Placeholder
+          <div className="analytics-dashboard-kpis">
+            {marketMetrics.map(metric => (
+              <article key={metric.label}>
+                <span>{metric.label}</span>
+                <strong>{metric.value}</strong>
+                <small>{metric.note}</small>
+              </article>
+            ))}
+          </div>
+
+          <div className="analytics-dashboard-grid">
+            <section className="panel analytics-preview-gate">
+              <div className="analytics-preview-blur">
+                <h2>Key Macro Indicators</h2>
+                <div className="chart-box" aria-hidden="true">
+                  <span style={{ height: '42%' }}></span>
+                  <span style={{ height: '64%' }}></span>
+                  <span style={{ height: '51%' }}></span>
+                  <span style={{ height: '78%' }}></span>
+                  <span style={{ height: '58%' }}></span>
+                </div>
+                <div className="table-wrap light">
+                  <table>
+                    <thead><tr><th>Indicator</th><th>Latest</th><th>Direction</th></tr></thead>
+                    <tbody>
+                      <tr><td>Inflation</td><td>23.8%</td><td>Lower</td></tr>
+                      <tr><td>FX Rate</td><td>1,498</td><td>Stable</td></tr>
+                      <tr><td>NGX ASI</td><td>101,200</td><td>Higher</td></tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-              <h3>GDP Growth Rate</h3>
-              <p>Historical trends and forecasts</p>
-            </div>
-            
-            <div className="card" style={{ padding: '2rem', backgroundColor: '#fff', textAlign: 'center' }}>
-              <div style={{ width: '100%', height: '200px', backgroundColor: '#f0f4f8', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#94a3b8' }}>
-                Chart Placeholder
+              <div className="analytics-preview-overlay">
+                <span>Preview</span>
+                <h2>Subscriber analytics layer</h2>
+                <p>Static preview only. Live market analytics remain disabled until the data source is approved.</p>
               </div>
-              <h3>Inflation CPI</h3>
-              <p>Monthly tracking vs targets</p>
-            </div>
-            
-            <div className="card" style={{ padding: '2rem', backgroundColor: '#fff', textAlign: 'center' }}>
-              <div style={{ width: '100%', height: '200px', backgroundColor: '#f0f4f8', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#94a3b8' }}>
-                Chart Placeholder
+            </section>
+
+            <section className="panel">
+              <h2>Market Data</h2>
+              <p>Sample data mirrors the PHP reference treatment without connecting to Supabase or live feeds.</p>
+              <div className="chart-box" aria-hidden="true">
+                <span style={{ height: '32%' }}></span>
+                <span style={{ height: '45%' }}></span>
+                <span style={{ height: '54%' }}></span>
+                <span style={{ height: '68%' }}></span>
               </div>
-              <h3>FX Reserves</h3>
-              <p>CBN gross reserves tracking</p>
-            </div>
+            </section>
           </div>
         </div>
       </section>
