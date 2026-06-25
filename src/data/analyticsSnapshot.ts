@@ -56,14 +56,14 @@ export const analyticsSnapshot = {
   macroIndicators: [
     { label: 'GDP Growth (%)', value: '3.89%', change: '-0.18ppt', effectiveDate: 'Q1 2026' },
     { label: 'CPI / Inflation (%)', value: '15.93%', change: '+0.24ppt', effectiveDate: '23 May 2026' },
-    { label: 'Credit Growth', value: 'N59.98trn', change: '+0.47%', effectiveDate: '23 May 2026' },
+    { label: 'Credit Growth', value: 'N59.98tn', change: '+0.47%', effectiveDate: '23 May 2026' },
     { label: 'Debt/GDP (%)', value: '36.07%', change: '-2.73ppt', effectiveDate: 'Q1 2026' },
   ],
   market: {
     effectiveDate: '23 Jun 2026',
     summary: [
       { label: 'NGX ASI', value: '240,743.19' },
-      { label: 'Market Cap', value: 'N154.48trn' },
+      { label: 'Market Cap', value: 'N154.48tn' },
       { label: 'Volume', value: '565.00mn' },
     ],
     stats: [
@@ -88,7 +88,7 @@ export const analyticsSnapshot = {
       status: 'available',
       effectiveDate: 'Mixed: 23 May 2026 and Q1 2026',
       metrics: [
-        { label: 'Deposit Money Banks Credit', value: 'N59.98trn', change: '+0.47%', effectiveDate: '23 May 2026' },
+        { label: 'Deposit Money Banks Credit', value: 'N59.98tn', change: '+0.47%', effectiveDate: '23 May 2026' },
         { label: 'NPL Ratio', value: '10.59%', change: '+2.47ppt', effectiveDate: 'Q1 2026' },
         { label: 'Real GDP Contribution', value: '3.33%', change: '+1.06ppt', effectiveDate: 'Q1 2026' },
         { label: 'ROE', value: '27.11%', change: '+8.02ppt', effectiveDate: 'Q1 2026' },
@@ -111,7 +111,7 @@ export const analyticsSnapshot = {
       status: 'available',
       effectiveDate: '23 Apr 2026',
       metrics: [
-        { label: 'Net Asset Value', value: 'N30.94trn', change: '+4.81%', effectiveDate: '23 Apr 2026' },
+        { label: 'Net Asset Value', value: 'N30.94tn', change: '+4.81%', effectiveDate: '23 Apr 2026' },
         { label: 'RSA membership', value: '11.23mn', change: '+0.44%', effectiveDate: '23 Apr 2026' },
         { label: 'Equity allocation', value: '21.92%', change: '+2.58ppt', effectiveDate: '23 Apr 2026' },
         { label: 'FGN securities allocation', value: '56.10%', change: '-1.97ppt', effectiveDate: '23 Apr 2026' },
@@ -143,32 +143,17 @@ export const analyticsSnapshot = {
   paramount: {
     effectiveDate: 'Q1 2026',
     summary: [
-      { label: 'Index Value', value: '2,750.40', sourceStatus: '' },
-      { label: '1D', value: '+1.15%', sourceStatus: '' },
-      { label: '1W', value: '+3.10%', sourceStatus: '' },
-      { label: '1M', value: '+5.40%', sourceStatus: '' },
-      { label: 'YTD', value: '+36.50%', sourceStatus: '' },
+      { label: 'Paramount Index', value: '607.36', change: '', sourceStatus: '' },
+      { label: '1YR', value: '85%', change: '', sourceStatus: '' },
+      { label: '2YR', value: '120%', change: '', sourceStatus: '' },
+      { label: '3YR', value: '354%', change: '', sourceStatus: '' },
+      { label: '5YR', value: '426%', change: '', sourceStatus: '' },
     ],
-    weights: [
-      { ticker: 'ARADEL', weight: '13.21%', lastPrice: '-', change: '-' },
-      { ticker: 'MTNN', weight: '12.60%', lastPrice: '720.00', change: '-0.69%', sourceStatus: '' },
-      { ticker: 'GTCO', weight: '12.21%', lastPrice: '110.00', change: '-0.45%', sourceStatus: '' },
-      { ticker: 'ZENITHBANK', weight: '10.07%', lastPrice: '105.50', change: '+1.15%', sourceStatus: '' },
-      { ticker: 'SEPLAT', weight: '9.05%', lastPrice: '3,600.00', change: '+2.85%', sourceStatus: '' },
-      { ticker: 'AIRTELAFRI', weight: '5.81%', lastPrice: '2,100.00', change: '0.00%', sourceStatus: '' },
-      { ticker: 'UBA', weight: '4.79%', lastPrice: '-', change: '-' },
-      { ticker: 'DANGCEM', weight: '4.72%', lastPrice: '950.00', change: '+1.60%', sourceStatus: '' },
-      { ticker: 'FBNH', weight: '4.68%', lastPrice: '-', change: '-' },
-      { ticker: 'ACCESS', weight: '3.55%', lastPrice: '-', change: '-' },
-      { ticker: 'BUAFOODS', weight: '3.15%', lastPrice: '-', change: '-' },
-      { ticker: 'FIDELITYBK', weight: '2.81%', lastPrice: '-', change: '-' },
-      { ticker: 'NESTLE', weight: '2.34%', lastPrice: '-', change: '-' },
-      { ticker: 'PRESCO', weight: '2.06%', lastPrice: '-', change: '-' },
-      { ticker: 'STANBIC', weight: '1.99%', lastPrice: '-', change: '-' },
-      { ticker: 'OKOMUOIL', weight: '1.86%', lastPrice: '-', change: '-' },
-      { ticker: 'NB', weight: '1.83%', lastPrice: '-', change: '-' },
-      { ticker: 'WAPCO', weight: '1.71%', lastPrice: '-', change: '-' },
-      { ticker: 'GEREGU', weight: '1.58%', lastPrice: '-', change: '-' },
+    points: [{"label": "2018-03", "value": 100}, {"label": "2018-06", "value": 94.59}, {"label": "2018-09", "value": 81.74}, {"label": "2018-12", "value": 78.5}, {"label": "2019-03", "value": 77.83}, {"label": "2019-06", "value": 72.57}, {"label": "2019-09", "value": 68.99}, {"label": "2019-12", "value": 70.57}, {"label": "2020-03", "value": 51.33}, {"label": "2020-06", "value": 65.03}, {"label": "2020-09", "value": 73.25}, {"label": "2020-12", "value": 100.81}, {"label": "2021-03", "value": 98.51}, {"label": "2021-06", "value": 101.93}, {"label": "2021-09", "value": 106.4}, {"label": "2021-12", "value": 113.06}, {"label": "2022-03", "value": 115.56}, {"label": "2022-06", "value": 130.63}, {"label": "2022-09", "value": 122.59}, {"label": "2022-12", "value": 128.09}, {"label": "2023-03", "value": 133.7}, {"label": "2023-06", "value": 174.68}, {"label": "2023-09", "value": 187.41}, {"label": "2023-12", "value": 228.76}, {"label": "2024-03", "value": 275.66}, {"label": "2024-06", "value": 255.25}, {"label": "2024-09", "value": 268.52}, {"label": "2024-12", "value": 316.25}, {"label": "2025-03", "value": 327.58}, {"label": "2025-06", "value": 379.15}, {"label": "2025-09", "value": 430.95}, {"label": "2025-12", "value": 453.73}, {"label": "2026-03", "value": 607.36}],
+    performance: [
+      { index: 'Paramount', '1YR': '85%', '2YR': '120%', '3YR': '354%', '5YR': '426%' },
+      { index: 'NGX30', '1YR': '86%', '2YR': '88%', '3YR': '278%', '5YR': '308%' },
+      { index: 'NGXAllShare', '1YR': '91%', '2YR': '93%', '3YR': '271%', '5YR': '329%' },
     ],
   },
 } as const;

@@ -54,7 +54,7 @@ export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, o
           <p className="analyst-role">{analyst.title}</p>
           <h2>{analyst.name}</h2>
           <div className="analyst-coverage">
-            {analyst.coverage.map((cov, idx) => (
+            {analyst.coverage?.map((cov, idx) => (
               <span key={idx} className="coverage-chip">{cov}</span>
             ))}
           </div>

@@ -49,32 +49,21 @@ function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
   );
 }
 
-/*
-const paramountPoints = [
-  { label: 'Jan', value: 2015 },
-  { label: 'Feb', value: 2200 },
-  { label: 'Mar', value: 2350 },
-  { label: 'Apr', value: 2480 },
-  { label: 'May', value: 2610 },
-  { label: 'Jun', value: 2750.40 },
-];
-
 function ParamountChart() {
   return (
     <div className="chart-shell chart-shell-paramount analytics-svg-chart" style={{ width: '100%', height: 300 }}>
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={paramountPoints} margin={{ top: 20, right: 30, left: 10, bottom: 0 }}>
+        <LineChart data={analyticsSnapshot.paramount.points} margin={{ top: 20, right: 30, left: 10, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#2e303a" />
           <XAxis dataKey="label" stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} />
           <YAxis stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} domain={['dataMin - 100', 'dataMax + 100']} axisLine={false} tickLine={false} />
           <Tooltip contentStyle={{ backgroundColor: '#1f2028', border: '1px solid #2e303a', borderRadius: '4px' }} />
-          <Line type="monotone" dataKey="value" stroke="#c7752d" strokeWidth={3} activeDot={{ r: 6 }} dot={{ strokeWidth: 2, r: 4 }} name="Index Value" />
+          <Line type="monotone" dataKey="value" stroke="#c7752d" strokeWidth={3} activeDot={{ r: 6 }} dot={false} name="Index Value" />
         </LineChart>
       </ResponsiveContainer>
     </div>
   );
 }
-*/
 
 import { Navigate } from 'react-router-dom';
 
@@ -263,6 +252,9 @@ export default function Analytics() {
             </div>
           </section>
 
+          </section>
+          */}
+
           <section className="analytics-section dashboard-panel" id="paramount-index">
             <div className="analytics-section-heading with-meta">
               <span>04</span>
@@ -288,29 +280,30 @@ export default function Analytics() {
               </p>
             </details>
             <div className="analytics-table-scroll">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Ticker</th>
-                    <th className="num">Weight %</th>
-                    <th className="num">Last Price</th>
-                    <th className="num">1D Change</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {analyticsSnapshot.paramount.weights.map((row) => (
-                    <tr key={row.ticker}>
-                      <td>{row.ticker}{sourceStatus(row) && <small style={{ display: 'block' }}>{sourceStatus(row)}</small>}</td>
-                      <td className="num">{row.weight}</td>
-                      <td className="num">{row.lastPrice}</td>
-                      <td className="num">{row.change}</td>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Indices</th>
+                      <th className="num">1YR</th>
+                      <th className="num">2YR</th>
+                      <th className="num">3YR</th>
+                      <th className="num">5YR</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {analyticsSnapshot.paramount.performance.map((row) => (
+                      <tr key={row.index}>
+                        <td>{row.index}</td>
+                        <td className="num" style={{ color: row['1YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-navy)' }}>{row['1YR']}</td>
+                        <td className="num" style={{ color: row['2YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-success)' }}>{row['2YR']}</td>
+                        <td className="num" style={{ color: row['3YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-success)' }}>{row['3YR']}</td>
+                        <td className="num" style={{ color: row['5YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-success)' }}>{row['5YR']}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
             </div>
           </section>
-          */}
         </div>
       </div>
     </main>
