@@ -1,5 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
-import { type Report, mockReports, mockAnalysts } from '../data/mockData';
+import { type Report } from '../data/mockData';
+import { mvpResearchReports } from '../data/mvpResearchReports';
+import { mvpAnalysts } from '../data/mvpAnalysts';
+import { mvpPriceLists } from '../data/mvpPriceLists';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
@@ -30,7 +33,7 @@ export async function fetchPublicAnalysts() {
     console.error('Error fetching analysts:', error);
     return null;
   }
-  return data && data.length > 0 ? data : mockAnalysts;
+  return data && data.length > 0 ? data : mvpAnalysts;
 }
 
 export async function fetchPublicPriceLists() {
@@ -46,7 +49,7 @@ export async function fetchPublicPriceLists() {
     console.error('Error fetching price lists:', error);
     return null;
   }
-  return data;
+  return data && data.length > 0 ? data : mvpPriceLists;
 }
 
 export async function fetchPublicMarketDataPoints() {
@@ -211,7 +214,7 @@ export async function fetchPublicResearchReportBundle(): Promise<Report[] | null
 
   const dbReports = (reportsResult.data as PublicResearchReportRow[] | null || []).map((row) => {
     const report = mapPublicReport(row, tagsByReport, analystsByReport);
-    const mockMatch = mockReports.find(r => String(r.id) === String(report.id));
+    const mockMatch = mvpResearchReports.find(r => String(r.id) === String(report.id));
     if (mockMatch) {
       if (report.analyst_id === 'house-view' && mockMatch.analyst_id) {
         report.analyst_id = mockMatch.analyst_id;
@@ -227,5 +230,5 @@ export async function fetchPublicResearchReportBundle(): Promise<Report[] | null
     return report;
   });
 
-  return dbReports.length > 0 ? dbReports : mockReports;
+  return dbReports.length > 0 ? dbReports : mvpResearchReports;
 }
