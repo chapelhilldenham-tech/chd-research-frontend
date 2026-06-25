@@ -174,7 +174,8 @@ export const mockReports: Report[] = [
     "analyst_name": "Chapel Hill Denham Research",
     "access_level": "subscriber",
     "tags": [],
-    "featured": false
+    "featured": false,
+    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_reports/2025%20Debt%20TAI.pdf"
   },
   {
     "id": "20aa34f7-a9ec-4b02-88d7-30d2b529635b",
@@ -189,7 +190,8 @@ export const mockReports: Report[] = [
     "analyst_name": "Nabila Mohammed",
     "access_level": "subscriber",
     "tags": [],
-    "featured": false
+    "featured": false,
+    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_reports/Accesscorp%20Company%20Update%202025.pdf"
   },
   {
     "id": "d2720c50-f3d4-4adc-a11a-e02f9aa82323",
@@ -204,7 +206,8 @@ export const mockReports: Report[] = [
     "analyst_name": "Tajudeen Ibrahim",
     "access_level": "subscriber",
     "tags": [],
-    "featured": false
+    "featured": false,
+    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_reports/1715843477839_Airtel%20Africa%20Plc%20Company%20Research%20Update%20May%202024.pdf"
   },
   {
     "id": "559f9ac1-2128-4d05-87a1-715e3d2d6ecf",
@@ -219,7 +222,8 @@ export const mockReports: Report[] = [
     "analyst_name": "Gideon Oshadumi",
     "access_level": "subscriber",
     "tags": [],
-    "featured": false
+    "featured": false,
+    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_reports/Dangote%20Cement%209M%20-%2024%20Initial%20Comment.pdf"
   },
   {
     "id": "04051a6e-baff-4038-848a-32006b32f8ac",
@@ -234,7 +238,8 @@ export const mockReports: Report[] = [
     "analyst_name": "Gideon Oshadumi",
     "access_level": "subscriber",
     "tags": [],
-    "featured": false
+    "featured": false,
+    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_reports/Dangote%20Cement%20Plc%20FY%20-%2025%20Company%20Update%20(1).pdf"
   }
 ];
 

@@ -209,16 +209,23 @@ export async function fetchPublicResearchReportBundle(): Promise<Report[] | null
     analystsByReport.set(analyst.report_id, existing);
   });
 
-  return (reportsResult.data as PublicResearchReportRow[] | null || []).map((row) => {
+  const dbReports = (reportsResult.data as PublicResearchReportRow[] | null || []).map((row) => {
     const report = mapPublicReport(row, tagsByReport, analystsByReport);
-    // QUICK FIX: Hardcode analyst mapping from mockData if missing
-    if (report.analyst_id === 'house-view') {
-      const mockMatch = mockReports.find(r => String(r.id) === String(report.id));
-      if (mockMatch && mockMatch.analyst_id) {
+    const mockMatch = mockReports.find(r => String(r.id) === String(report.id));
+    if (mockMatch) {
+      if (report.analyst_id === 'house-view' && mockMatch.analyst_id) {
         report.analyst_id = mockMatch.analyst_id;
         report.analyst_name = mockMatch.analyst_name;
+      }
+      if (!report.file_url && mockMatch.file_url) {
+        report.file_url = mockMatch.file_url;
       }
     }
     return report;
   });
+
+  const dbReportIds = new Set(dbReports.map(r => String(r.id)));
+  const missingMockReports = mockReports.filter(r => !dbReportIds.has(String(r.id)));
+
+  return [...missingMockReports, ...dbReports];
 }
