@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { type Report } from '../data/mockData';
+import type { NormalizedReport, NormalizedAnalyst } from '../types/research';
 import { mvpResearchReports } from '../data/mvpResearchReports';
 import { mvpAnalysts } from '../data/mvpAnalysts';
 import { mvpPriceLists } from '../data/mvpPriceLists';
@@ -22,7 +22,7 @@ function getSupabaseClient() {
 
 export async function fetchPublicAnalysts() {
   const client = getSupabaseClient();
-  if (!client) return null;
+  if (!client) return mvpAnalysts;
 
   const { data, error } = await client
     .from('public_analysts')
@@ -31,14 +31,14 @@ export async function fetchPublicAnalysts() {
   
   if (error) {
     console.error('Error fetching analysts:', error);
-    return null;
+    return mvpAnalysts;
   }
   return data && data.length > 0 ? data : mvpAnalysts;
 }
 
 export async function fetchPublicPriceLists() {
   const client = getSupabaseClient();
-  if (!client) return null;
+  if (!client) return mvpPriceLists;
 
   const { data, error } = await client
     .from('public_price_lists')
@@ -47,7 +47,7 @@ export async function fetchPublicPriceLists() {
 
   if (error) {
     console.error('Error fetching price lists:', error);
-    return null;
+    return mvpPriceLists;
   }
   return data && data.length > 0 ? data : mvpPriceLists;
 }
@@ -142,40 +142,53 @@ interface PublicReportAnalystRow {
   role?: string | null;
 }
 
-function formatDate(value?: string | null) {
-  if (!value) return 'Pending';
-  return value.slice(0, 10);
-}
+
 
 function mapPublicReport(
   row: PublicResearchReportRow,
   tagsByReport: Map<string, string[]>,
   analystsByReport: Map<string, PublicReportAnalystRow[]>,
-): Report {
+): NormalizedReport {
   const analysts = analystsByReport.get(row.id) || [];
-  const primaryAnalyst = analysts.find(item => item.role === 'author') || analysts[0];
+  const normalizedAnalysts: NormalizedAnalyst[] = analysts.map(a => ({
+    id: a.analyst_id || 'house-view',
+    name: a.full_name || 'House View',
+    title: a.role || undefined
+  }));
+
+  if (normalizedAnalysts.length === 0) {
+    normalizedAnalysts.push({
+      id: 'house-view',
+      name: 'House View',
+      title: 'Analyst'
+    });
+  }
+
   const categorySlug = row.category_slug || 'other';
-  const documentType = row.document_type || row.category_name || 'Research Report';
+  const categoryName = row.category_name || 'Research Report';
+  const documentType = row.document_type || 'PDF';
 
   return {
     id: row.id,
-    uuid: row.id,
+    slug: row.display_title ? row.display_title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '') : 'untitled',
     title: row.display_title || 'Untitled Research Report',
-    type: documentType,
-    category: categorySlug,
-    coverage: row.category_name || documentType,
-    synopsis: row.short_summary || row.research_synopsis || 'Published research metadata is available for this report.',
-    date: formatDate(row.published_at || row.data_period_end),
-    analyst_id: primaryAnalyst?.analyst_id || 'house-view',
-    analyst_name: primaryAnalyst?.full_name || 'House View',
-    access_level: 'subscriber',
+    category: categoryName,
+    categorySlug: categorySlug,
+    publishedAt: row.published_at || row.data_period_end || '1970-01-01T00:00:00Z',
+    summary: row.short_summary || 'Published research metadata is available for this report.',
+    synopsis: row.research_synopsis || row.short_summary || 'Published research metadata is available for this report.',
+    analysts: normalizedAnalysts,
     tags: tagsByReport.get(row.id) || [],
+    documentType: documentType,
+    isFallback: false,
+    downloadAvailable: false,
+    file_url: undefined
   };
 }
 
-export async function fetchPublicResearchReportBundle(): Promise<Report[] | null> {
+export async function fetchPublicResearchReportBundle(): Promise<NormalizedReport[]> {
   const client = getSupabaseClient();
-  if (!client) return null;
+  if (!client) return mvpResearchReports;
 
   const [reportsResult, tagsResult, analystsResult] = await Promise.all([
     client.from('public_research_reports').select('*').order('published_at', { ascending: false }),
@@ -183,19 +196,9 @@ export async function fetchPublicResearchReportBundle(): Promise<Report[] | null
     client.from('public_research_report_analysts').select('*').order('sort_order'),
   ]);
 
-  if (reportsResult.error) {
-    console.error('Error fetching research reports:', reportsResult.error);
-    return null;
-  }
-
-  if (tagsResult.error) {
-    console.error('Error fetching report tags:', tagsResult.error);
-    return null;
-  }
-
-  if (analystsResult.error) {
-    console.error('Error fetching report analysts:', analystsResult.error);
-    return null;
+  if (reportsResult.error || tagsResult.error || analystsResult.error) {
+    console.error('Error fetching research reports from Supabase');
+    return mvpResearchReports;
   }
 
   const tagsByReport = new Map<string, string[]>();
@@ -215,17 +218,12 @@ export async function fetchPublicResearchReportBundle(): Promise<Report[] | null
   const dbReports = (reportsResult.data as PublicResearchReportRow[] | null || []).map((row) => {
     const report = mapPublicReport(row, tagsByReport, analystsByReport);
     const mockMatch = mvpResearchReports.find(r => String(r.id) === String(report.id));
+    
     if (mockMatch) {
-      if (report.analyst_id === 'house-view' && mockMatch.analyst_id) {
-        report.analyst_id = mockMatch.analyst_id;
-        report.analyst_name = mockMatch.analyst_name;
-      }
-      if (!report.file_url && mockMatch.file_url) {
+      if (mockMatch.downloadAvailable) {
+        report.downloadAvailable = true;
         report.file_url = mockMatch.file_url;
       }
-    }
-    if (!report.file_url) {
-      report.file_url = `https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_reports/${encodeURIComponent(report.title)}.pdf`;
     }
     return report;
   });

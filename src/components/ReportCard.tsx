@@ -1,28 +1,28 @@
 import { Link } from 'react-router-dom';
-import type { Report } from '../data/mockData';
+import type { NormalizedReport } from '../types/research';
 import Icon from './Icon';
 
-export default function ReportCard({ report, compact = false }: { report: Report, compact?: boolean }) {
-  const locked = report.access_level === 'subscriber';
+export default function ReportCard({ report, compact = false }: { report: NormalizedReport, compact?: boolean }) {
+  const locked = report.isFallback && !report.downloadAvailable;
   const classNames = `report-card research-report-card ${compact ? 'report-card-compact' : ''} ${locked ? 'locked' : ''}`;
   
   return (
     <article className={classNames} data-report-card data-category={report.category}>
       <div className="report-card-top">
-        <span className="report-meta">{report.type}</span>
-        <span className="report-access-label">{report.access_level.toUpperCase()}</span>
+        <span className="report-meta">{report.documentType}</span>
+        <span className="report-access-label">{report.downloadAvailable ? 'PUBLIC' : 'SUBSCRIBER'}</span>
       </div>
       <h3 title={report.title}>{report.title}</h3>
       <dl className="report-card-facts">
-        {report.analyst_name && (
+        {report.analysts[0]?.name && (
           <div>
             <dt>Analyst</dt>
-            <dd>{report.analyst_name}</dd>
+            <dd>{report.analysts[0]?.name}</dd>
           </div>
         )}
         <div>
           <dt>Date</dt>
-          <dd>{report.date}</dd>
+          <dd>{report.publishedAt.slice(0, 10)}</dd>
         </div>
       </dl>
       <p className="report-card-abstract">

@@ -1,4 +1,5 @@
-import type { Analyst, Report } from '../data/mockData';
+import type { Analyst } from '../data/mockData';
+import type { NormalizedReport } from '../types/research';
 import { X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { fetchPublicResearchReportBundle } from '../lib/supabase';
@@ -6,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, onClose: () => void }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const [reports, setReports] = useState<Report[]>([]);
+  const [reports, setReports] = useState<NormalizedReport[]>([]);
   const [loadingReports, setLoadingReports] = useState(true);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, o
       const data = await fetchPublicResearchReportBundle();
       if (!mounted) return;
       if (data) {
-        setReports(data.filter(r => String(r.analyst_id) === String(analyst.id)));
+        setReports(data.filter(r => String(r.analysts.some(a => String(a.id) === String(analyst.id))) === String(analyst.id)));
       }
       setLoadingReports(false);
     }
@@ -77,7 +78,7 @@ export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, o
             <div className="related-list" style={{ marginTop: '1rem' }}>
               {reports.map(item => (
                 <Link key={item.id} to={`/report/${item.id}`} style={{ display: 'block', marginBottom: '0.5rem' }}>
-                  <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--color-navy-muted)', display: 'block' }}>{item.type}</span>
+                  <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--color-navy-muted)', display: 'block' }}>{item.documentType}</span>
                   <strong style={{ display: 'block', color: 'var(--color-navy)', textDecoration: 'none' }}>{item.title}</strong>
                 </Link>
               ))}

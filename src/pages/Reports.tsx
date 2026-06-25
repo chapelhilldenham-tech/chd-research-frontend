@@ -1,6 +1,7 @@
 import ReportCard from '../components/ReportCard';
-import { mockReports } from '../data/mockData';
+
 import { fetchPublicResearchReportBundle } from '../lib/supabase';
+import type { NormalizedReport } from '../types/research';
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -23,7 +24,7 @@ export default function Reports() {
       .filter(Boolean);
     return values;
   });
-  const [reports, setReports] = useState(mockReports);
+  const [reports, setReports] = useState<NormalizedReport[]>([]);
   const [loading, setLoading] = useState(true);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
@@ -48,12 +49,12 @@ export default function Reports() {
   const filteredReports = useMemo(() => {
     const term = search.trim().toLowerCase();
     return reports.filter(report => {
-      const categoryMatch = selected.length === 0 || selected.includes(report.category);
+      const categoryMatch = selected.length === 0 || selected.includes(report.categorySlug);
       const searchMatch = term === '' || [
         report.title,
         report.synopsis,
-        report.analyst_name,
-        report.type,
+        report.analysts.map(a => a.name).join(' '),
+        report.documentType,
         report.tags.join(' ')
       ].join(' ').toLowerCase().includes(term);
       return categoryMatch && searchMatch;

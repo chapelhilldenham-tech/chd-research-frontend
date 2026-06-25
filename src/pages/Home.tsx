@@ -4,10 +4,11 @@ import ReportCard from '../components/ReportCard';
 import Icon from '../components/Icon';
 import { useEffect, useState } from 'react';
 import { fetchPublicAnalysts, fetchPublicResearchReportBundle } from '../lib/supabase';
-import type { Analyst, Report } from '../data/mockData';
+import type { Analyst } from '../data/mockData';
+import type { NormalizedReport } from '../types/research';
 
 export default function Home() {
-  const [latestReports, setLatestReports] = useState<Report[]>([]);
+  const [latestReports, setLatestReports] = useState<NormalizedReport[]>([]);
   const [analysts, setAnalysts] = useState<Analyst[]>([]);
 
   useEffect(() => {
@@ -60,20 +61,12 @@ export default function Home() {
               {latestReports.length > 0 ? (
                 <>
                   <h3>{latestReports[0].title}</h3>
-                  <p>{latestReports[0].synopsis}</p>
+                  <p>{latestReports[0].summary}</p>
                   <Link className="text-link" to={`/report/${latestReports[0].id}`}>
                     Read Report <Icon name="arrow" />
                   </Link>
                 </>
-              ) : (
-                <>
-                  <h3>Accesscorp Company Update 2025</h3>
-                  <p>In-depth review of Accesscorp's financial performance and strategic outlook for the upcoming fiscal year.</p>
-                  <Link className="text-link" to="/reports">
-                    Read Report <Icon name="arrow" />
-                  </Link>
-                </>
-              )}
+              ) : null}
             </div>
           </aside>
         </div>
