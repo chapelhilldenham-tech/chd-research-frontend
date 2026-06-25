@@ -55,37 +55,10 @@ export async function fetchPublicAnalysts() {
 }
 
 export async function fetchPublicPriceLists() {
-  const client = getSupabaseClient();
-  if (!client) return mvpPriceLists;
-
-  const { data, error } = await client
-    .from('public_price_lists')
-    .select('*')
-    .order('effective_date', { ascending: false });
-
-  if (error) {
-    console.error('Error fetching price lists:', error);
-    return mvpPriceLists;
-  }
-  
-  // Merge DB records with local MVP fallbacks (local files always available)
-  const dbDates = new Set((data || []).map((row: any) => row.effective_date));
-  const localOnly = mvpPriceLists.filter(pl => !dbDates.has(pl.effective_date));
-  
-  const dbMapped = (data && data.length > 0)
-    ? data.map((row: any) => ({
-        id: row.id,
-        effective_date: row.effective_date || '',
-        title: row.title || 'Chapel Hill Denham Price List',
-        file_url: row.file_url || mvpPriceLists.find(p => p.effective_date === row.effective_date)?.file_url,
-      }))
-    : [];
-
-  return [...dbMapped, ...localOnly].sort((a, b) =>
-    b.effective_date.localeCompare(a.effective_date)
-  );
+  // Served directly from committed assets — no Supabase dependency needed.
+  // Files live in public/assets/price-lists/ and are deployed via GitHub → Vercel.
+  return mvpPriceLists;
 }
-
 
 export async function fetchPublicMarketDataPoints() {
   const client = getSupabaseClient();
