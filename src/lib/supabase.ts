@@ -252,5 +252,14 @@ export async function fetchPublicResearchReportBundle(): Promise<NormalizedRepor
     return report;
   });
 
-  return dbReports.length > 0 ? dbReports : mvpResearchReports;
+  const mergedReports = [...dbReports];
+  const dbReportIds = new Set(dbReports.map(r => String(r.id)));
+  
+  mvpResearchReports.forEach(fallback => {
+    if (!dbReportIds.has(String(fallback.id))) {
+      mergedReports.push(fallback);
+    }
+  });
+
+  return mergedReports.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
 }

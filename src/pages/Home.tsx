@@ -22,7 +22,7 @@ export default function Home() {
       if (!mounted) return;
       
       if (reportsData) {
-        setLatestReports(reportsData.slice(0, 6));
+        setLatestReports(reportsData.slice(0, 7));
       }
       
       if (analystsData) {
@@ -98,7 +98,7 @@ export default function Home() {
             <Link className="text-link" to="/reports">View All Reports <Icon name="arrow" /></Link>
           </div>
           <div className="report-grid report-grid-compact">
-            {latestReports.map(report => (
+            {latestReports.slice(1).map(report => (
               <ReportCard key={report.id} report={report} compact={true} />
             ))}
           </div>

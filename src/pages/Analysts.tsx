@@ -3,6 +3,7 @@ import AnalystModal from '../components/AnalystModal';
 import Icon from '../components/Icon';
 import { mockAnalysts, type Analyst } from '../data/mockData';
 import { fetchPublicAnalysts } from '../lib/supabase';
+import AnalystAvatar from '../components/AnalystAvatar';
 
 export default function Analysts() {
   const [analysts, setAnalysts] = useState<Analyst[]>(mockAnalysts);
@@ -23,10 +24,6 @@ export default function Analysts() {
     }
     loadAnalysts();
   }, []);
-
-  const getInitials = (name: string) => {
-    return name.split(' ').map(part => part[0]).join('').toUpperCase();
-  };
 
   return (
     <main>
@@ -72,18 +69,7 @@ export default function Analysts() {
                       }
                     }}
                   >
-                    <div
-                      className={`analyst-photo ${analyst.isHouseView ? 'analyst-photo-house' : ''}`}
-                      style={{ '--analyst-photo-position': analyst.photo_position } as React.CSSProperties}
-                    >
-                      {analyst.isHouseView ? (
-                        <img className="analyst-house-logo" src={analyst.photo_path} alt="Chapel Hill Denham" />
-                      ) : analyst.photo_path ? (
-                        <img src={analyst.photo_path} alt={analyst.name} />
-                      ) : (
-                        <span className="analyst-initials">{getInitials(analyst.name)}</span>
-                      )}
-                    </div>
+                    <AnalystAvatar analyst={analyst} />
                     <div className="analyst-info">
                       <p className="analyst-role">{analyst.title}</p>
                       <h3>{analyst.name}</h3>

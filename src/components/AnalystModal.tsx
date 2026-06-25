@@ -4,6 +4,7 @@ import { X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { fetchPublicResearchReportBundle } from '../lib/supabase';
 import { Link } from 'react-router-dom';
+import AnalystAvatar from './AnalystAvatar';
 
 export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, onClose: () => void }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -23,7 +24,7 @@ export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, o
       const data = await fetchPublicResearchReportBundle();
       if (!mounted) return;
       if (data) {
-        setReports(data.filter(r => String(r.analysts.some(a => String(a.id) === String(analyst.id))) === String(analyst.id)));
+        setReports(data.filter(r => r.analysts.some(a => String(a.id) === String(analyst.id))));
       }
       setLoadingReports(false);
     }
@@ -48,14 +49,7 @@ export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, o
         <X size={24} />
       </button>
       <div className="analyst-modal-body">
-        <div 
-          className={`analyst-modal-photo ${analyst.isHouseView ? 'analyst-photo-house' : ''}`}
-          style={{ '--analyst-photo-position': analyst.photo_position } as React.CSSProperties}
-        >
-          {analyst.photo_path && (
-            <img className={analyst.isHouseView ? 'analyst-house-logo' : ''} src={analyst.photo_path} alt={analyst.isHouseView ? 'Chapel Hill Denham' : analyst.name} />
-          )}
-        </div>
+        <AnalystAvatar analyst={analyst} />
         <div className="analyst-modal-heading">
           <p className="analyst-role">{analyst.title}</p>
           <h2>{analyst.name}</h2>
