@@ -55,8 +55,10 @@ const MONTH_ABBR: Record<string, string> = {
   '05': 'May', '06': 'Jun', '07': 'Jul', '08': 'Aug',
   '09': 'Sep', '10': 'Oct', '11': 'Nov', '12': 'Dec',
 };
-function fmtParamountLabel(label: string) {
+function fmtParamountLabel(label: any) {
+  if (typeof label !== 'string') return String(label ?? '');
   const [yr, mo] = label.split('-');
+  if (!yr || !mo) return label;
   return `${MONTH_ABBR[mo] ?? mo}-${yr.slice(2)}`;
 }
 
