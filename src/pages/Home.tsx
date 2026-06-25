@@ -66,7 +66,13 @@ export default function Home() {
                   </Link>
                 </>
               ) : (
-                <p>Loading latest research...</p>
+                <>
+                  <h3>Accesscorp Company Update 2025</h3>
+                  <p>In-depth review of Accesscorp's financial performance and strategic outlook for the upcoming fiscal year.</p>
+                  <Link className="text-link" to="/reports">
+                    Read Report <Icon name="arrow" />
+                  </Link>
+                </>
               )}
             </div>
           </aside>
