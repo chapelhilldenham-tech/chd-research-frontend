@@ -46,60 +46,13 @@ export interface MarketMetric {
 
 export const mockAnalysts: Analyst[] = [
   {
-    "id": "df6b7e15-0a45-4e44-b5a7-28ee11d157e0",
-    "name": "Sample Research Lead",
-    "title": "Director, Research",
-    "coverage": [
-      "Telecommunications"
-    ],
-    "sectors": [
-      "Telecommunications"
-    ],
-    "bio": "Placeholder profile for validating the public analyst directory layout.",
-    "photo_path": "/assets/img/analysts/placeholder-research-lead.jpg",
-    "photo_position": "50% 0%",
-    "isHouseView": false
-  },
-  {
-    "id": "6b35936d-7693-4aaa-a66b-4170257a3e19",
-    "name": "Sample Financials Analyst",
-    "title": "Analyst",
-    "coverage": [
-      "Financial Services"
-    ],
-    "sectors": [
-      "Financial Services"
-    ],
-    "bio": "Placeholder profile for validating financial services coverage displays.",
-    "photo_path": "/assets/img/analysts/placeholder-financials.jpg",
-    "photo_position": "50% 0%",
-    "isHouseView": false
-  },
-  {
-    "id": "87e9bce8-2589-4b62-9962-df3f0a372088",
-    "name": "Sample Consumer Analyst",
-    "title": "Analyst",
-    "coverage": [
-      "Consumer Goods",
-      "Agriculture"
-    ],
-    "sectors": [
-      "Consumer Goods",
-      "Agriculture"
-    ],
-    "bio": "Placeholder profile for validating consumer and agriculture coverage displays.",
-    "photo_path": "/assets/img/analysts/placeholder-consumer.jpg",
-    "photo_position": "50% 24%",
-    "isHouseView": false
-  },
-  {
     "id": "b18ecc2d-6b05-4f87-b37a-68cef253df94",
     "name": "Tajudeen Ibrahim",
     "title": "Director, Research",
     "coverage": [],
     "sectors": [],
     "bio": "Tajudeen Ibrahim leads the research function and coordinates coverage priorities across Chapel Hill Denham's institutional research platform. His work focuses on telecommunications, market strategy and the interpretation of sector developments for investor decision-making.",
-    "photo_path": "public_assets/analysts/tajudeen-ibrahim.jpg",
+    "photo_path": "/assets/img/analysts/tajudeen-ibrahim.jpg",
     "photo_position": "50% 0%",
     "isHouseView": false
   },
@@ -110,7 +63,7 @@ export const mockAnalysts: Analyst[] = [
     "coverage": [],
     "sectors": [],
     "bio": "Nabila Mohammed covers financial services, with emphasis on bank earnings, balance-sheet trends, capital adequacy and sector regulation. Her research supports institutional clients with concise analysis of valuation drivers and operating performance.",
-    "photo_path": "public_assets/analysts/nabila-mohammed.jpg",
+    "photo_path": "/assets/img/analysts/nabila-mohammed.jpg",
     "photo_position": "50% 0%",
     "isHouseView": false
   },
@@ -121,7 +74,7 @@ export const mockAnalysts: Analyst[] = [
     "coverage": [],
     "sectors": [],
     "bio": "Gideon Oshadumi covers cement and selected financial-services names, focusing on earnings quality, pricing trends, cost pressures and balance-sheet resilience. His work combines company analysis with sector context for actionable research views.",
-    "photo_path": "public_assets/analysts/gideon-oshadumi.jpg",
+    "photo_path": "/assets/img/analysts/gideon-oshadumi.jpg",
     "photo_position": "50% 0%",
     "isHouseView": false
   },
@@ -132,7 +85,7 @@ export const mockAnalysts: Analyst[] = [
     "coverage": [],
     "sectors": [],
     "bio": "Boluwatife Ishola covers FMCG and agriculture-linked equities, tracking consumer demand, pricing power, input costs and margin trends. Her research focuses on the operating factors shaping listed companies in Nigeria's consumer economy.",
-    "photo_path": "public_assets/analysts/boluwatife-ishola.jpg",
+    "photo_path": "/assets/img/analysts/boluwatife-ishola.jpg",
     "photo_position": "50% 0%",
     "isHouseView": false
   },
@@ -142,8 +95,8 @@ export const mockAnalysts: Analyst[] = [
     "title": "Analyst",
     "coverage": [],
     "sectors": [],
-    "bio": "Bolade Agboola supports coverage across oil & gas and FMCG, with a focus on market developments, company fundamentals and sector themes. Her work contributes to timely research notes and the broader Chapel Hill Denham house view.",
-    "photo_path": "public_assets/analysts/bolade-agboola.jpg",
+    "bio": "Bolade Agboola supports coverage across oil & gas and FMCG, with a focus on market developments, company fundamentals and sector themes. Her work contributes to timely research notes and the broader Chapel Hill Denham platform.",
+    "photo_path": "/assets/img/analysts/bolade-agboola.jpg",
     "photo_position": "50% 0%",
     "isHouseView": false
   },

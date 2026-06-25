@@ -135,16 +135,43 @@ function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
   );
 }
 
+const paramountPoints: ChartPoint[] = [
+  { label: 'Jan', value: 2100 },
+  { label: 'Feb', value: 2250 },
+  { label: 'Mar', value: 2310 },
+  { label: 'Apr', value: 2450 },
+  { label: 'May', value: 2600 },
+  { label: 'Jun', value: 2750.40 },
+];
+
 function ParamountChart() {
+  const { min, max } = rangeFor(paramountPoints);
+  const yLabels = Array.from({ length: 6 }, (_, index) => max - ((max - min) / 5) * index);
+
   return (
-    <div
-      className="chart-shell chart-shell-paramount analytics-svg-chart paramount-svg-chart"
-      aria-label="Paramount Index trend pending update"
-      style={{ display: 'grid', placeItems: 'center' }}
-    >
-      <p className="notice" style={{ maxWidth: 520 }}>
-        Paramount Index trend data is pending update. Confirmed Q1 2026 constituent weights are shown below.
-      </p>
+    <div className="chart-shell chart-shell-paramount analytics-svg-chart paramount-svg-chart" aria-label="Paramount Index trend">
+      <svg viewBox="0 0 760 300" role="img">
+        <g className="chart-grid">
+          {[44, 82, 120, 158, 196, 234].map((y) => (
+            <line key={y} x1="44" x2="734" y1={y} y2={y} />
+          ))}
+        </g>
+        <g className="chart-axis-labels chart-y-labels">
+          {yLabels.map((label, index) => (
+            <text key={label} x="0" y={49 + index * 38}>{Math.round(label)}</text>
+          ))}
+        </g>
+        <g className="chart-axis-labels chart-x-labels">
+          {paramountPoints.map((point, index) => (
+            <text key={point.label} x={50 + index * (650 / Math.max(paramountPoints.length - 1, 1))} y="292">{point.label}</text>
+          ))}
+        </g>
+        <polyline
+          className="chart-line-primary"
+          points={polyline(paramountPoints, min, max, 'value')}
+          style={{ transition: 'all 0.5s ease-in-out' }}
+        />
+      </svg>
     </div>
   );
 }
