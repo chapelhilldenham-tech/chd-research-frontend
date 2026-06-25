@@ -5,6 +5,16 @@ import { useEffect, useRef, useState } from 'react';
 import { fetchPublicResearchReportBundle } from '../lib/supabase';
 import { Link } from 'react-router-dom';
 
+// Per-analyst photo focal point so faces aren't cropped out
+const PHOTO_POSITION: Record<string, string> = {
+  'Tajudeen Ibrahim':              '50% 15%',
+  'Nabila Mohammed':               '50% 10%',
+  'Gideon Oshadumi':               '50% 12%',
+  'Boluwatife Ishola':             '50% 8%',
+  'Bolade Agboola':                '50% 10%',
+  'Chapel Hill Denham Research':   '50% 50%',
+};
+
 export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, onClose: () => void }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [reports, setReports] = useState<NormalizedReport[]>([]);
@@ -12,9 +22,7 @@ export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, o
 
   useEffect(() => {
     const dialog = dialogRef.current;
-    if (dialog && !dialog.open) {
-      dialog.showModal();
-    }
+    if (dialog && !dialog.open) dialog.showModal();
   }, []);
 
   useEffect(() => {
@@ -23,16 +31,17 @@ export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, o
       const data = await fetchPublicResearchReportBundle();
       if (!mounted) return;
       if (data) {
-        setReports(data.filter(r => r.analysts.some(a => 
-          String(a.id) === String(analyst.id) || 
+        const matched = data.filter(r => r.analysts.some(a =>
+          String(a.id) === String(analyst.id) ||
           (a.name && analyst.name && a.name.toLowerCase() === analyst.name.toLowerCase())
-        )));
+        ));
+        setReports(matched);
       }
       setLoadingReports(false);
     }
     fetchReports();
     return () => { mounted = false; };
-  }, [analyst.id]);
+  }, [analyst.id, analyst.name]);
 
   const handleClose = () => {
     dialogRef.current?.close();
@@ -40,32 +49,38 @@ export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, o
   };
 
   const handleClickOutside = (e: React.MouseEvent) => {
-    if (e.target === dialogRef.current) {
-      handleClose();
-    }
+    if (e.target === dialogRef.current) handleClose();
   };
+
+  const isHouseView = analyst.name === 'Chapel Hill Denham Research';
+  const photoSrc = analyst.photo_path ||
+    (isHouseView
+      ? '/assets/img/logo-navy-transparent.png'
+      : `/assets/img/analysts/${analyst.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.jpg`);
+  const focalPoint = PHOTO_POSITION[analyst.name] ?? '50% 15%';
 
   return (
     <dialog ref={dialogRef} className="analyst-modal" onClick={handleClickOutside}>
       <button className="drawer-close" aria-label="Close" onClick={handleClose}>
-        <X size={24} />
+        <X size={22} />
       </button>
-      <div className="analyst-modal-body">
-        <div className="analyst-modal-header" style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '32px' }}>
-          <div style={{ width: '120px', height: '120px', borderRadius: '50%', overflow: 'hidden', flexShrink: 0 }}>
-            <img 
-              src={analyst.photo_path || (analyst.name === 'Chapel Hill Denham Research' ? '/assets/img/logo-navy-transparent.png' : `/assets/img/analysts/${analyst.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.jpg`)} 
-              alt={analyst.name} 
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.src = '/assets/img/logo-navy-transparent.png'; // Ultimate fallback
-              }}
-            />
-          </div>
-          <div>
+
+      {/* ── Full-width hero photo ── */}
+      <div
+        className="analyst-modal-photo"
+        style={{ '--analyst-photo-position': focalPoint } as React.CSSProperties}
+      >
+        <img
+          src={photoSrc}
+          alt={analyst.name}
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = '/assets/img/logo-navy-transparent.png';
+          }}
+        />
+        <div className="analyst-modal-photo-overlay">
+          <div className="analyst-modal-heading">
             <p className="analyst-role">{analyst.title}</p>
-            <h2 style={{ margin: '4px 0 8px', fontSize: '28px' }}>{analyst.name}</h2>
+            <h2>{analyst.name}</h2>
             <div className="analyst-coverage">
               {analyst.coverage?.map((cov, idx) => (
                 <span key={idx} className="coverage-chip">{cov}</span>
@@ -73,26 +88,35 @@ export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, o
             </div>
           </div>
         </div>
-        <section className="analyst-bio">
-          <h3>Biography</h3>
-          <p>{analyst.bio}</p>
-        </section>
-        
-        {loadingReports ? (
-          <p>Loading coverage...</p>
-        ) : reports.length > 0 ? (
-          <>
-            <h3>Recent Coverage</h3>
-            <div className="related-list" style={{ marginTop: '1rem' }}>
-              {reports.map(item => (
-                <Link key={item.id} to={`/report/${item.id}`} style={{ display: 'block', marginBottom: '0.5rem' }}>
-                  <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--color-navy-muted)', display: 'block' }}>{item.documentType}</span>
-                  <strong style={{ display: 'block', color: 'var(--color-navy)', textDecoration: 'none' }}>{item.title}</strong>
+      </div>
+
+      {/* ── Scrollable body ── */}
+      <div className="analyst-modal-body">
+        {analyst.bio && (
+          <section className="analyst-bio">
+            <h3>Biography</h3>
+            <p>{analyst.bio}</p>
+          </section>
+        )}
+
+        <section style={{ marginTop: '28px' }}>
+          <h3>Recent Coverage</h3>
+          {loadingReports ? (
+            <p style={{ color: 'rgba(16,37,48,.5)', fontSize: '14px', marginTop: '12px' }}>Loading…</p>
+          ) : reports.length > 0 ? (
+            <div className="analyst-report-list" style={{ marginTop: '14px' }}>
+              {reports.slice(0, 12).map(item => (
+                <Link key={item.id} to={`/report/${item.id}`} onClick={handleClose}>
+                  <span>{item.category}</span>
+                  <strong>{item.title}</strong>
+                  <small>{item.publishedAt ? new Date(item.publishedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : ''}</small>
                 </Link>
               ))}
             </div>
-          </>
-        ) : null}
+          ) : (
+            <p style={{ color: 'rgba(16,37,48,.5)', fontSize: '14px', marginTop: '12px' }}>No coverage linked yet.</p>
+          )}
+        </section>
       </div>
     </dialog>
   );
