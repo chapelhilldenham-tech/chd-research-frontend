@@ -33,7 +33,20 @@ export async function fetchPublicAnalysts() {
     console.error('Error fetching analysts:', error);
     return mvpAnalysts;
   }
-  return data && data.length > 0 ? data : mvpAnalysts;
+  
+  if (data && data.length > 0) {
+    return data.map(row => ({
+      id: row.id,
+      name: row.full_name || 'Unknown Analyst',
+      title: row.role || '',
+      email: row.email || '',
+      phone: row.phone || '',
+      bio: row.bio || '',
+      photo_path: row.photo_path || ''
+    }));
+  }
+  
+  return mvpAnalysts;
 }
 
 export async function fetchPublicPriceLists() {
@@ -49,7 +62,18 @@ export async function fetchPublicPriceLists() {
     console.error('Error fetching price lists:', error);
     return mvpPriceLists;
   }
-  return data && data.length > 0 ? data : mvpPriceLists;
+  
+  if (data && data.length > 0) {
+    return data.map(row => ({
+      id: row.id,
+      title: row.title || 'Price List',
+      date: row.effective_date || '2025-01-01',
+      fileSize: '1.2 MB', // Fallback since it's not in db yet
+      isNew: false
+    }));
+  }
+  
+  return mvpPriceLists;
 }
 
 export async function fetchPublicMarketDataPoints() {

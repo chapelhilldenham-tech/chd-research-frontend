@@ -55,7 +55,7 @@ export default function Analysts() {
           ) : (
             <div className="analyst-grid" aria-label="Research team profiles">
               {analysts.map(analyst => {
-                const coverage = analyst.coverage.length > 0 ? analyst.coverage : analyst.sectors || [];
+                const coverage = (analyst.coverage && analyst.coverage.length > 0) ? analyst.coverage : (analyst.sectors || []);
 
                 return (
                   <article

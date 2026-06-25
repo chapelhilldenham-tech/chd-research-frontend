@@ -114,11 +114,13 @@ export default function AnalystStrip({ analysts }: { analysts: Analyst[] }) {
               <div className="analyst-info">
                 <p className="analyst-role">{analyst.title}</p>
                 <h3>{analyst.name}</h3>
-                <div className="analyst-coverage" aria-label="Coverage sectors">
-                  {analyst.coverage.map((cov, idx) => (
-                    <span key={idx}>{cov}</span>
-                  ))}
-                </div>
+                {analyst.coverage && analyst.coverage.length > 0 && (
+                  <div className="analyst-coverage" aria-label="Coverage sectors">
+                    {analyst.coverage.map((cov, idx) => (
+                      <span key={idx}>{cov}</span>
+                    ))}
+                  </div>
+                )}
                 <p className="analyst-bio-preview">
                   {analyst.bio ? analyst.bio : `${analyst.name} is a member of the Chapel Hill Denham Research team...`}
                 </p>
