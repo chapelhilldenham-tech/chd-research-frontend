@@ -5,173 +5,69 @@ import {
   type AnalyticsSectorName,
 } from '../data/analyticsSnapshot';
 
-const macroTabs = ['Inflation vs MPR', 'GDP Growth'] as const;
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-type ChartPoint = {
-  label: string;
-  value: number;
-  secondary?: number;
-};
+const macroTabs = ['Inflation vs MPR', 'GDP Growth'] as const;
 
 function sourceStatus(item: object) {
   return 'sourceStatus' in item ? String(item.sourceStatus) : '';
 }
 
-function rangeFor(points: ChartPoint[]) {
-  const values = points.flatMap((point) => [point.value, point.secondary]).filter((value): value is number => typeof value === 'number');
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-  const pad = Math.max((max - min) * 0.12, 1);
-  return { min: Math.floor(min - pad), max: Math.ceil(max + pad) };
-}
-
-function polyline(points: ChartPoint[], min: number, max: number, key: 'value' | 'secondary') {
-  const xStart = 54;
-  const xEnd = 704;
-  const yTop = 44;
-  const yBottom = 238;
-  const xStep = points.length > 1 ? (xEnd - xStart) / (points.length - 1) : 0;
-  return points
-    .map((point, index) => {
-      const raw = key === 'value' ? point.value : point.secondary;
-      const y = yBottom - (((raw ?? point.value) - min) / (max - min || 1)) * (yBottom - yTop);
-      return `${xStart + index * xStep},${y}`;
-    })
-    .join(' ');
-}
-
-function barGeometry(points: ChartPoint[], min: number, max: number) {
-  const xStart = 54;
-  const xEnd = 704;
-  const yTop = 44;
-  const yBottom = 238;
-  const slot = (xEnd - xStart) / Math.max(points.length, 1);
-  const width = Math.min(44, slot * 0.54);
-  return points.map((point, index) => {
-    const height = ((point.value - min) / (max - min || 1)) * (yBottom - yTop);
-    return {
-      x: xStart + index * slot + (slot - width) / 2,
-      y: yBottom - height,
-      width,
-      height,
-    };
-  });
-}
-
 function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
-  const points: ChartPoint[] = activeTab === 'Inflation vs MPR'
-    ? analyticsSnapshot.macroChart.inflationMpr.map((point) => ({
-        label: point.label,
-        value: point.inflation,
-        secondary: point.mpr,
-      }))
-    : analyticsSnapshot.macroChart.gdpGrowth.map((point) => ({
-        label: point.label,
-        value: point.value,
-      }));
-  const { min, max } = rangeFor(points);
-  const yLabels = Array.from({ length: 6 }, (_, index) => max - ((max - min) / 5) * index);
   const isGdpChart = activeTab === 'GDP Growth';
+  const data: any[] = activeTab === 'Inflation vs MPR'
+    ? analyticsSnapshot.macroChart.inflationMpr.map(p => ({ name: p.label, Inflation: p.inflation, MPR: p.mpr }))
+    : analyticsSnapshot.macroChart.gdpGrowth.map(p => ({ name: p.label, 'GDP Growth': p.value }));
 
   return (
-    <div className="chart-shell chart-shell-tall analytics-svg-chart" aria-label={`${activeTab} chart`}>
-      <svg viewBox="0 0 760 300" role="img">
-        <g className="chart-grid">
-          {[44, 82, 120, 158, 196, 234].map((y) => (
-            <line key={y} x1="44" x2="734" y1={y} y2={y} />
-          ))}
-        </g>
-        <g className="chart-axis-labels chart-y-labels">
-          {yLabels.map((label, index) => (
-            <text key={label} x="0" y={49 + index * 38}>{label.toFixed(2)}%</text>
-          ))}
-        </g>
-        <g className="chart-axis-labels chart-x-labels">
-          {points.map((point, index) => (
-            <text key={point.label} x={50 + index * (650 / Math.max(points.length - 1, 1))} y="292">{point.label}</text>
-          ))}
-        </g>
-        <g className="chart-legend">
-          <circle cx="350" cy="25" r="7" className="chart-line-primary-fill" />
-          <text x="362" y="29">{activeTab === 'Inflation vs MPR' ? 'Inflation' : 'GDP Growth'}</text>
-          {activeTab === 'Inflation vs MPR' && (
-            <>
-              <circle cx="438" cy="25" r="7" className="chart-line-secondary-fill" />
-              <text x="450" y="29">MPR</text>
-            </>
-          )}
-        </g>
-        {activeTab === 'Inflation vs MPR' && (
-          <polyline
-            className="chart-line-secondary"
-            points={polyline(points, min, max, 'secondary')}
-            style={{ transition: 'all 0.5s ease-in-out' }}
-          />
-        )}
+    <div className="chart-shell chart-shell-tall analytics-svg-chart" style={{ width: '100%', height: 300 }}>
+      <ResponsiveContainer width="100%" height="100%">
         {isGdpChart ? (
-          <g className="chart-bars">
-            {barGeometry(points, min, max).map((bar, index) => (
-              <rect
-                key={points[index].label}
-                className="chart-line-primary-fill"
-                x={bar.x}
-                y={bar.y}
-                width={bar.width}
-                height={bar.height}
-                rx="2"
-                style={{ transition: 'all 0.5s ease-in-out' }}
-              />
-            ))}
-          </g>
+          <BarChart data={data} margin={{ top: 20, right: 30, left: -10, bottom: 0 }}>
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#2e303a" />
+            <XAxis dataKey="name" stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} />
+            <YAxis stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={val => val + '%'} />
+            <Tooltip contentStyle={{ backgroundColor: '#1f2028', border: '1px solid #2e303a', borderRadius: '4px' }} itemStyle={{ color: '#c084fc' }} />
+            <Legend wrapperStyle={{ paddingTop: '20px' }} />
+            <Bar dataKey="GDP Growth" fill="#aa3bff" radius={[4, 4, 0, 0]} />
+          </BarChart>
         ) : (
-          <polyline
-            className="chart-line-primary"
-            points={polyline(points, min, max, 'value')}
-            style={{ transition: 'all 0.5s ease-in-out' }}
-          />
+          <LineChart data={data} margin={{ top: 20, right: 30, left: -10, bottom: 0 }}>
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#2e303a" />
+            <XAxis dataKey="name" stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} />
+            <YAxis stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={val => val + '%'} />
+            <Tooltip contentStyle={{ backgroundColor: '#1f2028', border: '1px solid #2e303a', borderRadius: '4px' }} />
+            <Legend wrapperStyle={{ paddingTop: '20px' }} />
+            <Line type="monotone" dataKey="Inflation" stroke="#aa3bff" strokeWidth={3} activeDot={{ r: 6 }} dot={{ strokeWidth: 2 }} />
+            <Line type="monotone" dataKey="MPR" stroke="#eab308" strokeWidth={3} activeDot={{ r: 6 }} dot={{ strokeWidth: 2 }} />
+          </LineChart>
         )}
-      </svg>
+      </ResponsiveContainer>
     </div>
   );
 }
 
-const paramountPoints: ChartPoint[] = [
-  { label: 'Jan', value: 2100 },
-  { label: 'Feb', value: 2250 },
-  { label: 'Mar', value: 2310 },
-  { label: 'Apr', value: 2450 },
-  { label: 'May', value: 2600 },
+const paramountPoints = [
+  { label: 'Jan', value: 2015 },
+  { label: 'Feb', value: 2200 },
+  { label: 'Mar', value: 2350 },
+  { label: 'Apr', value: 2480 },
+  { label: 'May', value: 2610 },
   { label: 'Jun', value: 2750.40 },
 ];
 
 function ParamountChart() {
-  const { min, max } = rangeFor(paramountPoints);
-  const yLabels = Array.from({ length: 6 }, (_, index) => max - ((max - min) / 5) * index);
-
   return (
-    <div className="chart-shell chart-shell-paramount analytics-svg-chart paramount-svg-chart" aria-label="Paramount Index trend">
-      <svg viewBox="0 0 760 300" role="img">
-        <g className="chart-grid">
-          {[44, 82, 120, 158, 196, 234].map((y) => (
-            <line key={y} x1="44" x2="734" y1={y} y2={y} />
-          ))}
-        </g>
-        <g className="chart-axis-labels chart-y-labels">
-          {yLabels.map((label, index) => (
-            <text key={label} x="0" y={49 + index * 38}>{Math.round(label)}</text>
-          ))}
-        </g>
-        <g className="chart-axis-labels chart-x-labels">
-          {paramountPoints.map((point, index) => (
-            <text key={point.label} x={50 + index * (650 / Math.max(paramountPoints.length - 1, 1))} y="292">{point.label}</text>
-          ))}
-        </g>
-        <polyline
-          className="chart-line-primary"
-          points={polyline(paramountPoints, min, max, 'value')}
-          style={{ transition: 'all 0.5s ease-in-out' }}
-        />
-      </svg>
+    <div className="chart-shell chart-shell-paramount analytics-svg-chart" style={{ width: '100%', height: 300 }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={paramountPoints} margin={{ top: 20, right: 30, left: 10, bottom: 0 }}>
+          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#2e303a" />
+          <XAxis dataKey="label" stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} />
+          <YAxis stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} domain={['dataMin - 100', 'dataMax + 100']} axisLine={false} tickLine={false} />
+          <Tooltip contentStyle={{ backgroundColor: '#1f2028', border: '1px solid #2e303a', borderRadius: '4px' }} />
+          <Line type="monotone" dataKey="value" stroke="#aa3bff" strokeWidth={3} activeDot={{ r: 6 }} dot={{ strokeWidth: 2, r: 4 }} name="Index Value" />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
 }
