@@ -42,7 +42,12 @@ export async function fetchPublicAnalysts() {
       email: row.email || '',
       phone: row.phone || '',
       bio: row.bio || '',
-      photo_path: row.photo_path || ''
+      photo_path: row.photo_path || (
+        row.full_name === 'Chapel Hill Denham Research' 
+          ? '/assets/img/logo-navy-transparent.png'
+          : `/assets/img/analysts/${(row.full_name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-')}.jpg`
+      ),
+      isHouseView: row.full_name === 'Chapel Hill Denham Research'
     }));
   }
   
