@@ -1,17 +1,15 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Report } from '../data/mockData';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY || '';
 const hasSupabaseConfig = Boolean(supabaseUrl && supabaseAnonKey);
 
 export const supabase = hasSupabaseConfig ? createClient(supabaseUrl, supabaseAnonKey) : null;
 
 function getSupabaseClient() {
   if (!supabase) {
-    if (import.meta.env.DEV) {
-      console.warn('Supabase is not configured. Using local fallback data.');
-    }
+    console.warn('Supabase is not configured. Missing VITE_SUPABASE_URL or VITE_SUPABASE_PUBLISHABLE_KEY/VITE_SUPABASE_ANON_KEY. Using local fallback data.');
     return null;
   }
   return supabase;
@@ -200,13 +198,11 @@ export async function fetchPublicResearchReportBundle(): Promise<Report[] | null
   }
 
   if (tagsResult.error) {
-    console.error('Error fetching report tags:', tagsResult.error);
-    return null;
+    console.error('Error fetching report tags (continuing without tags):', tagsResult.error);
   }
 
   if (analystsResult.error) {
-    console.error('Error fetching report analysts:', analystsResult.error);
-    return null;
+    console.error('Error fetching report analysts (continuing without analysts):', analystsResult.error);
   }
 
   const tagsByReport = new Map<string, string[]>();
