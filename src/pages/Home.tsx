@@ -2,10 +2,47 @@ import { Link } from 'react-router-dom';
 import AnalystStrip from '../components/AnalystStrip';
 import ReportCard from '../components/ReportCard';
 import Icon from '../components/Icon';
-import { mockAnalysts, mockReports } from '../data/mockData';
+import { useEffect, useState } from 'react';
+import { fetchPublicAnalysts, fetchPublicResearchReportBundle } from '../lib/supabase';
+import type { Analyst, Report } from '../data/mockData';
 
 export default function Home() {
-  const latestReports = mockReports.slice(0, 6);
+  const [latestReports, setLatestReports] = useState<Report[]>([]);
+  const [analysts, setAnalysts] = useState<Analyst[]>([]);
+
+  useEffect(() => {
+    let mounted = true;
+    async function loadData() {
+      const [reportsData, analystsData] = await Promise.all([
+        fetchPublicResearchReportBundle(),
+        fetchPublicAnalysts()
+      ]);
+      
+      if (!mounted) return;
+      
+      if (reportsData) {
+        setLatestReports(reportsData.slice(0, 6));
+      }
+      
+      if (analystsData) {
+        const mappedAnalysts: Analyst[] = analystsData.map((a: any) => ({
+          id: a.id,
+          name: a.full_name,
+          title: a.title,
+          coverage: a.coverage || [],
+          sectors: a.sectors || [],
+          bio: a.bio,
+          photo_path: a.avatar_url,
+          photo_position: a.photo_position,
+          isHouseView: a.slug === 'house-view',
+        }));
+        setAnalysts(mappedAnalysts);
+      }
+      
+    }
+    loadData();
+    return () => { mounted = false; };
+  }, []);
 
   return (
     <main className="enterprise-home">
@@ -31,11 +68,17 @@ export default function Home() {
           <aside className="hero-latest-panel">
             <div className="panel-header"><span>Latest Research</span></div>
             <div className="hero-feature-card">
-              <h3>{latestReports[0].title}</h3>
-              <p>{latestReports[0].synopsis}</p>
-              <Link className="text-link" to={`/report/${latestReports[0].id}`}>
-                Read Report <Icon name="arrow" />
-              </Link>
+              {latestReports.length > 0 ? (
+                <>
+                  <h3>{latestReports[0].title}</h3>
+                  <p>{latestReports[0].synopsis}</p>
+                  <Link className="text-link" to={`/report/${latestReports[0].id}`}>
+                    Read Report <Icon name="arrow" />
+                  </Link>
+                </>
+              ) : (
+                <p>Loading latest research...</p>
+              )}
             </div>
           </aside>
         </div>
@@ -45,7 +88,7 @@ export default function Home() {
         <div className="container">
           <div className="cred-grid">
             <div className="cred-card">
-              <span className="cred-val">{mockReports.length}</span>
+              <span className="cred-val">{latestReports.length > 0 ? latestReports.length : '--'}</span>
               <span className="cred-label">Research Reports</span>
             </div>
             <div className="cred-card">
@@ -125,7 +168,11 @@ export default function Home() {
       <section className="section">
         <div className="container">
           <h2>Meet the Research Team</h2>
-          <AnalystStrip analysts={mockAnalysts} />
+          {analysts.length > 0 ? (
+             <AnalystStrip analysts={analysts} />
+          ) : (
+             <p>Loading analysts...</p>
+          )}
           <div style={{ marginTop: '2rem', textAlign: 'center' }}>
             <Link className="text-link" to="/analysts">View All Analysts <Icon name="arrow" /></Link>
           </div>

@@ -151,8 +151,22 @@ function mapPublicReport(
 ): Report {
   const analysts = analystsByReport.get(row.id) || [];
   const primaryAnalyst = analysts.find(item => item.role === 'author') || analysts[0];
-  const categorySlug = row.category_slug || 'other';
-  const documentType = row.document_type || row.category_name || 'Research Report';
+  const documentType = row.document_type || 'Equity Research';
+  let categorySlug = 'other';
+  if (row.category_slug) {
+    categorySlug = row.category_slug;
+    if (categorySlug === 'fixed-income') categorySlug = 'fixed_income';
+  } else if (documentType.toLowerCase().includes('equity')) {
+    categorySlug = 'equity';
+  } else if (documentType.toLowerCase().includes('fixed')) {
+    categorySlug = 'fixed_income';
+  } else if (documentType.toLowerCase().includes('macro')) {
+    categorySlug = 'macro';
+  } else if (documentType.toLowerCase().includes('sector')) {
+    categorySlug = 'sector';
+  } else if (documentType.toLowerCase().includes('index')) {
+    categorySlug = 'index';
+  }
 
   return {
     id: row.id,

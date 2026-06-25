@@ -1,9 +1,13 @@
-import type { Analyst } from '../data/mockData';
+import type { Analyst, Report } from '../data/mockData';
 import { X } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { fetchPublicResearchReportBundle } from '../lib/supabase';
+import { Link } from 'react-router-dom';
 
 export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, onClose: () => void }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const [reports, setReports] = useState<Report[]>([]);
+  const [loadingReports, setLoadingReports] = useState(true);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -11,6 +15,20 @@ export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, o
       dialog.showModal();
     }
   }, []);
+
+  useEffect(() => {
+    let mounted = true;
+    async function fetchReports() {
+      const data = await fetchPublicResearchReportBundle();
+      if (!mounted) return;
+      if (data) {
+        setReports(data.filter(r => String(r.analyst_id) === String(analyst.id)));
+      }
+      setLoadingReports(false);
+    }
+    fetchReports();
+    return () => { mounted = false; };
+  }, [analyst.id]);
 
   const handleClose = () => {
     dialogRef.current?.close();
@@ -50,8 +68,22 @@ export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, o
           <h3>Biography</h3>
           <p>{analyst.bio}</p>
         </section>
-        <h3>Recent Coverage</h3>
-        <p>No published coverage is available in this preview.</p>
+        
+        {loadingReports ? (
+          <p>Loading coverage...</p>
+        ) : reports.length > 0 ? (
+          <>
+            <h3>Recent Coverage</h3>
+            <div className="related-list" style={{ marginTop: '1rem' }}>
+              {reports.map(item => (
+                <Link key={item.id} to={`/report/${item.id}`} style={{ display: 'block', marginBottom: '0.5rem' }}>
+                  <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--color-navy-muted)', display: 'block' }}>{item.type}</span>
+                  <strong style={{ display: 'block', color: 'var(--color-navy)', textDecoration: 'none' }}>{item.title}</strong>
+                </Link>
+              ))}
+            </div>
+          </>
+        ) : null}
       </div>
     </dialog>
   );
