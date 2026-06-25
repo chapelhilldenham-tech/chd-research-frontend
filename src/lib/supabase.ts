@@ -221,11 +221,11 @@ export async function fetchPublicResearchReportBundle(): Promise<Report[] | null
         report.file_url = mockMatch.file_url;
       }
     }
+    if (!report.file_url) {
+      report.file_url = `https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_reports/${encodeURIComponent(report.title)}.pdf`;
+    }
     return report;
   });
 
-  const dbReportIds = new Set(dbReports.map(r => String(r.id)));
-  const missingMockReports = mockReports.filter(r => !dbReportIds.has(String(r.id)));
-
-  return [...missingMockReports, ...dbReports];
+  return dbReports;
 }

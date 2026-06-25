@@ -5,14 +5,24 @@ import Icon from './Icon';
 export default function Navigation() {
   const location = useLocation();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const isHome = location.pathname === '/';
 
-  const navClass = isHome ? 'site-nav nav-transparent' : 'site-nav nav-solid';
-  const logoSrc = isHome ? '/assets/img/logo-white-transparent.png' : '/assets/img/logo-navy-transparent.png';
+  const navClass = `site-nav ${isHome && !scrolled ? 'nav-transparent' : 'nav-solid'}`;
+  const logoSrc = isHome && !scrolled ? '/assets/img/logo-white-transparent.png' : '/assets/img/logo-navy-transparent.png';
 
   useEffect(() => {
     setIsDrawerOpen(false);
   }, [location]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
