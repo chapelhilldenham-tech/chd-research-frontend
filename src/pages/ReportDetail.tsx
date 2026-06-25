@@ -50,7 +50,8 @@ export default function ReportDetail() {
   }
 
   const relatedReports = reports ? relatedReportsFromList(report, reportList) : relatedReportsFor(report);
-  const isLocked = report.access_level === 'subscriber';
+  const isAuth = localStorage.getItem('chd_subscriber_auth') === 'true';
+  const isLocked = report.access_level === 'subscriber' && !isAuth;
 
   return (
     <main>

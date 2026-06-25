@@ -94,7 +94,7 @@ export const analyticsSnapshot = {
         { label: 'ROE', value: '27.11%', change: '+8.02ppt', effectiveDate: 'Q1 2026' },
         { label: 'Index return (YTD)', value: '41.33%', change: '--', effectiveDate: '24 Jun 2026' },
       ],
-      commentary: 'Banking snapshot includes confirmed credit, asset quality, real GDP contribution, ROE, and YTD index return metrics from the provided workbook.',
+      commentary: 'Banking snapshot includes confirmed credit, asset quality, real GDP contribution, ROE, and YTD index return metrics.',
     },
     Telecoms: {
       status: 'available',
@@ -105,7 +105,7 @@ export const analyticsSnapshot = {
         { label: 'Mobile Subscribers', value: '154.35mn', change: '+0.78%', effectiveDate: '23 Apr 2026' },
         { label: 'Real GDP Contribution', value: '9.19%', change: '+1.07ppt', effectiveDate: 'Q1 2026' },
       ],
-      commentary: 'Telecoms snapshot includes confirmed subscriber, broadband, mobile subscriber, and real GDP contribution metrics from the provided workbook.',
+      commentary: 'Telecoms snapshot includes confirmed subscriber, broadband, mobile subscriber, and real GDP contribution metrics.',
     },
     Pension: {
       status: 'available',
@@ -116,7 +116,7 @@ export const analyticsSnapshot = {
         { label: 'Equity allocation', value: '21.92%', change: '+2.58ppt', effectiveDate: '23 Apr 2026' },
         { label: 'FGN securities allocation', value: '56.10%', change: '-1.97ppt', effectiveDate: '23 Apr 2026' },
       ],
-      commentary: 'Pension metrics updated from the provided workbook.',
+      commentary: 'Pension metrics updated.',
     },
     'Oil & Gas': {
       status: 'available',
@@ -127,7 +127,7 @@ export const analyticsSnapshot = {
         { label: 'Gas production', value: '245,966.16mmscf', change: '+3.31%', effectiveDate: '23 May 2026' },
         { label: 'Index return (YTD)', value: '110.60%', change: '--', effectiveDate: '24 Jun 2026' },
       ],
-      commentary: 'Oil & Gas metrics updated from the provided workbook.',
+      commentary: 'Oil & Gas metrics updated.',
     },
     'Consumer Goods': {
       status: 'available',
@@ -137,7 +137,7 @@ export const analyticsSnapshot = {
         { label: 'Global crude palm oil price', value: '$1,130.03/mt', change: '-0.65%', effectiveDate: '24 Jun 2026' },
         { label: 'Index return (YTD)', value: '17.53%', change: '--', effectiveDate: '24 Jun 2026' },
       ],
-      commentary: 'Consumer Goods/Agriculture metrics updated from the provided workbook.',
+      commentary: 'Consumer Goods/Agriculture metrics updated.',
     },
   } satisfies Record<string, SnapshotSector>,
   paramount: {

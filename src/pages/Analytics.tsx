@@ -105,6 +105,7 @@ function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
           <polyline
             className="chart-line-secondary"
             points={polyline(points, min, max, 'secondary')}
+            style={{ transition: 'all 0.5s ease-in-out' }}
           />
         )}
         {isGdpChart ? (
@@ -118,6 +119,7 @@ function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
                 width={bar.width}
                 height={bar.height}
                 rx="2"
+                style={{ transition: 'all 0.5s ease-in-out' }}
               />
             ))}
           </g>
@@ -125,6 +127,7 @@ function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
           <polyline
             className="chart-line-primary"
             points={polyline(points, min, max, 'value')}
+            style={{ transition: 'all 0.5s ease-in-out' }}
           />
         )}
       </svg>
@@ -146,10 +149,18 @@ function ParamountChart() {
   );
 }
 
+import { Navigate } from 'react-router-dom';
+
 export default function Analytics() {
+  const isAuth = localStorage.getItem('chd_subscriber_auth') === 'true';
+
   const [activeMacroTab, setActiveMacroTab] = useState<(typeof macroTabs)[number]>('Inflation vs MPR');
   const [activeSector, setActiveSector] = useState<AnalyticsSectorName>('Banking');
   const selectedSector = analyticsSnapshot.sectors[activeSector];
+
+  if (!isAuth) {
+    return <Navigate to="/login" replace />;
+  }
 
   return (
     <main className="analytics-page">
@@ -168,12 +179,7 @@ export default function Analytics() {
             </p>
           </aside>
         </section>
-        <p className="notice" style={{ marginBottom: '2rem' }}>
-          {analyticsSnapshot.statusNote}
-        </p>
-
         <section className="analytics-dashboard-kpis" aria-label="Dashboard summary">
-          <span className="kpi-strip-as-at">Manual snapshot: {analyticsSnapshot.sourceLabel}</span>
           {analyticsSnapshot.headlineKpis.map((kpi) => (
             <article key={kpi.label}>
               <span>{kpi.label}</span>
@@ -209,8 +215,8 @@ export default function Analytics() {
                 <p className="analytics-commentary-date">{activeMacroTab === 'Inflation vs MPR' ? analyticsSnapshot.macroChart.effectiveDate : 'Q1 2026'}</p>
                 <p className="analytics-commentary">
                   {activeMacroTab === 'Inflation vs MPR'
-                    ? 'Inflation reached 15.93% in May 2026 while MPR remained at 26.50%. This is a manually loaded staging snapshot from the provided workbook.'
-                    : 'GDP growth reached 3.89% in Q1 2026, compared with 4.07% in Q4 2025, based on the provided workbook.'}
+                    ? 'Inflation reached 15.93% in May 2026 while MPR remained at 26.50%.'
+                    : 'GDP growth reached 3.89% in Q1 2026, compared with 4.07% in Q4 2025.'}
                 </p>
               </div>
               <div className="macro-kpi-grid">

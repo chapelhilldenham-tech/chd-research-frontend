@@ -29,7 +29,16 @@ export default function Navigation() {
           <Link to="/contact">Contact Us</Link>
         </div>
         
-        <Link className="btn btn-border nav-cta" to="/reports">EXPLORE RESEARCH</Link>
+        {localStorage.getItem('chd_subscriber_auth') === 'true' ? (
+          <button 
+            className="btn btn-border nav-cta" 
+            onClick={() => { localStorage.removeItem('chd_subscriber_auth'); window.location.href = '/login'; }}
+          >
+            SIGN OUT
+          </button>
+        ) : (
+          <Link className="btn btn-border nav-cta" to="/login">SIGN IN</Link>
+        )}
         
         <button 
           className="nav-toggle" 
