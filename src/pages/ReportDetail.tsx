@@ -106,10 +106,9 @@ export default function ReportDetail() {
               </div>
             ) : (
               <div className="report-action-stack">
-                <button className="btn btn-bronze" disabled>
+                <a className="btn btn-bronze" href={report.file_url || '#'} target="_blank" rel="noopener noreferrer">
                   <Download size={18} /> Download Report
-                </button>
-                <p>Downloads are disabled in this static preview.</p>
+                </a>
               </div>
             )}
           </article>

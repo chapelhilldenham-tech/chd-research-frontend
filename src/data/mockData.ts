@@ -11,6 +11,7 @@ export interface Analyst {
 }
 
 export interface Report {
+  file_url?: string;
   id: number | string;
   uuid: string;
   title: string;
@@ -45,233 +46,195 @@ export interface MarketMetric {
 
 export const mockAnalysts: Analyst[] = [
   {
-    id: 0,
-    name: 'House View',
-    title: 'House View',
-    coverage: ['Strategy', 'Macro', 'Markets'],
-    bio: "The House View represents Chapel Hill Denham Research's consolidated perspective across equity, macroeconomic, sector and market strategy coverage.",
-    photo_path: '/assets/img/logo-white-transparent.png',
-    photo_position: '50% 50%',
-    isHouseView: true
+    "id": "df6b7e15-0a45-4e44-b5a7-28ee11d157e0",
+    "name": "Sample Research Lead",
+    "title": "Director, Research",
+    "coverage": [
+      "Telecommunications"
+    ],
+    "sectors": [
+      "Telecommunications"
+    ],
+    "bio": "Placeholder profile for validating the public analyst directory layout.",
+    "photo_path": "/assets/img/analysts/placeholder-research-lead.jpg",
+    "photo_position": "50% 0%",
+    "isHouseView": false
   },
   {
-    id: 1,
-    name: 'Tajudeen Ibrahim',
-    title: 'Director, Research',
-    coverage: ['Telecommunications'],
-    bio: "Tajudeen Ibrahim leads the research function and coordinates coverage priorities across CHD's institutional research platform.",
-    photo_path: '/assets/img/analysts/tajudeen-ibrahim.jpg',
-    photo_position: '50% 0%'
+    "id": "6b35936d-7693-4aaa-a66b-4170257a3e19",
+    "name": "Sample Financials Analyst",
+    "title": "Analyst",
+    "coverage": [
+      "Financial Services"
+    ],
+    "sectors": [
+      "Financial Services"
+    ],
+    "bio": "Placeholder profile for validating financial services coverage displays.",
+    "photo_path": "/assets/img/analysts/placeholder-financials.jpg",
+    "photo_position": "50% 0%",
+    "isHouseView": false
   },
   {
-    id: 2,
-    name: 'Nabila Mohammed',
-    title: 'Analyst',
-    coverage: ['Financial Services'],
-    bio: 'Nabila Mohammed covers financial services, with emphasis on bank earnings, balance-sheet trends, capital adequacy and sector regulation.',
-    photo_path: '/assets/img/analysts/nabila-mohammed.jpg',
-    photo_position: '50% 0%'
+    "id": "87e9bce8-2589-4b62-9962-df3f0a372088",
+    "name": "Sample Consumer Analyst",
+    "title": "Analyst",
+    "coverage": [
+      "Consumer Goods",
+      "Agriculture"
+    ],
+    "sectors": [
+      "Consumer Goods",
+      "Agriculture"
+    ],
+    "bio": "Placeholder profile for validating consumer and agriculture coverage displays.",
+    "photo_path": "/assets/img/analysts/placeholder-consumer.jpg",
+    "photo_position": "50% 24%",
+    "isHouseView": false
   },
   {
-    id: 3,
-    name: 'Gideon Oshadumi',
-    title: 'Analyst',
-    coverage: ['Cement', 'Financial Services'],
-    bio: 'Gideon Oshadumi covers cement and selected financial-services names, focusing on earnings quality, pricing trends, cost pressures and balance-sheet resilience.',
-    photo_path: '/assets/img/analysts/gideon-oshadumi.jpg',
-    photo_position: '50% 0%'
+    "id": "b18ecc2d-6b05-4f87-b37a-68cef253df94",
+    "name": "Tajudeen Ibrahim",
+    "title": "Director, Research",
+    "coverage": [],
+    "sectors": [],
+    "bio": "Tajudeen Ibrahim leads the research function and coordinates coverage priorities across Chapel Hill Denham's institutional research platform. His work focuses on telecommunications, market strategy and the interpretation of sector developments for investor decision-making.",
+    "photo_path": "public_assets/analysts/tajudeen-ibrahim.jpg",
+    "photo_position": "50% 0%",
+    "isHouseView": false
   },
   {
-    id: 4,
-    name: 'Boluwatife Ishola',
-    title: 'Analyst',
-    coverage: ['FMCGs', 'Agriculture'],
-    bio: 'Boluwatife Ishola covers FMCG and agriculture-linked equities, tracking consumer demand, pricing power, input costs and margin trends.',
-    photo_path: '/assets/img/analysts/boluwatife-ishola.jpg',
-    photo_position: '50% 24%'
+    "id": "aebb5193-74b5-4496-b8f8-477db5043011",
+    "name": "Nabila Mohammed",
+    "title": "Analyst",
+    "coverage": [],
+    "sectors": [],
+    "bio": "Nabila Mohammed covers financial services, with emphasis on bank earnings, balance-sheet trends, capital adequacy and sector regulation. Her research supports institutional clients with concise analysis of valuation drivers and operating performance.",
+    "photo_path": "public_assets/analysts/nabila-mohammed.jpg",
+    "photo_position": "50% 0%",
+    "isHouseView": false
   },
   {
-    id: 5,
-    name: 'Bolade Agboola',
-    title: 'Analyst',
-    coverage: ['Oil & Gas', 'FMCGs'],
-    bio: 'Bolade Agboola supports coverage across oil and gas and FMCG, with a focus on market developments, company fundamentals and sector themes.',
-    photo_path: '/assets/img/analysts/bolade-agboola.jpg',
-    photo_position: '50% 0%'
+    "id": "2707f7e6-b1bf-4989-8a2c-e19700c01c4c",
+    "name": "Gideon Oshadumi",
+    "title": "Analyst",
+    "coverage": [],
+    "sectors": [],
+    "bio": "Gideon Oshadumi covers cement and selected financial-services names, focusing on earnings quality, pricing trends, cost pressures and balance-sheet resilience. His work combines company analysis with sector context for actionable research views.",
+    "photo_path": "public_assets/analysts/gideon-oshadumi.jpg",
+    "photo_position": "50% 0%",
+    "isHouseView": false
+  },
+  {
+    "id": "06c1ff72-7dff-4507-aa48-32256f664f0b",
+    "name": "Boluwatife Ishola",
+    "title": "Analyst",
+    "coverage": [],
+    "sectors": [],
+    "bio": "Boluwatife Ishola covers FMCG and agriculture-linked equities, tracking consumer demand, pricing power, input costs and margin trends. Her research focuses on the operating factors shaping listed companies in Nigeria's consumer economy.",
+    "photo_path": "public_assets/analysts/boluwatife-ishola.jpg",
+    "photo_position": "50% 0%",
+    "isHouseView": false
+  },
+  {
+    "id": "a667e183-9761-40b1-965a-cd12de6750db",
+    "name": "Bolade Agboola",
+    "title": "Analyst",
+    "coverage": [],
+    "sectors": [],
+    "bio": "Bolade Agboola supports coverage across oil & gas and FMCG, with a focus on market developments, company fundamentals and sector themes. Her work contributes to timely research notes and the broader Chapel Hill Denham house view.",
+    "photo_path": "public_assets/analysts/bolade-agboola.jpg",
+    "photo_position": "50% 0%",
+    "isHouseView": false
+  },
+  {
+    "id": "b5912ff3-e1c8-44ed-9b0a-02b6d8aa44a7",
+    "name": "Chapel Hill Denham Research",
+    "title": "Department Research / Routine Research",
+    "coverage": [],
+    "sectors": [],
+    "bio": "The House View represents Chapel Hill Denham Research's consolidated perspective across equity, macroeconomic, sector and market strategy coverage. It is used where a report reflects the desk's institutional view rather than a single named analyst.",
+    "photo_path": "",
+    "photo_position": "50% 0%",
+    "isHouseView": true
   }
 ];
 
 export const mockReports: Report[] = [
   {
-    id: 101,
-    uuid: '0038eac6-c29a-43e9-0e4d-7d68490525f0',
-    title: 'MTN Nigeria Q1 2025: Subscriber Rebound Amid Tariff Adjustments',
-    type: 'Equity Research',
-    category: 'equity',
-    coverage: 'Telecommunications',
-    synopsis: 'MTN Nigeria reported net subscriber additions of 1.2 million in Q1 2025, reversing three quarters of churn following tariff review. We revise our FY2025 EBITDA estimate upward and maintain our BUY rating.',
-    date: '2025-05-20',
-    analyst_id: 1,
-    analyst_name: 'Tajudeen Ibrahim',
-    access_level: 'public',
-    tags: ['equity', 'telecoms', 'macro'],
-    featured: true
+    "id": "f393d033-6d39-4e0d-98f6-338d733ebb43",
+    "uuid": "f393d033-6d39-4e0d-98f6-338d733ebb43",
+    "title": "2025 Debt TAI",
+    "type": "Report",
+    "category": "fixed-income",
+    "coverage": "",
+    "synopsis": "",
+    "date": "2025-09-11",
+    "analyst_id": "b5912ff3-e1c8-44ed-9b0a-02b6d8aa44a7",
+    "analyst_name": "Chapel Hill Denham Research",
+    "access_level": "subscriber",
+    "tags": [],
+    "featured": false
   },
   {
-    id: 102,
-    uuid: 'a40cbea7-ee88-5408-e27a-ae5ea58be66d',
-    title: 'Airtel Africa H1 2025: Dollar Revenue Recovery and Margin Watch',
-    type: 'Equity Research',
-    category: 'equity',
-    coverage: 'Telecommunications',
-    synopsis: 'Airtel Africa is showing early dollar revenue recovery as Nigeria FX translation pressure eases and mobile money volumes compound.',
-    date: '2025-05-19',
-    analyst_id: 1,
-    analyst_name: 'Tajudeen Ibrahim',
-    access_level: 'subscriber',
-    tags: ['equity', 'telecoms', 'strategy'],
-    featured: true
+    "id": "20aa34f7-a9ec-4b02-88d7-30d2b529635b",
+    "uuid": "20aa34f7-a9ec-4b02-88d7-30d2b529635b",
+    "title": "Accesscorp Company Update 2025",
+    "type": "Report",
+    "category": "research-report",
+    "coverage": "",
+    "synopsis": "",
+    "date": "2025-11-14",
+    "analyst_id": "aebb5193-74b5-4496-b8f8-477db5043011",
+    "analyst_name": "Nabila Mohammed",
+    "access_level": "subscriber",
+    "tags": [],
+    "featured": false
   },
   {
-    id: 103,
-    uuid: '16a9bb84-bc55-5338-bf58-5cb865725447',
-    title: 'Nigerian Telecoms Sector Mid-Year Review 2025',
-    type: 'Sector Research',
-    category: 'sector',
-    coverage: 'Telecommunications',
-    synopsis: 'The telecoms sector is entering a margin repair cycle as tariff adjustments meet sustained data demand and more stable FX conditions.',
-    date: '2025-05-18',
-    analyst_id: 1,
-    analyst_name: 'Tajudeen Ibrahim',
-    access_level: 'subscriber',
-    tags: ['sector', 'telecoms', 'strategy'],
-    featured: true
+    "id": "d2720c50-f3d4-4adc-a11a-e02f9aa82323",
+    "uuid": "d2720c50-f3d4-4adc-a11a-e02f9aa82323",
+    "title": "Airtel Africa Plc Company Research Update",
+    "type": "Report",
+    "category": "equity-research",
+    "coverage": "",
+    "synopsis": "",
+    "date": "2025-05-16",
+    "analyst_id": "b18ecc2d-6b05-4f87-b37a-68cef253df94",
+    "analyst_name": "Tajudeen Ibrahim",
+    "access_level": "subscriber",
+    "tags": [],
+    "featured": false
   },
   {
-    id: 104,
-    uuid: '0388cb8c-a304-aa83-124f-e4033c2f2e31',
-    title: '5G Spectrum Allocation: What the Delay Costs Nigerian Operators',
-    type: 'Equity Research',
-    category: 'equity',
-    coverage: 'Telecommunications',
-    synopsis: 'The delay in 5G spectrum allocation is slowing enterprise connectivity plans and pushing incremental capex decisions into later budget cycles.',
-    date: '2025-05-17',
-    analyst_id: 1,
-    analyst_name: 'Tajudeen Ibrahim',
-    access_level: 'public',
-    tags: ['equity', 'telecoms', 'capex']
+    "id": "559f9ac1-2128-4d05-87a1-715e3d2d6ecf",
+    "uuid": "559f9ac1-2128-4d05-87a1-715e3d2d6ecf",
+    "title": "Dangote Cement 9M - 24 Initial Comment",
+    "type": "Report",
+    "category": "sector-research",
+    "coverage": "",
+    "synopsis": "",
+    "date": "2024-10-29",
+    "analyst_id": "2707f7e6-b1bf-4989-8a2c-e19700c01c4c",
+    "analyst_name": "Gideon Oshadumi",
+    "access_level": "subscriber",
+    "tags": [],
+    "featured": false
   },
   {
-    id: 105,
-    uuid: 'sample-macro-outlook-q2-2025',
-    title: 'Nigeria Macro Outlook Q2 2025: Disinflation in View, Fiscal Risks Remain',
-    type: 'Macroeconomic Analysis',
-    category: 'macro',
-    coverage: 'Macroeconomics',
-    synopsis: 'Inflation moderation is becoming visible, but fiscal financing, FX liquidity and administered prices remain important risks to the rate path.',
-    date: '2025-05-16',
-    analyst_id: 0,
-    analyst_name: 'House View',
-    access_level: 'public',
-    tags: ['macro', 'inflation', 'fx']
-  },
-  {
-    id: 106,
-    uuid: 'sample-paramount-index-march-2025',
-    title: 'Paramount Index March 2025: Banking Sector Drives YTD Outperformance',
-    type: 'The Paramount Index',
-    category: 'index',
-    coverage: 'Market Data',
-    synopsis: 'The proprietary index continues to point to banking-sector leadership, with breadth improving across select consumer and industrial names.',
-    date: '2025-05-15',
-    analyst_id: 0,
-    analyst_name: 'House View',
-    access_level: 'subscriber',
-    tags: ['index', 'banking', 'market-data']
-  },
-  {
-    id: 107,
-    uuid: 'sample-equity-strategy-h1-2025',
-    title: 'Nigeria Equity Strategy H1 2025: Selective Accumulation in a Rate-Cut Cycle',
-    type: 'Equity Research',
-    category: 'equity',
-    coverage: 'Strategy',
-    synopsis: 'We prefer resilient earnings, dividend visibility and selective rate-sensitive exposure as monetary policy approaches a turning point.',
-    date: '2025-05-14',
-    analyst_id: 0,
-    analyst_name: 'House View',
-    access_level: 'subscriber',
-    tags: ['equity', 'strategy', 'rates']
-  },
-  {
-    id: 108,
-    uuid: 'sample-access-holdings-q1-2025',
-    title: 'Access Holdings Q1 2025: Strong Trading Income Offsets Loan Loss Provisions',
-    type: 'Equity Research',
-    category: 'equity',
-    coverage: 'Financial Services',
-    synopsis: 'Trading income and balance-sheet scale support earnings, while credit-cost normalization remains the key watch point.',
-    date: '2025-05-13',
-    analyst_id: 2,
-    analyst_name: 'Nabila Mohammed',
-    access_level: 'subscriber',
-    tags: ['banking', 'earnings', 'equity']
-  },
-  {
-    id: 109,
-    uuid: 'sample-fgn-yield-curve-may-2025',
-    title: 'FGN Yield Curve Monitor: Duration Discipline Remains Rewarded',
-    type: 'Fixed Income',
-    category: 'fixed_income',
-    coverage: 'Rates',
-    synopsis: 'Yield-curve repricing remains uneven, with attractive carry but limited room for aggressive duration extension before clearer policy signals.',
-    date: '2025-05-12',
-    analyst_id: 0,
-    analyst_name: 'House View',
-    access_level: 'public',
-    tags: ['fixed-income', 'rates', 'yield']
-  },
-  {
-    id: 110,
-    uuid: 'sample-cement-margin-watch-2025',
-    title: 'Cement Margin Watch: Pricing Power Meets Energy Cost Relief',
-    type: 'Sector Research',
-    category: 'sector',
-    coverage: 'Cement',
-    synopsis: 'Cement producers are balancing price discipline with energy-cost normalization, keeping margins resilient despite volume softness.',
-    date: '2025-05-11',
-    analyst_id: 3,
-    analyst_name: 'Gideon Oshadumi',
-    access_level: 'subscriber',
-    tags: ['cement', 'margins', 'sector']
-  },
-  {
-    id: 111,
-    uuid: 'sample-fmcg-volume-recovery-2025',
-    title: 'Consumer Staples: Volume Recovery Still Requires Price Discipline',
-    type: 'Sector Research',
-    category: 'sector',
-    coverage: 'FMCGs',
-    synopsis: 'Consumer wallet pressure remains visible, but selected staples names are showing early volume repair as input-cost pressure eases.',
-    date: '2025-05-10',
-    analyst_id: 4,
-    analyst_name: 'Boluwatife Ishola',
-    access_level: 'subscriber',
-    tags: ['fmcg', 'pricing', 'margins']
-  },
-  {
-    id: 112,
-    uuid: 'sample-downstream-working-capital-2025',
-    title: 'Downstream Oil & Gas: Working Capital and Margin Recovery',
-    type: 'Sector Research',
-    category: 'sector',
-    coverage: 'Oil & Gas',
-    synopsis: 'Downstream operators are navigating inventory funding, deregulated pricing and margin recovery with different balance-sheet capacities.',
-    date: '2025-05-09',
-    analyst_id: 5,
-    analyst_name: 'Bolade Agboola',
-    access_level: 'subscriber',
-    tags: ['oil-gas', 'downstream', 'margins']
+    "id": "04051a6e-baff-4038-848a-32006b32f8ac",
+    "uuid": "04051a6e-baff-4038-848a-32006b32f8ac",
+    "title": "Dangote Cement Plc FY - 25 Company Update (1)",
+    "type": "Report",
+    "category": "equity-research",
+    "coverage": "",
+    "synopsis": "",
+    "date": "2026-03-16",
+    "analyst_id": "2707f7e6-b1bf-4989-8a2c-e19700c01c4c",
+    "analyst_name": "Gideon Oshadumi",
+    "access_level": "subscriber",
+    "tags": [],
+    "featured": false
   }
 ];
 
