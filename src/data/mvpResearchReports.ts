@@ -2303,7 +2303,12 @@ export const mvpResearchReports: NormalizedReport[] = [
     "publishedAt": "2025-04-25T00:00:00Z",
     "summary": "Legacy equity research document staged for manual review: Lafarge Africa Plc Q1 - 25 INITIAL COMMENTS.",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Lafarge Africa Plc Q1 - 25 INITIAL COMMENTS.",
-    "analysts": [],
+    "analysts": [
+      {
+        "id": "4",
+        "name": "Boluwatife Ishola"
+      }
+    ],
     "tags": [
       "equity research; earnings"
     ],
@@ -2600,7 +2605,12 @@ export const mvpResearchReports: NormalizedReport[] = [
     "publishedAt": "2025-04-02T00:00:00Z",
     "summary": "Legacy research report document staged for manual review: Fidelity FY - 24 INITIAL COMMENTS.",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Fidelity FY - 24 INITIAL COMMENTS.",
-    "analysts": [],
+    "analysts": [
+      {
+        "id": "4",
+        "name": "Boluwatife Ishola"
+      }
+    ],
     "tags": [],
     "documentType": "PDF",
     "isFallback": true,
@@ -2655,7 +2665,12 @@ export const mvpResearchReports: NormalizedReport[] = [
     "publishedAt": "2025-03-04T00:00:00Z",
     "summary": "Legacy research report document staged for manual review: Seplat Initial Comments FY - 2024.",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Seplat Initial Comments FY - 2024.",
-    "analysts": [],
+    "analysts": [
+      {
+        "id": "5",
+        "name": "Bolade Agboola"
+      }
+    ],
     "tags": [],
     "documentType": "PDF",
     "isFallback": true,

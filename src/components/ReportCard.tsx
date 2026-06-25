@@ -34,14 +34,14 @@ export default function ReportCard({ report, compact = false }: { report: Normal
         </div>
       )}
       {locked ? (
-        <div className="locked-panel report-action">
+        <div className="locked-panel report-action" style={{ marginTop: 'auto' }}>
           <Icon name="lock" />
           <strong>Restricted metadata only</strong>
           <Link className="text-link" to={`/report/${report.id}`}>Details</Link>
           <Link className="text-link" to="/subscribe">Access</Link>
         </div>
       ) : (
-        <div className="report-card-actions report-action">
+        <div className="report-card-actions report-action" style={{ marginTop: 'auto' }}>
           <Link className="text-link report-action-link" to={`/report/${report.id}`}>
             View Details <Icon name="arrow" />
           </Link>

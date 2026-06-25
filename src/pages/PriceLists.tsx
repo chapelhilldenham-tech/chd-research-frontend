@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { fetchPublicPriceLists } from '../lib/supabase';
 
 export default function PriceLists() {
-  const [hasAvailableList, setHasAvailableList] = useState(false);
+  const [activeList, setActiveList] = useState<any>(null);
   const [selectedDate, setSelectedDate] = useState('2026-06-24');
   const [viewedDate, setViewedDate] = useState('2026-06-24');
 
@@ -10,9 +10,10 @@ export default function PriceLists() {
     async function loadPriceLists() {
       const data = await fetchPublicPriceLists();
       if (data && data.length > 0) {
-        setHasAvailableList(data.some((item: any) => item.effective_date === viewedDate));
+        const found = data.find((item: any) => item.effective_date === viewedDate);
+        setActiveList(found || null);
       } else {
-        setHasAvailableList(false);
+        setActiveList(null);
       }
     }
 
@@ -59,11 +60,11 @@ export default function PriceLists() {
 
           <article className="panel price-list-card">
             <h2>Price List for {displayDate}</h2>
-            {hasAvailableList || viewedDate === '2026-06-15' ? (
+            {activeList ? (
               <div className="price-list-download-row">
-                <strong>Chapel Hill Denham Price List (XLSX)</strong>
+                <strong>{activeList.title || 'Chapel Hill Denham Price List (XLSX)'}</strong>
                 <span>34 KB</span>
-                <button className="btn btn-bronze" type="button" disabled>Download</button>
+                <a className="btn btn-bronze" href={activeList.file_url} download style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}>Download</a>
               </div>
             ) : (
               <p>No price list file is currently available for this date.</p>

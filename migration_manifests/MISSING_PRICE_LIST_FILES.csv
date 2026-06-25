@@ -1,0 +1,2 @@
+artifact_type,record_id,title_or_name,current_status,proposed_storage_path,action_required
+pricelist,all,Historic Price Lists,missing_from_storage,research_vault/price_lists,upload_files

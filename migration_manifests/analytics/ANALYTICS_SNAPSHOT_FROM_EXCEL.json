@@ -1,0 +1,15 @@
+{
+  "source_file": null,
+  "snapshot_date": "2026-06-25",
+  "generated_at": "2026-06-25T11:41:00Z",
+  "headline_kpis": [],
+  "macro_indicators": [],
+  "inflation_vs_mpr": [],
+  "gdp_growth": [],
+  "market_summary": [],
+  "sector_metrics": [],
+  "paramount_index": [],
+  "price_lists": [],
+  "missing_fields": ["ALL"],
+  "notes": "Source workbook was not found locally. Snapshot contains empty data structures pending source availability."
+}

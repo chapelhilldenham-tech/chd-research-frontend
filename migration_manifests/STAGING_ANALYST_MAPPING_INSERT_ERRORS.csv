@@ -1,0 +1,6 @@
+timestamp,error
+2026-06-25T05:18:48.189Z,Command failed: npx supabase db query -f scripts/insert_mappings.sql --linked
+Initialising login role...
+unexpected status 400: {"message":"Failed to run sql query: ERROR:  23514: new row for relation \"research_report_analysts\" violates check constraint \"research_report_analysts_role_check\"\nDETAIL:  Failing row contains (f393d033-6d39-4e0d-98f6-338d733ebb43, b5912ff3-e1c8-44ed-9b0a-02b6d8aa44a7, analyst, 0, 2026-06-25 05:18:38.917266+00).\n"}
+Try rerunning the command with --debug to troubleshoot the error.
+

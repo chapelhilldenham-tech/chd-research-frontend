@@ -1,0 +1,298 @@
+{
+  "reports": [
+    {
+      "id": "f393d033-6d39-4e0d-98f6-338d733ebb43",
+      "category_id": "f12549ac-edb1-4010-8640-b597f45e5459",
+      "category_slug": "fixed-income",
+      "category_name": "fixed-income",
+      "display_title": "2025 Debt TAI",
+      "short_summary": "Legacy fixed income document staged for manual review: 2025 Debt TAI.",
+      "research_synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: 2025 Debt TAI.",
+      "core_thesis": null,
+      "key_points": null,
+      "investment_implication": null,
+      "risk_factors": null,
+      "document_type": null,
+      "published_at": "2025-09-11T00:00:00+00:00",
+      "data_period_start": null,
+      "data_period_end": null
+    },
+    {
+      "id": "20aa34f7-a9ec-4b02-88d7-30d2b529635b",
+      "category_id": "83761a80-85fb-45da-90eb-8cd8e4c3f2f0",
+      "category_slug": "research-report",
+      "category_name": "research-report",
+      "display_title": "Accesscorp Company Update 2025",
+      "short_summary": "Legacy research report document staged for manual review: Accesscorp Company Update 2025.",
+      "research_synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Accesscorp Company Update 2025.",
+      "core_thesis": null,
+      "key_points": null,
+      "investment_implication": null,
+      "risk_factors": null,
+      "document_type": null,
+      "published_at": "2025-11-14T00:00:00+00:00",
+      "data_period_start": null,
+      "data_period_end": null
+    },
+    {
+      "id": "d2720c50-f3d4-4adc-a11a-e02f9aa82323",
+      "category_id": "be14a985-e3c3-4545-a992-38234baf7896",
+      "category_slug": "equity-research",
+      "category_name": "equity-research",
+      "display_title": "Airtel Africa Plc Company Research Update",
+      "short_summary": "Legacy equity research document staged for manual review: Airtel Africa Plc Company Research Update.",
+      "research_synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Airtel Africa Plc Company Research Update.",
+      "core_thesis": null,
+      "key_points": null,
+      "investment_implication": null,
+      "risk_factors": null,
+      "document_type": null,
+      "published_at": "2025-05-16T00:00:00+00:00",
+      "data_period_start": null,
+      "data_period_end": null
+    },
+    {
+      "id": "559f9ac1-2128-4d05-87a1-715e3d2d6ecf",
+      "category_id": "40b0df24-8b02-4f31-a7fb-b0edd05a5952",
+      "category_slug": "sector-research",
+      "category_name": "sector-research",
+      "display_title": "Dangote Cement 9M - 24 Initial Comment",
+      "short_summary": "Legacy sector research document staged for manual review: Dangote Cement 9M - 24 Initial Comment.",
+      "research_synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Dangote Cement 9M - 24 Initial Comment.",
+      "core_thesis": null,
+      "key_points": null,
+      "investment_implication": null,
+      "risk_factors": null,
+      "document_type": null,
+      "published_at": "2024-10-29T00:00:00+00:00",
+      "data_period_start": null,
+      "data_period_end": null
+    },
+    {
+      "id": "04051a6e-baff-4038-848a-32006b32f8ac",
+      "category_id": "be14a985-e3c3-4545-a992-38234baf7896",
+      "category_slug": "equity-research",
+      "category_name": "equity-research",
+      "display_title": "Dangote Cement Plc FY - 25 Company Update (1)",
+      "short_summary": "Legacy equity research document staged for manual review: Dangote Cement Plc FY - 25 Company Update (1).",
+      "research_synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Dangote Cement Plc FY - 25 Company Update (1).",
+      "core_thesis": null,
+      "key_points": null,
+      "investment_implication": null,
+      "risk_factors": null,
+      "document_type": null,
+      "published_at": "2026-03-16T00:00:00+00:00",
+      "data_period_start": null,
+      "data_period_end": null
+    }
+  ],
+  "analysts": [
+    {
+      "report_id": "f393d033-6d39-4e0d-98f6-338d733ebb43",
+      "role": "author",
+      "sort_order": 0,
+      "analyst_id": "b5912ff3-e1c8-44ed-9b0a-02b6d8aa44a7",
+      "full_name": "Chapel Hill Denham Research",
+      "slug": "chapel-hill-denham-research",
+      "title": "Department Research / Routine Research",
+      "avatar_url": null,
+      "photo_position": null,
+      "coverage": [],
+      "sectors": []
+    },
+    {
+      "report_id": "20aa34f7-a9ec-4b02-88d7-30d2b529635b",
+      "role": "author",
+      "sort_order": 0,
+      "analyst_id": "aebb5193-74b5-4496-b8f8-477db5043011",
+      "full_name": "Nabila Mohammed",
+      "slug": "nabila-mohammed",
+      "title": "Analyst",
+      "avatar_url": "public_assets/analysts/nabila-mohammed.jpg",
+      "photo_position": null,
+      "coverage": [],
+      "sectors": []
+    },
+    {
+      "report_id": "d2720c50-f3d4-4adc-a11a-e02f9aa82323",
+      "role": "author",
+      "sort_order": 0,
+      "analyst_id": "b18ecc2d-6b05-4f87-b37a-68cef253df94",
+      "full_name": "Tajudeen Ibrahim",
+      "slug": "tajudeen-ibrahim",
+      "title": "Director, Research",
+      "avatar_url": "public_assets/analysts/tajudeen-ibrahim.jpg",
+      "photo_position": null,
+      "coverage": [],
+      "sectors": []
+    },
+    {
+      "report_id": "559f9ac1-2128-4d05-87a1-715e3d2d6ecf",
+      "role": "author",
+      "sort_order": 0,
+      "analyst_id": "2707f7e6-b1bf-4989-8a2c-e19700c01c4c",
+      "full_name": "Gideon Oshadumi",
+      "slug": "gideon-oshadumi",
+      "title": "Analyst",
+      "avatar_url": "public_assets/analysts/gideon-oshadumi.jpg",
+      "photo_position": null,
+      "coverage": [],
+      "sectors": []
+    },
+    {
+      "report_id": "04051a6e-baff-4038-848a-32006b32f8ac",
+      "role": "author",
+      "sort_order": 0,
+      "analyst_id": "2707f7e6-b1bf-4989-8a2c-e19700c01c4c",
+      "full_name": "Gideon Oshadumi",
+      "slug": "gideon-oshadumi",
+      "title": "Analyst",
+      "avatar_url": "public_assets/analysts/gideon-oshadumi.jpg",
+      "photo_position": null,
+      "coverage": [],
+      "sectors": []
+    }
+  ],
+  "allAnalysts": [
+    {
+      "id": "df6b7e15-0a45-4e44-b5a7-28ee11d157e0",
+      "full_name": "Sample Research Lead",
+      "slug": "sample-research-lead",
+      "title": "Director, Research",
+      "bio": "Placeholder profile for validating the public analyst directory layout.",
+      "email": "research-lead@example.invalid",
+      "avatar_url": "/assets/img/analysts/placeholder-research-lead.jpg",
+      "photo_position": "50% 0%",
+      "coverage": [
+        "Telecommunications"
+      ],
+      "sectors": [
+        "Telecommunications"
+      ],
+      "is_featured": true,
+      "sort_order": 1
+    },
+    {
+      "id": "6b35936d-7693-4aaa-a66b-4170257a3e19",
+      "full_name": "Sample Financials Analyst",
+      "slug": "sample-financials-analyst",
+      "title": "Analyst",
+      "bio": "Placeholder profile for validating financial services coverage displays.",
+      "email": "financials-analyst@example.invalid",
+      "avatar_url": "/assets/img/analysts/placeholder-financials.jpg",
+      "photo_position": "50% 0%",
+      "coverage": [
+        "Financial Services"
+      ],
+      "sectors": [
+        "Financial Services"
+      ],
+      "is_featured": true,
+      "sort_order": 2
+    },
+    {
+      "id": "87e9bce8-2589-4b62-9962-df3f0a372088",
+      "full_name": "Sample Consumer Analyst",
+      "slug": "sample-consumer-analyst",
+      "title": "Analyst",
+      "bio": "Placeholder profile for validating consumer and agriculture coverage displays.",
+      "email": "consumer-analyst@example.invalid",
+      "avatar_url": "/assets/img/analysts/placeholder-consumer.jpg",
+      "photo_position": "50% 24%",
+      "coverage": [
+        "Consumer Goods",
+        "Agriculture"
+      ],
+      "sectors": [
+        "Consumer Goods",
+        "Agriculture"
+      ],
+      "is_featured": false,
+      "sort_order": 3
+    },
+    {
+      "id": "b18ecc2d-6b05-4f87-b37a-68cef253df94",
+      "full_name": "Tajudeen Ibrahim",
+      "slug": "tajudeen-ibrahim",
+      "title": "Director, Research",
+      "bio": "Tajudeen Ibrahim leads the research function and coordinates coverage priorities across Chapel Hill Denham's institutional research platform. His work focuses on telecommunications, market strategy and the interpretation of sector developments for investor decision-making.",
+      "email": null,
+      "avatar_url": "public_assets/analysts/tajudeen-ibrahim.jpg",
+      "photo_position": null,
+      "coverage": [],
+      "sectors": [],
+      "is_featured": false,
+      "sort_order": 0
+    },
+    {
+      "id": "aebb5193-74b5-4496-b8f8-477db5043011",
+      "full_name": "Nabila Mohammed",
+      "slug": "nabila-mohammed",
+      "title": "Analyst",
+      "bio": "Nabila Mohammed covers financial services, with emphasis on bank earnings, balance-sheet trends, capital adequacy and sector regulation. Her research supports institutional clients with concise analysis of valuation drivers and operating performance.",
+      "email": null,
+      "avatar_url": "public_assets/analysts/nabila-mohammed.jpg",
+      "photo_position": null,
+      "coverage": [],
+      "sectors": [],
+      "is_featured": false,
+      "sort_order": 0
+    },
+    {
+      "id": "2707f7e6-b1bf-4989-8a2c-e19700c01c4c",
+      "full_name": "Gideon Oshadumi",
+      "slug": "gideon-oshadumi",
+      "title": "Analyst",
+      "bio": "Gideon Oshadumi covers cement and selected financial-services names, focusing on earnings quality, pricing trends, cost pressures and balance-sheet resilience. His work combines company analysis with sector context for actionable research views.",
+      "email": null,
+      "avatar_url": "public_assets/analysts/gideon-oshadumi.jpg",
+      "photo_position": null,
+      "coverage": [],
+      "sectors": [],
+      "is_featured": false,
+      "sort_order": 0
+    },
+    {
+      "id": "06c1ff72-7dff-4507-aa48-32256f664f0b",
+      "full_name": "Boluwatife Ishola",
+      "slug": "boluwatife-ishola",
+      "title": "Analyst",
+      "bio": "Boluwatife Ishola covers FMCG and agriculture-linked equities, tracking consumer demand, pricing power, input costs and margin trends. Her research focuses on the operating factors shaping listed companies in Nigeria's consumer economy.",
+      "email": null,
+      "avatar_url": "public_assets/analysts/boluwatife-ishola.jpg",
+      "photo_position": null,
+      "coverage": [],
+      "sectors": [],
+      "is_featured": false,
+      "sort_order": 0
+    },
+    {
+      "id": "a667e183-9761-40b1-965a-cd12de6750db",
+      "full_name": "Bolade Agboola",
+      "slug": "bolade-agboola",
+      "title": "Analyst",
+      "bio": "Bolade Agboola supports coverage across oil & gas and FMCG, with a focus on market developments, company fundamentals and sector themes. Her work contributes to timely research notes and the broader Chapel Hill Denham house view.",
+      "email": null,
+      "avatar_url": "public_assets/analysts/bolade-agboola.jpg",
+      "photo_position": null,
+      "coverage": [],
+      "sectors": [],
+      "is_featured": false,
+      "sort_order": 0
+    },
+    {
+      "id": "b5912ff3-e1c8-44ed-9b0a-02b6d8aa44a7",
+      "full_name": "Chapel Hill Denham Research",
+      "slug": "chapel-hill-denham-research",
+      "title": "Department Research / Routine Research",
+      "bio": "The House View represents Chapel Hill Denham Research's consolidated perspective across equity, macroeconomic, sector and market strategy coverage. It is used where a report reflects the desk's institutional view rather than a single named analyst.",
+      "email": null,
+      "avatar_url": null,
+      "photo_position": null,
+      "coverage": [],
+      "sectors": [],
+      "is_featured": false,
+      "sort_order": 0
+    }
+  ]
+}

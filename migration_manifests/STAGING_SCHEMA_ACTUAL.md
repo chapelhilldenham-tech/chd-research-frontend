@@ -1,0 +1,130 @@
+# Staging Schema Actual
+
+## Tables
+
+### analysts
+* `id` (uuid, NOT NULL, default: gen_random_uuid())
+* `full_name` (text, NOT NULL)
+* `slug` (text, NOT NULL)
+* `title` (text, NULL)
+* `bio` (text, NULL)
+* `email` (text, NULL)
+* `avatar_url` (text, NULL)
+* `photo_position` (text, NULL)
+* `coverage` (ARRAY, NOT NULL, default: '{}')
+* `sectors` (ARRAY, NOT NULL, default: '{}')
+* `is_featured` (boolean, NOT NULL, default: false)
+* `sort_order` (integer, NOT NULL, default: 0)
+* `is_active` (boolean, NOT NULL, default: true)
+* `created_at` (timestamp with time zone, NOT NULL, default: now())
+* `updated_at` (timestamp with time zone, NOT NULL, default: now())
+
+### price_lists
+* `id` (uuid, NOT NULL, default: gen_random_uuid())
+* `title` (text, NOT NULL)
+* `slug` (text, NOT NULL)
+* `description` (text, NULL)
+* `category` (text, NOT NULL)
+* `asset_class` (text, NULL)
+* `effective_date` (date, NOT NULL)
+* `file_label` (text, NULL)
+* `file_path` (text, NULL)
+* `file_type` (text, NULL)
+* `visibility` (text, NOT NULL, default: 'public')
+* `is_active` (boolean, NOT NULL, default: true)
+* `created_at` (timestamp with time zone, NOT NULL, default: now())
+* `updated_at` (timestamp with time zone, NOT NULL, default: now())
+
+### report_tags
+* `id` (uuid, NOT NULL, default: gen_random_uuid())
+* `name` (text, NOT NULL)
+* `slug` (text, NOT NULL)
+* `description` (text, NULL)
+* `sort_order` (integer, NOT NULL, default: 0)
+* `is_active` (boolean, NOT NULL, default: true)
+* `created_at` (timestamp with time zone, NOT NULL, default: now())
+
+### research_categories
+* `id` (uuid, NOT NULL, default: gen_random_uuid())
+* `name` (text, NOT NULL)
+* `slug` (text, NOT NULL)
+* `description` (text, NULL)
+* `sort_order` (integer, NOT NULL, default: 0)
+* `is_active` (boolean, NOT NULL, default: true)
+* `created_at` (timestamp with time zone, NOT NULL, default: now())
+* `updated_at` (timestamp with time zone, NOT NULL, default: now())
+
+### research_report_analysts
+* `report_id` (uuid, NOT NULL)
+* `analyst_id` (uuid, NOT NULL)
+* `role` (text, NOT NULL, default: 'author')
+* `sort_order` (integer, NOT NULL, default: 0)
+* `created_at` (timestamp with time zone, NOT NULL, default: now())
+
+### research_report_tags
+* `report_id` (uuid, NOT NULL)
+* `tag_id` (uuid, NOT NULL)
+* `created_at` (timestamp with time zone, NOT NULL, default: now())
+
+### research_reports
+* `id` (uuid, NOT NULL, default: gen_random_uuid())
+* `category_id` (uuid, NULL)
+* `display_title` (text, NOT NULL)
+* `short_summary` (text, NULL)
+* `research_synopsis` (text, NULL)
+* `core_thesis` (text, NULL)
+* `key_points` (jsonb, NULL)
+* `investment_implication` (text, NULL)
+* `risk_factors` (text, NULL)
+* `document_type` (text, NULL)
+* `publish_status` (text, NOT NULL, default: 'draft')
+* `published_at` (timestamp with time zone, NULL)
+* `data_period_start` (date, NULL)
+* `data_period_end` (date, NULL)
+* `created_at` (timestamp with time zone, NOT NULL, default: now())
+* `updated_at` (timestamp with time zone, NOT NULL, default: now())
+
+## Views
+
+### public_analysts
+* `id` (uuid, NULL)
+* `full_name` (text, NULL)
+* `slug` (text, NULL)
+* `title` (text, NULL)
+* `bio` (text, NULL)
+* `email` (text, NULL)
+* `avatar_url` (text, NULL)
+* `photo_position` (text, NULL)
+* `coverage` (ARRAY, NULL)
+* `sectors` (ARRAY, NULL)
+* `is_featured` (boolean, NULL)
+* `sort_order` (integer, NULL)
+
+### public_price_lists
+* `id` (uuid, NULL)
+* `title` (text, NULL)
+* `slug` (text, NULL)
+* `description` (text, NULL)
+* `category` (text, NULL)
+* `asset_class` (text, NULL)
+* `effective_date` (date, NULL)
+* `file_label` (text, NULL)
+* `file_path` (text, NULL)
+* `file_type` (text, NULL)
+
+### public_research_reports
+* `id` (uuid, NULL)
+* `category_id` (uuid, NULL)
+* `category_slug` (text, NULL)
+* `category_name` (text, NULL)
+* `display_title` (text, NULL)
+* `short_summary` (text, NULL)
+* `research_synopsis` (text, NULL)
+* `core_thesis` (text, NULL)
+* `key_points` (jsonb, NULL)
+* `investment_implication` (text, NULL)
+* `risk_factors` (text, NULL)
+* `document_type` (text, NULL)
+* `published_at` (timestamp with time zone, NULL)
+* `data_period_start` (date, NULL)
+* `data_period_end` (date, NULL)

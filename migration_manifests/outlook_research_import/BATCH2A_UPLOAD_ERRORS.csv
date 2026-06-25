@@ -1,0 +1,96 @@
+storage_path,error
+"outlook_research_import/batch2a/daily-market-report-2026-06-24/Daily Market Report (24-06-2026).pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\Daily Market Report (24-06-2026).pdf"" ""ss:///research_vault/outlook_research_import/batch2a/daily-market-report-2026-06-24/Daily Market Report (24-06-2026).pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/daily-market-report-2026-06-23/Daily Market Report (23-06-2026).pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\Daily Market Report (23-06-2026).pdf"" ""ss:///research_vault/outlook_research_import/batch2a/daily-market-report-2026-06-23/Daily Market Report (23-06-2026).pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/daily-market-report-2026-06-22/Daily Market Report (22-06-2026).pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\Daily Market Report (22-06-2026).pdf"" ""ss:///research_vault/outlook_research_import/batch2a/daily-market-report-2026-06-22/Daily Market Report (22-06-2026).pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/daily-market-report-2026-06-19/Daily Market Report (19-06-2026).pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\Daily Market Report (19-06-2026).pdf"" ""ss:///research_vault/outlook_research_import/batch2a/daily-market-report-2026-06-19/Daily Market Report (19-06-2026).pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/daily-market-report-2026-06-18/Daily Market Report (18-06-2026).pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\Daily Market Report (18-06-2026).pdf"" ""ss:///research_vault/outlook_research_import/batch2a/daily-market-report-2026-06-18/Daily Market Report (18-06-2026).pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/daily-market-report-2026-06-17/Daily Market Report (17-06-2026).pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\Daily Market Report (17-06-2026).pdf"" ""ss:///research_vault/outlook_research_import/batch2a/daily-market-report-2026-06-17/Daily Market Report (17-06-2026).pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/daily-market-report-2026-06-16/Daily Market Report (16-06-2026).pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\Daily Market Report (16-06-2026).pdf"" ""ss:///research_vault/outlook_research_import/batch2a/daily-market-report-2026-06-16/Daily Market Report (16-06-2026).pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/daily-market-report-2026-06-15/Daily Market Report (15-06-2026).pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\Daily Market Report (15-06-2026).pdf"" ""ss:///research_vault/outlook_research_import/batch2a/daily-market-report-2026-06-15/Daily Market Report (15-06-2026).pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/daily-market-report-2026-06-11/Daily Market Report (11-06-2026).pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\Daily Market Report (11-06-2026).pdf"" ""ss:///research_vault/outlook_research_import/batch2a/daily-market-report-2026-06-11/Daily Market Report (11-06-2026).pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/daily-market-report-2026-06-10/Daily Market Report (10-06-2026).pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\Daily Market Report (10-06-2026).pdf"" ""ss:///research_vault/outlook_research_import/batch2a/daily-market-report-2026-06-10/Daily Market Report (10-06-2026).pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/daily-market-report-2026-06-08/Daily Market Report (08-06-2026).pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\Daily Market Report (08-06-2026).pdf"" ""ss:///research_vault/outlook_research_import/batch2a/daily-market-report-2026-06-08/Daily Market Report (08-06-2026).pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/daily-market-report-2026-06-04/Daily Market Report (04-06-2026).pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\Daily Market Report (04-06-2026).pdf"" ""ss:///research_vault/outlook_research_import/batch2a/daily-market-report-2026-06-04/Daily Market Report (04-06-2026).pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/daily-market-report-2026-06-03/Daily Market Report (03-06-2026).pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\Daily Market Report (03-06-2026).pdf"" ""ss:///research_vault/outlook_research_import/batch2a/daily-market-report-2026-06-03/Daily Market Report (03-06-2026).pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/daily-market-report-2026-06-02/Daily Market Report (02-06-2026).pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\Daily Market Report (02-06-2026).pdf"" ""ss:///research_vault/outlook_research_import/batch2a/daily-market-report-2026-06-02/Daily Market Report (02-06-2026).pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/daily-market-report-2026-06-01/Daily Market Report (01-06-2026).pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\Daily Market Report (01-06-2026).pdf"" ""ss:///research_vault/outlook_research_import/batch2a/daily-market-report-2026-06-01/Daily Market Report (01-06-2026).pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/west-africa-weekly-market-report-2026-06-22/CHDWAMR 220626.pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\CHDWAMR 220626.pdf"" ""ss:///research_vault/outlook_research_import/batch2a/west-africa-weekly-market-report-2026-06-22/CHDWAMR 220626.pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/west-africa-weekly-market-report-2026-06-15/CHDWAMR 150626.pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\CHDWAMR 150626.pdf"" ""ss:///research_vault/outlook_research_import/batch2a/west-africa-weekly-market-report-2026-06-15/CHDWAMR 150626.pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/west-africa-weekly-market-report-2026-06-08/CHDWAMR 080626.pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\CHDWAMR 080626.pdf"" ""ss:///research_vault/outlook_research_import/batch2a/west-africa-weekly-market-report-2026-06-08/CHDWAMR 080626.pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"
+"outlook_research_import/batch2a/west-africa-weekly-market-report-2026-06-01/CHDWAMR010626.pdf","Command failed: npx supabase storage cp --experimental --linked ""migration_manifests\outlook_research_import\final_package\PDFs\CHDWAMR010626.pdf"" ""ss:///research_vault/outlook_research_import/batch2a/west-africa-weekly-market-report-2026-06-01/CHDWAMR010626.pdf""
+Initialising login role...
+Error status 400: {""statusCode"":""409"",""error"":""Duplicate"",""message"":""The resource already exists""}
+Try rerunning the command with --debug to troubleshoot the error.
+"

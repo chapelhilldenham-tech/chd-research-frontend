@@ -1,0 +1,2 @@
+error_type,section,message
+MISSING_SOURCE_FILE,all,"The source Excel workbook could not be located in the local environment."

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import {
   analyticsSnapshot,
-  // analyticsSectorOrder,
-  // type AnalyticsSectorName,
+  analyticsSectorOrder,
+  type AnalyticsSectorName,
 } from '../data/analyticsSnapshot';
 
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -71,8 +71,8 @@ export default function Analytics() {
   const isAuth = localStorage.getItem('chd_subscriber_auth') === 'true';
 
   const [activeMacroTab, setActiveMacroTab] = useState<(typeof macroTabs)[number]>('Inflation vs MPR');
-  // const [activeSector, setActiveSector] = useState<AnalyticsSectorName>('Banking');
-  // const selectedSector = analyticsSnapshot.sectors[activeSector];
+  const [activeSector, setActiveSector] = useState<AnalyticsSectorName>('Banking');
+  const selectedSector = analyticsSnapshot.sectors[activeSector];
 
   if (!isAuth) {
     return <Navigate to="/login" replace />;
@@ -203,6 +203,7 @@ export default function Analytics() {
               </aside>
             </div>
           </section>
+          */}
 
           <section className="analytics-section dashboard-panel" id="sector-data">
             <div className="analytics-section-heading with-meta">
@@ -252,9 +253,6 @@ export default function Analytics() {
             </div>
           </section>
 
-          </section>
-          */}
-
           <section className="analytics-section dashboard-panel" id="paramount-index">
             <div className="analytics-section-heading with-meta">
               <span>04</span>
@@ -302,8 +300,34 @@ export default function Analytics() {
                     ))}
                   </tbody>
                 </table>
-            </div>
-          </section>
+              </div>
+              
+              <h3 style={{ marginTop: '24px', fontSize: '18px', color: 'var(--chd-navy)' }}>Index Composition & Weights</h3>
+              <div className="analytics-table-scroll" style={{ marginTop: '12px' }}>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Ticker</th>
+                      <th className="num">Weight %</th>
+                      <th className="num">Last Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {analyticsSnapshot.paramount.weights && analyticsSnapshot.paramount.weights.length > 0 ? analyticsSnapshot.paramount.weights.map((row) => (
+                      <tr key={row.ticker}>
+                        <td>{row.ticker}</td>
+                        <td className="num">{row.weight.toFixed(2)}%</td>
+                        <td className="num">{row.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                      </tr>
+                    )) : (
+                      <tr>
+                        <td colSpan={3}>Ticker-level weights are pending update for this staging snapshot.</td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </section>
         </div>
       </div>
     </main>

@@ -1,0 +1,8 @@
+Subject: Daily Market Report (19 June 2026)
+Sender: Chapel Hill Denham Research <research@chapelhilldenham.com>
+Received: 2026-06-19T18:49:43Z
+Template status: Outlook body/template metadata only. Do not use as approved public website copy.
+
+Body preview:
+Money Market
+Today, the OPR rate remained flat at 22.00%, while the O/N rate increased by 1bp to close at 22.20%. System liquidity decreased significantly as bank balances closed in a net long position.
