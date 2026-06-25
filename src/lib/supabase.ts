@@ -225,7 +225,10 @@ export async function fetchPublicResearchReportBundle(): Promise<NormalizedRepor
 
   const dbReports = (reportsResult.data as PublicResearchReportRow[] | null || []).map((row) => {
     const report = mapPublicReport(row, tagsByReport, analystsByReport);
-    const mockMatch = mvpResearchReports.find(r => String(r.id) === String(report.id));
+    const mockMatch = mvpResearchReports.find(r => 
+      (r.title && report.title && r.title.toLowerCase().trim() === report.title.toLowerCase().trim()) ||
+      (r.slug && report.slug && r.slug === report.slug)
+    );
     
     if (mockMatch) {
       if (mockMatch.downloadAvailable) {
@@ -236,14 +239,5 @@ export async function fetchPublicResearchReportBundle(): Promise<NormalizedRepor
     return report;
   });
 
-  const mergedReports = [...dbReports];
-  const dbReportIds = new Set(dbReports.map(r => String(r.id)));
-  
-  mvpResearchReports.forEach(fallback => {
-    if (!dbReportIds.has(String(fallback.id))) {
-      mergedReports.push(fallback);
-    }
-  });
-
-  return mergedReports.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
+  return dbReports.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
 }

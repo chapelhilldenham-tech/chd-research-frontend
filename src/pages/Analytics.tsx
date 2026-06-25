@@ -22,7 +22,7 @@ function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
     : analyticsSnapshot.macroChart.gdpGrowth.map(p => ({ name: p.label, 'GDP Growth': p.value }));
 
   return (
-    <div className="chart-shell chart-shell-tall analytics-svg-chart" style={{ width: '100%', height: 300 }}>
+    <div className="chart-shell chart-shell-tall analytics-svg-chart" style={{ width: '100%' }}>
       <ResponsiveContainer width="100%" height="100%">
         {isGdpChart ? (
           <BarChart data={data} margin={{ top: 20, right: 30, left: -10, bottom: 0 }}>
@@ -64,7 +64,7 @@ function fmtParamountLabel(label: any) {
 
 function ParamountChart() {
   return (
-    <div className="chart-shell chart-shell-paramount analytics-svg-chart" style={{ width: '100%', height: 300 }}>
+    <div className="chart-shell chart-shell-paramount analytics-svg-chart" style={{ width: '100%' }}>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={analyticsSnapshot.paramount.points} margin={{ top: 20, right: 30, left: 10, bottom: 20 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#2e303a" />

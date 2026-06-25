@@ -56,6 +56,7 @@ export const analyticsSnapshot = {
   macroIndicators: [
     { label: 'GDP Growth (%)', value: '3.89%', change: '-0.18ppt', effectiveDate: 'Q1 2026' },
     { label: 'CPI / Inflation (%)', value: '15.93%', change: '+0.24ppt', effectiveDate: '23 May 2026' },
+    { label: 'MPR (%)', value: '26.50%', change: '0.00ppt', effectiveDate: '23 Jun 2026' },
     { label: 'Credit Growth', value: 'N59.98tn', change: '+0.47%', effectiveDate: '23 May 2026' },
     { label: 'Debt/GDP (%)', value: '36.07%', change: '-2.73ppt', effectiveDate: 'Q1 2026' },
   ],

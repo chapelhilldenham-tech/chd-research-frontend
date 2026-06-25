@@ -724,8 +724,8 @@ button:disabled,.btn:disabled{opacity:.62;cursor:not-allowed;transform:none}
 .analytics-page .macro-panel-main,.analytics-page .market-layout>div,.analytics-page .sector-detail-panel{min-width:0}
 .analytics-page .chart-shell{width:100%;min-width:0;overflow:hidden;position:relative}
 .analytics-page .chart-shell canvas{display:block;width:100%!important;height:100%!important;max-width:100%!important}
-.analytics-page .chart-shell-tall{height:220px}
-.analytics-page .chart-shell-paramount{height:220px;margin:18px 0}
+.analytics-page .chart-shell-tall{height:340px}
+.analytics-page .chart-shell-paramount{height:320px;margin:18px 0}
 .analytics-page .analytics-kpi,.analytics-page .market-stat-card,.analytics-page .sector-stat-box{border-radius:4px;border:1px solid var(--border-light)}
 .analytics-page .analytics-kpi strong,.analytics-page .market-stat-card strong,.analytics-page .sector-stat-box strong,.analytics-page .paramount-strip strong{font-family:var(--analytics-number-font)}
 .analytics-page .analytics-kpi span,.analytics-page .market-stat-card span,.analytics-page .sector-stat-box span,.analytics-page .paramount-strip span{font-size:var(--analytics-label-size)}
@@ -784,8 +784,8 @@ button:disabled,.btn:disabled{opacity:.62;cursor:not-allowed;transform:none}
 .analytics-page .analytics-section.dashboard-panel{margin-top:32px;padding:22px}
 .analytics-page .macro-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,36%);gap:24px;align-items:start}
 .analytics-page .market-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,34%);gap:24px;align-items:start}
-.analytics-page .chart-shell-tall{height:260px}
-.analytics-page .chart-shell-paramount{height:240px}
+.analytics-page .chart-shell-tall{height:400px}
+.analytics-page .chart-shell-paramount{height:360px}
 .analytics-page .macro-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:0}
 .analytics-page .market-summary-row{grid-template-columns:repeat(3,minmax(0,1fr))}
 .analytics-page .market-summary-row{display:grid;overflow:visible}
@@ -811,8 +811,8 @@ button:disabled,.btn:disabled{opacity:.62;cursor:not-allowed;transform:none}
 .analytics-page .macro-layout{grid-template-columns:65fr 35fr}
 .analytics-page .market-layout{grid-template-columns:62fr 38fr}
 .analytics-page .market-stat-stack{grid-template-columns:repeat(2,minmax(0,1fr))}
-.analytics-page .chart-shell-tall{height:280px}
-.analytics-page .chart-shell-paramount{height:260px}
+.analytics-page .chart-shell-tall{height:460px}
+.analytics-page .chart-shell-paramount{height:420px}
 .analytics-page .analytics-table-scroll{max-height:440px}
 .analytics-page .sector-panel-layout{grid-template-columns:260px minmax(0,1fr)}
 .analytics-page .sector-stat-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
