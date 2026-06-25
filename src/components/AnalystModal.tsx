@@ -10,7 +10,7 @@ const PHOTO_POSITION: Record<string, string> = {
   'Tajudeen Ibrahim':              '50% 15%',
   'Nabila Mohammed':               '50% 18%',
   'Gideon Oshadumi':               '50% 12%',
-  'Boluwatife Ishola':             '50% 15%',
+  'Boluwatife Ishola':             '50% 20%',
   'Bolade Agboola':                '50% 10%',
   'Chapel Hill Denham Research':   '50% 50%',
 };
