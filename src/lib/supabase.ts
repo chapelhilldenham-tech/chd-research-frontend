@@ -152,13 +152,88 @@ interface PublicReportAnalystRow {
 
 
 
+function assignAnalystByHeuristic(title: string): NormalizedAnalyst[] {
+  const lower = title.toLowerCase();
+
+  // Daily Market Reports and West Africa reports remain House View
+  if (lower.includes('daily market') || lower.includes('west africa')) {
+    return [{
+      id: 'b5912ff3-e1c8-44ed-9b0a-02b6d8aa44a7',
+      name: 'Chapel Hill Denham Research',
+      title: 'Department Research / Routine Research'
+    }];
+  }
+
+  // 1. Tife covers Okomu and Presco (agriculture/oils)
+  if (lower.includes('okomu') || lower.includes('presco')) {
+    return [{
+      id: '06c1ff72-7dff-4507-aa48-32256f664f0b',
+      name: 'Boluwatife Ishola',
+      title: 'Analyst'
+    }];
+  }
+
+  // 2. Bolade covers Oil & Gas AND FMCG (excluding Okomu/Presco)
+  if (
+    lower.includes('seplat') || lower.includes('ardova') || lower.includes('total') || 
+    lower.includes('gas') || lower.includes('downstream') || 
+    (lower.includes('oil') && !lower.includes('okomu')) ||
+    lower.includes('fmcg') || lower.includes('consumer') || lower.includes('nestle') || 
+    lower.includes('cadbury') || lower.includes('unilever') || lower.includes('flour mills') || 
+    lower.includes('sugar') || lower.includes('honeywell')
+  ) {
+    return [{
+      id: 'a667e183-9761-40b1-965a-cd12de6750db',
+      name: 'Bolade Agboola',
+      title: 'Analyst'
+    }];
+  }
+
+  // 3. Gideon covers Cement
+  if (lower.includes('cement') || lower.includes('lafarge') || lower.includes('dangote') || lower.includes('bua')) {
+    return [{
+      id: '2707f7e6-b1bf-4989-8a2c-e19700c01c4c',
+      name: 'Gideon Oshadumi',
+      title: 'Analyst'
+    }];
+  }
+
+  // 4. Nabila covers Banking and Financials
+  if (
+    lower.includes('bank') || lower.includes('accesscorp') || lower.includes('gtco') || 
+    lower.includes('zenith') || lower.includes('financial') || lower.includes('insurance')
+  ) {
+    return [{
+      id: 'aebb5193-74b5-4496-b8f8-477db5043011',
+      name: 'Nabila Mohammed',
+      title: 'Analyst'
+    }];
+  }
+
+  // 5. Tajudeen covers Telecoms
+  if (lower.includes('telecom') || lower.includes('airtel') || lower.includes('mtn')) {
+    return [{
+      id: 'b18ecc2d-6b05-4f87-b37a-68cef253df94',
+      name: 'Tajudeen Ibrahim',
+      title: 'Director, Research'
+    }];
+  }
+
+  // Default to House View
+  return [{
+    id: 'b5912ff3-e1c8-44ed-9b0a-02b6d8aa44a7',
+    name: 'Chapel Hill Denham Research',
+    title: 'Department Research / Routine Research'
+  }];
+}
+
 function mapPublicReport(
   row: PublicResearchReportRow,
   tagsByReport: Map<string, string[]>,
   analystsByReport: Map<string, PublicReportAnalystRow[]>,
 ): NormalizedReport {
   const analysts = analystsByReport.get(row.id) || [];
-  const normalizedAnalysts: NormalizedAnalyst[] = analysts.map(a => ({
+  let normalizedAnalysts: NormalizedAnalyst[] = analysts.map(a => ({
     id: a.analyst_id || 'house-view',
     name: a.full_name || 'House View',
     title: a.role || undefined
@@ -170,6 +245,17 @@ function mapPublicReport(
       name: 'House View',
       title: 'Analyst'
     });
+  }
+
+  // Apply coverage heuristics if mapped to House View to split reports correctly
+  const isOnlyHouseView = normalizedAnalysts.length === 1 && 
+    (normalizedAnalysts[0].id === 'house-view' || 
+     normalizedAnalysts[0].id === 'b5912ff3-e1c8-44ed-9b0a-02b6d8aa44a7' ||
+     normalizedAnalysts[0].name.toLowerCase().includes('house view') || 
+     normalizedAnalysts[0].name.toLowerCase().includes('chapel hill denham research'));
+
+  if (isOnlyHouseView && row.display_title) {
+    normalizedAnalysts = assignAnalystByHeuristic(row.display_title);
   }
 
   const categorySlug = row.category_slug || 'other';
