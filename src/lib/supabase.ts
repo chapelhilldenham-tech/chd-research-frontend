@@ -1,8 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Report } from '../data/mockData';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+// Fallback to staging credentials if Vercel Preview environment variables are not configured
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://lghesruafwaislqfadpo.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_EOMvOCq9Ubqo15MDJqFI2A_J21AlRFy';
 const hasSupabaseConfig = Boolean(supabaseUrl && supabaseAnonKey);
 
 export const supabase = hasSupabaseConfig ? createClient(supabaseUrl, supabaseAnonKey) : null;
