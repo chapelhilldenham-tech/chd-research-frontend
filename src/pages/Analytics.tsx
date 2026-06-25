@@ -1,17 +1,19 @@
 import { useState } from 'react';
 import {
-  analyticsSectorOrder,
   analyticsSnapshot,
-  type AnalyticsSectorName,
+  // analyticsSectorOrder,
+  // type AnalyticsSectorName,
 } from '../data/analyticsSnapshot';
 
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const macroTabs = ['Inflation vs MPR', 'GDP Growth'] as const;
 
+/*
 function sourceStatus(item: object) {
   return 'sourceStatus' in item ? String(item.sourceStatus) : '';
 }
+*/
 
 function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
   const isGdpChart = activeTab === 'GDP Growth';
@@ -47,6 +49,7 @@ function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
   );
 }
 
+/*
 const paramountPoints = [
   { label: 'Jan', value: 2015 },
   { label: 'Feb', value: 2200 },
@@ -71,6 +74,7 @@ function ParamountChart() {
     </div>
   );
 }
+*/
 
 import { Navigate } from 'react-router-dom';
 
@@ -78,8 +82,8 @@ export default function Analytics() {
   const isAuth = localStorage.getItem('chd_subscriber_auth') === 'true';
 
   const [activeMacroTab, setActiveMacroTab] = useState<(typeof macroTabs)[number]>('Inflation vs MPR');
-  const [activeSector, setActiveSector] = useState<AnalyticsSectorName>('Banking');
-  const selectedSector = analyticsSnapshot.sectors[activeSector];
+  // const [activeSector, setActiveSector] = useState<AnalyticsSectorName>('Banking');
+  // const selectedSector = analyticsSnapshot.sectors[activeSector];
 
   if (!isAuth) {
     return <Navigate to="/login" replace />;
@@ -154,6 +158,7 @@ export default function Analytics() {
             </div>
           </section>
 
+          {/*
           <section className="analytics-section dashboard-panel" id="market-data">
             <div className="analytics-section-heading with-meta">
               <span>02</span>
@@ -305,6 +310,7 @@ export default function Analytics() {
               </table>
             </div>
           </section>
+          */}
         </div>
       </div>
     </main>
