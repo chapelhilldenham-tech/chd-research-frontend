@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { type Report, mockReports } from '../data/mockData';
+import { type Report, mockReports, mockAnalysts } from '../data/mockData';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
@@ -30,7 +30,7 @@ export async function fetchPublicAnalysts() {
     console.error('Error fetching analysts:', error);
     return null;
   }
-  return data;
+  return data && data.length > 0 ? data : mockAnalysts;
 }
 
 export async function fetchPublicPriceLists() {
@@ -227,5 +227,5 @@ export async function fetchPublicResearchReportBundle(): Promise<Report[] | null
     return report;
   });
 
-  return dbReports;
+  return dbReports.length > 0 ? dbReports : mockReports;
 }
