@@ -14,18 +14,7 @@ export default function Analysts() {
     async function loadAnalysts() {
       const data = await fetchPublicAnalysts();
       if (data && data.length > 0) {
-        const mappedAnalysts: Analyst[] = data.map((a: any) => ({
-          id: a.id,
-          name: a.full_name,
-          title: a.title,
-          coverage: a.coverage || [],
-          sectors: a.sectors || [],
-          bio: a.bio,
-          photo_path: a.avatar_url,
-          photo_position: a.photo_position,
-          isHouseView: a.slug === 'house-view',
-        }));
-        setAnalysts(mappedAnalysts);
+        setAnalysts(data as Analyst[]);
         setUsingFallback(false);
       } else {
         setUsingFallback(true);
