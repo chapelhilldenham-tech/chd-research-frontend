@@ -24,7 +24,10 @@ export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, o
       const data = await fetchPublicResearchReportBundle();
       if (!mounted) return;
       if (data) {
-        setReports(data.filter(r => r.analysts.some(a => String(a.id) === String(analyst.id))));
+        setReports(data.filter(r => r.analysts.some(a => 
+          String(a.id) === String(analyst.id) || 
+          (a.name && analyst.name && a.name.toLowerCase() === analyst.name.toLowerCase())
+        )));
       }
       setLoadingReports(false);
     }
@@ -49,14 +52,26 @@ export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, o
         <X size={24} />
       </button>
       <div className="analyst-modal-body">
-        <AnalystAvatar analyst={analyst} />
-        <div className="analyst-modal-heading">
-          <p className="analyst-role">{analyst.title}</p>
-          <h2>{analyst.name}</h2>
-          <div className="analyst-coverage">
-            {analyst.coverage?.map((cov, idx) => (
-              <span key={idx} className="coverage-chip">{cov}</span>
-            ))}
+        <div className="analyst-modal-header" style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '32px' }}>
+          <div style={{ width: '120px', height: '120px', borderRadius: '50%', overflow: 'hidden', flexShrink: 0 }}>
+            <img 
+              src={analyst.photo_path || (analyst.name === 'Chapel Hill Denham Research' ? '/assets/img/logo-navy-transparent.png' : `/assets/img/analysts/${analyst.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.jpg`)} 
+              alt={analyst.name} 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = '/assets/img/logo-navy-transparent.png'; // Ultimate fallback
+              }}
+            />
+          </div>
+          <div>
+            <p className="analyst-role">{analyst.title}</p>
+            <h2 style={{ margin: '4px 0 8px', fontSize: '28px' }}>{analyst.name}</h2>
+            <div className="analyst-coverage">
+              {analyst.coverage?.map((cov, idx) => (
+                <span key={idx} className="coverage-chip">{cov}</span>
+              ))}
+            </div>
           </div>
         </div>
         <section className="analyst-bio">

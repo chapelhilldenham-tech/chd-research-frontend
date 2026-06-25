@@ -968,6 +968,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 29 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 29 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -988,6 +998,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 31 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 31 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1008,6 +1028,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 30 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 30 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1028,6 +1058,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 24 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 24 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1048,6 +1088,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 23 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 23 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1068,6 +1118,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 22 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 22 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1088,6 +1148,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 19 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 19 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1108,6 +1178,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 18 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 18 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1128,6 +1208,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 17 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 17 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1148,6 +1238,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 16 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 16 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1168,6 +1268,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 15 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 15 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1188,6 +1298,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 12 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 12 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1208,6 +1328,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 11 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 11 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1228,6 +1358,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 10 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 10 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1248,6 +1388,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 09 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 09 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1268,6 +1418,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 08 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 08 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1288,6 +1448,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 5 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 5 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1308,6 +1478,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1328,6 +1508,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 03 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 03 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1348,6 +1538,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 02 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 02 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1368,6 +1568,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (12 - 01 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (12 - 01 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1556,6 +1766,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (08 - 29 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (08 - 29 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1576,6 +1796,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (08 - 28 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (08 - 28 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1596,6 +1826,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (08 - 27 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (08 - 27 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1616,6 +1856,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (08 - 26 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (08 - 26 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1636,6 +1886,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (08 - 25 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (08 - 25 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1656,6 +1916,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (08 - 22 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (08 - 22 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1676,6 +1946,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (08 - 21 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (08 - 21 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1696,6 +1976,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (08 - 20 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (08 - 20 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1716,6 +2006,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (08 - 18 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (08 - 18 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1736,6 +2036,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (08 - 15 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (08 - 15 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1756,6 +2066,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (08 - 14 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (08 - 14 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1791,6 +2111,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (08 - 13 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (08 - 13 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1811,6 +2141,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (08 - 12 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (08 - 12 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1831,6 +2171,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (11 - 08 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (11 - 08 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1851,6 +2201,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (08 - 08 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (08 - 08 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1871,6 +2231,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (07 - 08 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (07 - 08 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1891,6 +2261,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (06 - 08 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (06 - 08 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1911,6 +2291,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (05 - 08 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (05 - 08 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1931,6 +2321,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (04 - 08 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (04 - 08 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -1951,6 +2351,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (01 - 08 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (01 - 08 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2003,6 +2413,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (14 - 06 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (14 - 06 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2023,6 +2443,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (11 - 07 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (11 - 07 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2043,6 +2473,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (10 - 07 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (10 - 07 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2063,6 +2503,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (09 - 07 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (09 - 07 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2083,6 +2533,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (08 - 07 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (08 - 07 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2103,6 +2563,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (07 - 07 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (07 - 07 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2123,6 +2593,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (04 - 07 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (04 - 07 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2143,6 +2623,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (03 - 07 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (03 - 07 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2163,6 +2653,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (02 - 07 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (02 - 07 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2200,6 +2700,11 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy equity research document staged for manual review: Airtel Africa Plc Company Research Update.",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Airtel Africa Plc Company Research Update.",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
       {
         "id": "1",
         "name": "Tajudeen Ibrahim"
@@ -2222,6 +2727,11 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy equity research document staged for manual review: MTN Nigeria Communications PLC Initial Comments.",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: MTN Nigeria Communications PLC Initial Comments.",
     "analysts": [
+        {
+          "id": "3",
+          "name": "Nabila Mohammed",
+          "title": "Analyst"
+        },
       {
         "id": "1",
         "name": "Tajudeen Ibrahim"
@@ -2244,6 +2754,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (30 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (30 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2264,6 +2784,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (29 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (29 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2284,6 +2814,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (28 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (28 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2326,6 +2866,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (25 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (25 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2346,6 +2896,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (24 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (24 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2366,6 +2926,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report. (23 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report. (23 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2386,6 +2956,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (22 - 04 - 2025)..",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (22 - 04 - 2025)..",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2406,6 +2986,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (17 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (17 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2426,6 +3016,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (16 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (16 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2446,6 +3046,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (15 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (15 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2466,6 +3076,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (14 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (14 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2486,6 +3106,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (11 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (11 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2506,6 +3136,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (10 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (10 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2526,6 +3166,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (09 - 04 - 2025)..",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (09 - 04 - 2025)..",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2546,6 +3196,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (07 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (07 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2566,6 +3226,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (04 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (04 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2586,6 +3256,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (03 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (03 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2626,6 +3306,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (02 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (02 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2646,6 +3336,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (08 - 04 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (08 - 04 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
@@ -2686,6 +3386,16 @@ export const mvpResearchReports: NormalizedReport[] = [
     "summary": "Legacy research report document staged for manual review: Daily Market Report (28 - 02 - 2025).",
     "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Daily Market Report (28 - 02 - 2025).",
     "analysts": [
+        {
+          "id": "1",
+          "name": "Tajudeen Ibrahim",
+          "title": "Analyst"
+        },
+        {
+          "id": "4",
+          "name": "Boluwatife Ishola",
+          "title": "Analyst"
+        },
       {
         "id": "6",
         "name": "Chapel Hill Denham Research"
