@@ -4,7 +4,6 @@ import { X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { fetchPublicResearchReportBundle } from '../lib/supabase';
 import { Link } from 'react-router-dom';
-import AnalystAvatar from './AnalystAvatar';
 
 export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, onClose: () => void }) {
   const dialogRef = useRef<HTMLDialogElement>(null);

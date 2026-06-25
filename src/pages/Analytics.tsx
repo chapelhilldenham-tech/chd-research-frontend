@@ -49,15 +49,37 @@ function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
   );
 }
 
+// Format '2018-03' → 'Mar-18' to match Nabila's requested Excel style
+const MONTH_ABBR: Record<string, string> = {
+  '01': 'Jan', '02': 'Feb', '03': 'Mar', '04': 'Apr',
+  '05': 'May', '06': 'Jun', '07': 'Jul', '08': 'Aug',
+  '09': 'Sep', '10': 'Oct', '11': 'Nov', '12': 'Dec',
+};
+function fmtParamountLabel(label: string) {
+  const [yr, mo] = label.split('-');
+  return `${MONTH_ABBR[mo] ?? mo}-${yr.slice(2)}`;
+}
+
 function ParamountChart() {
   return (
     <div className="chart-shell chart-shell-paramount analytics-svg-chart" style={{ width: '100%', height: 300 }}>
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={analyticsSnapshot.paramount.points} margin={{ top: 20, right: 30, left: 10, bottom: 0 }}>
+        <LineChart data={analyticsSnapshot.paramount.points} margin={{ top: 20, right: 30, left: 10, bottom: 20 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#2e303a" />
-          <XAxis dataKey="label" stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} />
+          <XAxis
+            dataKey="label"
+            stroke="#6b6375"
+            tick={{ fill: '#6b6375', fontSize: 11 }}
+            axisLine={false}
+            tickLine={false}
+            tickFormatter={fmtParamountLabel}
+            interval={3}
+          />
           <YAxis stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} domain={['dataMin - 100', 'dataMax + 100']} axisLine={false} tickLine={false} />
-          <Tooltip contentStyle={{ backgroundColor: '#1f2028', border: '1px solid #2e303a', borderRadius: '4px' }} />
+          <Tooltip
+            contentStyle={{ backgroundColor: '#1f2028', border: '1px solid #2e303a', borderRadius: '4px' }}
+            labelFormatter={fmtParamountLabel}
+          />
           <Line type="monotone" dataKey="value" stroke="#c7752d" strokeWidth={3} activeDot={{ r: 6 }} dot={false} name="Index Value" />
         </LineChart>
       </ResponsiveContainer>
@@ -303,6 +325,7 @@ export default function Analytics() {
               </div>
               
               <h3 style={{ marginTop: '24px', fontSize: '18px', color: 'var(--chd-navy)' }}>Index Composition & Weights</h3>
+              <p style={{ fontSize: '12px', color: 'rgba(16,37,48,0.5)', marginTop: '4px', marginBottom: '0', fontStyle: 'italic' }}>Prices are as at the end of Q1-2026</p>
               <div className="analytics-table-scroll" style={{ marginTop: '12px' }}>
                 <table>
                   <thead>

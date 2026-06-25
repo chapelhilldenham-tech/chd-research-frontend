@@ -76,7 +76,7 @@ export default function Home() {
         <div className="container">
           <div className="cred-grid">
             <div className="cred-card">
-              <span className="cred-val">{latestReports.length > 0 ? latestReports.length : '--'}</span>
+              <span className="cred-val">155</span>
               <span className="cred-label">Research Reports</span>
             </div>
             <div className="cred-card">

@@ -68,18 +68,24 @@ export async function fetchPublicPriceLists() {
     return mvpPriceLists;
   }
   
-  if (data && data.length > 0) {
-    return data.map(row => ({
-      id: row.id,
-      title: row.title || 'Price List',
-      date: row.effective_date || '2025-01-01',
-      fileSize: '1.2 MB', // Fallback since it's not in db yet
-      isNew: false
-    }));
-  }
+  // Merge DB records with local MVP fallbacks (local files always available)
+  const dbDates = new Set((data || []).map((row: any) => row.effective_date));
+  const localOnly = mvpPriceLists.filter(pl => !dbDates.has(pl.effective_date));
   
-  return mvpPriceLists;
+  const dbMapped = (data && data.length > 0)
+    ? data.map((row: any) => ({
+        id: row.id,
+        effective_date: row.effective_date || '',
+        title: row.title || 'Chapel Hill Denham Price List',
+        file_url: row.file_url || mvpPriceLists.find(p => p.effective_date === row.effective_date)?.file_url,
+      }))
+    : [];
+
+  return [...dbMapped, ...localOnly].sort((a, b) =>
+    b.effective_date.localeCompare(a.effective_date)
+  );
 }
+
 
 export async function fetchPublicMarketDataPoints() {
   const client = getSupabaseClient();
