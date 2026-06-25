@@ -14,10 +14,12 @@ export default function ReportCard({ report, compact = false }: { report: Report
       </div>
       <h3 title={report.title}>{report.title}</h3>
       <dl className="report-card-facts">
-        <div>
-          <dt>Analyst</dt>
-          <dd>{report.analyst_name}</dd>
-        </div>
+        {report.analyst_name && (
+          <div>
+            <dt>Analyst</dt>
+            <dd>{report.analyst_name}</dd>
+          </div>
+        )}
         <div>
           <dt>Date</dt>
           <dd>{report.date}</dd>

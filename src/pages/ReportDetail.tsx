@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { getReportById, getAnalystById, relatedReportsFor, mockReports, type Report } from '../data/mockData';
+import { getReportById, relatedReportsFor, mockReports, type Report } from '../data/mockData';
 import { fetchPublicResearchReportBundle } from '../lib/supabase';
 import { ArrowLeft, Download } from 'lucide-react';
 import Icon from '../components/Icon';
@@ -49,7 +49,6 @@ export default function ReportDetail() {
     );
   }
 
-  const analyst = getAnalystById(report.analyst_id);
   const relatedReports = reports ? relatedReportsFromList(report, reportList) : relatedReportsFor(report);
   const isLocked = report.access_level === 'subscriber';
 
@@ -73,7 +72,7 @@ export default function ReportDetail() {
             </div>
             <h1>{report.title}</h1>
             <dl className="report-detail-facts">
-              <div><dt>Analyst</dt><dd>{report.analyst_name}</dd></div>
+              {report.analyst_name && <div><dt>Analyst</dt><dd>{report.analyst_name}</dd></div>}
               <div><dt>Date</dt><dd>{report.date}</dd></div>
               <div><dt>Coverage</dt><dd>{report.coverage}</dd></div>
             </dl>
@@ -125,18 +124,6 @@ export default function ReportDetail() {
                 </Link>
               ))}
             </div>
-            {analyst && (
-              <div className="report-side-facts">
-                <div>
-                  <span>Analyst</span>
-                  <strong>{analyst.name}</strong>
-                </div>
-                <div>
-                  <span>Coverage</span>
-                  <strong>{analyst.coverage.join(', ')}</strong>
-                </div>
-              </div>
-            )}
           </aside>
         </div>
       </section>

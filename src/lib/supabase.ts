@@ -163,8 +163,8 @@ function mapPublicReport(
     coverage: row.category_name || documentType,
     synopsis: row.short_summary || row.research_synopsis || 'Published research metadata is available for this report.',
     date: formatDate(row.published_at || row.data_period_end),
-    analyst_id: primaryAnalyst?.analyst_id || 'house-view',
-    analyst_name: primaryAnalyst?.full_name || 'House View',
+    analyst_id: primaryAnalyst?.analyst_id || '',
+    analyst_name: primaryAnalyst?.full_name || '',
     access_level: 'subscriber',
     tags: tagsByReport.get(row.id) || [],
   };
