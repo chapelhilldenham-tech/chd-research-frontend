@@ -84,8 +84,8 @@ function ParamountChart() {
           />
           <Legend wrapperStyle={{ paddingTop: '16px', fontSize: '12px', color: '#6b6375' }} />
           <Line type="monotone" dataKey="paramount" stroke="#c7752d" strokeWidth={3} activeDot={{ r: 6 }} dot={false} name="Paramount" />
-          <Line type="monotone" dataKey="ngx30" stroke="#102530" strokeWidth={2} activeDot={{ r: 5 }} dot={false} name="NGX30" strokeDasharray="6 3" />
-          <Line type="monotone" dataKey="ngxAllShare" stroke="#6b6375" strokeWidth={2} activeDot={{ r: 5 }} dot={false} name="NGX All Share" strokeDasharray="3 3" />
+          <Line type="monotone" dataKey="ngx30" stroke="#1a6bbd" strokeWidth={2} activeDot={{ r: 5 }} dot={false} name="NGX30" strokeDasharray="6 3" />
+          <Line type="monotone" dataKey="ngxAllShare" stroke="#2a9d5c" strokeWidth={2} activeDot={{ r: 5 }} dot={false} name="NGX All Share" strokeDasharray="3 3" />
         </LineChart>
       </ResponsiveContainer>
     </div>
