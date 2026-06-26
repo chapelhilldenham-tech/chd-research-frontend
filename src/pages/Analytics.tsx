@@ -1,155 +1,111 @@
 import { useState } from 'react';
 import {
-  analyticsSectorOrder,
   analyticsSnapshot,
+  analyticsSectorOrder,
   type AnalyticsSectorName,
 } from '../data/analyticsSnapshot';
 
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
 const macroTabs = ['Inflation vs MPR', 'GDP Growth'] as const;
 
-type ChartPoint = {
-  label: string;
-  value: number;
-  secondary?: number;
-};
-
+/*
 function sourceStatus(item: object) {
   return 'sourceStatus' in item ? String(item.sourceStatus) : '';
 }
-
-function rangeFor(points: ChartPoint[]) {
-  const values = points.flatMap((point) => [point.value, point.secondary]).filter((value): value is number => typeof value === 'number');
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-  const pad = Math.max((max - min) * 0.12, 1);
-  return { min: Math.floor(min - pad), max: Math.ceil(max + pad) };
-}
-
-function polyline(points: ChartPoint[], min: number, max: number, key: 'value' | 'secondary') {
-  const xStart = 54;
-  const xEnd = 704;
-  const yTop = 44;
-  const yBottom = 238;
-  const xStep = points.length > 1 ? (xEnd - xStart) / (points.length - 1) : 0;
-  return points
-    .map((point, index) => {
-      const raw = key === 'value' ? point.value : point.secondary;
-      const y = yBottom - (((raw ?? point.value) - min) / (max - min || 1)) * (yBottom - yTop);
-      return `${xStart + index * xStep},${y}`;
-    })
-    .join(' ');
-}
-
-function barGeometry(points: ChartPoint[], min: number, max: number) {
-  const xStart = 54;
-  const xEnd = 704;
-  const yTop = 44;
-  const yBottom = 238;
-  const slot = (xEnd - xStart) / Math.max(points.length, 1);
-  const width = Math.min(44, slot * 0.54);
-  return points.map((point, index) => {
-    const height = ((point.value - min) / (max - min || 1)) * (yBottom - yTop);
-    return {
-      x: xStart + index * slot + (slot - width) / 2,
-      y: yBottom - height,
-      width,
-      height,
-    };
-  });
-}
+*/
 
 function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
-  const points: ChartPoint[] = activeTab === 'Inflation vs MPR'
-    ? analyticsSnapshot.macroChart.inflationMpr.map((point) => ({
-        label: point.label,
-        value: point.inflation,
-        secondary: point.mpr,
-      }))
-    : analyticsSnapshot.macroChart.gdpGrowth.map((point) => ({
-        label: point.label,
-        value: point.value,
-      }));
-  const { min, max } = rangeFor(points);
-  const yLabels = Array.from({ length: 6 }, (_, index) => max - ((max - min) / 5) * index);
   const isGdpChart = activeTab === 'GDP Growth';
+  const data: any[] = activeTab === 'Inflation vs MPR'
+    ? analyticsSnapshot.macroChart.inflationMpr.map(p => ({ name: p.label, Inflation: p.inflation, MPR: p.mpr }))
+    : analyticsSnapshot.macroChart.gdpGrowth.map(p => ({ name: p.label, 'GDP Growth': p.value }));
 
   return (
-    <div className="chart-shell chart-shell-tall analytics-svg-chart" aria-label={`${activeTab} chart`}>
-      <svg viewBox="0 0 760 300" role="img">
-        <g className="chart-grid">
-          {[44, 82, 120, 158, 196, 234].map((y) => (
-            <line key={y} x1="44" x2="734" y1={y} y2={y} />
-          ))}
-        </g>
-        <g className="chart-axis-labels chart-y-labels">
-          {yLabels.map((label, index) => (
-            <text key={label} x="0" y={49 + index * 38}>{label.toFixed(2)}%</text>
-          ))}
-        </g>
-        <g className="chart-axis-labels chart-x-labels">
-          {points.map((point, index) => (
-            <text key={point.label} x={50 + index * (650 / Math.max(points.length - 1, 1))} y="292">{point.label}</text>
-          ))}
-        </g>
-        <g className="chart-legend">
-          <circle cx="350" cy="25" r="7" className="chart-line-primary-fill" />
-          <text x="362" y="29">{activeTab === 'Inflation vs MPR' ? 'Inflation' : 'GDP Growth'}</text>
-          {activeTab === 'Inflation vs MPR' && (
-            <>
-              <circle cx="438" cy="25" r="7" className="chart-line-secondary-fill" />
-              <text x="450" y="29">MPR</text>
-            </>
-          )}
-        </g>
-        {activeTab === 'Inflation vs MPR' && (
-          <polyline
-            className="chart-line-secondary"
-            points={polyline(points, min, max, 'secondary')}
-          />
-        )}
+    <div className="chart-shell chart-shell-tall analytics-svg-chart" style={{ width: '100%' }}>
+      <ResponsiveContainer width="100%" height="100%">
         {isGdpChart ? (
-          <g className="chart-bars">
-            {barGeometry(points, min, max).map((bar, index) => (
-              <rect
-                key={points[index].label}
-                className="chart-line-primary-fill"
-                x={bar.x}
-                y={bar.y}
-                width={bar.width}
-                height={bar.height}
-                rx="2"
-              />
-            ))}
-          </g>
+          <BarChart data={data} margin={{ top: 20, right: 30, left: -10, bottom: 0 }}>
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#2e303a" />
+            <XAxis dataKey="name" stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} />
+            <YAxis stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={val => val + '%'} />
+            <Tooltip contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e5e5e5', borderRadius: '4px' }} labelStyle={{ color: '#102530' }} itemStyle={{ color: '#102530' }} />
+            <Legend wrapperStyle={{ paddingTop: '20px' }} />
+            <Bar dataKey="GDP Growth" fill="#c7752d" radius={[4, 4, 0, 0]} />
+          </BarChart>
         ) : (
-          <polyline
-            className="chart-line-primary"
-            points={polyline(points, min, max, 'value')}
-          />
+          <LineChart data={data} margin={{ top: 20, right: 30, left: -10, bottom: 0 }}>
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#2e303a" />
+            <XAxis dataKey="name" stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} />
+            <YAxis stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={val => val + '%'} />
+            <Tooltip contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e5e5e5', borderRadius: '4px' }} labelStyle={{ color: '#102530' }} itemStyle={{ color: '#102530' }} />
+            <Legend wrapperStyle={{ paddingTop: '20px' }} />
+            <Line type="monotone" dataKey="MPR" stroke="#c7a17c" strokeWidth={3} activeDot={{ r: 6 }} dot={{ strokeWidth: 2 }} />
+            <Line type="monotone" dataKey="Inflation" stroke="#c7752d" strokeWidth={3} activeDot={{ r: 6 }} dot={{ strokeWidth: 2 }} />
+          </LineChart>
         )}
-      </svg>
+      </ResponsiveContainer>
     </div>
   );
+}
+
+// Format '2018-03' → 'Mar-18' to match Nabila's requested Excel style
+const MONTH_ABBR: Record<string, string> = {
+  '01': 'Jan', '02': 'Feb', '03': 'Mar', '04': 'Apr',
+  '05': 'May', '06': 'Jun', '07': 'Jul', '08': 'Aug',
+  '09': 'Sep', '10': 'Oct', '11': 'Nov', '12': 'Dec',
+};
+function fmtParamountLabel(label: any) {
+  if (typeof label !== 'string') return String(label ?? '');
+  const [yr, mo] = label.split('-');
+  if (!yr || !mo) return label;
+  return `${MONTH_ABBR[mo] ?? mo}-${yr.slice(2)}`;
 }
 
 function ParamountChart() {
   return (
-    <div
-      className="chart-shell chart-shell-paramount analytics-svg-chart paramount-svg-chart"
-      aria-label="Paramount Index trend pending update"
-      style={{ display: 'grid', placeItems: 'center' }}
-    >
-      <p className="notice" style={{ maxWidth: 520 }}>
-        Paramount Index trend data is pending update. Confirmed Q1 2026 constituent weights are shown below.
-      </p>
+    <div className="chart-shell chart-shell-paramount analytics-svg-chart" style={{ width: '100%' }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={analyticsSnapshot.paramount.points} margin={{ top: 20, right: 30, left: 10, bottom: 20 }}>
+          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#2e303a" />
+          <XAxis
+            dataKey="label"
+            stroke="#6b6375"
+            tick={{ fill: '#6b6375', fontSize: 11 }}
+            axisLine={false}
+            tickLine={false}
+            tickFormatter={fmtParamountLabel}
+            interval={3}
+          />
+          <YAxis stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} domain={['dataMin - 20', 'dataMax + 20']} axisLine={false} tickLine={false} />
+          <Tooltip
+            contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e5e5e5', borderRadius: '4px' }}
+            labelStyle={{ color: '#102530' }}
+            itemStyle={{ color: '#102530' }}
+            labelFormatter={fmtParamountLabel}
+          />
+          <Legend wrapperStyle={{ paddingTop: '16px', fontSize: '12px', color: '#6b6375' }} />
+          <Line type="monotone" dataKey="paramount" stroke="#c7752d" strokeWidth={3} activeDot={{ r: 6 }} dot={false} name="Paramount" />
+          <Line type="monotone" dataKey="ngxAllShare" stroke="#2a9d5c" strokeWidth={2} activeDot={{ r: 5 }} dot={false} name="NGX All Share" strokeDasharray="3 3" />
+          <Line type="monotone" dataKey="ngx30" stroke="#1a6bbd" strokeWidth={2} activeDot={{ r: 5 }} dot={false} name="NGX30" strokeDasharray="6 3" />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
 }
 
+import { Navigate } from 'react-router-dom';
+
 export default function Analytics() {
+  const isAuth = localStorage.getItem('chd_subscriber_auth') === 'true';
+
   const [activeMacroTab, setActiveMacroTab] = useState<(typeof macroTabs)[number]>('Inflation vs MPR');
   const [activeSector, setActiveSector] = useState<AnalyticsSectorName>('Banking');
   const selectedSector = analyticsSnapshot.sectors[activeSector];
+
+  if (!isAuth) {
+    return <Navigate to="/login" replace />;
+  }
 
   return (
     <main className="analytics-page">
@@ -168,12 +124,7 @@ export default function Analytics() {
             </p>
           </aside>
         </section>
-        <p className="notice" style={{ marginBottom: '2rem' }}>
-          {analyticsSnapshot.statusNote}
-        </p>
-
         <section className="analytics-dashboard-kpis" aria-label="Dashboard summary">
-          <span className="kpi-strip-as-at">Manual snapshot: {analyticsSnapshot.sourceLabel}</span>
           {analyticsSnapshot.headlineKpis.map((kpi) => (
             <article key={kpi.label}>
               <span>{kpi.label}</span>
@@ -209,8 +160,8 @@ export default function Analytics() {
                 <p className="analytics-commentary-date">{activeMacroTab === 'Inflation vs MPR' ? analyticsSnapshot.macroChart.effectiveDate : 'Q1 2026'}</p>
                 <p className="analytics-commentary">
                   {activeMacroTab === 'Inflation vs MPR'
-                    ? 'Inflation reached 15.93% in May 2026 while MPR remained at 26.50%. This is a manually loaded staging snapshot from the provided workbook.'
-                    : 'GDP growth reached 3.89% in Q1 2026, compared with 4.07% in Q4 2025, based on the provided workbook.'}
+                    ? 'Inflation reached 15.93% in May 2026 while MPR remained at 26.50%.'
+                    : 'GDP growth reached 3.89% in Q1 2026, compared with 4.07% in Q4 2025.'}
                 </p>
               </div>
               <div className="macro-kpi-grid">
@@ -225,6 +176,7 @@ export default function Analytics() {
             </div>
           </section>
 
+          {/*
           <section className="analytics-section dashboard-panel" id="market-data">
             <div className="analytics-section-heading with-meta">
               <span>02</span>
@@ -280,6 +232,7 @@ export default function Analytics() {
               </aside>
             </div>
           </section>
+          */}
 
           <section className="analytics-section dashboard-panel" id="sector-data">
             <div className="analytics-section-heading with-meta">
@@ -354,28 +307,31 @@ export default function Analytics() {
               </p>
             </details>
             <div className="analytics-table-scroll">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Ticker</th>
-                    <th className="num">Weight %</th>
-                    <th className="num">Last Price</th>
-                    <th className="num">1D Change</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {analyticsSnapshot.paramount.weights.map((row) => (
-                    <tr key={row.ticker}>
-                      <td>{row.ticker}{sourceStatus(row) && <small style={{ display: 'block' }}>{sourceStatus(row)}</small>}</td>
-                      <td className="num">{row.weight}</td>
-                      <td className="num">{row.lastPrice}</td>
-                      <td className="num">{row.change}</td>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Indices</th>
+                      <th className="num">1YR</th>
+                      <th className="num">2YR</th>
+                      <th className="num">3YR</th>
+                      <th className="num">5YR</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
+                  </thead>
+                  <tbody>
+                    {analyticsSnapshot.paramount.performance.map((row) => (
+                      <tr key={row.index}>
+                        <td>{row.index}</td>
+                        <td className="num" style={{ color: row['1YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-navy)' }}>{row['1YR']}</td>
+                        <td className="num" style={{ color: row['2YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-success)' }}>{row['2YR']}</td>
+                        <td className="num" style={{ color: row['3YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-success)' }}>{row['3YR']}</td>
+                        <td className="num" style={{ color: row['5YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-success)' }}>{row['5YR']}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              
+            </section>
         </div>
       </div>
     </main>

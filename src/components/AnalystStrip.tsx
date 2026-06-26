@@ -3,6 +3,8 @@ import type { Analyst } from '../data/mockData';
 import AnalystModal from './AnalystModal';
 import Icon from './Icon';
 
+import AnalystAvatar from './AnalystAvatar';
+
 function useHoverScroll(ref: React.RefObject<HTMLDivElement | null>) {
   const speedRef = useRef(0);
   const animationIdRef = useRef<number | null>(null);
@@ -82,10 +84,6 @@ export default function AnalystStrip({ analysts }: { analysts: Analyst[] }) {
   const [selectedAnalyst, setSelectedAnalyst] = useState<Analyst | null>(null);
   useHoverScroll(stripRef);
 
-  const getInitials = (name: string) => {
-    return name.split(' ').map(n => n[0]).join('').toUpperCase();
-  };
-
   return (
     <>
       <div className="analyst-strip-shell">
@@ -99,26 +97,17 @@ export default function AnalystStrip({ analysts }: { analysts: Analyst[] }) {
               onClick={() => setSelectedAnalyst(analyst)}
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSelectedAnalyst(analyst); }}
             >
-              <div 
-                className={`analyst-photo ${analyst.isHouseView ? 'analyst-photo-house' : ''}`}
-                style={{ '--analyst-photo-position': analyst.photo_position } as React.CSSProperties}
-              >
-                {analyst.isHouseView ? (
-                  <img className="analyst-house-logo" src={analyst.photo_path} alt="Chapel Hill Denham" />
-                ) : analyst.photo_path ? (
-                  <img src={analyst.photo_path} alt={analyst.name} />
-                ) : (
-                  <span className="analyst-initials">{getInitials(analyst.name)}</span>
-                )}
-              </div>
+              <AnalystAvatar analyst={analyst} />
               <div className="analyst-info">
                 <p className="analyst-role">{analyst.title}</p>
                 <h3>{analyst.name}</h3>
-                <div className="analyst-coverage" aria-label="Coverage sectors">
-                  {analyst.coverage.map((cov, idx) => (
-                    <span key={idx}>{cov}</span>
-                  ))}
-                </div>
+                {analyst.coverage && analyst.coverage.length > 0 && (
+                  <div className="analyst-coverage" aria-label="Coverage sectors">
+                    {analyst.coverage.map((cov, idx) => (
+                      <span key={idx}>{cov}</span>
+                    ))}
+                  </div>
+                )}
                 <p className="analyst-bio-preview">
                   {analyst.bio ? analyst.bio : `${analyst.name} is a member of the Chapel Hill Denham Research team...`}
                 </p>

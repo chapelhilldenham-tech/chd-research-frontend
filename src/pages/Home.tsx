@@ -2,10 +2,37 @@ import { Link } from 'react-router-dom';
 import AnalystStrip from '../components/AnalystStrip';
 import ReportCard from '../components/ReportCard';
 import Icon from '../components/Icon';
-import { mockAnalysts, mockReports } from '../data/mockData';
+import { useEffect, useState } from 'react';
+import { fetchPublicAnalysts, fetchPublicResearchReportBundle } from '../lib/supabase';
+import type { Analyst } from '../data/mockData';
+import type { NormalizedReport } from '../types/research';
 
 export default function Home() {
-  const latestReports = mockReports.slice(0, 6);
+  const [latestReports, setLatestReports] = useState<NormalizedReport[]>([]);
+  const [analysts, setAnalysts] = useState<Analyst[]>([]);
+
+  useEffect(() => {
+    let mounted = true;
+    async function loadData() {
+      const [reportsData, analystsData] = await Promise.all([
+        fetchPublicResearchReportBundle(),
+        fetchPublicAnalysts()
+      ]);
+      
+      if (!mounted) return;
+      
+      if (reportsData) {
+        setLatestReports(reportsData.slice(0, 7));
+      }
+      
+      if (analystsData) {
+        setAnalysts(analystsData as Analyst[]);
+      }
+      
+    }
+    loadData();
+    return () => { mounted = false; };
+  }, []);
 
   return (
     <main className="enterprise-home">
@@ -24,18 +51,22 @@ export default function Home() {
             <div className="hero-actions">
               <Link className="btn btn-navy" to="/reports">Explore Research</Link>
               <Link className="btn btn-border" to="/analytics">Data &amp; Analytics</Link>
-              <Link className="text-link" to="/reports">Explore Research <Icon name="arrow" /></Link>
+              <Link className="text-link" to="/login">Sign in to your account <Icon name="arrow" /></Link>
             </div>
           </div>
 
           <aside className="hero-latest-panel">
             <div className="panel-header"><span>Latest Research</span></div>
             <div className="hero-feature-card">
-              <h3>{latestReports[0].title}</h3>
-              <p>{latestReports[0].synopsis}</p>
-              <Link className="text-link" to={`/report/${latestReports[0].id}`}>
-                Read Report <Icon name="arrow" />
-              </Link>
+              {latestReports.length > 0 ? (
+                <>
+                  <h3>{latestReports[0].title}</h3>
+                  <p>{latestReports[0].summary}</p>
+                  <Link className="text-link" to={`/report/${latestReports[0].id}`}>
+                    Read Report <Icon name="arrow" />
+                  </Link>
+                </>
+              ) : null}
             </div>
           </aside>
         </div>
@@ -45,7 +76,7 @@ export default function Home() {
         <div className="container">
           <div className="cred-grid">
             <div className="cred-card">
-              <span className="cred-val">{mockReports.length}</span>
+              <span className="cred-val">155</span>
               <span className="cred-label">Research Reports</span>
             </div>
             <div className="cred-card">
@@ -67,7 +98,7 @@ export default function Home() {
             <Link className="text-link" to="/reports">View All Reports <Icon name="arrow" /></Link>
           </div>
           <div className="report-grid report-grid-compact">
-            {latestReports.map(report => (
+            {latestReports.slice(1).map(report => (
               <ReportCard key={report.id} report={report} compact={true} />
             ))}
           </div>
@@ -125,7 +156,11 @@ export default function Home() {
       <section className="section">
         <div className="container">
           <h2>Meet the Research Team</h2>
-          <AnalystStrip analysts={mockAnalysts} />
+          {analysts.length > 0 ? (
+             <AnalystStrip analysts={analysts} />
+          ) : (
+             <p>Loading analysts...</p>
+          )}
           <div style={{ marginTop: '2rem', textAlign: 'center' }}>
             <Link className="text-link" to="/analysts">View All Analysts <Icon name="arrow" /></Link>
           </div>

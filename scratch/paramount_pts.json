@@ -1,0 +1,157 @@
+{
+  "paramountPoints": [
+    {
+      "label": "2018-03",
+      "value": 100
+    },
+    {
+      "label": "2018-06",
+      "value": 94.59
+    },
+    {
+      "label": "2018-09",
+      "value": 81.74
+    },
+    {
+      "label": "2018-12",
+      "value": 78.5
+    },
+    {
+      "label": "2019-03",
+      "value": 77.83
+    },
+    {
+      "label": "2019-06",
+      "value": 72.57
+    },
+    {
+      "label": "2019-09",
+      "value": 68.99
+    },
+    {
+      "label": "2019-12",
+      "value": 70.57
+    },
+    {
+      "label": "2020-03",
+      "value": 51.33
+    },
+    {
+      "label": "2020-06",
+      "value": 65.03
+    },
+    {
+      "label": "2020-09",
+      "value": 73.25
+    },
+    {
+      "label": "2020-12",
+      "value": 100.81
+    },
+    {
+      "label": "2021-03",
+      "value": 98.51
+    },
+    {
+      "label": "2021-06",
+      "value": 101.93
+    },
+    {
+      "label": "2021-09",
+      "value": 106.4
+    },
+    {
+      "label": "2021-12",
+      "value": 113.06
+    },
+    {
+      "label": "2022-03",
+      "value": 115.56
+    },
+    {
+      "label": "2022-06",
+      "value": 130.63
+    },
+    {
+      "label": "2022-09",
+      "value": 122.59
+    },
+    {
+      "label": "2022-12",
+      "value": 128.09
+    },
+    {
+      "label": "2023-03",
+      "value": 133.7
+    },
+    {
+      "label": "2023-06",
+      "value": 174.68
+    },
+    {
+      "label": "2023-09",
+      "value": 187.41
+    },
+    {
+      "label": "2023-12",
+      "value": 228.76
+    },
+    {
+      "label": "2024-03",
+      "value": 275.66
+    },
+    {
+      "label": "2024-06",
+      "value": 255.25
+    },
+    {
+      "label": "2024-09",
+      "value": 268.52
+    },
+    {
+      "label": "2024-12",
+      "value": 316.25
+    },
+    {
+      "label": "2025-03",
+      "value": 327.58
+    },
+    {
+      "label": "2025-06",
+      "value": 379.15
+    },
+    {
+      "label": "2025-09",
+      "value": 430.95
+    },
+    {
+      "label": "2025-12",
+      "value": 453.73
+    },
+    {
+      "label": "2026-03",
+      "value": 607.36
+    }
+  ],
+  "summary": [
+    {
+      "label": "Paramount Index",
+      "value": 607.36,
+      "change": "153.63",
+      "sourceStatus": "Verified"
+    },
+    {
+      "label": "NGX 30",
+      "value": 389.77,
+      "change": "87.1",
+      "sourceStatus": "Verified"
+    },
+    {
+      "label": "NGX All-Share",
+      "value": 484.98,
+      "change": "110.05",
+      "sourceStatus": "Verified"
+    }
+  ],
+  "latest_date": "2026-03-31"
+}

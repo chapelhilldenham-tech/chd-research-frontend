@@ -56,7 +56,7 @@ export default function AdminAnalysts() {
                 <div className="field"><label>Name</label><input value={analyst.name} disabled /></div>
                 <div className="field"><label>Title</label><input value={analyst.title} disabled /></div>
               </div>
-              <div className="field"><label>Coverage</label><input value={(analyst.coverage.length ? analyst.coverage : analyst.sectors || []).join(', ')} disabled /></div>
+              <div className="field"><label>Coverage</label><input value={((analyst.coverage && analyst.coverage.length) ? analyst.coverage : (analyst.sectors || [])).join(', ')} disabled /></div>
               <div className="field"><label>Bio</label><textarea value={analyst.bio} disabled /></div>
               <div className="grid-2">
                 <div className="field"><label>Portrait Focus</label><input value={analyst.photo_position} disabled /></div>

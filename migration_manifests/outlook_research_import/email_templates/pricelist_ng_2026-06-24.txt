@@ -1,0 +1,9 @@
+Source: Outlook email body preview/template metadata only.
+Subject: Daily Market Summary (June 24, 2026)
+Sender: Chapel Hill Denham Research <research@chapelhilldenham.com>
+Received: 2026-06-24T15:46:15Z
+
+Body preview:
+Body preview was not available in the retained search result. Attachment metadata identified an Excel pricelist: 24 June Pricelist.xlsx.
+
+Do not treat this text as approved public website copy.

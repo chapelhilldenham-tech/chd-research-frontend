@@ -5,14 +5,24 @@ import Icon from './Icon';
 export default function Navigation() {
   const location = useLocation();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const isHome = location.pathname === '/';
 
-  const navClass = isHome ? 'site-nav nav-transparent' : 'site-nav nav-solid';
-  const logoSrc = isHome ? '/assets/img/logo-white-transparent.png' : '/assets/img/logo-navy-transparent.png';
+  const navClass = `site-nav ${isHome && !scrolled ? 'nav-transparent' : 'nav-solid'}`;
+  const logoSrc = isHome && !scrolled ? '/assets/img/logo-white-transparent.png' : '/assets/img/logo-navy-transparent.png';
 
   useEffect(() => {
     setIsDrawerOpen(false);
   }, [location]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
@@ -29,7 +39,16 @@ export default function Navigation() {
           <Link to="/contact">Contact Us</Link>
         </div>
         
-        <Link className="btn btn-border nav-cta" to="/reports">EXPLORE RESEARCH</Link>
+        {localStorage.getItem('chd_subscriber_auth') === 'true' ? (
+          <button 
+            className="btn btn-border nav-cta" 
+            onClick={() => { localStorage.removeItem('chd_subscriber_auth'); window.location.href = '/login'; }}
+          >
+            SIGN OUT
+          </button>
+        ) : (
+          <Link className="btn btn-border nav-cta" to="/login">SIGN IN</Link>
+        )}
         
         <button 
           className="nav-toggle" 

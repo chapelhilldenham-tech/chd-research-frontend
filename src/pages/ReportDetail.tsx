@@ -1,19 +1,19 @@
 import { useParams, Link } from 'react-router-dom';
-import { getReportById, getAnalystById, relatedReportsFor, mockReports, type Report } from '../data/mockData';
+import type { NormalizedReport } from '../types/research';
 import { fetchPublicResearchReportBundle } from '../lib/supabase';
 import { ArrowLeft, Download } from 'lucide-react';
 import Icon from '../components/Icon';
 import { useEffect, useMemo, useState } from 'react';
 
-function relatedReportsFromList(report: Report, reports: Report[]) {
+function relatedReportsFromList(report: NormalizedReport, reports: NormalizedReport[]) {
   return reports
-    .filter(item => String(item.id) !== String(report.id) && (item.category === report.category || item.analyst_id === report.analyst_id))
+    .filter(item => String(item.id) !== String(report.id) && (item.category === report.category || item.analysts.some(a => report.analysts.some(ra => ra.id === a.id))))
     .slice(0, 3);
 }
 
 export default function ReportDetail() {
   const { id } = useParams<{ id: string }>();
-  const [reports, setReports] = useState<Report[] | null>(null);
+  const [reports, setReports] = useState<NormalizedReport[] | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,10 +32,10 @@ export default function ReportDetail() {
     };
   }, []);
 
-  const reportList = reports || mockReports;
+  const reportList = reports || [];
   const report = useMemo(() => {
     if (!id) return undefined;
-    return reportList.find(item => String(item.id) === id || item.uuid === id) || (!reports ? getReportById(id) : undefined);
+    return reportList.find(item => String(item.id) === id || item.slug === id);
   }, [id, reportList, reports]);
 
   if (!report) {
@@ -49,9 +49,9 @@ export default function ReportDetail() {
     );
   }
 
-  const analyst = getAnalystById(report.analyst_id);
-  const relatedReports = reports ? relatedReportsFromList(report, reportList) : relatedReportsFor(report);
-  const isLocked = report.access_level === 'subscriber';
+  const relatedReports = relatedReportsFromList(report, reportList);
+  const isAuth = localStorage.getItem('chd_subscriber_auth') === 'true';
+  const isLocked = report.isFallback && !report.downloadAvailable && !isAuth;
 
   return (
     <main>
@@ -68,14 +68,14 @@ export default function ReportDetail() {
               <ArrowLeft size={16} /> Back to Library
             </Link>
             <div className="report-detail-kicker">
-              <span className="report-meta">{report.type}</span>
-              <span className="report-access-label">{report.access_level.toUpperCase()}</span>
+              <span className="report-meta">{report.documentType}</span>
+              <span className="report-access-label">{report.isFallback && !report.downloadAvailable ? 'SUBSCRIBER' : 'PUBLIC'}</span>
             </div>
             <h1>{report.title}</h1>
             <dl className="report-detail-facts">
-              <div><dt>Analyst</dt><dd>{report.analyst_name}</dd></div>
-              <div><dt>Date</dt><dd>{report.date}</dd></div>
-              <div><dt>Coverage</dt><dd>{report.coverage}</dd></div>
+              {report.analysts[0]?.name && <div><dt>Analyst</dt><dd>{report.analysts[0]?.name}</dd></div>}
+              <div><dt>Date</dt><dd>{report.publishedAt.slice(0, 10)}</dd></div>
+              <div><dt>Coverage</dt><dd>{report.category}</dd></div>
             </dl>
             <div className="report-summary-panel">
               <p>{report.synopsis}</p>
@@ -99,18 +99,17 @@ export default function ReportDetail() {
                     <Link className="text-link" style={{ fontWeight: 600 }} to="/login">Sign in to continue</Link>
                   </div>
                   <dl>
-                    <div><dt>Type</dt><dd>{report.type}</dd></div>
-                    <div><dt>Access</dt><dd>{report.access_level}</dd></div>
+                    <div><dt>Type</dt><dd>{report.documentType}</dd></div>
+                    <div><dt>Access</dt><dd>{report.isFallback && !report.downloadAvailable ? 'Subscriber' : 'Public'}</dd></div>
                     <div><dt>File</dt><dd>PDF</dd></div>
                   </dl>
                 </div>
               </div>
             ) : (
               <div className="report-action-stack">
-                <button className="btn btn-bronze" disabled>
+                <a className="btn btn-bronze" href={report.file_url || '#'} target="_blank" rel="noopener noreferrer">
                   <Download size={18} /> Download Report
-                </button>
-                <p>Downloads are disabled in this static preview.</p>
+                </a>
               </div>
             )}
           </article>
@@ -120,23 +119,11 @@ export default function ReportDetail() {
             <div className="related-list">
               {relatedReports.map(item => (
                 <Link key={item.id} to={`/report/${item.id}`}>
-                  <span>{item.type}</span>
+                  <span>{item.documentType}</span>
                   <strong>{item.title}</strong>
                 </Link>
               ))}
             </div>
-            {analyst && (
-              <div className="report-side-facts">
-                <div>
-                  <span>Analyst</span>
-                  <strong>{analyst.name}</strong>
-                </div>
-                <div>
-                  <span>Coverage</span>
-                  <strong>{analyst.coverage.join(', ')}</strong>
-                </div>
-              </div>
-            )}
           </aside>
         </div>
       </section>

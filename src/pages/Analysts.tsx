@@ -3,6 +3,7 @@ import AnalystModal from '../components/AnalystModal';
 import Icon from '../components/Icon';
 import { mockAnalysts, type Analyst } from '../data/mockData';
 import { fetchPublicAnalysts } from '../lib/supabase';
+import AnalystAvatar from '../components/AnalystAvatar';
 
 export default function Analysts() {
   const [analysts, setAnalysts] = useState<Analyst[]>(mockAnalysts);
@@ -14,18 +15,7 @@ export default function Analysts() {
     async function loadAnalysts() {
       const data = await fetchPublicAnalysts();
       if (data && data.length > 0) {
-        const mappedAnalysts: Analyst[] = data.map((a: any) => ({
-          id: a.id,
-          name: a.full_name,
-          title: a.title,
-          coverage: a.coverage || [],
-          sectors: a.sectors || [],
-          bio: a.bio,
-          photo_path: a.avatar_url,
-          photo_position: a.photo_position,
-          isHouseView: a.slug === 'house-view',
-        }));
-        setAnalysts(mappedAnalysts);
+        setAnalysts(data as Analyst[]);
         setUsingFallback(false);
       } else {
         setUsingFallback(true);
@@ -34,10 +24,6 @@ export default function Analysts() {
     }
     loadAnalysts();
   }, []);
-
-  const getInitials = (name: string) => {
-    return name.split(' ').map(part => part[0]).join('').toUpperCase();
-  };
 
   return (
     <main>
@@ -66,7 +52,7 @@ export default function Analysts() {
           ) : (
             <div className="analyst-grid" aria-label="Research team profiles">
               {analysts.map(analyst => {
-                const coverage = analyst.coverage.length > 0 ? analyst.coverage : analyst.sectors || [];
+                const coverage = (analyst.coverage && analyst.coverage.length > 0) ? analyst.coverage : (analyst.sectors || []);
 
                 return (
                   <article
@@ -83,18 +69,7 @@ export default function Analysts() {
                       }
                     }}
                   >
-                    <div
-                      className={`analyst-photo ${analyst.isHouseView ? 'analyst-photo-house' : ''}`}
-                      style={{ '--analyst-photo-position': analyst.photo_position } as React.CSSProperties}
-                    >
-                      {analyst.isHouseView ? (
-                        <img className="analyst-house-logo" src={analyst.photo_path} alt="Chapel Hill Denham" />
-                      ) : analyst.photo_path ? (
-                        <img src={analyst.photo_path} alt={analyst.name} />
-                      ) : (
-                        <span className="analyst-initials">{getInitials(analyst.name)}</span>
-                      )}
-                    </div>
+                    <AnalystAvatar analyst={analyst} />
                     <div className="analyst-info">
                       <p className="analyst-role">{analyst.title}</p>
                       <h3>{analyst.name}</h3>
