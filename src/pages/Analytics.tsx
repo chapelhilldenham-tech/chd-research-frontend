@@ -77,12 +77,15 @@ function ParamountChart() {
             tickFormatter={fmtParamountLabel}
             interval={3}
           />
-          <YAxis stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} domain={['dataMin - 100', 'dataMax + 100']} axisLine={false} tickLine={false} />
+          <YAxis stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} domain={['dataMin - 20', 'dataMax + 20']} axisLine={false} tickLine={false} />
           <Tooltip
             contentStyle={{ backgroundColor: '#1f2028', border: '1px solid #2e303a', borderRadius: '4px' }}
             labelFormatter={fmtParamountLabel}
           />
-          <Line type="monotone" dataKey="value" stroke="#c7752d" strokeWidth={3} activeDot={{ r: 6 }} dot={false} name="Index Value" />
+          <Legend wrapperStyle={{ paddingTop: '16px', fontSize: '12px', color: '#6b6375' }} />
+          <Line type="monotone" dataKey="paramount" stroke="#c7752d" strokeWidth={3} activeDot={{ r: 6 }} dot={false} name="Paramount" />
+          <Line type="monotone" dataKey="ngx30" stroke="#102530" strokeWidth={2} activeDot={{ r: 5 }} dot={false} name="NGX30" strokeDasharray="6 3" />
+          <Line type="monotone" dataKey="ngxAllShare" stroke="#6b6375" strokeWidth={2} activeDot={{ r: 5 }} dot={false} name="NGX All Share" strokeDasharray="3 3" />
         </LineChart>
       </ResponsiveContainer>
     </div>
@@ -326,32 +329,6 @@ export default function Analytics() {
                 </table>
               </div>
               
-              <h3 style={{ marginTop: '24px', fontSize: '18px', color: 'var(--chd-navy)' }}>Index Composition & Weights</h3>
-              <p style={{ fontSize: '12px', color: 'rgba(16,37,48,0.5)', marginTop: '4px', marginBottom: '0', fontStyle: 'italic' }}>Prices are as at the end of Q1-2026</p>
-              <div className="analytics-table-scroll" style={{ marginTop: '12px' }}>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Ticker</th>
-                      <th className="num">Weight %</th>
-                      <th className="num">Last Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {analyticsSnapshot.paramount.weights && analyticsSnapshot.paramount.weights.length > 0 ? analyticsSnapshot.paramount.weights.map((row) => (
-                      <tr key={row.ticker}>
-                        <td>{row.ticker}</td>
-                        <td className="num">{row.weight.toFixed(2)}%</td>
-                        <td className="num">{row.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-                      </tr>
-                    )) : (
-                      <tr>
-                        <td colSpan={3}>Ticker-level weights are pending update for this staging snapshot.</td>
-                      </tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
             </section>
         </div>
       </div>
