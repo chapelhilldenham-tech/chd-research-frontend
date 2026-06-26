@@ -29,7 +29,7 @@ function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#2e303a" />
             <XAxis dataKey="name" stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} />
             <YAxis stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={val => val + '%'} />
-            <Tooltip contentStyle={{ backgroundColor: '#1f2028', border: '1px solid #2e303a', borderRadius: '4px' }} itemStyle={{ color: '#c7752d' }} />
+            <Tooltip contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e5e5e5', borderRadius: '4px' }} labelStyle={{ color: '#102530' }} itemStyle={{ color: '#102530' }} />
             <Legend wrapperStyle={{ paddingTop: '20px' }} />
             <Bar dataKey="GDP Growth" fill="#c7752d" radius={[4, 4, 0, 0]} />
           </BarChart>
@@ -38,10 +38,10 @@ function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#2e303a" />
             <XAxis dataKey="name" stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} />
             <YAxis stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={val => val + '%'} />
-            <Tooltip contentStyle={{ backgroundColor: '#1f2028', border: '1px solid #2e303a', borderRadius: '4px' }} />
+            <Tooltip contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e5e5e5', borderRadius: '4px' }} labelStyle={{ color: '#102530' }} itemStyle={{ color: '#102530' }} />
             <Legend wrapperStyle={{ paddingTop: '20px' }} />
-            <Line type="monotone" dataKey="Inflation" stroke="#c7752d" strokeWidth={3} activeDot={{ r: 6 }} dot={{ strokeWidth: 2 }} />
             <Line type="monotone" dataKey="MPR" stroke="#c7a17c" strokeWidth={3} activeDot={{ r: 6 }} dot={{ strokeWidth: 2 }} />
+            <Line type="monotone" dataKey="Inflation" stroke="#c7752d" strokeWidth={3} activeDot={{ r: 6 }} dot={{ strokeWidth: 2 }} />
           </LineChart>
         )}
       </ResponsiveContainer>
@@ -79,13 +79,15 @@ function ParamountChart() {
           />
           <YAxis stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} domain={['dataMin - 20', 'dataMax + 20']} axisLine={false} tickLine={false} />
           <Tooltip
-            contentStyle={{ backgroundColor: '#1f2028', border: '1px solid #2e303a', borderRadius: '4px' }}
+            contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e5e5e5', borderRadius: '4px' }}
+            labelStyle={{ color: '#102530' }}
+            itemStyle={{ color: '#102530' }}
             labelFormatter={fmtParamountLabel}
           />
           <Legend wrapperStyle={{ paddingTop: '16px', fontSize: '12px', color: '#6b6375' }} />
           <Line type="monotone" dataKey="paramount" stroke="#c7752d" strokeWidth={3} activeDot={{ r: 6 }} dot={false} name="Paramount" />
-          <Line type="monotone" dataKey="ngx30" stroke="#1a6bbd" strokeWidth={2} activeDot={{ r: 5 }} dot={false} name="NGX30" strokeDasharray="6 3" />
           <Line type="monotone" dataKey="ngxAllShare" stroke="#2a9d5c" strokeWidth={2} activeDot={{ r: 5 }} dot={false} name="NGX All Share" strokeDasharray="3 3" />
+          <Line type="monotone" dataKey="ngx30" stroke="#1a6bbd" strokeWidth={2} activeDot={{ r: 5 }} dot={false} name="NGX30" strokeDasharray="6 3" />
         </LineChart>
       </ResponsiveContainer>
     </div>
