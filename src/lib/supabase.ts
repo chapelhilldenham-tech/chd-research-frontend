@@ -327,3 +327,26 @@ export async function fetchPublicResearchReportBundle(): Promise<NormalizedRepor
 
   return dbReports.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
 }
+
+// Fetch a single market snapshot by data_type
+export async function fetchMarketSnapshot(dataType: string) {
+  const client = getSupabaseClient();
+  if (!client) return null;
+  const { data, error } = await client
+    .from('market_snapshots')
+    .select('*')
+    .eq('data_type', dataType)
+    .single();
+  if (error) { console.error('fetchMarketSnapshot error:', error); return null; }
+  return data;
+}
+
+// Upsert a market snapshot payload by data_type
+export async function updateMarketSnapshot(dataType: string, payload: Record<string, unknown>) {
+  const client = getSupabaseClient();
+  if (!client) return { error: 'No Supabase client' };
+  const { error } = await client
+    .from('market_snapshots')
+    .upsert({ data_type: dataType, payload, updated_at: new Date().toISOString() }, { onConflict: 'data_type' });
+  return { error };
+}
