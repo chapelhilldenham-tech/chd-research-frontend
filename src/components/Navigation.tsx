@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Icon from './Icon';
 
@@ -31,12 +31,12 @@ export default function Navigation() {
           <img data-logo src={logoSrc} alt="Chapel Hill Denham" />
         </Link>
         <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/reports">Reports</Link>
-          <Link to="/analytics">Data & Analytics</Link>
-          <Link to="/analysts">Analysts</Link>
-          <Link to="/price-lists">Price Lists</Link>
-          <Link to="/contact">Contact Us</Link>
+          <NavLink to="/" end>Home</NavLink>
+          <NavLink to="/reports">Reports</NavLink>
+          <NavLink to="/analytics">Data & Analytics</NavLink>
+          <NavLink to="/analysts">Analysts</NavLink>
+          <NavLink to="/price-lists">Price Lists</NavLink>
+          <NavLink to="/contact">Contact Us</NavLink>
         </div>
         
         {localStorage.getItem('chd_subscriber_auth') === 'true' ? (
@@ -47,7 +47,7 @@ export default function Navigation() {
             SIGN OUT
           </button>
         ) : (
-          <Link className="btn btn-border nav-cta" to="/login">SIGN IN</Link>
+          <Link className="btn btn-navy nav-cta" to="/login">SIGN IN</Link>
         )}
         
         <button 
@@ -70,15 +70,14 @@ export default function Navigation() {
           aria-label="Close menu" 
           onClick={() => setIsDrawerOpen(false)}
         >
-          x
+          ×
         </button>
-        <Link to="/">Home</Link>
-        <Link to="/reports">Reports</Link>
-        <Link to="/analytics">Data & Analytics</Link>
-        <Link to="/analysts">Analysts</Link>
-        <Link to="/price-lists">Price Lists</Link>
-        <Link to="/contact">Contact Us</Link>
-        <Link to="/reports">EXPLORE RESEARCH</Link>
+        <NavLink to="/" end>Home</NavLink>
+        <NavLink to="/reports">Reports</NavLink>
+        <NavLink to="/analytics">Data & Analytics</NavLink>
+        <NavLink to="/analysts">Analysts</NavLink>
+        <NavLink to="/price-lists">Price Lists</NavLink>
+        <NavLink to="/contact">Contact Us</NavLink>
       </aside>
     </>
   );

@@ -1,16 +1,59 @@
-import { Link } from 'react-router-dom';
+import type { MouseEvent } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import type { NormalizedReport } from '../types/research';
 import Icon from './Icon';
 
+function formatDate(iso: string): string {
+  const date = new Date(iso);
+  if (isNaN(date.getTime())) return iso.slice(0, 10);
+  return date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function getCategoryBadge(categorySlug: string): { label: string, badgeClass: string } {
+  switch (categorySlug) {
+    case 'equity':
+      return { label: 'Equity', badgeClass: 'badge-equity' };
+    case 'fixed_income':
+      return { label: 'Fixed Income', badgeClass: 'badge-fixed-income' };
+    case 'macro':
+      return { label: 'Macro', badgeClass: 'badge-macro' };
+    case 'sector':
+      return { label: 'Sector', badgeClass: 'badge-sector' };
+    case 'index':
+      return { label: 'Index', badgeClass: 'badge-index' };
+    default:
+      return { label: 'Research', badgeClass: 'badge-other' };
+  }
+}
+
 export default function ReportCard({ report, compact = false }: { report: NormalizedReport, compact?: boolean }) {
+  const navigate = useNavigate();
   const locked = report.isFallback && !report.downloadAvailable;
-  const classNames = `report-card research-report-card ${compact ? 'report-card-compact' : ''} ${locked ? 'locked' : ''}`;
+  const classNames = `report-card research-report-card report-card-hoverable ${compact ? 'report-card-compact' : ''} ${locked ? 'locked' : ''}`;
+  const { label, badgeClass } = getCategoryBadge(report.categorySlug);
+
+  const handleCardClick = (event: MouseEvent<HTMLElement>) => {
+    const target = event.target as HTMLElement;
+    if (target.closest('a') || target.closest('button')) return;
+    navigate(`/report/${report.id}`);
+  };
   
   return (
-    <article className={classNames} data-report-card data-category={report.category}>
+    <article
+      className={classNames}
+      data-report-card
+      data-category={report.category}
+      onClick={handleCardClick}
+      style={{ cursor: 'pointer' }}
+    >
+      <span className={`report-category-badge ${badgeClass}`}>{label}</span>
       <div className="report-card-top">
         <span className="report-meta">{report.documentType}</span>
-        <span className="report-access-label">{report.downloadAvailable ? 'PUBLIC' : 'SUBSCRIBER'}</span>
+        {report.downloadAvailable ? (
+          <span className="report-access-badge access-public">Public</span>
+        ) : (
+          <span className="report-access-badge access-subscriber">Subscriber</span>
+        )}
       </div>
       <h3 title={report.title}>{report.title}</h3>
       <dl className="report-card-facts">
@@ -22,7 +65,7 @@ export default function ReportCard({ report, compact = false }: { report: Normal
         )}
         <div>
           <dt>Date</dt>
-          <dd>{report.publishedAt.slice(0, 10)}</dd>
+          <dd>{formatDate(report.publishedAt)}</dd>
         </div>
       </dl>
       <p className="report-card-abstract">
@@ -35,10 +78,11 @@ export default function ReportCard({ report, compact = false }: { report: Normal
       )}
       {locked ? (
         <div className="locked-panel report-action" style={{ marginTop: 'auto' }}>
-          <Icon name="lock" />
-          <strong>Restricted metadata only</strong>
-          <Link className="text-link" to={`/report/${report.id}`}>Details</Link>
-          <Link className="text-link" to="/subscribe">Access</Link>
+          <strong>Subscriber Access Required</strong>
+          <div className="locked-panel-links">
+            <Link className="text-link" to={`/report/${report.id}`}>View Details</Link>
+            <Link className="btn btn-bronze btn-sm" to="/subscribe">Subscribe</Link>
+          </div>
         </div>
       ) : (
         <div className="report-card-actions report-action" style={{ marginTop: 'auto' }}>
