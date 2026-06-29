@@ -76,16 +76,20 @@ export default function Home() {
         <div className="container">
           <div className="cred-grid">
             <div className="cred-card">
-              <span className="cred-val">155</span>
-              <span className="cred-label">Research Reports</span>
+              <span className="cred-val">{latestReports.length > 0 ? latestReports.length + '+' : '150+'}</span>
+              <span className="cred-label">Research Reports Published</span>
             </div>
             <div className="cred-card">
               <span className="cred-val">6</span>
-              <span className="cred-label">Sector Coverage</span>
+              <span className="cred-label">Sectors Under Coverage</span>
             </div>
             <div className="cred-card">
-              <span className="cred-val">4</span>
-              <span className="cred-label">Market Analytics</span>
+              <span className="cred-val">10+</span>
+              <span className="cred-label">Years of Market Intelligence</span>
+            </div>
+            <div className="cred-card">
+              <span className="cred-val">₦500bn+</span>
+              <span className="cred-label">Assets Under Advisory</span>
             </div>
           </div>
         </div>
@@ -108,9 +112,29 @@ export default function Home() {
       <section className="section light-teaser data-teaser">
         <div className="container">
           <div className="teaser-content">
+            <div className="teaser-kpi-row">
+              <div className="teaser-kpi">
+                <span className="teaser-kpi-label">NGX ASI</span>
+                <span className="teaser-kpi-value">240,743</span>
+                <span className="teaser-kpi-change positive">+1.06%</span>
+              </div>
+              <div className="teaser-kpi">
+                <span className="teaser-kpi-label">Inflation</span>
+                <span className="teaser-kpi-value">15.93%</span>
+                <span className="teaser-kpi-change negative">+0.24ppt</span>
+              </div>
+              <div className="teaser-kpi">
+                <span className="teaser-kpi-label">MPR</span>
+                <span className="teaser-kpi-value">26.50%</span>
+                <span className="teaser-kpi-change neutral">Unchanged</span>
+              </div>
+            </div>
             <h2>Market Data &amp; Analytics</h2>
-            <p>Subscriber access includes macro indicators, live market tracking, historical data, valuation multiples, and value-added analytics for professional investors.</p>
-            <Link className="btn btn-border" to="/analytics">Explore Analytics</Link>
+            <p>Subscriber access includes macro indicators, live market tracking, sector analysis, and Paramount Index intelligence for professional investors.</p>
+            <div className="teaser-actions">
+              <Link className="btn btn-navy" to="/analytics">Explore Analytics</Link>
+              <Link className="btn btn-border" to="/subscribe">Subscribe for Access</Link>
+            </div>
           </div>
         </div>
       </section>
@@ -120,32 +144,50 @@ export default function Home() {
           <h2>Research by Coverage</h2>
           <div className="category-grid">
             <Link className="tile coverage-tile" to="/reports?category=equity" aria-label="View Equity Research">
-              <h3>Equity Research</h3>
+              <div className="coverage-tile-head">
+                <span className="coverage-icon" aria-hidden="true">📈</span>
+                <h3>Equity Research</h3>
+              </div>
               <p>In-depth company analysis, earnings reviews and stock coverage.</p>
               <span className="text-link">Explore <Icon name="arrow" /></span>
             </Link>
             <Link className="tile coverage-tile" to="/reports?category=fixed_income" aria-label="View Fixed Income">
-              <h3>Fixed Income</h3>
+              <div className="coverage-tile-head">
+                <span className="coverage-icon" aria-hidden="true">💰</span>
+                <h3>Fixed Income</h3>
+              </div>
               <p>FGN bond strategy, T-bill auctions and yield curve analysis.</p>
               <span className="text-link">Explore <Icon name="arrow" /></span>
             </Link>
             <Link className="tile coverage-tile" to="/reports?category=macro" aria-label="View Macroeconomic Analysis">
-              <h3>Macroeconomic Analysis</h3>
+              <div className="coverage-tile-head">
+                <span className="coverage-icon" aria-hidden="true">🌍</span>
+                <h3>Macroeconomic Analysis</h3>
+              </div>
               <p>GDP, inflation, FX and monetary policy insights.</p>
               <span className="text-link">Explore <Icon name="arrow" /></span>
             </Link>
             <Link className="tile coverage-tile" to="/reports?category=sector" aria-label="View Sector Updates">
-              <h3>Sector Updates</h3>
+              <div className="coverage-tile-head">
+                <span className="coverage-icon" aria-hidden="true">🏭</span>
+                <h3>Sector Updates</h3>
+              </div>
               <p>Banking, telecoms, cement, FMCG, oil & gas and pension coverage.</p>
               <span className="text-link">Explore <Icon name="arrow" /></span>
             </Link>
             <Link className="tile coverage-tile" to="/reports?search=strategy" aria-label="View Strategy/Outlooks">
-              <h3>Strategy/Outlooks</h3>
+              <div className="coverage-tile-head">
+                <span className="coverage-icon" aria-hidden="true">🎯</span>
+                <h3>Strategy/Outlooks</h3>
+              </div>
               <p>Top-down equity strategy and thematic investment research.</p>
               <span className="text-link">Explore <Icon name="arrow" /></span>
             </Link>
             <Link className="tile coverage-tile" to="/analytics" aria-label="View Data & Analytics">
-              <h3>Data & Analytics</h3>
+              <div className="coverage-tile-head">
+                <span className="coverage-icon" aria-hidden="true">📊</span>
+                <h3>Data & Analytics</h3>
+              </div>
               <p>Subscriber-only macro indicators, market data, and value-added analytics.</p>
               <span className="text-link">Explore <Icon name="arrow" /></span>
             </Link>
@@ -159,7 +201,11 @@ export default function Home() {
           {analysts.length > 0 ? (
              <AnalystStrip analysts={analysts} />
           ) : (
-             <p>Loading analysts...</p>
+             <div className="analyst-skeleton-row">
+               {[1, 2, 3, 4].map((index) => (
+                 <div key={index} className="analyst-skeleton-card" aria-hidden="true" />
+               ))}
+             </div>
           )}
           <div style={{ marginTop: '2rem', textAlign: 'center' }}>
             <Link className="text-link" to="/analysts">View All Analysts <Icon name="arrow" /></Link>
@@ -169,11 +215,11 @@ export default function Home() {
 
       <section className="section access-section alt">
         <div className="container access-container">
-          <h2>Subscriber Sign In and Sign Up</h2>
+          <h2>Exclusive Access for Professional Investors</h2>
           <p>Chapel Hill Denham research publications and live market intelligence are available exclusively to approved institutional clients and subscribers.</p>
           <div className="access-actions">
             <Link className="btn btn-navy" to="/login">Sign In</Link>
-            <Link className="btn btn-border" to="/signup">Sign Up</Link>
+            <Link className="btn btn-border" to="/signup">Request Access</Link>
           </div>
         </div>
       </section>
