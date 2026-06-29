@@ -8,7 +8,7 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const isHome = location.pathname === '/';
 
-  const navClass = `site-nav ${isHome && !scrolled ? 'nav-transparent' : 'nav-solid'}`;
+  const navClass = `site-nav ${isHome && !scrolled ? 'nav-transparent' : 'nav-solid'} ${scrolled ? 'nav-scrolled' : ''}`;
   const logoSrc = isHome && !scrolled ? '/assets/img/logo-white-transparent.png' : '/assets/img/logo-navy-transparent.png';
 
   useEffect(() => {

@@ -91,7 +91,7 @@ export default function ReportCard({ report, compact = false }: { report: Normal
         </div>
       ) : (
         <div className="report-card-actions report-action" style={{ marginTop: 'auto' }}>
-          <Link className="report-card-action-link" to={`/report/${report.id}`}>
+          <Link className="report-view-link" to={`/report/${report.id}`}>
             View Details <Icon name="arrow" />
           </Link>
         </div>

@@ -105,6 +105,38 @@ export default function Home() {
             <span className="ticker-label">Brent Crude</span>
             <span className="ticker-value">$74.20</span>
           </span>
+
+          <span className="ticker-item">
+            <span className="ticker-label">NGX ASI</span>
+            <span className="ticker-value">240,743</span>
+            <span className="ticker-change positive">▲1.06%</span>
+          </span>
+          <span className="ticker-divider">|</span>
+          <span className="ticker-item">
+            <span className="ticker-label">USD/NGN</span>
+            <span className="ticker-value">1,370.64</span>
+          </span>
+          <span className="ticker-divider">|</span>
+          <span className="ticker-item">
+            <span className="ticker-label">MPR</span>
+            <span className="ticker-value">26.50%</span>
+          </span>
+          <span className="ticker-divider">|</span>
+          <span className="ticker-item">
+            <span className="ticker-label">Inflation</span>
+            <span className="ticker-value">15.93%</span>
+          </span>
+          <span className="ticker-divider">|</span>
+          <span className="ticker-item">
+            <span className="ticker-label">Paramount YTD</span>
+            <span className="ticker-value">+11.42%</span>
+            <span className="ticker-change positive">▲</span>
+          </span>
+          <span className="ticker-divider">|</span>
+          <span className="ticker-item">
+            <span className="ticker-label">Brent Crude</span>
+            <span className="ticker-value">$74.20</span>
+          </span>
         </div>
       </div>
 
@@ -181,48 +213,21 @@ export default function Home() {
         <div className="container">
           <h2>Research by Coverage</h2>
           <div className="category-grid">
-            <Link className="tile coverage-tile" to="/reports?category=equity" aria-label="View Equity Research">
-              <div className="coverage-tile-head">
-                <h3>Equity Research</h3>
-              </div>
-              <p>In-depth company analysis, earnings reviews and stock coverage.</p>
-              <span className="text-link">Explore <Icon name="arrow" /></span>
-            </Link>
-            <Link className="tile coverage-tile" to="/reports?category=fixed_income" aria-label="View Fixed Income">
-              <div className="coverage-tile-head">
-                <h3>Fixed Income</h3>
-              </div>
-              <p>FGN bond strategy, T-bill auctions and yield curve analysis.</p>
-              <span className="text-link">Explore <Icon name="arrow" /></span>
-            </Link>
-            <Link className="tile coverage-tile" to="/reports?category=macro" aria-label="View Macroeconomic Analysis">
-              <div className="coverage-tile-head">
-                <h3>Macroeconomic Analysis</h3>
-              </div>
-              <p>GDP, inflation, FX and monetary policy insights.</p>
-              <span className="text-link">Explore <Icon name="arrow" /></span>
-            </Link>
-            <Link className="tile coverage-tile" to="/reports?category=sector" aria-label="View Sector Updates">
-              <div className="coverage-tile-head">
-                <h3>Sector Updates</h3>
-              </div>
-              <p>Banking, telecoms, cement, FMCG, oil & gas and pension coverage.</p>
-              <span className="text-link">Explore <Icon name="arrow" /></span>
-            </Link>
-            <Link className="tile coverage-tile" to="/reports?search=strategy" aria-label="View Strategy/Outlooks">
-              <div className="coverage-tile-head">
-                <h3>Strategy/Outlooks</h3>
-              </div>
-              <p>Top-down equity strategy and thematic investment research.</p>
-              <span className="text-link">Explore <Icon name="arrow" /></span>
-            </Link>
-            <Link className="tile coverage-tile" to="/analytics" aria-label="View Data & Analytics">
-              <div className="coverage-tile-head">
-                <h3>Data & Analytics</h3>
-              </div>
-              <p>Subscriber-only macro indicators, market data, and value-added analytics.</p>
-              <span className="text-link">Explore <Icon name="arrow" /></span>
-            </Link>
+            {[
+              { icon: '📈', title: 'Equity Research', desc: 'In-depth company analysis, earnings reviews and stock coverage.', to: '/reports?category=equity' },
+              { icon: '💰', title: 'Fixed Income', desc: 'FGN bond strategy, T-bill auctions and yield curve analysis.', to: '/reports?category=fixed_income' },
+              { icon: '🌍', title: 'Macroeconomic Analysis', desc: 'GDP, inflation, FX and monetary policy insights.', to: '/reports?category=macro' },
+              { icon: '🏭', title: 'Sector Updates', desc: 'Banking, telecoms, cement, FMCG, oil & gas and pension coverage.', to: '/reports?category=sector' },
+              { icon: '🎯', title: 'Strategy/Outlooks', desc: 'Top-down equity strategy and thematic investment research.', to: '/reports?search=strategy' },
+              { icon: '📊', title: 'Data & Analytics', desc: 'Subscriber-only macro indicators, market data, and value-added analytics.', to: '/analytics' },
+            ].map((area) => (
+              <Link key={area.title} className="tile coverage-tile" to={area.to} aria-label={`View ${area.title}`}>
+                <span className="coverage-icon" aria-hidden="true">{area.icon}</span>
+                <h3>{area.title}</h3>
+                <p>{area.desc}</p>
+                <span className="coverage-explore-link">Explore <Icon name="arrow" /></span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
