@@ -1,3 +1,5 @@
+import '../index.css';
+import '../App.css';
 import { useParams, Link } from 'react-router-dom';
 import type { NormalizedReport } from '../types/research';
 import { fetchPublicResearchReportBundle } from '../lib/supabase';
@@ -9,6 +11,12 @@ function relatedReportsFromList(report: NormalizedReport, reports: NormalizedRep
   return reports
     .filter(item => String(item.id) !== String(report.id) && (item.category === report.category || item.analysts.some(a => report.analysts.some(ra => ra.id === a.id))))
     .slice(0, 3);
+}
+
+function formatDate(iso: string): string {
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return iso.slice(0, 10);
+  return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 
 export default function ReportDetail() {
@@ -32,11 +40,11 @@ export default function ReportDetail() {
     };
   }, []);
 
-  const reportList = reports || [];
+  const reportList = useMemo(() => reports || [], [reports]);
   const report = useMemo(() => {
     if (!id) return undefined;
     return reportList.find(item => String(item.id) === id || item.slug === id);
-  }, [id, reportList, reports]);
+  }, [id, reportList]);
 
   if (!report) {
     return (
@@ -74,7 +82,7 @@ export default function ReportDetail() {
             <h1>{report.title}</h1>
             <dl className="report-detail-facts">
               {report.analysts[0]?.name && <div><dt>Analyst</dt><dd>{report.analysts[0]?.name}</dd></div>}
-              <div><dt>Date</dt><dd>{report.publishedAt.slice(0, 10)}</dd></div>
+              <div><dt>Date</dt><dd>{formatDate(report.publishedAt)}</dd></div>
               <div><dt>Coverage</dt><dd>{report.category}</dd></div>
             </dl>
             <div className="report-summary-panel">

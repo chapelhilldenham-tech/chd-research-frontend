@@ -182,3 +182,312 @@
     border-right-color: var(--border);
   }
 }
+
+.container {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.section {
+  padding: 72px 0;
+}
+
+.panel,
+.report-card,
+.tile,
+.auth-card,
+.contact-form-panel {
+  background: #fff;
+  border: 1px solid #e5e4e7;
+  border-radius: 8px;
+  box-shadow: 0 8px 28px rgba(16, 37, 48, 0.06);
+}
+
+.page-hero {
+  background: linear-gradient(135deg, #102530 0%, #1a3d50 100%);
+  color: #fff;
+  padding: 104px 0 64px;
+}
+
+.page-hero h1,
+.page-hero p {
+  color: #fff;
+}
+
+.page-hero p {
+  max-width: 680px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.btn {
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-navy:hover {
+  background: #1a3d50;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 37, 48, 0.25);
+}
+
+.btn-bronze:hover {
+  background: #a05e20;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(185, 114, 49, 0.3);
+}
+
+.btn-border:hover {
+  background: #102530;
+  color: #fff;
+}
+
+input,
+textarea,
+select {
+  border: 1px solid #d0d5da;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 15px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #B97231;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(185, 114, 49, 0.15);
+}
+
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.report-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  color: #102530;
+}
+
+.report-card h3 {
+  color: #102530;
+  line-height: 1.2;
+  margin: 0 0 14px;
+}
+
+.report-card-top,
+.report-card-facts,
+.locked-panel-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.report-card-facts {
+  align-items: flex-start;
+}
+
+.report-card-facts dt,
+.report-detail-facts dt {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #B97231;
+}
+
+.report-card-facts dd,
+.report-detail-facts dd {
+  margin: 0;
+  color: #102530;
+}
+
+.report-card-abstract {
+  color: #6b6375;
+  margin: 16px 0;
+}
+
+.report-category-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+}
+
+.badge-equity { background: #e8f4fd; color: #1a5276; }
+.badge-fixed-income { background: #eafaf1; color: #1e8449; }
+.badge-macro { background: #fef9e7; color: #7d6608; }
+.badge-sector { background: #fdf2f8; color: #76448a; }
+.badge-index { background: #fef5e7; color: #b97231; }
+.badge-other { background: #f2f3f4; color: #566573; }
+
+.report-access-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+.access-public { background: #eafaf1; color: #1e8449; }
+.access-subscriber { background: #fef5e7; color: #b97231; }
+
+.report-card-hoverable {
+  transition: box-shadow 0.18s ease, transform 0.18s ease;
+  cursor: pointer;
+}
+
+.report-card-hoverable:hover {
+  box-shadow: 0 8px 24px rgba(16, 37, 48, 0.12);
+  transform: translateY(-2px);
+}
+
+.locked-panel {
+  background: #fef5e7;
+  border: 1px solid rgba(185, 114, 49, 0.24);
+  border-radius: 6px;
+  padding: 14px;
+}
+
+.contact-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e4e7;
+}
+
+.contact-detail:last-of-type {
+  border-bottom: none;
+}
+
+.contact-detail-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #B97231;
+}
+
+.contact-detail span:last-child {
+  font-size: 14px;
+  color: #102530;
+}
+
+.contact-map {
+  width: 100%;
+  height: 200px;
+  background: #f0f0f0;
+  border-radius: 6px;
+  margin: 16px 0 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.contact-map::after {
+  content: "📍 10 Bankole Oki Road, Ikoyi, Lagos";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #102530;
+  font-weight: 500;
+  background: #f5f3ef;
+}
+
+.analytics-dashboard-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.analytics-dashboard-kpis article {
+  background: #fff;
+  border: 1px solid #e5e4e7;
+  border-radius: 8px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kpi-positive strong { color: #1e8449; }
+.kpi-negative strong { color: #c0392b; }
+.kpi-neutral strong { color: #102530; }
+
+.kpi-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #657786;
+}
+
+.kpi-value {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  color: #102530;
+}
+
+.kpi-meta {
+  font-size: 11px;
+  color: #657786;
+}
+
+.section-number {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #B97231;
+  opacity: 0.6;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.form-error-message {
+  color: #c0392b;
+  font-size: 14px;
+  margin-bottom: 1rem;
+}
+
+.form-success-message {
+  color: #1e8449;
+  font-size: 14px;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .report-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .analytics-dashboard-kpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .report-grid,
+  .analytics-dashboard-kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .page-hero {
+    padding: 88px 0 48px;
+  }
+}
