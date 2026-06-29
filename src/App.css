@@ -332,29 +332,151 @@
 }
 
 /* ====================================
+   SECTION BACKGROUNDS & RHYTHM
+   ==================================== */
+
+.credibility-strip {
+  background: #ffffff;
+  padding: 64px 0;
+  width: 100%;
+}
+
+.credibility-strip .container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Latest Research section */
+.section:nth-of-type(1) {
+  background: #F5F3EF;
+  padding: 64px 0;
+}
+
+.section:nth-of-type(1) .container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Data Teaser section */
+.data-teaser {
+  background: #102530 !important;
+  color: #ffffff;
+  padding: 64px 0;
+}
+
+.data-teaser .container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.data-teaser h2,
+.data-teaser p {
+  color: #ffffff;
+}
+
+/* Coverage section */
+.coverage-section {
+  background: #ffffff;
+  padding: 64px 0;
+}
+
+.coverage-section .container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Team section */
+.section:nth-of-type(3) {
+  background: #F5F3EF;
+  padding: 64px 0;
+}
+
+.section:nth-of-type(3) .container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Access section */
+.access-section {
+  background: #102530 !important;
+  color: #ffffff;
+  padding: 64px 0;
+}
+
+.access-section .container,
+.access-section .access-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.access-section h2,
+.access-section p {
+  color: #ffffff;
+}
+
+/* ====================================
    TICKER STRIP
    ==================================== */
 
 .ticker-strip {
-  background: var(--chd-navy);
-  color: white;
-  padding: var(--space-3) var(--space-6);
-  overflow-x: auto;
-  white-space: nowrap;
-  font-family: var(--font-mono);
-  font-size: 13px;
+  background: #0a1f2e;
+  border-bottom: 1px solid rgba(185, 114, 49, 0.3);
+  padding: 10px 0;
+  overflow: hidden;
+  width: 100%;
 }
 
 .ticker-content {
-  display: inline-flex;
-  gap: var(--space-8);
-  min-width: min-content;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+  flex-wrap: wrap;
 }
 
 .ticker-item {
   display: flex;
-  gap: var(--space-3);
   align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.ticker-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.ticker-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.ticker-change.positive {
+  color: #4caf7d;
+  font-size: 11px;
+}
+
+.ticker-change.negative {
+  color: #e57373;
+  font-size: 11px;
+}
+
+.ticker-divider {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 12px;
 }
 
 /* ====================================
@@ -386,55 +508,64 @@
 }
 
 .cred-card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 28px 24px;
+  border-top: 3px solid #B97231;
+  box-shadow: 0 2px 8px rgba(16, 37, 48, 0.08);
+  text-align: center;
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  text-align: center;
-  padding: var(--space-6);
-  background: white;
-  border: 1px solid var(--chd-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
   transition: all 0.2s ease;
 }
 
 .cred-card:hover {
-  box-shadow: var(--shadow-card-hover);
+  box-shadow: 0 8px 24px rgba(16, 37, 48, 0.12);
   transform: translateY(-2px);
 }
 
 .cred-val {
-  font-family: var(--font-serif);
-  font-size: 36px;
+  display: block;
+  font-family: Georgia, serif;
+  font-size: 40px;
   font-weight: 700;
-  color: var(--chd-navy);
+  color: #102530;
+  line-height: 1;
+  margin-bottom: 8px;
 }
 
 .cred-label {
-  font-size: 13px;
-  color: var(--chd-text-muted);
-  line-height: 1.5;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #657786;
 }
 
 /* ====================================
    REPORT CARDS
    ==================================== */
 
-.report-grid {
+.report-grid,
+.latest-research-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6);
+  gap: 20px;
   margin-bottom: var(--space-6);
 }
 
 @media (max-width: 1024px) {
-  .report-grid {
+  .report-grid,
+  .latest-research-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 768px) {
-  .report-grid {
+@media (max-width: 640px) {
+  .report-grid,
+  .latest-research-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -1200,19 +1331,44 @@
 }
 
 .data-teaser {
-  background: var(--chd-surface-alt);
+  background: #102530 !important;
 }
 
 .teaser-content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .teaser-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+.teaser-content h2 {
+  font-family: Georgia, serif;
+  font-size: 32px;
+  color: #ffffff;
+  margin: 0 0 var(--space-4);
+}
+
+.teaser-content p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: var(--space-6);
 }
 
 .teaser-kpi-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-4);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 24px;
 }
 
 @media (max-width: 768px) {
@@ -1225,49 +1381,49 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  padding: var(--space-4);
-  background: white;
-  border: 1px solid var(--chd-border);
-  border-radius: var(--radius-lg);
   text-align: center;
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 
 .teaser-kpi-label {
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--chd-text-muted);
+  color: #B97231;
 }
 
 .teaser-kpi-value {
-  font-family: var(--font-mono);
-  font-size: 24px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 28px;
   font-weight: 700;
-  color: var(--chd-navy);
+  color: #ffffff;
 }
 
 .teaser-kpi-change {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
 }
 
 .teaser-kpi-change.positive {
-  color: var(--chd-success);
+  color: #4caf7d;
 }
 
 .teaser-kpi-change.negative {
-  color: var(--chd-danger);
+  color: #e57373;
 }
 
 .teaser-kpi-change.neutral {
-  color: var(--chd-text-muted);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .teaser-actions {
   display: flex;
   gap: var(--space-4);
   flex-wrap: wrap;
+  margin-top: var(--space-4);
 }
 
 .coverage-section h2 {
@@ -1293,23 +1449,20 @@
 }
 
 .coverage-tile {
-  background: var(--chd-surface);
-  border: 1px solid var(--chd-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 28px 24px;
+  box-shadow: 0 2px 8px rgba(16, 37, 48, 0.06);
   transition: all 0.2s ease;
-  color: var(--chd-text);
+  border-bottom: 3px solid transparent;
   text-decoration: none;
-  cursor: pointer;
+  display: block;
 }
 
 .coverage-tile:hover {
-  box-shadow: var(--shadow-card-hover);
-  border-left: 3px solid var(--chd-bronze);
-  padding-left: calc(var(--space-6) - 2px);
+  box-shadow: 0 8px 24px rgba(16, 37, 48, 0.12);
+  border-bottom-color: #B97231;
+  transform: translateY(-2px);
 }
 
 .coverage-tile-head {
@@ -1319,21 +1472,31 @@
 }
 
 .coverage-icon {
-  font-size: 32px;
+  font-size: 28px;
   display: block;
+  margin-bottom: 12px;
 }
 
 .coverage-tile h3 {
-  margin: 0;
-  color: var(--chd-navy);
+  font-family: Georgia, serif;
   font-size: 18px;
+  color: #102530;
+  margin: 0 0 8px;
 }
 
 .coverage-tile p {
-  font-size: 14px;
-  color: var(--chd-text-muted);
-  line-height: 1.6;
-  margin: 0;
+  font-size: 13px;
+  color: #657786;
+  line-height: 1.5;
+  margin: 0 0 16px;
+}
+
+.coverage-explore-link {
+  font-size: 12px;
+  font-weight: 700;
+  color: #B97231;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .access-section {

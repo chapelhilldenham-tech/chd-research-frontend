@@ -72,11 +72,47 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="ticker-strip">
+        <div className="ticker-content">
+          <span className="ticker-item">
+            <span className="ticker-label">NGX ASI</span>
+            <span className="ticker-value">240,743</span>
+            <span className="ticker-change positive">▲1.06%</span>
+          </span>
+          <span className="ticker-divider">|</span>
+          <span className="ticker-item">
+            <span className="ticker-label">USD/NGN</span>
+            <span className="ticker-value">1,370.64</span>
+          </span>
+          <span className="ticker-divider">|</span>
+          <span className="ticker-item">
+            <span className="ticker-label">MPR</span>
+            <span className="ticker-value">26.50%</span>
+          </span>
+          <span className="ticker-divider">|</span>
+          <span className="ticker-item">
+            <span className="ticker-label">Inflation</span>
+            <span className="ticker-value">15.93%</span>
+          </span>
+          <span className="ticker-divider">|</span>
+          <span className="ticker-item">
+            <span className="ticker-label">Paramount YTD</span>
+            <span className="ticker-value">+11.42%</span>
+            <span className="ticker-change positive">▲</span>
+          </span>
+          <span className="ticker-divider">|</span>
+          <span className="ticker-item">
+            <span className="ticker-label">Brent Crude</span>
+            <span className="ticker-value">$74.20</span>
+          </span>
+        </div>
+      </div>
+
       <section className="credibility-strip">
         <div className="container">
           <div className="cred-grid">
             <div className="cred-card">
-              <span className="cred-val">{latestReports.length > 0 ? latestReports.length + '+' : '150+'}</span>
+              <span className="cred-val">150+</span>
               <span className="cred-label">Research Reports Published</span>
             </div>
             <div className="cred-card">
@@ -112,6 +148,14 @@ export default function Home() {
       <section className="section light-teaser data-teaser">
         <div className="container">
           <div className="teaser-content">
+            <div>
+              <h2>Exclusive Market Intelligence</h2>
+              <p>Subscriber access includes macro indicators, live market tracking, sector analysis, and Paramount Index intelligence for professional investors.</p>
+              <div className="teaser-actions">
+                <Link className="btn btn-navy" to="/analytics">Explore Analytics</Link>
+                <Link className="btn btn-border" to="/subscribe">Subscribe for Access</Link>
+              </div>
+            </div>
             <div className="teaser-kpi-row">
               <div className="teaser-kpi">
                 <span className="teaser-kpi-label">NGX ASI</span>
@@ -128,12 +172,6 @@ export default function Home() {
                 <span className="teaser-kpi-value">26.50%</span>
                 <span className="teaser-kpi-change neutral">Unchanged</span>
               </div>
-            </div>
-            <h2>Market Data &amp; Analytics</h2>
-            <p>Subscriber access includes macro indicators, live market tracking, sector analysis, and Paramount Index intelligence for professional investors.</p>
-            <div className="teaser-actions">
-              <Link className="btn btn-navy" to="/analytics">Explore Analytics</Link>
-              <Link className="btn btn-border" to="/subscribe">Subscribe for Access</Link>
             </div>
           </div>
         </div>
