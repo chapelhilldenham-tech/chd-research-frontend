@@ -1,4 +1,49 @@
 /* ====================================
+   TYPOGRAPHY & TEXT ALIGNMENT
+   ==================================== */
+
+p {
+  line-height: 1.65;
+  word-spacing: 0.05em;
+  text-align: left;
+  margin-bottom: 1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-align: left;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.section-head h2 {
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.section-head p {
+  line-height: 1.6;
+  text-align: left;
+}
+
+.container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+/* Text utility classes */
+.text-align-center {
+  text-align: center;
+}
+
+.text-align-left {
+  text-align: left;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+/* ====================================
    NAVIGATION
    ==================================== */
 
@@ -304,10 +349,17 @@
   }
 }
 
+.hero-copy {
+  text-align: left;
+}
+
 .hero-copy h1 {
   color: white;
   font-size: clamp(32px, 6vw, 56px);
   margin-bottom: var(--space-6);
+  text-align: left;
+  line-height: 1.2;
+  text-wrap: balance;
 }
 
 .hero-val {
@@ -738,12 +790,14 @@
   font-size: 16px;
   font-weight: 700;
   color: #102530;
-  line-height: 1.3;
+  line-height: 1.35;
   margin: 8px 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-align: left;
+  word-wrap: break-word;
 }
 
 .report-card-facts {
@@ -773,13 +827,15 @@
 .report-card-abstract {
   font-size: 13px;
   color: #657786;
-  line-height: 1.5;
+  line-height: 1.65;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   flex: 1;
   margin-bottom: 8px;
+  text-align: left;
+  word-wrap: break-word;
 }
 
 .report-tag-list {
@@ -871,12 +927,17 @@
 .page-hero h1 {
   color: white;
   margin-bottom: var(--space-3);
+  text-align: left;
+  text-wrap: balance;
+  line-height: 1.2;
 }
 
 .page-hero p {
   color: rgba(255, 255, 255, 0.85);
   font-size: 16px;
   max-width: 680px;
+  text-align: left;
+  line-height: 1.6;
 }
 
 @media (max-width: 768px) {
