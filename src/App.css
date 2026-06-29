@@ -1476,12 +1476,6 @@
   gap: var(--space-3);
 }
 
-.coverage-icon {
-  font-size: 28px;
-  display: block;
-  margin-bottom: 12px;
-}
-
 .coverage-tile h3 {
   font-family: Georgia, serif;
   font-size: 18px;

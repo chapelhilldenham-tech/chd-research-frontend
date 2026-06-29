@@ -183,7 +183,6 @@ export default function Home() {
           <div className="category-grid">
             <Link className="tile coverage-tile" to="/reports?category=equity" aria-label="View Equity Research">
               <div className="coverage-tile-head">
-                <span className="coverage-icon" aria-hidden="true">📈</span>
                 <h3>Equity Research</h3>
               </div>
               <p>In-depth company analysis, earnings reviews and stock coverage.</p>
@@ -191,7 +190,6 @@ export default function Home() {
             </Link>
             <Link className="tile coverage-tile" to="/reports?category=fixed_income" aria-label="View Fixed Income">
               <div className="coverage-tile-head">
-                <span className="coverage-icon" aria-hidden="true">💰</span>
                 <h3>Fixed Income</h3>
               </div>
               <p>FGN bond strategy, T-bill auctions and yield curve analysis.</p>
@@ -199,7 +197,6 @@ export default function Home() {
             </Link>
             <Link className="tile coverage-tile" to="/reports?category=macro" aria-label="View Macroeconomic Analysis">
               <div className="coverage-tile-head">
-                <span className="coverage-icon" aria-hidden="true">🌍</span>
                 <h3>Macroeconomic Analysis</h3>
               </div>
               <p>GDP, inflation, FX and monetary policy insights.</p>
@@ -207,7 +204,6 @@ export default function Home() {
             </Link>
             <Link className="tile coverage-tile" to="/reports?category=sector" aria-label="View Sector Updates">
               <div className="coverage-tile-head">
-                <span className="coverage-icon" aria-hidden="true">🏭</span>
                 <h3>Sector Updates</h3>
               </div>
               <p>Banking, telecoms, cement, FMCG, oil & gas and pension coverage.</p>
@@ -215,7 +211,6 @@ export default function Home() {
             </Link>
             <Link className="tile coverage-tile" to="/reports?search=strategy" aria-label="View Strategy/Outlooks">
               <div className="coverage-tile-head">
-                <span className="coverage-icon" aria-hidden="true">🎯</span>
                 <h3>Strategy/Outlooks</h3>
               </div>
               <p>Top-down equity strategy and thematic investment research.</p>
@@ -223,7 +218,6 @@ export default function Home() {
             </Link>
             <Link className="tile coverage-tile" to="/analytics" aria-label="View Data & Analytics">
               <div className="coverage-tile-head">
-                <span className="coverage-icon" aria-hidden="true">📊</span>
                 <h3>Data & Analytics</h3>
               </div>
               <p>Subscriber-only macro indicators, market data, and value-added analytics.</p>
