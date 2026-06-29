@@ -27,7 +27,7 @@ export default function Analysts() {
 
   return (
     <main>
-      <header className="page-hero">
+      <header className="page-hero hero-analysts">
         <div className="container">
           <h1>Research Coverage</h1>
           <p>Chapel Hill Denham's research team provides independent analysis across Nigeria's major sectors.</p>

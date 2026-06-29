@@ -11,7 +11,7 @@ const interests = [
 export default function Signup() {
   return (
     <main>
-      <header className="page-hero">
+      <header className="page-hero hero-signup">
         <div className="container">
           <h1>Access Chapel Hill Denham Research</h1>
           <p>Nigeria's leading independent research, built for professionals.</p>

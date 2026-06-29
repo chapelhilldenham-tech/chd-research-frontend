@@ -60,7 +60,12 @@ export default function ReportCard({ report, compact = false }: { report: Normal
         {report.analysts[0]?.name && (
           <div>
             <dt>Analyst</dt>
-            <dd>{report.analysts[0]?.name}</dd>
+            <dd>
+              <span className="analyst-avatar-initial">
+                {report.analysts[0]?.name?.charAt(0)?.toUpperCase() || 'C'}
+              </span>
+              {report.analysts[0]?.name}
+            </dd>
           </div>
         )}
         <div>
@@ -86,7 +91,7 @@ export default function ReportCard({ report, compact = false }: { report: Normal
         </div>
       ) : (
         <div className="report-card-actions report-action" style={{ marginTop: 'auto' }}>
-          <Link className="text-link report-action-link" to={`/report/${report.id}`}>
+          <Link className="report-card-action-link" to={`/report/${report.id}`}>
             View Details <Icon name="arrow" />
           </Link>
         </div>

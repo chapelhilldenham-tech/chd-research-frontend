@@ -18,7 +18,7 @@ export default function Contact() {
 
   return (
     <main>
-      <header className="page-hero">
+      <header className="page-hero hero-contact">
         <div className="container">
           <h1>Contact Us</h1>
           <p>Reach the Chapel Hill Denham research team.</p>

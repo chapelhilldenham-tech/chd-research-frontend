@@ -110,7 +110,7 @@ export default function Reports() {
 
   return (
     <main>
-      <header className="page-hero">
+      <header className="page-hero hero-reports">
         <div className="container">
           <h1>Research Library</h1>
         </div>
