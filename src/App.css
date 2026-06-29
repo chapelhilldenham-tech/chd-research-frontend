@@ -547,6 +547,10 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px 0;
   overflow: hidden;
   width: 100%;
+  position: sticky;
+  top: 64px;
+  z-index: 99;
+  box-shadow: 0 2px 8px rgba(16,37,48,0.15);
 }
 
 .ticker-content {
