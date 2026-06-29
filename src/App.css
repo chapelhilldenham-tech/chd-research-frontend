@@ -729,21 +729,26 @@
 .report-card-action-link {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #B97231;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
   text-decoration: none;
-  padding: 6px 12px;
-  border: 1px solid #B97231;
-  border-radius: 4px;
+  padding: 11px 20px;
+  background: #B97231;
+  border: none;
+  border-radius: 6px;
   margin-top: auto;
-  transition: all 0.15s ease;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
 }
 
 .report-card-action-link:hover {
-  background: #B97231;
-  color: #fff;
+  background: #a05f1d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(185, 114, 49, 0.3);
 }
 
 .report-action-link {
