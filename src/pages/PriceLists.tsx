@@ -11,9 +11,7 @@ export default function PriceLists() {
       const data = await fetchPublicPriceLists();
       if (data && data.length > 0) {
         const found = data.find((item: any) => item.effective_date === viewedDate);
-        setActiveList(found || null);
-      } else {
-        setActiveList(null);
+        setActiveList(found || data[0]);
       }
     }
 
@@ -26,50 +24,63 @@ export default function PriceLists() {
     year: 'numeric',
   }).format(new Date(`${viewedDate}T00:00:00`));
 
+  const handleLoadDate = (e: React.FormEvent) => {
+    e.preventDefault();
+    setViewedDate(selectedDate);
+  };
+
   return (
     <main>
       <header className="page-hero">
         <div className="container">
           <h1>Price Lists</h1>
-          <p>Reference pricing and market data files from the Chapel Hill Denham Research desk.</p>
         </div>
       </header>
 
       <section className="section">
-        <div className="container price-list-shell">
-          <article className="panel price-list-card">
-            <h2>Select Date</h2>
-            <form
-              className="price-list-form"
-              onSubmit={(event) => {
-                event.preventDefault();
-                setViewedDate(selectedDate);
-              }}
-            >
-              <div className="field">
-                <label>Pricing Date</label>
-                <input
-                  type="date"
-                  value={selectedDate}
-                  onChange={(event) => setSelectedDate(event.target.value)}
-                />
-              </div>
-              <button className="btn btn-navy" type="submit">View Price List</button>
-            </form>
-          </article>
+        <div className="container">
+          <div className="price-list-intro">
+            <p>Reference pricing and market data for Chapel Hill Denham subscribers</p>
+          </div>
 
-          <article className="panel price-list-card">
-            <h2>Price List for {displayDate}</h2>
-            {activeList ? (
-              <div className="price-list-download-row">
-                <strong>{activeList.title || 'Chapel Hill Denham Price List (XLSX)'}</strong>
-                <span>34 KB</span>
-                <a className="btn btn-bronze" href={activeList.file_url} download style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}>Download</a>
+          {activeList && (
+            <div className="price-list-featured">
+              <div className="plf-featured-icon">📊</div>
+              <div className="plf-featured-info">
+                <h3>{activeList.title || 'CHD Price List'}</h3>
+                <p className="plf-date">{displayDate}</p>
+                <p className="plf-desc">
+                  Reference pricing for equities, fixed income instruments, and market data as at {displayDate}.
+                </p>
+                <p className="plf-size">34 KB · PDF/Excel</p>
               </div>
-            ) : (
-              <p>No price list file is currently available for this date.</p>
-            )}
-          </article>
+              <div className="plf-featured-action">
+                <a
+                  className="btn btn-bronze"
+                  href={activeList.file_url}
+                  download
+                >
+                  ↓ Download Price List
+                </a>
+                <p className="plf-access-note">
+                  Available to subscribers
+                </p>
+              </div>
+            </div>
+          )}
+
+          <section className="price-list-archive">
+            <h2>Select a Different Date</h2>
+            <form className="price-list-date-form" onSubmit={handleLoadDate}>
+              <input
+                type="date"
+                className="date-input"
+                value={selectedDate}
+                onChange={(e) => setSelectedDate(e.target.value)}
+              />
+              <button className="btn btn-navy btn-sm" type="submit">Load</button>
+            </form>
+          </section>
         </div>
       </section>
     </main>

@@ -79,7 +79,16 @@ export default function Contact() {
                 research@chapelhilldenham.com
               </a>
             </div>
-            <div className="contact-map" aria-hidden="true"></div>
+            <div className="contact-map-embed">
+              <iframe
+                title="Chapel Hill Denham Office Location"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=3.4280%2C6.4490%2C3.4380%2C6.4550&layer=mapnik&marker=6.4520%2C3.4330"
+                width="100%"
+                height="220"
+                style={{ border: 'none', borderRadius: '8px' }}
+                loading="lazy"
+              />
+            </div>
             <a className="text-link contact-map-link" href={mapsUrl} target="_blank" rel="noopener noreferrer">
               Open in Google Maps
             </a>

@@ -15,6 +15,11 @@ const PHOTO_POSITION: Record<string, string> = {
   'Chapel Hill Denham Research':   '50% 50%',
 };
 
+function formatCategory(cat: string): string {
+  return cat.replace(/-/g, ' ')
+    .replace(/\b\w/g, l => l.toUpperCase());
+}
+
 export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, onClose: () => void }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [reports, setReports] = useState<NormalizedReport[]>([]);
@@ -60,8 +65,8 @@ export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, o
   const focalPoint = PHOTO_POSITION[analyst.name] ?? '50% 15%';
 
   return (
-    <dialog ref={dialogRef} className="analyst-modal" onClick={handleClickOutside}>
-      <button className="drawer-close" aria-label="Close" onClick={handleClose}>
+    <dialog ref={dialogRef} className="analyst-modal analyst-modal-panel" onClick={handleClickOutside}>
+      <button className="analyst-modal-close" aria-label="Close" onClick={handleClose}>
         <X size={22} />
       </button>
 
@@ -107,7 +112,7 @@ export default function AnalystModal({ analyst, onClose }: { analyst: Analyst, o
             <div className="analyst-report-list" style={{ marginTop: '14px' }}>
               {reports.slice(0, 12).map(item => (
                 <Link key={item.id} to={`/report/${item.id}`} onClick={handleClose}>
-                  <span>{item.category}</span>
+                  <span>{formatCategory(item.category)}</span>
                   <strong>{item.title}</strong>
                   <small>{item.publishedAt ? new Date(item.publishedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : ''}</small>
                 </Link>
