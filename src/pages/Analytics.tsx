@@ -125,19 +125,22 @@ export default function Analytics() {
           </aside>
         </section>
         <section className="analytics-dashboard-kpis" aria-label="Dashboard summary">
-          {analyticsSnapshot.headlineKpis.map((kpi) => (
-            <article key={kpi.label}>
-              <span>{kpi.label}</span>
-              <strong>{kpi.value}</strong>
-              <small>{kpi.change} | {kpi.effectiveDate}</small>
-            </article>
-          ))}
+          {analyticsSnapshot.headlineKpis.map((kpi) => {
+            const changeClass = kpi.change?.startsWith('+') ? 'kpi-positive' : kpi.change?.startsWith('-') ? 'kpi-negative' : 'kpi-neutral';
+            return (
+              <article key={kpi.label} className={changeClass}>
+                <span className="kpi-label">{kpi.label}</span>
+                <strong className="kpi-value">{kpi.value}</strong>
+                <small className="kpi-meta">{kpi.change} | {kpi.effectiveDate}</small>
+              </article>
+            );
+          })}
         </section>
 
         <div className="analytics-dashboard-grid">
           <section className="analytics-section dashboard-panel" id="macro-desk">
             <div className="analytics-section-heading with-meta">
-              <span>01</span>
+              <span className="section-number" aria-hidden="true">01</span>
               <h2>Key Macro Indicators</h2>
               <small>Mixed effective dates</small>
             </div>
@@ -158,7 +161,7 @@ export default function Analytics() {
                 </div>
                 <MacroChart activeTab={activeMacroTab} />
                 <p className="analytics-commentary-date">{activeMacroTab === 'Inflation vs MPR' ? analyticsSnapshot.macroChart.effectiveDate : 'Q1 2026'}</p>
-                <p className="analytics-commentary">
+                <p className="analytics-commentary analytics-commentary-text">
                   {activeMacroTab === 'Inflation vs MPR'
                     ? 'Inflation reached 15.93% in May 2026 while MPR remained at 26.50%.'
                     : 'GDP growth reached 3.89% in Q1 2026, compared with 4.07% in Q4 2025.'}
@@ -179,7 +182,7 @@ export default function Analytics() {
           {/*
           <section className="analytics-section dashboard-panel" id="market-data">
             <div className="analytics-section-heading with-meta">
-              <span>02</span>
+              <span className="section-number" aria-hidden="true">02</span>
               <h2>Market Data</h2>
               <small>{analyticsSnapshot.market.effectiveDate}</small>
             </div>
@@ -236,7 +239,7 @@ export default function Analytics() {
 
           <section className="analytics-section dashboard-panel" id="sector-data">
             <div className="analytics-section-heading with-meta">
-              <span>03</span>
+              <span className="section-number" aria-hidden="true">03</span>
               <h2>Sector Data &amp; Analytics</h2>
               <small>{selectedSector.effectiveDate || 'Pending update'}</small>
             </div>
@@ -250,6 +253,7 @@ export default function Analytics() {
                       key={sector}
                       onClick={() => setActiveSector(sector)}
                       aria-pressed={activeSector === sector}
+                      aria-current={activeSector === sector ? 'true' : undefined}
                     >
                       {sector}
                     </button>
@@ -284,7 +288,7 @@ export default function Analytics() {
 
           <section className="analytics-section dashboard-panel" id="paramount-index">
             <div className="analytics-section-heading with-meta">
-              <span>04</span>
+              <span className="section-number" aria-hidden="true">04</span>
               <h2>Paramount Index</h2>
               <small>{analyticsSnapshot.paramount.effectiveDate}</small>
             </div>

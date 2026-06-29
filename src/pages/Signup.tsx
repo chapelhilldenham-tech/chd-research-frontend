@@ -66,8 +66,11 @@ export default function Signup() {
                 <input id="terms" type="checkbox" required />
                 <label htmlFor="terms">I agree to the Terms of Use and Privacy Policy</label>
               </div>
-              <button className="btn btn-navy" type="button" disabled>Create Account</button>
-              <Link className="text-link" to="/login">Already have an account? Sign in -&gt;</Link>
+              <div className="signup-staging-notice">
+                <p className="notice">Account creation is not enabled in this staging preview.</p>
+                <button className="btn btn-navy" type="button" disabled aria-disabled="true">Create Account</button>
+              </div>
+              <Link className="text-link" to="/login">Already have an account? Sign in →</Link>
             </form>
           </section>
 
@@ -75,8 +78,14 @@ export default function Signup() {
             <h2>What's included</h2>
             <div className="table-wrap">
               <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Free</th>
+                    <th>Subscriber</th>
+                  </tr>
+                </thead>
                 <tbody>
-                  <tr><th>Feature</th><th>Free</th><th>Subscriber</th></tr>
                   <tr><td>Public research</td><td>Yes</td><td>Yes</td></tr>
                   <tr><td>Subscriber reports</td><td>No</td><td>Yes</td></tr>
                   <tr><td>Market data</td><td>No</td><td>Yes</td></tr>
@@ -87,7 +96,7 @@ export default function Signup() {
               </table>
             </div>
             <h3>Annual Subscription</h3>
-            <p className="subscription-price">Contact research desk</p>
+            <p className="subscription-price">Annual subscription — contact the research desk for pricing.</p>
             <Link className="btn btn-bronze" to="/subscribe">Subscribe Now</Link>
             <hr />
             <p>Questions? Contact us: research@chapelhilldenham.com</p>

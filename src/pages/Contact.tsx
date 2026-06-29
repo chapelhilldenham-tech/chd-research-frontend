@@ -20,7 +20,8 @@ export default function Contact() {
     <main>
       <header className="page-hero">
         <div className="container">
-          <p>Reach the Chapel Hill Denham team.</p>
+          <h1>Contact Us</h1>
+          <p>Reach the Chapel Hill Denham research team.</p>
         </div>
       </header>
 
@@ -30,7 +31,7 @@ export default function Contact() {
             <h2>Send a Message</h2>
             <form onSubmit={handleSubmit}>
               <div className="form-grid">
-                {message && <p className="notice login-message">{message}</p>}
+                {message && <p className="form-success-message">{message}</p>}
                 <div className="field">
                   <label>Full Name</label>
                   <input type="text" required />
@@ -64,11 +65,24 @@ export default function Contact() {
           </div>
           <aside className="panel contact-card">
             <h2>Chapel Hill Denham</h2>
-            <p>10 Bankole Oki Road, Ikoyi, Lagos, Nigeria</p>
-            <p>Tel: +234 (1) 2799561-4</p>
-            <p>research@chapelhilldenham.com</p>
+            <div className="contact-detail">
+              <span className="contact-detail-label">Address</span>
+              <span>10 Bankole Oki Road, Ikoyi, Lagos, Nigeria</span>
+            </div>
+            <div className="contact-detail">
+              <span className="contact-detail-label">Telephone</span>
+              <span>+234 (1) 2799561-4</span>
+            </div>
+            <div className="contact-detail">
+              <span className="contact-detail-label">Research Desk</span>
+              <a href="mailto:research@chapelhilldenham.com" className="text-link">
+                research@chapelhilldenham.com
+              </a>
+            </div>
             <div className="contact-map" aria-hidden="true"></div>
-            <a className="text-link contact-map-link" href={mapsUrl} target="_blank" rel="noopener noreferrer">Open in Maps</a>
+            <a className="text-link contact-map-link" href={mapsUrl} target="_blank" rel="noopener noreferrer">
+              Open in Google Maps
+            </a>
           </aside>
         </div>
       </section>

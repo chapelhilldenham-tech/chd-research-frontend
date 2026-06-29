@@ -6,14 +6,18 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     if (email === 'test@chd.com' && password === 'password') {
       localStorage.setItem('chd_subscriber_auth', 'true');
+      setLoading(false);
       navigate('/analytics');
     } else {
       setError('Invalid credentials. Use test@chd.com / password for this preview.');
+      setLoading(false);
     }
   };
 
@@ -34,14 +38,15 @@ export default function Login() {
                 <label>Password</label>
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
               </div>
-              {error && <p style={{ color: 'red', fontSize: '14px', marginBottom: '1rem' }}>{error}</p>}
-              <Link className="text-link" to="/reset-password">Forgot password?</Link>
+              {error && <p className="form-error-message">{error}</p>}
               <button
                 className="btn btn-navy"
                 type="submit"
+                disabled={loading}
               >
-                Sign In
+                {loading ? 'Signing in...' : 'Sign In'}
               </button>
+              <Link className="text-link" to="/reset-password">Forgot password?</Link>
             </form>
             <p className="auth-create-row">
               <Link className="text-link" to="/signup">
