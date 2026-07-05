@@ -6,12 +6,10 @@ import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 const categories = [
-  { value: 'equity', label: 'Equity Research' },
-  { value: 'fixed_income', label: 'Fixed Income' },
-  { value: 'macro', label: 'Macroeconomic Analysis' },
+  { value: 'equity-research', label: 'Equity Research' },
+  { value: 'fixed-income', label: 'Fixed Income' },
   { value: 'sector', label: 'Sector Research' },
-  { value: 'index', label: 'The Paramount Index' },
-  { value: 'other', label: 'Other' },
+  { value: 'research-report', label: 'Market Updates (Daily & Weekly)' },
 ];
 
 export default function Reports() {
@@ -27,6 +25,7 @@ export default function Reports() {
   const [reports, setReports] = useState<NormalizedReport[]>([]);
   const [loading, setLoading] = useState(true);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [hideRoutine, setHideRoutine] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -57,9 +56,10 @@ export default function Reports() {
         report.documentType,
         report.tags.join(' ')
       ].join(' ').toLowerCase().includes(term);
-      return categoryMatch && searchMatch;
+      const periodicityMatch = !hideRoutine || (report.documentType !== 'daily' && report.documentType !== 'weekly');
+      return categoryMatch && searchMatch && periodicityMatch;
     });
-  }, [reports, search, selected]);
+  }, [reports, search, selected, hideRoutine]);
 
   const toggleCategory = (category: string) => {
     setSelected(current => current.includes(category) ? current.filter(item => item !== category) : [...current, category]);
@@ -77,6 +77,7 @@ export default function Reports() {
   const clearFilters = () => {
     setSearch('');
     setSelected([]);
+    setHideRoutine(false);
   };
 
   const filterControls = (prefix = '') => (
@@ -104,13 +105,25 @@ export default function Reports() {
           </div>
         ))}
       </fieldset>
+      <fieldset className="filter-checks">
+        <legend>Frequency</legend>
+        <div className={`checkbox-item${hideRoutine ? ' active' : ''}`}>
+          <input
+            id={`${prefix}hide-routine`}
+            type="checkbox"
+            checked={hideRoutine}
+            onChange={() => setHideRoutine(v => !v)}
+          />
+          <label htmlFor={`${prefix}hide-routine`}>Hide Daily &amp; Weekly Updates</label>
+        </div>
+      </fieldset>
       <button className="btn btn-border" type="button" onClick={clearFilters}>Clear Filters</button>
     </div>
   );
 
   return (
     <main>
-      <header className="page-hero hero-reports">
+      <header className="page-hero">
         <div className="container">
           <h1>Research Library</h1>
         </div>
