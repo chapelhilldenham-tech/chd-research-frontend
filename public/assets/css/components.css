@@ -248,6 +248,7 @@ button:disabled,.btn:disabled{opacity:.62;cursor:not-allowed;transform:none}
 .status-pill{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;border-radius:var(--radius-sm);font-size:12px;letter-spacing:.04em}
 .status-draft{background:rgba(255,255,255,.12);color:#fff}
 .status-staged,.status-pending{background:#fff3cd;color:#856404}
+.status-live{background:#d4edda;color:#155724}
 .status-published,.status-active{background:#e6f6ec;color:#136b35}
 .status-archived,.status-expired{background:#f8d7da;color:#842029}
 .analyst-admin-table{min-width:1540px}

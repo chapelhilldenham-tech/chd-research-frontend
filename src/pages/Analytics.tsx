@@ -1,12 +1,64 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   analyticsSnapshot,
   analyticsSectorOrder,
   type AnalyticsSectorName,
   type ForecastRow,
 } from '../data/analyticsSnapshot';
+import { fetchMarketSnapshot } from '../lib/supabase';
 
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
+interface LiveForecastEntry { year: string; value: string }
+interface LiveMacroForecastMetric {
+  key: string;
+  label: string;
+  currentValue: string;
+  change: string;
+  effectiveDate: string;
+  forecasts: LiveForecastEntry[];
+}
+interface LiveSimpleKpi { label: string; value: string; change: string; effectiveDate: string }
+interface LiveBondRow { bond: string; maturity: string; coupon: string; yield: string; price: string }
+interface LiveSectorMetric { label: string; value: string; change: string; effectiveDate: string }
+interface LiveSectorForm { effectiveDate: string; commentary: string; metrics: LiveSectorMetric[] }
+interface LiveParamountPerformanceRow { index: string; '1YR': string; '2YR': string; '3YR': string; '5YR': string }
+
+interface AnalyticsDashboardPayload {
+  headlineKpis?: LiveSimpleKpi[];
+  creditGrowth?: LiveSimpleKpi;
+  debtGdp?: LiveSimpleKpi;
+  macroForecasts?: LiveMacroForecastMetric[];
+  lcyBonds?: LiveBondRow[];
+  eurobonds?: LiveBondRow[];
+  sectors?: Record<string, LiveSectorForm>;
+  paramountIndexValue?: string;
+  paramount1yr?: string;
+  paramount2yr?: string;
+  paramount3yr?: string;
+  paramount5yr?: string;
+  paramountPerformance?: LiveParamountPerformanceRow[];
+  paramountMethodology?: string;
+  macroSourcesNote?: string;
+  fixedIncomeSourcesNote?: string;
+  sectorSourcesNote?: string;
+  paramountSourcesNote?: string;
+}
+
+function macroMetricFromLive(m: LiveMacroForecastMetric) {
+  return {
+    label: m.label,
+    value: m.currentValue,
+    change: m.change,
+    effectiveDate: m.effectiveDate,
+    forecast: m.forecasts
+      .filter(f => f.year.trim() !== '')
+      .map(f => ({ year: f.year, value: f.value || '—', isPlaceholder: !f.value })),
+  };
+}
+
+const DEFAULT_PARAMOUNT_METHODOLOGY =
+  "The Paramount Index is Chapel Hill Denham's proprietary benchmark for selected Nigerian equities. Constituents are screened for liquidity and market relevance, weighted by free-float market capitalisation, and reviewed quarterly.";
 
 const macroTabs = ['Inflation vs MPR', 'GDP Growth'] as const;
 const fixedIncomeTabs = ['LCY Bonds', 'Eurobonds'] as const;
@@ -104,7 +156,55 @@ export default function Analytics() {
   const [activeMacroTab, setActiveMacroTab] = useState<(typeof macroTabs)[number]>('Inflation vs MPR');
   const [activeFixedIncomeTab, setActiveFixedIncomeTab] = useState<(typeof fixedIncomeTabs)[number]>('LCY Bonds');
   const [activeSector, setActiveSector] = useState<AnalyticsSectorName>('Banking');
-  const selectedSector = analyticsSnapshot.sectors[activeSector];
+  const [live, setLive] = useState<AnalyticsDashboardPayload | null>(null);
+  const [isLive, setIsLive] = useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+    fetchMarketSnapshot('analytics_dashboard').then((snapshot) => {
+      if (!mounted) return;
+      if (snapshot?.payload) {
+        setLive(snapshot.payload as AnalyticsDashboardPayload);
+        setIsLive(true);
+      }
+    });
+    return () => { mounted = false; };
+  }, []);
+
+  const headlineKpis = live?.headlineKpis && live.headlineKpis.length > 0 ? live.headlineKpis : analyticsSnapshot.headlineKpis;
+
+  const macroIndicators = live?.macroForecasts
+    ? [
+        ...live.macroForecasts.map(macroMetricFromLive),
+        live.creditGrowth ?? analyticsSnapshot.macroIndicators[4],
+        live.debtGdp ?? analyticsSnapshot.macroIndicators[5],
+      ]
+    : analyticsSnapshot.macroIndicators;
+
+  const lcyBonds = live?.lcyBonds && live.lcyBonds.length > 0 ? live.lcyBonds : analyticsSnapshot.fixedIncome.lcyBonds;
+  const eurobonds = live?.eurobonds && live.eurobonds.length > 0 ? live.eurobonds : analyticsSnapshot.fixedIncome.eurobonds;
+
+  const liveSectors = live?.sectors && Object.keys(live.sectors).length > 0 ? live.sectors : null;
+  const selectedSector = liveSectors
+    ? { status: 'available' as const, ...liveSectors[activeSector] }
+    : analyticsSnapshot.sectors[activeSector];
+
+  const paramountSummary = live
+    ? [
+        { label: 'Paramount Index', value: live.paramountIndexValue ?? '', change: '', sourceStatus: '' },
+        { label: '1YR', value: live.paramount1yr ?? '', change: '', sourceStatus: '' },
+        { label: '2YR', value: live.paramount2yr ?? '', change: '', sourceStatus: '' },
+        { label: '3YR', value: live.paramount3yr ?? '', change: '', sourceStatus: '' },
+        { label: '5YR', value: live.paramount5yr ?? '', change: '', sourceStatus: '' },
+      ]
+    : analyticsSnapshot.paramount.summary;
+  const paramountPerformance = live?.paramountPerformance ?? analyticsSnapshot.paramount.performance;
+  const paramountMethodology = live?.paramountMethodology ?? DEFAULT_PARAMOUNT_METHODOLOGY;
+
+  const macroSourcesNote = live?.macroSourcesNote ?? analyticsSnapshot.macroSourcesNote;
+  const fixedIncomeSourcesNote = live?.fixedIncomeSourcesNote ?? analyticsSnapshot.fixedIncomeSourcesNote;
+  const sectorSourcesNote = live?.sectorSourcesNote ?? analyticsSnapshot.sectorSourcesNote;
+  const paramountSourcesNote = live?.paramountSourcesNote ?? analyticsSnapshot.paramountSourcesNote;
 
   if (!isAuth) {
     return <Navigate to="/login" replace />;
@@ -125,10 +225,11 @@ export default function Analytics() {
               Hill Denham Research team. Chapel Hill Denham makes no warranty as to accuracy or
               completeness.
             </p>
+            {isLive && <span className="status-pill status-live" style={{ marginTop: 8, display: 'inline-block' }}>Live data</span>}
           </aside>
         </section>
         <section className="analytics-dashboard-kpis" aria-label="Dashboard summary">
-          {analyticsSnapshot.headlineKpis.map((kpi) => {
+          {headlineKpis.map((kpi) => {
             const changeClass = kpi.change?.startsWith('+') ? 'kpi-positive' : kpi.change?.startsWith('-') ? 'kpi-negative' : 'kpi-neutral';
             return (
               <article key={kpi.label} className={changeClass}>
@@ -171,8 +272,8 @@ export default function Analytics() {
                 </p>
               </div>
               <div className="macro-kpi-grid">
-                {analyticsSnapshot.macroIndicators.map((indicator) => {
-                  const hasForecast = 'forecast' in indicator && Array.isArray(indicator.forecast);
+                {macroIndicators.map((indicator) => {
+                  const hasForecast = 'forecast' in indicator && Array.isArray(indicator.forecast) && indicator.forecast.length > 0;
                   return (
                     <article className={`analytics-kpi${hasForecast ? ' has-forecast' : ''}`} key={indicator.label}>
                       <span>{indicator.label}</span>
@@ -192,7 +293,7 @@ export default function Analytics() {
                   );
                 })}
               </div>
-              <p className="analytics-sources-note">{analyticsSnapshot.macroSourcesNote}</p>
+              <p className="analytics-sources-note">{macroSourcesNote}</p>
             </div>
           </section>
 
@@ -294,8 +395,8 @@ export default function Analytics() {
                     </thead>
                     <tbody>
                       {(activeFixedIncomeTab === 'LCY Bonds'
-                        ? analyticsSnapshot.fixedIncome.lcyBonds
-                        : analyticsSnapshot.fixedIncome.eurobonds
+                        ? lcyBonds
+                        : eurobonds
                       ).map((row, i) => (
                         <tr key={`${activeFixedIncomeTab}-${i}`}>
                           <td>{row.bond}</td>
@@ -308,7 +409,7 @@ export default function Analytics() {
                     </tbody>
                   </table>
                 </div>
-                <p className="analytics-sources-note">{analyticsSnapshot.fixedIncomeSourcesNote}</p>
+                <p className="analytics-sources-note">{fixedIncomeSourcesNote}</p>
               </div>
             </div>
           </section>
@@ -341,7 +442,7 @@ export default function Analytics() {
                   <h3>{activeSector}</h3>
                 </div>
                 <div className="sector-stat-grid">
-                  {selectedSector.status === 'available' ? selectedSector.metrics.map((metric) => (
+                  {selectedSector.metrics.length > 0 ? selectedSector.metrics.map((metric) => (
                     <article className="sector-stat-box" key={metric.label}>
                       <span>{metric.label}</span>
                       <strong>{metric.value}</strong>
@@ -358,7 +459,7 @@ export default function Analytics() {
                   <p><strong>Sector Commentary</strong></p>
                   <p>{selectedSector.commentary}</p>
                 </div>
-                <p className="analytics-sources-note">{analyticsSnapshot.sectorSourcesNote}</p>
+                <p className="analytics-sources-note">{sectorSourcesNote}</p>
               </div>
             </div>
           </section>
@@ -370,7 +471,7 @@ export default function Analytics() {
               <small>{analyticsSnapshot.paramount.effectiveDate}</small>
             </div>
             <div className="paramount-strip">
-              {analyticsSnapshot.paramount.summary.map((item) => (
+              {paramountSummary.map((item) => (
                 <div key={item.label}>
                   <span>{item.label}</span>
                   <strong>{item.value}</strong>
@@ -381,13 +482,9 @@ export default function Analytics() {
             <ParamountChart />
             <details className="methodology" open>
               <summary>Index Methodology</summary>
-              <p>
-                The Paramount Index is Chapel Hill Denham&apos;s proprietary benchmark for selected Nigerian
-                equities. Constituents are screened for liquidity and market relevance, weighted by
-                free-float market capitalisation, and reviewed quarterly.
-              </p>
+              <p>{paramountMethodology}</p>
             </details>
-            <p className="analytics-sources-note">{analyticsSnapshot.paramountSourcesNote}</p>
+            <p className="analytics-sources-note">{paramountSourcesNote}</p>
             <div className="analytics-table-scroll">
                 <table>
                   <thead>
@@ -400,7 +497,7 @@ export default function Analytics() {
                     </tr>
                   </thead>
                   <tbody>
-                    {analyticsSnapshot.paramount.performance.map((row) => (
+                    {paramountPerformance.map((row) => (
                       <tr key={row.index}>
                         <td>{row.index}</td>
                         <td className="num" style={{ color: row['1YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-navy)' }}>{row['1YR']}</td>
