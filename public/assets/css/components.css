@@ -287,6 +287,11 @@ button:disabled,.btn:disabled{opacity:.62;cursor:not-allowed;transform:none}
 .kmi-tab{appearance:none;background:none;border:0;border-bottom:2px solid transparent;color:var(--text-muted);cursor:pointer;font-weight:700;padding:0 0 8px;white-space:nowrap;transition:color 180ms ease,border-color 180ms ease}
 .kmi-tab:hover,.kmi-tab.active{color:var(--chd-navy-ui)}
 .kmi-tab.active{border-bottom-color:var(--chd-bronze)}
+.report-view-tabs{display:flex;gap:24px;margin-bottom:24px;border-bottom:1px solid var(--border-light);overflow-x:auto;scrollbar-width:none}
+.report-view-tabs::-webkit-scrollbar{display:none}
+.report-view-tab{appearance:none;background:none;border:0;border-bottom:2px solid transparent;color:var(--text-muted);cursor:pointer;font-weight:700;font-size:15px;padding:0 0 12px;white-space:nowrap;transition:color 180ms ease,border-color 180ms ease}
+.report-view-tab:hover,.report-view-tab.active{color:var(--chd-navy-ui)}
+.report-view-tab.active{border-bottom-color:var(--chd-bronze)}
 .analytics-kpi {background: #ffffff;border: 1px solid var(--border-light);border-radius: var(--radius-md);padding: 16px;min-height: 132px;box-shadow: var(--shadow-sm);}
 .analytics-kpi.compact {min-height: 98px;}
 .analytics-kpi span, .market-stat-card span, .paramount-strip span, .sector-stat-box span {display: block;color: var(--text-muted);font-size: 11px;text-transform: uppercase;letter-spacing: .08em;}
@@ -586,6 +591,12 @@ button:disabled,.btn:disabled{opacity:.62;cursor:not-allowed;transform:none}
 #macro-desk .macro-kpi-grid{grid-template-columns:1fr 1fr;gap:16px;align-content:start}
 #macro-desk .analytics-kpi{height:120px;min-height:0;padding:20px;display:flex;flex-direction:column;justify-content:center}
 #macro-desk .analytics-kpi strong{font-size:clamp(21px,2vw,30px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#macro-desk .analytics-kpi.has-forecast{height:auto;min-height:220px;justify-content:flex-start}
+.analytics-kpi-forecast-rows{margin-top:14px;padding-top:12px;border-top:1px solid var(--border-light);display:grid;gap:6px}
+.analytics-kpi-forecast-rows .forecast-row{display:flex;justify-content:space-between;font-size:13px;color:var(--chd-navy-ui)}
+.analytics-kpi-forecast-rows .forecast-row span:first-child{color:var(--text-muted);text-transform:none;letter-spacing:0}
+.analytics-kpi-forecast-rows .forecast-row.is-placeholder{color:var(--text-muted);opacity:.65}
+.analytics-sources-note{margin-top:12px;font-size:12px;color:var(--text-muted);font-style:italic;line-height:1.5}
 .analytics-table-scroll{position:relative;width:100%;max-height:none;overflow:auto}
 .analytics-table-scroll table{width:100%;min-width:0;border-collapse:collapse}
 .analytics-table-scroll th,.analytics-table-scroll td{height:56px;padding:16px}
@@ -618,6 +629,7 @@ button:disabled,.btn:disabled{opacity:.62;cursor:not-allowed;transform:none}
 #macro-desk .analytics-commentary{height:auto;overflow:visible;margin-top:16px}
 #macro-desk .macro-kpi-grid{grid-template-columns:1fr;gap:16px;margin-top:16px}
 #macro-desk .analytics-kpi{height:100px;padding:16px}
+#macro-desk .analytics-kpi.has-forecast{height:auto;min-height:0}
 .analytics-table-scroll{max-height:none;overflow-x:auto;overflow-y:visible;padding-top:20px}
 .analytics-table-scroll::before{content:"← Scroll →";position:absolute;top:0;left:0;font-size:11px;letter-spacing:.08em;color:var(--chd-bronze-soft)}
 .analytics-table-scroll table{min-width:600px}

@@ -5,15 +5,25 @@ import type { NormalizedReport } from '../types/research';
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+const viewTabs = ['Research Library', 'Daily & Weekly Updates'] as const;
+
 const categories = [
   { value: 'equity-research', label: 'Equity Research' },
   { value: 'fixed-income', label: 'Fixed Income' },
   { value: 'sector', label: 'Sector Research' },
-  { value: 'research-report', label: 'Market Updates (Daily & Weekly)' },
 ];
+
+const periodicityOptions = ['All', 'Daily', 'Weekly'] as const;
+
+function isRoutine(report: NormalizedReport) {
+  return report.documentType === 'daily' || report.documentType === 'weekly';
+}
 
 export default function Reports() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [activeView, setActiveView] = useState<(typeof viewTabs)[number]>(
+    () => (searchParams.get('view') === 'daily-weekly' ? 'Daily & Weekly Updates' : 'Research Library')
+  );
   const [search, setSearch] = useState(() => searchParams.get('search') || '');
   const [selected, setSelected] = useState<string[]>(() => {
     const values = searchParams.getAll('category')
@@ -22,10 +32,10 @@ export default function Reports() {
       .filter(Boolean);
     return values;
   });
+  const [periodicity, setPeriodicity] = useState<(typeof periodicityOptions)[number]>('All');
   const [reports, setReports] = useState<NormalizedReport[]>([]);
   const [loading, setLoading] = useState(true);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const [hideRoutine, setHideRoutine] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -45,9 +55,12 @@ export default function Reports() {
     };
   }, []);
 
-  const filteredReports = useMemo(() => {
+  const libraryPool = useMemo(() => reports.filter(report => !isRoutine(report)), [reports]);
+  const dailyWeeklyPool = useMemo(() => reports.filter(isRoutine), [reports]);
+
+  const libraryReports = useMemo(() => {
     const term = search.trim().toLowerCase();
-    return reports.filter(report => {
+    return libraryPool.filter(report => {
       const categoryMatch = selected.length === 0 || selected.includes(report.categorySlug);
       const searchMatch = term === '' || [
         report.title,
@@ -56,10 +69,25 @@ export default function Reports() {
         report.documentType,
         report.tags.join(' ')
       ].join(' ').toLowerCase().includes(term);
-      const periodicityMatch = !hideRoutine || (report.documentType !== 'daily' && report.documentType !== 'weekly');
-      return categoryMatch && searchMatch && periodicityMatch;
+      return categoryMatch && searchMatch;
     });
-  }, [reports, search, selected, hideRoutine]);
+  }, [libraryPool, search, selected]);
+
+  const dailyWeeklyReports = useMemo(() => {
+    const term = search.trim().toLowerCase();
+    return dailyWeeklyPool.filter(report => {
+      const periodicityMatch = periodicity === 'All' || report.documentType === periodicity.toLowerCase();
+      const searchMatch = term === '' || [
+        report.title,
+        report.synopsis,
+        report.tags.join(' ')
+      ].join(' ').toLowerCase().includes(term);
+      return periodicityMatch && searchMatch;
+    });
+  }, [dailyWeeklyPool, search, periodicity]);
+
+  const filteredReports = activeView === 'Research Library' ? libraryReports : dailyWeeklyReports;
+  const currentPool = activeView === 'Research Library' ? libraryPool : dailyWeeklyPool;
 
   const toggleCategory = (category: string) => {
     setSelected(current => current.includes(category) ? current.filter(item => item !== category) : [...current, category]);
@@ -67,20 +95,23 @@ export default function Reports() {
 
   useEffect(() => {
     const params = new URLSearchParams();
+    if (activeView === 'Daily & Weekly Updates') {
+      params.set('view', 'daily-weekly');
+    }
     selected.forEach(category => params.append('category', category));
     if (search.trim() !== '') {
       params.set('search', search.trim());
     }
     setSearchParams(params, { replace: true });
-  }, [search, selected, setSearchParams]);
+  }, [search, selected, activeView, setSearchParams]);
 
   const clearFilters = () => {
     setSearch('');
     setSelected([]);
-    setHideRoutine(false);
+    setPeriodicity('All');
   };
 
-  const filterControls = (prefix = '') => (
+  const libraryFilterControls = (prefix = '') => (
     <div className="form-grid">
       <div className="field">
         <label htmlFor={`${prefix}report-search`}>Search</label>
@@ -105,21 +136,42 @@ export default function Reports() {
           </div>
         ))}
       </fieldset>
+      <button className="btn btn-border" type="button" onClick={clearFilters}>Clear Filters</button>
+    </div>
+  );
+
+  const dailyWeeklyFilterControls = (prefix = '') => (
+    <div className="form-grid">
+      <div className="field">
+        <label htmlFor={`${prefix}dw-search`}>Search</label>
+        <input
+          id={`${prefix}dw-search`}
+          value={search}
+          onChange={event => setSearch(event.target.value)}
+          placeholder="Search by title or keyword..."
+        />
+      </div>
       <fieldset className="filter-checks">
         <legend>Frequency</legend>
-        <div className={`checkbox-item${hideRoutine ? ' active' : ''}`}>
-          <input
-            id={`${prefix}hide-routine`}
-            type="checkbox"
-            checked={hideRoutine}
-            onChange={() => setHideRoutine(v => !v)}
-          />
-          <label htmlFor={`${prefix}hide-routine`}>Hide Daily &amp; Weekly Updates</label>
-        </div>
+        {periodicityOptions.map(option => (
+          <div className={`checkbox-item${periodicity === option ? ' active' : ''}`} key={`${prefix}${option}`}>
+            <input
+              id={`${prefix}freq-${option}`}
+              type="radio"
+              name={`${prefix}frequency`}
+              checked={periodicity === option}
+              onChange={() => setPeriodicity(option)}
+            />
+            <label htmlFor={`${prefix}freq-${option}`}>{option}</label>
+          </div>
+        ))}
       </fieldset>
       <button className="btn btn-border" type="button" onClick={clearFilters}>Clear Filters</button>
     </div>
   );
+
+  const filterControls = (prefix = '') =>
+    activeView === 'Research Library' ? libraryFilterControls(prefix) : dailyWeeklyFilterControls(prefix);
 
   return (
     <main>
@@ -131,6 +183,20 @@ export default function Reports() {
 
       <section className="section">
         <div className="container">
+          <div className="report-view-tabs" role="tablist" aria-label="Report views">
+            {viewTabs.map(tab => (
+              <button
+                key={tab}
+                type="button"
+                role="tab"
+                className={`report-view-tab${activeView === tab ? ' active' : ''}`}
+                aria-selected={activeView === tab}
+                onClick={() => setActiveView(tab)}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
           <button className="btn btn-navy filter-mobile" type="button" onClick={() => setIsSheetOpen(true)}>
             Filters
           </button>
@@ -140,8 +206,8 @@ export default function Reports() {
             </aside>
             <section>
               <div className="report-discovery-toolbar">
-                <strong>Research Library</strong>
-                <span className="text-muted">{loading ? 'Loading published reports...' : `Showing ${filteredReports.length} of ${reports.length} reports`}</span>
+                <strong>{activeView}</strong>
+                <span className="text-muted">{loading ? 'Loading published reports...' : `Showing ${filteredReports.length} of ${currentPool.length} reports`}</span>
               </div>
               {filteredReports.length === 0 && (
                 <p className="notice report-filter-empty">No reports match your current filters.</p>

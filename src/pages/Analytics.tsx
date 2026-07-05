@@ -3,11 +3,13 @@ import {
   analyticsSnapshot,
   analyticsSectorOrder,
   type AnalyticsSectorName,
+  type ForecastRow,
 } from '../data/analyticsSnapshot';
 
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const macroTabs = ['Inflation vs MPR', 'GDP Growth'] as const;
+const fixedIncomeTabs = ['LCY Bonds', 'Eurobonds'] as const;
 
 /*
 function sourceStatus(item: object) {
@@ -100,6 +102,7 @@ export default function Analytics() {
   const isAuth = localStorage.getItem('chd_subscriber_auth') === 'true';
 
   const [activeMacroTab, setActiveMacroTab] = useState<(typeof macroTabs)[number]>('Inflation vs MPR');
+  const [activeFixedIncomeTab, setActiveFixedIncomeTab] = useState<(typeof fixedIncomeTabs)[number]>('LCY Bonds');
   const [activeSector, setActiveSector] = useState<AnalyticsSectorName>('Banking');
   const selectedSector = analyticsSnapshot.sectors[activeSector];
 
@@ -168,14 +171,28 @@ export default function Analytics() {
                 </p>
               </div>
               <div className="macro-kpi-grid">
-                {analyticsSnapshot.macroIndicators.map((indicator) => (
-                  <article className="analytics-kpi" key={indicator.label}>
-                    <span>{indicator.label}</span>
-                    <strong>{indicator.value}</strong>
-                    <small>{indicator.change} | {indicator.effectiveDate}</small>
-                  </article>
-                ))}
+                {analyticsSnapshot.macroIndicators.map((indicator) => {
+                  const hasForecast = 'forecast' in indicator && Array.isArray(indicator.forecast);
+                  return (
+                    <article className={`analytics-kpi${hasForecast ? ' has-forecast' : ''}`} key={indicator.label}>
+                      <span>{indicator.label}</span>
+                      <strong>{indicator.value}</strong>
+                      <small>{indicator.change} | {indicator.effectiveDate}</small>
+                      {hasForecast && (
+                        <div className="analytics-kpi-forecast-rows">
+                          {(indicator as typeof indicator & { forecast: ForecastRow[] }).forecast.map((row) => (
+                            <div className={`forecast-row${row.isPlaceholder ? ' is-placeholder' : ''}`} key={row.year}>
+                              <span>{row.year}:</span>
+                              <span>{row.value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </article>
+                  );
+                })}
               </div>
+              <p className="analytics-sources-note">{analyticsSnapshot.macroSourcesNote}</p>
             </div>
           </section>
 
@@ -237,6 +254,65 @@ export default function Analytics() {
           </section>
           */}
 
+          <section className="analytics-section dashboard-panel" id="fixed-income">
+            <div className="analytics-section-heading with-meta">
+              <span className="section-number" aria-hidden="true">02</span>
+              <h2>Fixed Income</h2>
+              <small>{analyticsSnapshot.fixedIncome.effectiveDate}</small>
+            </div>
+            <div className="sector-panel-layout">
+              <aside className="sector-pill-column">
+                <div className="sector-pill-group">
+                  {fixedIncomeTabs.map((tab) => (
+                    <button
+                      className={`sector-pill${activeFixedIncomeTab === tab ? ' active' : ''}`}
+                      type="button"
+                      key={tab}
+                      onClick={() => setActiveFixedIncomeTab(tab)}
+                      aria-pressed={activeFixedIncomeTab === tab}
+                      aria-current={activeFixedIncomeTab === tab ? 'true' : undefined}
+                    >
+                      {tab}
+                    </button>
+                  ))}
+                </div>
+              </aside>
+              <div className="sector-detail-panel">
+                <div className="sector-detail-head">
+                  <h3>{activeFixedIncomeTab}</h3>
+                </div>
+                <div className="analytics-table-scroll">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Bond</th>
+                        <th>Maturity</th>
+                        <th className="num">Coupon (%)</th>
+                        <th className="num">Yield (%)</th>
+                        <th className="num">Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {(activeFixedIncomeTab === 'LCY Bonds'
+                        ? analyticsSnapshot.fixedIncome.lcyBonds
+                        : analyticsSnapshot.fixedIncome.eurobonds
+                      ).map((row, i) => (
+                        <tr key={`${activeFixedIncomeTab}-${i}`}>
+                          <td>{row.bond}</td>
+                          <td>{row.maturity}</td>
+                          <td className="num">{row.coupon}</td>
+                          <td className="num">{row.yield}</td>
+                          <td className="num">{row.price}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="analytics-sources-note">{analyticsSnapshot.fixedIncomeSourcesNote}</p>
+              </div>
+            </div>
+          </section>
+
           <section className="analytics-section dashboard-panel" id="sector-data">
             <div className="analytics-section-heading with-meta">
               <span className="section-number" aria-hidden="true">03</span>
@@ -282,6 +358,7 @@ export default function Analytics() {
                   <p><strong>Sector Commentary</strong></p>
                   <p>{selectedSector.commentary}</p>
                 </div>
+                <p className="analytics-sources-note">{analyticsSnapshot.sectorSourcesNote}</p>
               </div>
             </div>
           </section>
@@ -310,6 +387,7 @@ export default function Analytics() {
                 free-float market capitalisation, and reviewed quarterly.
               </p>
             </details>
+            <p className="analytics-sources-note">{analyticsSnapshot.paramountSourcesNote}</p>
             <div className="analytics-table-scroll">
                 <table>
                   <thead>

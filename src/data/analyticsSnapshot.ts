@@ -1,9 +1,12 @@
+export type ForecastRow = { year: string; value: string; isPlaceholder?: boolean };
+
 export type SnapshotMetric = {
   label: string;
   value: string;
   change?: string;
   effectiveDate?: string;
   sourceStatus?: string;
+  forecast?: ForecastRow[];
 };
 
 export type SnapshotSector = {
@@ -11,6 +14,14 @@ export type SnapshotSector = {
   effectiveDate?: string;
   metrics: SnapshotMetric[];
   commentary: string;
+};
+
+export type FixedIncomeRow = {
+  bond: string;
+  maturity: string;
+  coupon: string;
+  yield: string;
+  price: string;
 };
 
 export const analyticsSnapshot = {
@@ -53,9 +64,42 @@ export const analyticsSnapshot = {
       { label: 'Q1 2026', value: 3.89 },
     ],
   },
+  macroSourcesNote:
+    'Draft — pending confirmation with Nabila Mohammed. GDP, CPI and Policy Rate figures sourced from the National Bureau of Statistics and Central Bank of Nigeria. FX from FMDQ. 2026-2028 figures are Chapel Hill Denham Research house forecasts.',
   macroIndicators: [
-    { label: 'GDP Growth (%)', value: '3.89%', change: '-0.18ppt', effectiveDate: 'Q1 2026' },
-    { label: 'CPI / Inflation (%)', value: '15.93%', change: '+0.24ppt', effectiveDate: '23 May 2026' },
+    {
+      label: 'GDP Growth (%)', value: '3.89%', change: '-0.18ppt', effectiveDate: 'Q1 2026',
+      forecast: [
+        { year: '2025A', value: '4.53%' },
+        { year: '2026F', value: '4.39%' },
+        { year: '2027F', value: '5.01%' },
+        { year: '2028F', value: '—', isPlaceholder: true },
+      ],
+    },
+    {
+      label: 'CPI / Inflation (%)', value: '15.93%', change: '+0.24ppt', effectiveDate: '23 May 2026',
+      forecast: [
+        { year: '2026F', value: '—', isPlaceholder: true },
+        { year: '2027F', value: '—', isPlaceholder: true },
+        { year: '2028F', value: '—', isPlaceholder: true },
+      ],
+    },
+    {
+      label: 'Policy Rate / MPR (%)', value: '26.50%', change: '0.00ppt', effectiveDate: '23 Jun 2026',
+      forecast: [
+        { year: '2026F', value: '—', isPlaceholder: true },
+        { year: '2027F', value: '—', isPlaceholder: true },
+        { year: '2028F', value: '—', isPlaceholder: true },
+      ],
+    },
+    {
+      label: 'FX (USD/NGN)', value: '1,370.64', change: '+0.11%', effectiveDate: '23 Jun 2026',
+      forecast: [
+        { year: '2026F', value: '—', isPlaceholder: true },
+        { year: '2027F', value: '—', isPlaceholder: true },
+        { year: '2028F', value: '—', isPlaceholder: true },
+      ],
+    },
     { label: 'Credit Growth', value: 'N59.98tn', change: '+0.47%', effectiveDate: '23 May 2026' },
     { label: 'Debt/GDP (%)', value: '36.07%', change: '-2.73ppt', effectiveDate: 'Q1 2026' },
   ],
@@ -83,6 +127,27 @@ export const analyticsSnapshot = {
       { ticker: 'SEPLAT', price: '5,240.00', change: '+90.00', percent: '+1.75%', sourceStatus: '' },
     ],
   },
+  fixedIncomeSourcesNote:
+    'Draft — pending confirmation. Local currency (LCY) bond and Eurobond pricing to be sourced from FMDQ. Table structure is in place; figures pending data feed.',
+  fixedIncome: {
+    effectiveDate: 'Pending update',
+    lcyBonds: Array.from({ length: 29 }, (_, i) => ({
+      bond: `FGN Bond ${i + 1}`,
+      maturity: '—',
+      coupon: '—',
+      yield: '—',
+      price: '—',
+    })),
+    eurobonds: Array.from({ length: 10 }, (_, i) => ({
+      bond: `NGERIA Eurobond ${i + 1}`,
+      maturity: '—',
+      coupon: '—',
+      yield: '—',
+      price: '—',
+    })),
+  },
+  sectorSourcesNote:
+    'Draft — pending confirmation. Sector metrics sourced from NGX, sector regulators (CBN, NCC, PenCom, NUPRC) and CHD Research estimates.',
   sectors: {
     Banking: {
       status: 'available',
@@ -140,6 +205,8 @@ export const analyticsSnapshot = {
       commentary: 'Consumer Goods/Agriculture metrics updated.',
     },
   } satisfies Record<string, SnapshotSector>,
+  paramountSourcesNote:
+    'Draft — pending confirmation. Paramount Index is a Chapel Hill Denham Research proprietary benchmark; constituent pricing from NGX.',
   paramount: {
     effectiveDate: 'Q1 2026',
     summary: [

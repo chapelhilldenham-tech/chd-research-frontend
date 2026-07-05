@@ -17,6 +17,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminReports from './pages/admin/AdminReports';
 import AdminReportDetail from './pages/admin/AdminReportDetail';
 import AdminAnalytics from './pages/admin/AdminAnalytics';
+import AdminAnalyticsDraftInputs from './pages/admin/AdminAnalyticsDraftInputs';
 import AdminPriceLists from './pages/admin/AdminPriceLists';
 import AdminAnalysts from './pages/admin/AdminAnalysts';
 import AdminImport from './pages/admin/AdminImport';
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="reset-password" element={<ResetPassword />} />
         <Route path="contact" element={<Contact />} />
       </Route>
+      <Route path="/edit" element={<AdminAnalyticsDraftInputs />} />
       <Route path="/admin/login" element={<AdminLogin />} />
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminDashboard />} />
