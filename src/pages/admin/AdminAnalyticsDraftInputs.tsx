@@ -460,7 +460,7 @@ export default function AdminAnalyticsDraftInputs() {
             </article>
           ))}
           <p className="notice" style={{ gridColumn: '1 / -1' }}>
-            These three figures appear in the homepage credibility strip (the "150+ / 20+ / ₦500bn+" row).
+            These four figures appear in the homepage credibility strip (the "150+ / 7 / 20+ / ₦500bn+" row).
             Labels are fixed; only the values are editable here.
           </p>
         </section>
