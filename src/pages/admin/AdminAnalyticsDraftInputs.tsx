@@ -123,6 +123,8 @@ function defaultSectors(): Record<string, SectorForm> {
   return seed;
 }
 
+type HomepageStat = { label: string; value: string };
+
 interface DraftState {
   headlineKpis: SimpleKpi[];
   creditGrowth: SimpleKpi;
@@ -142,6 +144,8 @@ interface DraftState {
   fixedIncomeSourcesNote: string;
   sectorSourcesNote: string;
   paramountSourcesNote: string;
+  paramountYtd: SimpleKpi;
+  homepageStats: HomepageStat[];
 }
 
 function defaultDraft(): DraftState {
@@ -174,6 +178,12 @@ function defaultDraft(): DraftState {
     fixedIncomeSourcesNote: 'Local currency (LCY) bond and Eurobond pricing sourced from FMDQ.',
     sectorSourcesNote: 'Sector metrics sourced from NGX, sector regulators (CBN, NCC, PenCom, NUPRC) and CHD Research estimates.',
     paramountSourcesNote: 'Paramount Index is a Chapel Hill Denham Research proprietary benchmark; constituent pricing from NGX.',
+    paramountYtd: { label: 'Paramount YTD', value: '+11.42%', change: '', effectiveDate: '' },
+    homepageStats: [
+      { label: 'Research Reports Published', value: '150+' },
+      { label: 'Years of Market Intelligence', value: '20+' },
+      { label: 'Assets Under Advisory', value: '\u20a6500bn+' },
+    ],
   };
 }
 
@@ -186,11 +196,13 @@ function mergeWithDefaults(payload: Partial<DraftState> | null | undefined): Dra
     sectors: payload.sectors && Object.keys(payload.sectors).length > 0 ? payload.sectors : defaults.sectors,
     lcyBonds: payload.lcyBonds && payload.lcyBonds.length > 0 ? payload.lcyBonds : defaults.lcyBonds,
     eurobonds: payload.eurobonds && payload.eurobonds.length > 0 ? payload.eurobonds : defaults.eurobonds,
+    homepageStats: payload.homepageStats && payload.homepageStats.length > 0 ? payload.homepageStats : defaults.homepageStats,
   };
 }
 
 const tabs = [
   'Headline KPIs',
+  'Homepage Stats',
   'Macro Forecasts',
   'Fixed Income',
   'Sector Metrics',
@@ -232,6 +244,13 @@ export default function AdminAnalyticsDraftInputs() {
     setDraft(current => ({
       ...current,
       headlineKpis: current.headlineKpis.map((k, i) => i === index ? { ...k, [field]: value } : k),
+    }));
+  }
+
+  function updateHomepageStat(index: number, value: string) {
+    setDraft(current => ({
+      ...current,
+      homepageStats: current.homepageStats.map((s, i) => i === index ? { ...s, value } : s),
     }));
   }
 
@@ -416,6 +435,33 @@ export default function AdminAnalyticsDraftInputs() {
               <div className="field"><label>Effective Date</label><input value={draft.debtGdp.effectiveDate} onChange={e => setDraft(c => ({ ...c, debtGdp: { ...c.debtGdp, effectiveDate: e.target.value } }))} /></div>
             </div>
           </article>
+          <article className="panel">
+            <h3>Paramount YTD</h3>
+            <div className="form-grid">
+              <div className="field"><label>Value</label><input value={draft.paramountYtd.value} onChange={e => setDraft(c => ({ ...c, paramountYtd: { ...c.paramountYtd, value: e.target.value } }))} /></div>
+            </div>
+            <p className="notice" style={{ marginTop: 8 }}>Used in the homepage ticker strip.</p>
+          </article>
+        </section>
+      )}
+
+      {activeTab === 'Homepage Stats' && (
+        <section className="grid-3" style={{ marginTop: 20 }}>
+          {draft.homepageStats.map((stat, index) => (
+            <article className="panel" key={stat.label}>
+              <h3>{stat.label}</h3>
+              <div className="form-grid">
+                <div className="field">
+                  <label>Value</label>
+                  <input value={stat.value} onChange={e => updateHomepageStat(index, e.target.value)} />
+                </div>
+              </div>
+            </article>
+          ))}
+          <p className="notice" style={{ gridColumn: '1 / -1' }}>
+            These three figures appear in the homepage credibility strip (the "150+ / 20+ / ₦500bn+" row).
+            Labels are fixed; only the values are editable here.
+          </p>
         </section>
       )}
 

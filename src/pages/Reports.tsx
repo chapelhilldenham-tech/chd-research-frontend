@@ -181,7 +181,7 @@ export default function Reports() {
         </div>
       </header>
 
-      <section className="section">
+      <section className="section reports-content-section">
         <div className="container">
           <div className="report-view-tabs" role="tablist" aria-label="Report views">
             {viewTabs.map(tab => (

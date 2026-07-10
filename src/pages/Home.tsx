@@ -3,36 +3,84 @@ import AnalystStrip from '../components/AnalystStrip';
 import ReportCard from '../components/ReportCard';
 import Icon from '../components/Icon';
 import { useEffect, useState } from 'react';
-import { fetchPublicAnalysts, fetchPublicResearchReportBundle } from '../lib/supabase';
+import { fetchPublicAnalysts, fetchPublicResearchReportBundle, fetchMarketSnapshot } from '../lib/supabase';
 import type { Analyst } from '../data/mockData';
 import type { NormalizedReport } from '../types/research';
+
+interface HomepageStat { label: string; value: string }
+interface MarketKpi { label: string; value: string; change: string; effectiveDate: string }
+
+const defaultCredStats: HomepageStat[] = [
+  { label: 'Research Reports Published', value: '150+' },
+  { label: 'Years of Market Intelligence', value: '20+' },
+  { label: 'Assets Under Advisory', value: '\u20a6500bn+' },
+];
+
+const defaultHeadlineKpis: MarketKpi[] = [
+  { label: 'NGX ASI', value: '240,743.19', change: '+1.06%', effectiveDate: '23 Jun 2026' },
+  { label: 'FX', value: '1,370.64', change: '+0.11%', effectiveDate: '23 Jun 2026' },
+  { label: 'Inflation', value: '15.93%', change: '+0.24ppt', effectiveDate: '23 May 2026' },
+  { label: 'MPR', value: '26.50%', change: '0.00ppt', effectiveDate: '23 Jun 2026' },
+  { label: 'Commodities', value: 'Brent $76.80', change: '-0.93%', effectiveDate: '23 Jun 2026' },
+];
+
+const defaultParamountYtd: MarketKpi = { label: 'Paramount YTD', value: '+11.42%', change: '', effectiveDate: '' };
+
+function findKpi(kpis: MarketKpi[], label: string): MarketKpi | undefined {
+  return kpis.find(k => k.label === label);
+}
 
 export default function Home() {
   const [latestReports, setLatestReports] = useState<NormalizedReport[]>([]);
   const [analysts, setAnalysts] = useState<Analyst[]>([]);
+  const [credStats, setCredStats] = useState<HomepageStat[]>(defaultCredStats);
+  const [headlineKpis, setHeadlineKpis] = useState<MarketKpi[]>(defaultHeadlineKpis);
+  const [paramountYtd, setParamountYtd] = useState<MarketKpi>(defaultParamountYtd);
 
   useEffect(() => {
     let mounted = true;
     async function loadData() {
-      const [reportsData, analystsData] = await Promise.all([
+      const [reportsData, analystsData, dashboardSnapshot] = await Promise.all([
         fetchPublicResearchReportBundle(),
-        fetchPublicAnalysts()
+        fetchPublicAnalysts(),
+        fetchMarketSnapshot('analytics_dashboard'),
       ]);
-      
+
       if (!mounted) return;
-      
+
       if (reportsData) {
         setLatestReports(reportsData.slice(0, 7));
       }
-      
+
       if (analystsData) {
         setAnalysts(analystsData as Analyst[]);
       }
-      
+
+      const liveStats = dashboardSnapshot?.payload?.homepageStats as HomepageStat[] | undefined;
+      if (liveStats && liveStats.length > 0) {
+        setCredStats(liveStats);
+      }
+
+      const liveKpis = dashboardSnapshot?.payload?.headlineKpis as MarketKpi[] | undefined;
+      if (liveKpis && liveKpis.length > 0) {
+        setHeadlineKpis(liveKpis);
+      }
+
+      const liveParamountYtd = dashboardSnapshot?.payload?.paramountYtd as MarketKpi | undefined;
+      if (liveParamountYtd && liveParamountYtd.value) {
+        setParamountYtd(liveParamountYtd);
+      }
+
     }
     loadData();
     return () => { mounted = false; };
   }, []);
+
+  const ngxAsi = findKpi(headlineKpis, 'NGX ASI') ?? defaultHeadlineKpis[0];
+  const fx = findKpi(headlineKpis, 'FX') ?? defaultHeadlineKpis[1];
+  const inflation = findKpi(headlineKpis, 'Inflation') ?? defaultHeadlineKpis[2];
+  const mpr = findKpi(headlineKpis, 'MPR') ?? defaultHeadlineKpis[3];
+  const commodities = findKpi(headlineKpis, 'Commodities') ?? defaultHeadlineKpis[4];
 
   return (
     <main className="enterprise-home">
@@ -74,91 +122,53 @@ export default function Home() {
 
       <div className="ticker-strip">
         <div className="ticker-content">
-          <span className="ticker-item">
-            <span className="ticker-label">NGX ASI</span>
-            <span className="ticker-value">240,743</span>
-            <span className="ticker-change positive">▲1.06%</span>
-          </span>
-          <span className="ticker-divider">|</span>
-          <span className="ticker-item">
-            <span className="ticker-label">USD/NGN</span>
-            <span className="ticker-value">1,370.64</span>
-          </span>
-          <span className="ticker-divider">|</span>
-          <span className="ticker-item">
-            <span className="ticker-label">MPR</span>
-            <span className="ticker-value">26.50%</span>
-          </span>
-          <span className="ticker-divider">|</span>
-          <span className="ticker-item">
-            <span className="ticker-label">Inflation</span>
-            <span className="ticker-value">15.93%</span>
-          </span>
-          <span className="ticker-divider">|</span>
-          <span className="ticker-item">
-            <span className="ticker-label">Paramount YTD</span>
-            <span className="ticker-value">+11.42%</span>
-            <span className="ticker-change positive">▲</span>
-          </span>
-          <span className="ticker-divider">|</span>
-          <span className="ticker-item">
-            <span className="ticker-label">Brent Crude</span>
-            <span className="ticker-value">$74.20</span>
-          </span>
-
-          <span className="ticker-item">
-            <span className="ticker-label">NGX ASI</span>
-            <span className="ticker-value">240,743</span>
-            <span className="ticker-change positive">▲1.06%</span>
-          </span>
-          <span className="ticker-divider">|</span>
-          <span className="ticker-item">
-            <span className="ticker-label">USD/NGN</span>
-            <span className="ticker-value">1,370.64</span>
-          </span>
-          <span className="ticker-divider">|</span>
-          <span className="ticker-item">
-            <span className="ticker-label">MPR</span>
-            <span className="ticker-value">26.50%</span>
-          </span>
-          <span className="ticker-divider">|</span>
-          <span className="ticker-item">
-            <span className="ticker-label">Inflation</span>
-            <span className="ticker-value">15.93%</span>
-          </span>
-          <span className="ticker-divider">|</span>
-          <span className="ticker-item">
-            <span className="ticker-label">Paramount YTD</span>
-            <span className="ticker-value">+11.42%</span>
-            <span className="ticker-change positive">▲</span>
-          </span>
-          <span className="ticker-divider">|</span>
-          <span className="ticker-item">
-            <span className="ticker-label">Brent Crude</span>
-            <span className="ticker-value">$74.20</span>
-          </span>
+          {[0, 1].map(pass => (
+            <span key={pass} style={{ display: 'contents' }}>
+              <span className="ticker-item">
+                <span className="ticker-label">NGX ASI</span>
+                <span className="ticker-value">{ngxAsi.value}</span>
+                <span className={`ticker-change ${ngxAsi.change.startsWith('-') ? 'negative' : 'positive'}`}>{ngxAsi.change.startsWith('-') ? '▼' : '▲'}{ngxAsi.change.replace(/^[+-]/, '')}</span>
+              </span>
+              <span className="ticker-divider">|</span>
+              <span className="ticker-item">
+                <span className="ticker-label">USD/NGN</span>
+                <span className="ticker-value">{fx.value}</span>
+              </span>
+              <span className="ticker-divider">|</span>
+              <span className="ticker-item">
+                <span className="ticker-label">MPR</span>
+                <span className="ticker-value">{mpr.value}</span>
+              </span>
+              <span className="ticker-divider">|</span>
+              <span className="ticker-item">
+                <span className="ticker-label">Inflation</span>
+                <span className="ticker-value">{inflation.value}</span>
+              </span>
+              <span className="ticker-divider">|</span>
+              <span className="ticker-item">
+                <span className="ticker-label">Paramount YTD</span>
+                <span className="ticker-value">{paramountYtd.value}</span>
+                <span className={`ticker-change ${paramountYtd.value.startsWith('-') ? 'negative' : 'positive'}`}>{paramountYtd.value.startsWith('-') ? '▼' : '▲'}</span>
+              </span>
+              <span className="ticker-divider">|</span>
+              <span className="ticker-item">
+                <span className="ticker-label">Brent Crude</span>
+                <span className="ticker-value">{commodities.value.replace(/^Brent\s*/i, '')}</span>
+              </span>
+            </span>
+          ))}
         </div>
       </div>
 
       <section className="credibility-strip">
         <div className="container">
-          <div className="cred-grid">
-            <div className="cred-card">
-              <span className="cred-val">150+</span>
-              <span className="cred-label">Research Reports Published</span>
-            </div>
-            <div className="cred-card">
-              <span className="cred-val">6</span>
-              <span className="cred-label">Sectors Under Coverage</span>
-            </div>
-            <div className="cred-card">
-              <span className="cred-val">10+</span>
-              <span className="cred-label">Years of Market Intelligence</span>
-            </div>
-            <div className="cred-card">
-              <span className="cred-val">₦500bn+</span>
-              <span className="cred-label">Assets Under Advisory</span>
-            </div>
+          <div className="cred-grid cred-grid-3">
+            {credStats.map(stat => (
+              <div className="cred-card" key={stat.label}>
+                <span className="cred-val">{stat.value}</span>
+                <span className="cred-label">{stat.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -191,18 +201,18 @@ export default function Home() {
             <div className="teaser-kpi-row">
               <div className="teaser-kpi">
                 <span className="teaser-kpi-label">NGX ASI</span>
-                <span className="teaser-kpi-value">240,743</span>
-                <span className="teaser-kpi-change positive">+1.06%</span>
+                <span className="teaser-kpi-value">{ngxAsi.value}</span>
+                <span className={`teaser-kpi-change ${ngxAsi.change.startsWith('-') ? 'negative' : 'positive'}`}>{ngxAsi.change}</span>
               </div>
               <div className="teaser-kpi">
                 <span className="teaser-kpi-label">Inflation</span>
-                <span className="teaser-kpi-value">15.93%</span>
-                <span className="teaser-kpi-change negative">+0.24ppt</span>
+                <span className="teaser-kpi-value">{inflation.value}</span>
+                <span className={`teaser-kpi-change ${inflation.change.startsWith('-') ? 'positive' : 'negative'}`}>{inflation.change}</span>
               </div>
               <div className="teaser-kpi">
                 <span className="teaser-kpi-label">MPR</span>
-                <span className="teaser-kpi-value">26.50%</span>
-                <span className="teaser-kpi-change neutral">Unchanged</span>
+                <span className="teaser-kpi-value">{mpr.value}</span>
+                <span className="teaser-kpi-change neutral">{mpr.change === '0.00ppt' ? 'Unchanged' : mpr.change}</span>
               </div>
             </div>
           </div>

@@ -11,16 +11,21 @@ function formatDate(iso: string): string {
 
 function getCategoryBadge(categorySlug: string): { label: string, badgeClass: string } {
   switch (categorySlug) {
+    case 'equity-research':
     case 'equity':
-      return { label: 'Equity', badgeClass: 'badge-equity' };
+      return { label: 'Equity Research', badgeClass: 'badge-equity' };
+    case 'fixed-income':
     case 'fixed_income':
       return { label: 'Fixed Income', badgeClass: 'badge-fixed-income' };
     case 'macro':
       return { label: 'Macro', badgeClass: 'badge-macro' };
     case 'sector':
-      return { label: 'Sector', badgeClass: 'badge-sector' };
+    case 'sector-research':
+      return { label: 'Sector Research', badgeClass: 'badge-sector' };
     case 'index':
       return { label: 'Index', badgeClass: 'badge-index' };
+    case 'research-report':
+      return { label: 'Market Update', badgeClass: 'badge-market-update' };
     default:
       return { label: 'Research', badgeClass: 'badge-other' };
   }
@@ -48,7 +53,9 @@ export default function ReportCard({ report, compact = false }: { report: Normal
     >
       <span className={`report-category-badge ${badgeClass}`}>{label}</span>
       <div className="report-card-top">
-        <span className="report-meta">{report.documentType}</span>
+        {report.documentType && report.documentType !== 'research' && (
+          <span className="report-meta">{report.documentType}</span>
+        )}
         {report.downloadAvailable ? (
           <span className="report-access-badge access-public">Public</span>
         ) : (

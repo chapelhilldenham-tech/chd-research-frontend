@@ -30,6 +30,14 @@
 .report-card h3{font-size:var(--text-lg);margin:10px 0 12px}
 .report-card p{color:rgba(16,37,48,.72)}
 .report-meta{font-size:var(--text-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--chd-bronze);font-weight:700}
+.report-category-badge{display:inline-flex;align-items:center;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px;width:max-content}
+.badge-equity{background:rgba(16,37,48,.08);color:var(--chd-navy)}
+.badge-fixed-income{background:rgba(185,114,49,.14);color:var(--chd-bronze)}
+.badge-sector{background:rgba(47,111,94,.14);color:#2f6f5e}
+.badge-market-update{background:rgba(16,37,48,.06);color:#5a6b73}
+.badge-macro{background:rgba(154,116,20,.14);color:#8a6d10}
+.badge-index{background:rgba(90,50,120,.12);color:#5a3278}
+.badge-other{background:rgba(16,37,48,.06);color:#5a6b73}
 .report-byline{display:flex;justify-content:space-between;gap:12px;margin:0;font-size:var(--text-sm);color:rgba(16,37,48,.6)}
 .report-card>.report-byline{margin-top:auto;padding-top:18px}
 .report-card>.text-link{margin-top:14px}
@@ -586,7 +594,7 @@ button:disabled,.btn:disabled{opacity:.62;cursor:not-allowed;transform:none}
 #macro-desk{grid-column:span 2;height:420px;overflow:hidden}
 #macro-desk .analytics-section-heading{margin-bottom:16px}
 .macro-layout{grid-template-columns:65% 35%;gap:24px;align-items:stretch}
-.macro-panel-main{min-width:0;display:flex;flex-direction:column}
+.macro-panel-main{min-width:0;display:flex;flex-direction:column;align-self:start}
 #macro-desk .chart-shell-tall{height:260px;flex:0 0 260px}
 #macro-desk .analytics-commentary{height:100px;max-width:none;overflow:hidden}
 #macro-desk .macro-kpi-grid{grid-template-columns:1fr 1fr;gap:16px;align-content:start}
@@ -732,7 +740,7 @@ button:disabled,.btn:disabled{opacity:.62;cursor:not-allowed;transform:none}
 .analytics-page .analytics-dashboard-grid{display:block;margin-top:24px}
 .analytics-page .analytics-section.dashboard-panel{box-sizing:border-box;width:100%;min-width:0;margin-top:24px;padding:20px;overflow:visible}
 .analytics-page .analytics-section.dashboard-panel:first-child{margin-top:0}
-.analytics-page #macro-desk,.analytics-page #market-data,.analytics-page #sector-data,.analytics-page #paramount-index{height:auto;grid-column:auto;overflow:visible}
+.analytics-page #macro-desk,.analytics-page #market-data,.analytics-page #sector-data,.analytics-page #fixed-income,.analytics-page #paramount-index{height:auto;grid-column:auto;overflow:visible}
 .analytics-page .macro-layout,.analytics-page .market-layout,.analytics-page .sector-panel-layout{display:block;min-width:0}
 .analytics-page .macro-panel-main,.analytics-page .market-layout>div,.analytics-page .sector-detail-panel{min-width:0}
 .analytics-page .chart-shell{width:100%;min-width:0;overflow:hidden;position:relative}
@@ -820,7 +828,7 @@ button:disabled,.btn:disabled{opacity:.62;cursor:not-allowed;transform:none}
 
 @media(min-width:1280px){
 .analytics-page .analytics-dashboard-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}
-.analytics-page #macro-desk,.analytics-page #market-data,.analytics-page #sector-data,.analytics-page #paramount-index{grid-column:1/-1}
+.analytics-page #macro-desk,.analytics-page #market-data,.analytics-page #sector-data,.analytics-page #fixed-income,.analytics-page #paramount-index{grid-column:1/-1}
 .analytics-page .macro-layout{grid-template-columns:65fr 35fr}
 .analytics-page .market-layout{grid-template-columns:62fr 38fr}
 .analytics-page .market-stat-stack{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -857,6 +865,7 @@ button:disabled,.btn:disabled{opacity:.62;cursor:not-allowed;transform:none}
 .report-card{min-height:430px;padding:26px}
 .research-report-card{min-height:360px;padding:22px;border-top:3px solid rgba(185,114,49,.72)}
 .report-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.report-card-top .report-access-badge{margin-left:auto}
 .report-access-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(16,37,48,.48);border:1px solid rgba(16,37,48,.10);border-radius:var(--radius-sm);background:rgba(16,37,48,.03)}
 .research-report-card.locked .report-access-label{border-color:rgba(185,114,49,.22);background:#fbf7f2;color:var(--chd-bronze)}
 .report-card h3{font-size:clamp(22px,2vw,30px);line-height:1.05;margin:14px 0 14px}
@@ -1039,6 +1048,14 @@ button:disabled,.btn:disabled{opacity:.62;cursor:not-allowed;transform:none}
 .hero-actions .text-link:hover {
   color: #fff;
 }
+.hero-actions .btn-border {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.55);
+}
+.hero-actions .btn-border:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #fff;
+}
 
 .hero-latest-panel {
   background: rgba(255, 255, 255, 0.05);
@@ -1097,6 +1114,9 @@ button:disabled,.btn:disabled{opacity:.62;cursor:not-allowed;transform:none}
   justify-content: center;
   gap: 80px;
   flex-wrap: wrap;
+}
+.cred-grid-3 {
+  gap: 120px;
 }
 .cred-card {
   display: flex;

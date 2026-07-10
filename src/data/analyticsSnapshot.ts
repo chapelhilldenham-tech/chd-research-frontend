@@ -250,6 +250,7 @@ export const analyticsSnapshot = {
       {"label": "2025-09", "paramount": 430.95, "ngx30": 278.04, "ngxAllShare": 343.84},
       {"label": "2025-12", "paramount": 453.73, "ngx30": 302.66, "ngxAllShare": 374.93},
       {"label": "2026-03", "paramount": 607.36, "ngx30": 389.77, "ngxAllShare": 484.98},
+      {"label": "2026-06", "paramount": 700.87, "ngx30": 444.24, "ngxAllShare": 552.76},
     ],
     performance: [
       { index: 'Paramount', '1YR': '85%', '2YR': '120%', '3YR': '354%', '5YR': '426%' },
