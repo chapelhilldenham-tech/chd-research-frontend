@@ -35,9 +35,7 @@ function getCategoryBadge(categorySlug: string): { label: string, badgeClass: st
 
 export default function ReportCard({ report, compact = false }: { report: NormalizedReport, compact?: boolean }) {
   const navigate = useNavigate();
-  const isSpecialCategory = ['sector', 'strategy-outlook'].includes(report.categorySlug);
-  const isFirstTwo = report.id === '36a8fd3d-b4f0-4fa8-9e67-d8687fa13c01' || report.id === '36a8fd3d-b4f0-4fa8-9e67-d8687fa13c02' || report.slug === '2026-outlook-final' || report.slug === 'q1-2025-review-tai';
-  const locked = isSpecialCategory ? !isFirstTwo : (report.isFallback && !report.downloadAvailable);
+  const locked = ['sector', 'strategy-outlook'].includes(report.categorySlug) ? true : (report.isFallback && !report.downloadAvailable);
   const classNames = `report-card research-report-card report-card-hoverable ${compact ? 'report-card-compact' : ''} ${locked ? 'locked' : ''}`;
   const { label, badgeClass } = getCategoryBadge(report.categorySlug);
 

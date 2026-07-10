@@ -59,9 +59,7 @@ export default function ReportDetail() {
 
   const relatedReports = relatedReportsFromList(report, reportList);
   const isAuth = localStorage.getItem('chd_subscriber_auth') === 'true';
-  const isSpecialCategory = ['sector', 'strategy-outlook'].includes(report.categorySlug);
-  const isFirstTwo = report.id === '36a8fd3d-b4f0-4fa8-9e67-d8687fa13c01' || report.id === '36a8fd3d-b4f0-4fa8-9e67-d8687fa13c02' || report.slug === '2026-outlook-final' || report.slug === 'q1-2025-review-tai';
-  const naturallyLocked = isSpecialCategory ? !isFirstTwo : (report.isFallback && !report.downloadAvailable);
+  const naturallyLocked = ['sector', 'strategy-outlook'].includes(report.categorySlug) ? true : (report.isFallback && !report.downloadAvailable);
   const isLocked = naturallyLocked && !isAuth;
 
   return (

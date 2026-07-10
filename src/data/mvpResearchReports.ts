@@ -3423,8 +3423,8 @@ export const mvpResearchReports: NormalizedReport[] = [
     ],
     "tags": [],
     "documentType": "research",
-    "isFallback": false,
-    "downloadAvailable": true,
+    "isFallback": true,
+    "downloadAvailable": false,
     "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/2026-outlook-final.pdf"
   },
   {
@@ -3445,8 +3445,8 @@ export const mvpResearchReports: NormalizedReport[] = [
     ],
     "tags": [],
     "documentType": "research",
-    "isFallback": false,
-    "downloadAvailable": true,
+    "isFallback": true,
+    "downloadAvailable": false,
     "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/q1-2025-review-tai.pdf"
   },
   {
