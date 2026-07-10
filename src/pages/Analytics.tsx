@@ -504,15 +504,18 @@ export default function Analytics() {
                     </tr>
                   </thead>
                   <tbody>
-                    {paramountPerformance.map((row) => (
-                      <tr key={row.index}>
-                        <td>{row.index}</td>
-                        <td className="num" style={{ color: row['1YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-navy)' }}>{row['1YR']}</td>
-                        <td className="num" style={{ color: row['2YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-success)' }}>{row['2YR']}</td>
-                        <td className="num" style={{ color: row['3YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-navy)' }}>{row['3YR']}</td>
-                        <td className="num" style={{ color: row['5YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-navy)' }}>{row['5YR']}</td>
-                      </tr>
-                    ))}
+                    {paramountPerformance.map((row) => {
+                      const isParamount = row.index === 'Paramount';
+                      return (
+                        <tr key={row.index}>
+                          <td>{row.index}</td>
+                          <td className="num" style={{ color: row['1YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-navy)' }}>{row['1YR']}</td>
+                          <td className="num" style={{ color: row['2YR'].startsWith('-') ? 'var(--color-danger)' : (isParamount ? 'var(--color-success)' : 'var(--color-navy)') }}>{row['2YR']}</td>
+                          <td className="num" style={{ color: row['3YR'].startsWith('-') ? 'var(--color-danger)' : (isParamount ? 'var(--color-success)' : 'var(--color-navy)') }}>{row['3YR']}</td>
+                          <td className="num" style={{ color: row['5YR'].startsWith('-') ? 'var(--color-danger)' : (isParamount ? 'var(--color-success)' : 'var(--color-navy)') }}>{row['5YR']}</td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
