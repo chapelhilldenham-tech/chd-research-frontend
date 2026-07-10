@@ -3466,8 +3466,8 @@ export const mvpResearchReports: NormalizedReport[] = [
     ],
     "tags": [],
     "documentType": "research",
-    "isFallback": false,
-    "downloadAvailable": true,
+    "isFallback": true,
+    "downloadAvailable": false,
     "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/agriculture-sector-report.pdf"
   },
   {
@@ -3488,8 +3488,8 @@ export const mvpResearchReports: NormalizedReport[] = [
     ],
     "tags": [],
     "documentType": "research",
-    "isFallback": false,
-    "downloadAvailable": true,
+    "isFallback": true,
+    "downloadAvailable": false,
     "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/banking-sector-update-dovish-cycle.pdf"
   },
   {
@@ -3510,8 +3510,8 @@ export const mvpResearchReports: NormalizedReport[] = [
     ],
     "tags": [],
     "documentType": "research",
-    "isFallback": false,
-    "downloadAvailable": true,
+    "isFallback": true,
+    "downloadAvailable": false,
     "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/forbearance-report-updated-2.pdf"
   },
   {
@@ -3532,8 +3532,8 @@ export const mvpResearchReports: NormalizedReport[] = [
     ],
     "tags": [],
     "documentType": "research",
-    "isFallback": false,
-    "downloadAvailable": true,
+    "isFallback": true,
+    "downloadAvailable": false,
     "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/the-nigerian-banking-paradox.pdf"
   }
 ];

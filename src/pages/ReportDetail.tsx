@@ -59,7 +59,10 @@ export default function ReportDetail() {
 
   const relatedReports = relatedReportsFromList(report, reportList);
   const isAuth = localStorage.getItem('chd_subscriber_auth') === 'true';
-  const isLocked = report.isFallback && !report.downloadAvailable && !isAuth;
+  const isSpecialCategory = ['sector', 'strategy-outlook'].includes(report.categorySlug);
+  const isFirstTwo = report.id === '36a8fd3d-b4f0-4fa8-9e67-d8687fa13c01' || report.id === '36a8fd3d-b4f0-4fa8-9e67-d8687fa13c02' || report.slug === '2026-outlook-final' || report.slug === 'q1-2025-review-tai';
+  const naturallyLocked = isSpecialCategory ? !isFirstTwo : (report.isFallback && !report.downloadAvailable);
+  const isLocked = naturallyLocked && !isAuth;
 
   return (
     <main>
@@ -77,7 +80,7 @@ export default function ReportDetail() {
             </Link>
             <div className="report-detail-kicker">
               <span className="report-meta">{report.documentType}</span>
-              <span className="report-access-label">{report.isFallback && !report.downloadAvailable ? 'SUBSCRIBER' : 'PUBLIC'}</span>
+              <span className="report-access-label">{naturallyLocked ? 'SUBSCRIBER' : 'PUBLIC'}</span>
             </div>
             <h1>{report.title}</h1>
             <dl className="report-detail-facts">
