@@ -35,8 +35,8 @@ function getCategoryBadge(categorySlug: string): { label: string, badgeClass: st
 
 export default function ReportCard({ report, compact = false }: { report: NormalizedReport, compact?: boolean }) {
   const navigate = useNavigate();
-  const locked = ['sector', 'strategy-outlook'].includes(report.categorySlug) ? true : (report.isFallback && !report.downloadAvailable);
-  const classNames = `report-card research-report-card report-card-hoverable ${compact ? 'report-card-compact' : ''} ${locked ? 'locked' : ''}`;
+  const isSubscriberOnly = ['sector', 'sector-research', 'strategy-outlook'].includes(report.categorySlug);
+  const classNames = `report-card research-report-card report-card-hoverable ${compact ? 'report-card-compact' : ''}`;
   const { label, badgeClass } = getCategoryBadge(report.categorySlug);
 
   const handleCardClick = (event: MouseEvent<HTMLElement>) => {
@@ -58,10 +58,10 @@ export default function ReportCard({ report, compact = false }: { report: Normal
         {report.documentType && report.documentType !== 'research' && (
           <span className="report-meta">{report.documentType}</span>
         )}
-        {!locked ? (
-          <span className="report-access-badge access-public">Public</span>
-        ) : (
+        {isSubscriberOnly ? (
           <span className="report-access-badge access-subscriber">Subscriber</span>
+        ) : (
+          <span className="report-access-badge access-public">Public</span>
         )}
       </div>
       <h3 title={report.title}>{report.title}</h3>
@@ -90,21 +90,11 @@ export default function ReportCard({ report, compact = false }: { report: Normal
           {report.tags.slice(0, 3).map(tag => <span key={tag}>{tag}</span>)}
         </div>
       )}
-      {locked ? (
-        <div className="locked-panel report-action" style={{ marginTop: 'auto' }}>
-          <strong>Subscriber Access Required</strong>
-          <div className="locked-panel-links">
-            <Link className="text-link" to={`/report/${report.id}`}>View Details</Link>
-            <Link className="btn btn-bronze btn-sm" to="/subscribe">Subscribe</Link>
-          </div>
-        </div>
-      ) : (
-        <div className="report-card-actions report-action" style={{ marginTop: 'auto' }}>
-          <Link className="report-view-link" to={`/report/${report.id}`}>
-            View Details <Icon name="arrow" />
-          </Link>
-        </div>
-      )}
+      <div className="report-card-actions report-action" style={{ marginTop: 'auto' }}>
+        <Link className="report-view-link" to={`/report/${report.id}`}>
+          View Details <Icon name="arrow" />
+        </Link>
+      </div>
     </article>
   );
 }

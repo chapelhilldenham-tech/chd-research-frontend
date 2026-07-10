@@ -1,4 +1,4 @@
-// Temporary MVP fallback content
+﻿// Temporary MVP fallback content
 import type { NormalizedReport } from "../types/research";
 
 export const mvpResearchReports: NormalizedReport[] = [
@@ -907,12 +907,12 @@ export const mvpResearchReports: NormalizedReport[] = [
   {
     "id": "codex_nestl-company-update-2025_2026-03-03",
     "slug": "nestl-company-update-2025",
-    "title": "Nestlé Company Update 2025",
+    "title": "NestlÃ© Company Update 2025",
     "category": "Research Report",
     "categorySlug": "research-report",
     "publishedAt": "2026-03-03T00:00:00Z",
-    "summary": "Legacy research report document staged for manual review: Nestlé Company Update 2025.",
-    "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Nestlé Company Update 2025.",
+    "summary": "Legacy research report document staged for manual review: NestlÃ© Company Update 2025.",
+    "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: NestlÃ© Company Update 2025.",
     "analysts": [],
     "tags": [],
     "documentType": "PDF",
@@ -1626,12 +1626,12 @@ export const mvpResearchReports: NormalizedReport[] = [
   {
     "id": "codex_nestl-nigeria-plc-9m-25-initial-comments_2025-10-29",
     "slug": "nestl-nigeria-plc-9m-25-initial-comments",
-    "title": "Nestlé Nigeria Plc 9M - 25 Initial Comments",
+    "title": "NestlÃ© Nigeria Plc 9M - 25 Initial Comments",
     "category": "Equity Research",
     "categorySlug": "equity-research",
     "publishedAt": "2025-10-29T00:00:00Z",
-    "summary": "Legacy equity research document staged for manual review: Nestlé Nigeria Plc 9M - 25 Initial Comments.",
-    "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: Nestlé Nigeria Plc 9M - 25 Initial Comments.",
+    "summary": "Legacy equity research document staged for manual review: NestlÃ© Nigeria Plc 9M - 25 Initial Comments.",
+    "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: NestlÃ© Nigeria Plc 9M - 25 Initial Comments.",
     "analysts": [],
     "tags": [
       "equity research"
@@ -3535,5 +3535,69 @@ export const mvpResearchReports: NormalizedReport[] = [
     "isFallback": true,
     "downloadAvailable": false,
     "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/the-nigerian-banking-paradox.pdf"
+  },
+  {
+    "id": "mpc_february-2026-mpc-review",
+    "slug": "february-2026-mpc-review",
+    "title": "February 2026 MPC Review",
+    "category": "Fixed Income",
+    "categorySlug": "fixed-income",
+    "publishedAt": "2026-02-28T00:00:00Z",
+    "summary": "Chapel Hill Denham Research review of the February 2026 MPC meeting.",
+    "synopsis": "Chapel Hill Denham Research review of the February 2026 MPC meeting.",
+    "analysts": [{ "id": "6", "name": "Chapel Hill Denham Research" }],
+    "tags": ["monetary policy", "fixed income", "MPC"],
+    "documentType": "research",
+    "isFallback": false,
+    "downloadAvailable": true,
+    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/february-2026-mpc-review.pdf"
+  },
+  {
+    "id": "mpc_may-2025-mpc-report",
+    "slug": "may-2025-mpc-report",
+    "title": "May 2025 MPC Report",
+    "category": "Fixed Income",
+    "categorySlug": "fixed-income",
+    "publishedAt": "2025-05-31T00:00:00Z",
+    "summary": "Chapel Hill Denham Research review of the May 2025 MPC meeting.",
+    "synopsis": "Chapel Hill Denham Research review of the May 2025 MPC meeting.",
+    "analysts": [{ "id": "6", "name": "Chapel Hill Denham Research" }],
+    "tags": ["monetary policy", "fixed income", "MPC"],
+    "documentType": "research",
+    "isFallback": false,
+    "downloadAvailable": true,
+    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/may-2025-mpc-report.pdf"
+  },
+  {
+    "id": "mpc_may-2026-mpc-review",
+    "slug": "may-2026-mpc-review",
+    "title": "May 2026 MPC Review",
+    "category": "Fixed Income",
+    "categorySlug": "fixed-income",
+    "publishedAt": "2026-05-31T00:00:00Z",
+    "summary": "Chapel Hill Denham Research review of the May 2026 MPC meeting.",
+    "synopsis": "Chapel Hill Denham Research review of the May 2026 MPC meeting.",
+    "analysts": [{ "id": "6", "name": "Chapel Hill Denham Research" }],
+    "tags": ["monetary policy", "fixed income", "MPC"],
+    "documentType": "research",
+    "isFallback": false,
+    "downloadAvailable": true,
+    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/may-2026-mpc-review.pdf"
+  },
+  {
+    "id": "mpc_november-2025-monetary-policy-review",
+    "slug": "november-2025-monetary-policy-review",
+    "title": "November 2025 Monetary Policy Review",
+    "category": "Fixed Income",
+    "categorySlug": "fixed-income",
+    "publishedAt": "2025-11-30T00:00:00Z",
+    "summary": "Chapel Hill Denham Research review of the November 2025 MPC meeting.",
+    "synopsis": "Chapel Hill Denham Research review of the November 2025 MPC meeting.",
+    "analysts": [{ "id": "6", "name": "Chapel Hill Denham Research" }],
+    "tags": ["monetary policy", "fixed income", "MPC"],
+    "documentType": "research",
+    "isFallback": false,
+    "downloadAvailable": true,
+    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/november-2025-monetary-policy-review.pdf"
   }
 ];

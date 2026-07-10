@@ -4,7 +4,6 @@ import { useParams, Link } from 'react-router-dom';
 import type { NormalizedReport } from '../types/research';
 import { fetchPublicResearchReportBundle } from '../lib/supabase';
 import { ArrowLeft, Download } from 'lucide-react';
-import Icon from '../components/Icon';
 import { useEffect, useMemo, useState } from 'react';
 
 function relatedReportsFromList(report: NormalizedReport, reports: NormalizedReport[]) {
@@ -58,9 +57,7 @@ export default function ReportDetail() {
   }
 
   const relatedReports = relatedReportsFromList(report, reportList);
-  const isAuth = localStorage.getItem('chd_subscriber_auth') === 'true';
-  const naturallyLocked = ['sector', 'strategy-outlook'].includes(report.categorySlug) ? true : (report.isFallback && !report.downloadAvailable);
-  const isLocked = naturallyLocked && !isAuth;
+  const isSubscriberOnly = ['sector', 'sector-research', 'strategy-outlook'].includes(report.categorySlug);
 
   return (
     <main>
@@ -78,7 +75,7 @@ export default function ReportDetail() {
             </Link>
             <div className="report-detail-kicker">
               <span className="report-meta">{report.documentType}</span>
-              <span className="report-access-label">{naturallyLocked ? 'SUBSCRIBER' : 'PUBLIC'}</span>
+              <span className="report-access-label">{isSubscriberOnly ? 'SUBSCRIBER' : 'PUBLIC'}</span>
             </div>
             <h1>{report.title}</h1>
             <dl className="report-detail-facts">
@@ -96,31 +93,11 @@ export default function ReportDetail() {
               </div>
             </div>
 
-            {isLocked ? (
-              <div className="locked-report-panel">
-                <Icon name="lock" />
-                <div>
-                  <p className="eyebrow">Subscriber Access</p>
-                  <h2>Download Locked</h2>
-                  <p>The full report is available to active CHD Research subscribers. This static preview keeps downloads disabled.</p>
-                  <div className="locked-actions" style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginTop: '1rem', flexWrap: 'wrap' }}>
-                    <Link className="btn btn-bronze" to="/subscribe">Request Access</Link>
-                    <Link className="text-link" style={{ fontWeight: 600 }} to="/login">Sign in to continue</Link>
-                  </div>
-                  <dl>
-                    <div><dt>Type</dt><dd>{report.documentType}</dd></div>
-                    <div><dt>Access</dt><dd>{report.isFallback && !report.downloadAvailable ? 'Subscriber' : 'Public'}</dd></div>
-                    <div><dt>File</dt><dd>PDF</dd></div>
-                  </dl>
-                </div>
-              </div>
-            ) : (
-              <div className="report-action-stack">
-                <a className="btn btn-bronze" href={report.file_url || '#'} target="_blank" rel="noopener noreferrer">
-                  <Download size={18} /> Download Report
-                </a>
-              </div>
-            )}
+            <div className="report-action-stack">
+              <a className="btn btn-bronze" href={report.file_url || '#'} target="_blank" rel="noopener noreferrer">
+                <Download size={18} /> Download Report
+              </a>
+            </div>
           </article>
 
           <aside className="panel report-detail-aside">
