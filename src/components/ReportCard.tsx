@@ -22,6 +22,8 @@ function getCategoryBadge(categorySlug: string): { label: string, badgeClass: st
     case 'sector':
     case 'sector-research':
       return { label: 'Sector Research', badgeClass: 'badge-sector' };
+    case 'strategy-outlook':
+      return { label: 'Strategy & Outlook', badgeClass: 'badge-strategy' };
     case 'index':
       return { label: 'Index', badgeClass: 'badge-index' };
     case 'research-report':

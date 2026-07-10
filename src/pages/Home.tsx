@@ -12,6 +12,7 @@ interface MarketKpi { label: string; value: string; change: string; effectiveDat
 
 const defaultCredStats: HomepageStat[] = [
   { label: 'Research Reports Published', value: '150+' },
+  { label: 'Sectors Under Coverage', value: '7' },
   { label: 'Years of Market Intelligence', value: '20+' },
   { label: 'Assets Under Advisory', value: '\u20a6500bn+' },
 ];
@@ -162,7 +163,7 @@ export default function Home() {
 
       <section className="credibility-strip">
         <div className="container">
-          <div className="cred-grid cred-grid-3">
+          <div className="cred-grid">
             {credStats.map(stat => (
               <div className="cred-card" key={stat.label}>
                 <span className="cred-val">{stat.value}</span>
@@ -228,7 +229,7 @@ export default function Home() {
               { icon: '💰', title: 'Fixed Income', desc: 'FGN bond strategy, T-bill auctions and yield curve analysis.', to: '/reports?category=fixed_income' },
               { icon: '🌍', title: 'Macroeconomic Analysis', desc: 'GDP, inflation, FX and monetary policy insights.', to: '/reports?category=macro' },
               { icon: '🏭', title: 'Sector Updates', desc: 'Banking, telecoms, cement, FMCG, oil & gas and pension coverage.', to: '/reports?category=sector' },
-              { icon: '🎯', title: 'Strategy/Outlooks', desc: 'Top-down equity strategy and thematic investment research.', to: '/reports?search=strategy' },
+              { icon: '🎯', title: 'Strategy/Outlooks', desc: 'Top-down equity strategy and thematic investment research.', to: '/reports?category=strategy-outlook' },
               { icon: '📊', title: 'Data & Analytics', desc: 'Subscriber-only macro indicators, market data, and value-added analytics.', to: '/analytics' },
             ].map((area) => (
               <Link key={area.title} className="tile coverage-tile" to={area.to} aria-label={`View ${area.title}`}>

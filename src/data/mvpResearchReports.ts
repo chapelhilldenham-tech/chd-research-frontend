@@ -3405,5 +3405,135 @@ export const mvpResearchReports: NormalizedReport[] = [
     "documentType": "PDF",
     "isFallback": true,
     "downloadAvailable": false
+  },
+  {
+    "id": "36a8fd3d-b4f0-4fa8-9e67-d8687fa13c01",
+    "slug": "2026-outlook-final",
+    "title": "2026 Outlook - Final",
+    "category": "Strategy & Outlook",
+    "categorySlug": "strategy-outlook",
+    "publishedAt": "2026-01-02T00:00:00Z",
+    "summary": "Chapel Hill Denham's comprehensive Strategy & Outlook report for 2026, outlining key macro themes, market forecasts, and investment strategy.",
+    "synopsis": "Chapel Hill Denham's comprehensive Strategy & Outlook report for 2026, outlining key macro themes, market forecasts, and investment strategy.",
+    "analysts": [
+      {
+        "id": "b5912ff3-e1c8-44ed-9b0a-02b6d8aa44a7",
+        "name": "Chapel Hill Denham Research"
+      }
+    ],
+    "tags": [],
+    "documentType": "research",
+    "isFallback": false,
+    "downloadAvailable": true,
+    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/2026-outlook-final.pdf"
+  },
+  {
+    "id": "36a8fd3d-b4f0-4fa8-9e67-d8687fa13c02",
+    "slug": "q1-2025-review-tai",
+    "title": "Q1 2025 Review - TAI",
+    "category": "Strategy & Outlook",
+    "categorySlug": "strategy-outlook",
+    "publishedAt": "2025-04-02T00:00:00Z",
+    "summary": "Review and strategic outlook of key macroeconomic indicators and market events for Q1-2025 by Tajudeen Ibrahim.",
+    "synopsis": "Review and strategic outlook of key macroeconomic indicators and market events for Q1-2025 by Tajudeen Ibrahim.",
+    "analysts": [
+      {
+        "id": "b18ecc2d-6b05-4f87-b37a-68cef253df94",
+        "name": "Tajudeen Ibrahim",
+        "title": "Director, Research"
+      }
+    ],
+    "tags": [],
+    "documentType": "research",
+    "isFallback": false,
+    "downloadAvailable": true,
+    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/q1-2025-review-tai.pdf"
+  },
+  {
+    "id": "36a8fd3d-b4f0-4fa8-9e67-d8687fa13c03",
+    "slug": "agriculture-sector-report",
+    "title": "Agriculture Sector Report",
+    "category": "Fixed Income",
+    "categorySlug": "fixed-income",
+    "publishedAt": "2026-05-10T00:00:00Z",
+    "summary": "Analysis of the Nigerian agricultural sector, focusing on key crops, production trends, and investment implications for fixed income markets.",
+    "synopsis": "Analysis of the Nigerian agricultural sector, focusing on key crops, production trends, and investment implications for fixed income markets.",
+    "analysts": [
+      {
+        "id": "b5912ff3-e1c8-44ed-9b0a-02b6d8aa44a7",
+        "name": "Chapel Hill Denham Research"
+      }
+    ],
+    "tags": [],
+    "documentType": "research",
+    "isFallback": false,
+    "downloadAvailable": true,
+    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/agriculture-sector-report.pdf"
+  },
+  {
+    "id": "36a8fd3d-b4f0-4fa8-9e67-d8687fa13c04",
+    "slug": "banking-sector-update-dovish-cycle",
+    "title": "Banking Sector Update - Dovish Cycle",
+    "category": "Fixed Income",
+    "categorySlug": "fixed-income",
+    "publishedAt": "2026-06-15T00:00:00Z",
+    "summary": "An analysis of the impact of a dovish monetary policy cycle on the Nigerian banking sector and yields.",
+    "synopsis": "An analysis of the impact of a dovish monetary policy cycle on the Nigerian banking sector and yields.",
+    "analysts": [
+      {
+        "id": "aebb5193-74b5-4496-b8f8-477db5043011",
+        "name": "Nabila Mohammed",
+        "title": "Analyst"
+      }
+    ],
+    "tags": [],
+    "documentType": "research",
+    "isFallback": false,
+    "downloadAvailable": true,
+    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/banking-sector-update-dovish-cycle.pdf"
+  },
+  {
+    "id": "36a8fd3d-b4f0-4fa8-9e67-d8687fa13c05",
+    "slug": "forbearance-report-updated-2",
+    "title": "Forbearance Report Updated 2",
+    "category": "Fixed Income",
+    "categorySlug": "fixed-income",
+    "publishedAt": "2026-06-20T00:00:00Z",
+    "summary": "Updated regulatory forbearance report assessing bank capital adequacy and asset quality under recent policy changes.",
+    "synopsis": "Updated regulatory forbearance report assessing bank capital adequacy and asset quality under recent policy changes.",
+    "analysts": [
+      {
+        "id": "aebb5193-74b5-4496-b8f8-477db5043011",
+        "name": "Nabila Mohammed",
+        "title": "Analyst"
+      }
+    ],
+    "tags": [],
+    "documentType": "research",
+    "isFallback": false,
+    "downloadAvailable": true,
+    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/forbearance-report-updated-2.pdf"
+  },
+  {
+    "id": "36a8fd3d-b4f0-4fa8-9e67-d8687fa13c06",
+    "slug": "the-nigerian-banking-paradox",
+    "title": "The Nigerian Banking Paradox",
+    "category": "Fixed Income",
+    "categorySlug": "fixed-income",
+    "publishedAt": "2026-06-22T00:00:00Z",
+    "summary": "Exploring the paradox of high bank profitability amidst macroeconomic headwinds and liquidity shifts in the Nigerian banking sector.",
+    "synopsis": "Exploring the paradox of high bank profitability amidst macroeconomic headwinds and liquidity shifts in the Nigerian banking sector.",
+    "analysts": [
+      {
+        "id": "aebb5193-74b5-4496-b8f8-477db5043011",
+        "name": "Nabila Mohammed",
+        "title": "Analyst"
+      }
+    ],
+    "tags": [],
+    "documentType": "research",
+    "isFallback": false,
+    "downloadAvailable": true,
+    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/the-nigerian-banking-paradox.pdf"
   }
 ];

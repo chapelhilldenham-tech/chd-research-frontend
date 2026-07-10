@@ -68,7 +68,7 @@ export const analyticsSnapshot = {
     'Draft — pending confirmation with Nabila Mohammed. GDP, CPI and Policy Rate figures sourced from the National Bureau of Statistics and Central Bank of Nigeria. FX from FMDQ. 2026-2028 figures are Chapel Hill Denham Research house forecasts.',
   macroIndicators: [
     {
-      label: 'GDP Growth (%)', value: '3.89%', change: '-0.18ppt', effectiveDate: 'Q1 2026',
+      label: 'GDP Growth (%)', value: '3.89%', change: '-0.18ppt', effectiveDate: '9 Jul 2026',
       forecast: [
         { year: '2025A', value: '4.53%' },
         { year: '2026F', value: '4.39%' },
@@ -77,7 +77,7 @@ export const analyticsSnapshot = {
       ],
     },
     {
-      label: 'CPI / Inflation (%)', value: '15.93%', change: '+0.24ppt', effectiveDate: '23 May 2026',
+      label: 'CPI / Inflation (%)', value: '15.93%', change: '+0.24ppt', effectiveDate: '9 Jul 2026',
       forecast: [
         { year: '2026F', value: '—', isPlaceholder: true },
         { year: '2027F', value: '—', isPlaceholder: true },
@@ -85,7 +85,7 @@ export const analyticsSnapshot = {
       ],
     },
     {
-      label: 'Policy Rate / MPR (%)', value: '26.50%', change: '0.00ppt', effectiveDate: '23 Jun 2026',
+      label: 'Policy Rate / MPR (%)', value: '26.50%', change: '0.00ppt', effectiveDate: '9 Jul 2026',
       forecast: [
         { year: '2026F', value: '—', isPlaceholder: true },
         { year: '2027F', value: '—', isPlaceholder: true },
@@ -93,15 +93,15 @@ export const analyticsSnapshot = {
       ],
     },
     {
-      label: 'FX (USD/NGN)', value: '1,370.64', change: '+0.11%', effectiveDate: '23 Jun 2026',
+      label: 'FX (USD/NGN)', value: '1,370.64', change: '+0.11%', effectiveDate: '9 Jul 2026',
       forecast: [
         { year: '2026F', value: '—', isPlaceholder: true },
         { year: '2027F', value: '—', isPlaceholder: true },
         { year: '2028F', value: '—', isPlaceholder: true },
       ],
     },
-    { label: 'Credit Growth', value: 'N59.98tn', change: '+0.47%', effectiveDate: '23 May 2026' },
-    { label: 'Debt/GDP (%)', value: '36.07%', change: '-2.73ppt', effectiveDate: 'Q1 2026' },
+    { label: 'Credit Growth', value: 'N59.98tn', change: '+0.47%', effectiveDate: '9 Jul 2026' },
+    { label: 'Debt/GDP (%)', value: '36.07%', change: '-2.73ppt', effectiveDate: '9 Jul 2026' },
   ],
   market: {
     effectiveDate: '23 Jun 2026',
@@ -130,7 +130,7 @@ export const analyticsSnapshot = {
   fixedIncomeSourcesNote:
     'Draft — pending confirmation. Local currency (LCY) bond and Eurobond pricing to be sourced from FMDQ. Table structure is in place; figures pending data feed.',
   fixedIncome: {
-    effectiveDate: 'Pending update',
+    effectiveDate: '9 Jul 2026',
     lcyBonds: Array.from({ length: 29 }, (_, i) => ({
       bond: `FGN Bond ${i + 1}`,
       maturity: '—',
@@ -208,7 +208,7 @@ export const analyticsSnapshot = {
   paramountSourcesNote:
     'Draft — pending confirmation. Paramount Index is a Chapel Hill Denham Research proprietary benchmark; constituent pricing from NGX.',
   paramount: {
-    effectiveDate: 'Q1 2026',
+    effectiveDate: 'Q2 2026',
     summary: [
       { label: 'Paramount Index', value: '607.36', change: '', sourceStatus: '' },
       { label: '1YR', value: '85%', change: '', sourceStatus: '' },

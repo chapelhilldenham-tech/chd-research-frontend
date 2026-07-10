@@ -23,7 +23,7 @@ const sectorNames = ['Banking', 'Telecoms', 'Pension', 'Oil & Gas', 'Consumer Go
 
 const defaultMacroForecasts: MacroForecastMetric[] = [
   {
-    key: 'gdp', label: 'GDP Growth (%)', currentValue: '3.89%', change: '-0.18ppt', effectiveDate: 'Q1 2026',
+    key: 'gdp', label: 'GDP Growth (%)', currentValue: '3.89%', change: '-0.18ppt', effectiveDate: '9 Jul 2026',
     forecasts: [
       { year: '2025A', value: '4.53%' },
       { year: '2026F', value: '4.39%' },
@@ -32,7 +32,7 @@ const defaultMacroForecasts: MacroForecastMetric[] = [
     ],
   },
   {
-    key: 'cpi', label: 'CPI / Inflation (%)', currentValue: '15.93%', change: '+0.24ppt', effectiveDate: '23 May 2026',
+    key: 'cpi', label: 'CPI / Inflation (%)', currentValue: '15.93%', change: '+0.24ppt', effectiveDate: '9 Jul 2026',
     forecasts: [
       { year: '2026F', value: '' },
       { year: '2027F', value: '' },
@@ -40,7 +40,7 @@ const defaultMacroForecasts: MacroForecastMetric[] = [
     ],
   },
   {
-    key: 'mpr', label: 'Policy Rate / MPR (%)', currentValue: '26.50%', change: '0.00ppt', effectiveDate: '23 Jun 2026',
+    key: 'mpr', label: 'Policy Rate / MPR (%)', currentValue: '26.50%', change: '0.00ppt', effectiveDate: '9 Jul 2026',
     forecasts: [
       { year: '2026F', value: '' },
       { year: '2027F', value: '' },
@@ -48,7 +48,7 @@ const defaultMacroForecasts: MacroForecastMetric[] = [
     ],
   },
   {
-    key: 'fx', label: 'FX (USD/NGN)', currentValue: '1,370.64', change: '+0.11%', effectiveDate: '23 Jun 2026',
+    key: 'fx', label: 'FX (USD/NGN)', currentValue: '1,370.64', change: '+0.11%', effectiveDate: '9 Jul 2026',
     forecasts: [
       { year: '2026F', value: '' },
       { year: '2027F', value: '' },
@@ -157,8 +157,8 @@ function defaultDraft(): DraftState {
       { label: 'MPR', value: '26.50%', change: '0.00ppt', effectiveDate: '23 Jun 2026' },
       { label: 'Commodities', value: 'Brent $76.80', change: '-0.93%', effectiveDate: '23 Jun 2026' },
     ],
-    creditGrowth: { label: 'Credit Growth', value: 'N59.98tn', change: '+0.47%', effectiveDate: '23 May 2026' },
-    debtGdp: { label: 'Debt/GDP (%)', value: '36.07%', change: '-2.73ppt', effectiveDate: 'Q1 2026' },
+    creditGrowth: { label: 'Credit Growth', value: 'N59.98tn', change: '+0.47%', effectiveDate: '9 Jul 2026' },
+    debtGdp: { label: 'Debt/GDP (%)', value: '36.07%', change: '-2.73ppt', effectiveDate: '9 Jul 2026' },
     macroForecasts: defaultMacroForecasts,
     lcyBonds: makeEmptyBondRows(29, 'FGN Bond'),
     eurobonds: makeEmptyBondRows(10, 'NGERIA Eurobond'),
@@ -181,6 +181,7 @@ function defaultDraft(): DraftState {
     paramountYtd: { label: 'Paramount YTD', value: '+11.42%', change: '', effectiveDate: '' },
     homepageStats: [
       { label: 'Research Reports Published', value: '150+' },
+      { label: 'Sectors Under Coverage', value: '7' },
       { label: 'Years of Market Intelligence', value: '20+' },
       { label: 'Assets Under Advisory', value: '\u20a6500bn+' },
     ],
@@ -446,7 +447,7 @@ export default function AdminAnalyticsDraftInputs() {
       )}
 
       {activeTab === 'Homepage Stats' && (
-        <section className="grid-3" style={{ marginTop: 20 }}>
+        <section className="grid-4" style={{ marginTop: 20 }}>
           {draft.homepageStats.map((stat, index) => (
             <article className="panel" key={stat.label}>
               <h3>{stat.label}</h3>

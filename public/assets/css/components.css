@@ -34,6 +34,7 @@
 .badge-equity{background:rgba(16,37,48,.08);color:var(--chd-navy)}
 .badge-fixed-income{background:rgba(185,114,49,.14);color:var(--chd-bronze)}
 .badge-sector{background:rgba(47,111,94,.14);color:#2f6f5e}
+.badge-strategy{background:rgba(38,70,120,.13);color:#264678}
 .badge-market-update{background:rgba(16,37,48,.06);color:#5a6b73}
 .badge-macro{background:rgba(154,116,20,.14);color:#8a6d10}
 .badge-index{background:rgba(90,50,120,.12);color:#5a3278}
@@ -803,7 +804,10 @@ button:disabled,.btn:disabled{opacity:.62;cursor:not-allowed;transform:none}
 .analytics-page .analytics-container{padding:0 24px}
 .analytics-page .analytics-dashboard-grid{margin-top:32px}
 .analytics-page .analytics-section.dashboard-panel{margin-top:32px;padding:22px}
-.analytics-page .macro-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,36%);gap:24px;align-items:start}
+.analytics-page .macro-layout{display:flex;flex-wrap:wrap;align-items:flex-start;gap:24px}
+.analytics-page .macro-panel-main{flex:1 1 320px}
+.analytics-page .macro-kpi-grid{flex:0 1 300px}
+.analytics-page .analytics-sources-note{flex-basis:100%;margin-top:16px}
 .analytics-page .market-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,34%);gap:24px;align-items:start}
 .analytics-page .chart-shell-tall{height:400px}
 .analytics-page .chart-shell-paramount{height:360px}
@@ -829,7 +833,8 @@ button:disabled,.btn:disabled{opacity:.62;cursor:not-allowed;transform:none}
 @media(min-width:1280px){
 .analytics-page .analytics-dashboard-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}
 .analytics-page #macro-desk,.analytics-page #market-data,.analytics-page #sector-data,.analytics-page #fixed-income,.analytics-page #paramount-index{grid-column:1/-1}
-.analytics-page .macro-layout{grid-template-columns:65fr 35fr}
+.analytics-page .macro-panel-main{flex-basis:65%}
+.analytics-page .macro-kpi-grid{flex-basis:35%}
 .analytics-page .market-layout{grid-template-columns:62fr 38fr}
 .analytics-page .market-stat-stack{grid-template-columns:repeat(2,minmax(0,1fr))}
 .analytics-page .chart-shell-tall{height:460px}
