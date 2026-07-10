@@ -129,9 +129,16 @@ function ParamountChart() {
             axisLine={false}
             tickLine={false}
             tickFormatter={fmtParamountLabel}
-            interval={3}
+            ticks={analyticsSnapshot.paramount.points.map(p => p.label).filter(l => l.endsWith('-06'))}
           />
-          <YAxis stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} domain={['dataMin - 20', 'dataMax + 20']} axisLine={false} tickLine={false} />
+          <YAxis
+            stroke="#6b6375"
+            tick={{ fill: '#6b6375', fontSize: 12 }}
+            domain={[0, 800]}
+            ticks={[0, 100, 200, 300, 400, 500, 600, 700, 800]}
+            axisLine={false}
+            tickLine={false}
+          />
           <Tooltip
             contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e5e5e5', borderRadius: '4px' }}
             labelStyle={{ color: '#102530' }}
@@ -502,8 +509,8 @@ export default function Analytics() {
                         <td>{row.index}</td>
                         <td className="num" style={{ color: row['1YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-navy)' }}>{row['1YR']}</td>
                         <td className="num" style={{ color: row['2YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-success)' }}>{row['2YR']}</td>
-                        <td className="num" style={{ color: row['3YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-success)' }}>{row['3YR']}</td>
-                        <td className="num" style={{ color: row['5YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-success)' }}>{row['5YR']}</td>
+                        <td className="num" style={{ color: row['3YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-navy)' }}>{row['3YR']}</td>
+                        <td className="num" style={{ color: row['5YR'].startsWith('-') ? 'var(--color-danger)' : 'var(--color-navy)' }}>{row['5YR']}</td>
                       </tr>
                     ))}
                   </tbody>

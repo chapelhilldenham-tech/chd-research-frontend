@@ -25,7 +25,7 @@ const defaultHeadlineKpis: MarketKpi[] = [
   { label: 'Commodities', value: 'Brent $76.80', change: '-0.93%', effectiveDate: '23 Jun 2026' },
 ];
 
-const defaultParamountYtd: MarketKpi = { label: 'Paramount YTD', value: '+11.42%', change: '', effectiveDate: '' };
+
 
 function findKpi(kpis: MarketKpi[], label: string): MarketKpi | undefined {
   return kpis.find(k => k.label === label);
@@ -36,7 +36,7 @@ export default function Home() {
   const [analysts, setAnalysts] = useState<Analyst[]>([]);
   const [credStats, setCredStats] = useState<HomepageStat[]>(defaultCredStats);
   const [headlineKpis, setHeadlineKpis] = useState<MarketKpi[]>(defaultHeadlineKpis);
-  const [paramountYtd, setParamountYtd] = useState<MarketKpi>(defaultParamountYtd);
+
 
   useEffect(() => {
     let mounted = true;
@@ -67,10 +67,7 @@ export default function Home() {
         setHeadlineKpis(liveKpis);
       }
 
-      const liveParamountYtd = dashboardSnapshot?.payload?.paramountYtd as MarketKpi | undefined;
-      if (liveParamountYtd && liveParamountYtd.value) {
-        setParamountYtd(liveParamountYtd);
-      }
+
 
     }
     loadData();
@@ -144,12 +141,6 @@ export default function Home() {
               <span className="ticker-item">
                 <span className="ticker-label">Inflation</span>
                 <span className="ticker-value">{inflation.value}</span>
-              </span>
-              <span className="ticker-divider">|</span>
-              <span className="ticker-item">
-                <span className="ticker-label">Paramount YTD</span>
-                <span className="ticker-value">{paramountYtd.value}</span>
-                <span className={`ticker-change ${paramountYtd.value.startsWith('-') ? 'negative' : 'positive'}`}>{paramountYtd.value.startsWith('-') ? '▼' : '▲'}</span>
               </span>
               <span className="ticker-divider">|</span>
               <span className="ticker-item">
