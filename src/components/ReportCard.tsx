@@ -37,7 +37,7 @@ function getCategoryBadge(categorySlug: string): { label: string, badgeClass: st
 
 export default function ReportCard({ report, compact = false }: { report: NormalizedReport, compact?: boolean }) {
   const navigate = useNavigate();
-  const isSubscriberOnly = ['sector', 'sector-research', 'strategy-outlook'].includes(report.categorySlug);
+  const isSubscriberOnly = ['sector', 'sector-research', 'strategy-outlook', 'macro-research'].includes(report.categorySlug);
   const classNames = `report-card research-report-card report-card-hoverable ${compact ? 'report-card-compact' : ''}`;
   const { label, badgeClass } = getCategoryBadge(report.categorySlug);
 

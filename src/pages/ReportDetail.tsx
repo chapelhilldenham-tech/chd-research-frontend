@@ -57,7 +57,7 @@ export default function ReportDetail() {
   }
 
   const relatedReports = relatedReportsFromList(report, reportList);
-  const isSubscriberOnly = ['sector', 'sector-research', 'strategy-outlook'].includes(report.categorySlug);
+  const isSubscriberOnly = ['sector', 'sector-research', 'strategy-outlook', 'macro-research'].includes(report.categorySlug);
 
   return (
     <main>
