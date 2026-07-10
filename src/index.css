@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+* {
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif !important;
+}
 
 :root {
   /* Colors */
@@ -17,9 +19,10 @@
   --chd-danger: #c0392b;
 
   /* Typography */
-  --font-serif: Georgia, 'Times New Roman', serif;
-  --font-sans: -apple-system, 'Segoe UI', system-ui, sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-serif: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+  --font-sans: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+  --font-mono: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+  --analytics-number-font: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
 
   /* Spacing */
   --space-1: 4px;

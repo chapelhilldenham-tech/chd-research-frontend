@@ -226,13 +226,13 @@ export default function Analytics() {
             <h1>Data &amp; Analytics</h1>
             <p>Macro, Market, Sector, and Paramount Index Intelligence.</p>
           </div>
-          <aside>
-            <p className="analytics-disclaimer">
+          <aside style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+            {isLive && <span className="status-pill status-live" style={{ marginBottom: 12, display: 'inline-block' }}>Live data</span>}
+            <p className="analytics-disclaimer" style={{ margin: 0 }}>
               Market data displayed is for information purposes only. All data updated manually by Chapel
               Hill Denham Research team. Chapel Hill Denham makes no warranty as to accuracy or
               completeness.
             </p>
-            {isLive && <span className="status-pill status-live" style={{ marginTop: 8, display: 'inline-block' }}>Live data</span>}
           </aside>
         </section>
         <section className="analytics-dashboard-kpis" aria-label="Dashboard summary">

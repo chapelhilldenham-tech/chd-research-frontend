@@ -1062,6 +1062,41 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
+.checkbox-item input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  appearance: none;
+  background: white;
+  border: 1px solid var(--chd-border);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.checkbox-item input[type="radio"]:hover {
+  border-color: var(--chd-bronze);
+}
+
+.checkbox-item input[type="radio"]:checked {
+  background: white;
+  border-color: var(--chd-bronze);
+}
+
+.checkbox-item input[type="radio"]:checked::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--chd-bronze);
+  display: block;
+}
+
 .checkbox-item label {
   font-size: 14px;
   color: var(--chd-text);
