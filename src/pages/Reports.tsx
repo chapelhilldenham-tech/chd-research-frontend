@@ -12,6 +12,7 @@ const categories = [
   { value: 'fixed-income', label: 'Fixed Income' },
   { value: 'sector', label: 'Sector Research' },
   { value: 'strategy-outlook', label: 'Strategy & Outlook' },
+  { value: 'macro-research', label: 'Macroeconomic Research' },
 ];
 
 const periodicityOptions = ['All', 'Daily', 'Weekly'] as const;

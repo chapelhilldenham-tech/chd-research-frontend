@@ -19,6 +19,8 @@ function getCategoryBadge(categorySlug: string): { label: string, badgeClass: st
       return { label: 'Fixed Income', badgeClass: 'badge-fixed-income' };
     case 'macro':
       return { label: 'Macro', badgeClass: 'badge-macro' };
+    case 'macro-research':
+      return { label: 'Macroeconomic Research', badgeClass: 'badge-macro-research' };
     case 'sector':
     case 'sector-research':
       return { label: 'Sector Research', badgeClass: 'badge-sector' };

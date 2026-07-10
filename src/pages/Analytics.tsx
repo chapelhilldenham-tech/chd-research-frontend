@@ -91,7 +91,7 @@ function MacroChart({ activeTab }: { activeTab: (typeof macroTabs)[number] }) {
           <LineChart data={data} margin={{ top: 20, right: 30, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#2e303a" />
             <XAxis dataKey="name" stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} />
-            <YAxis stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={val => val + '%'} />
+            <YAxis stroke="#6b6375" tick={{ fill: '#6b6375', fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={val => val + '%'} domain={[14, 'dataMax + 2']} />
             <Tooltip contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e5e5e5', borderRadius: '4px' }} labelStyle={{ color: '#102530' }} itemStyle={{ color: '#102530' }} />
             <Legend wrapperStyle={{ paddingTop: '20px' }} />
             <Line type="monotone" dataKey="MPR" stroke="#c7a17c" strokeWidth={3} activeDot={{ r: 6 }} dot={{ strokeWidth: 2 }} />

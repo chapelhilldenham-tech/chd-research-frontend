@@ -37,6 +37,7 @@
 .badge-strategy{background:rgba(38,70,120,.13);color:#264678}
 .badge-market-update{background:rgba(16,37,48,.06);color:#5a6b73}
 .badge-macro{background:rgba(154,116,20,.14);color:#8a6d10}
+.badge-macro-research{background:rgba(20,120,140,.14);color:#14788c}
 .badge-index{background:rgba(90,50,120,.12);color:#5a3278}
 .badge-other{background:rgba(16,37,48,.06);color:#5a6b73}
 .report-byline{display:flex;justify-content:space-between;gap:12px;margin:0;font-size:var(--text-sm);color:rgba(16,37,48,.6)}
