@@ -1737,16 +1737,16 @@ export const mvpResearchReports: NormalizedReport[] = [
   {
     "id": "codex_2025-debt-tai_2025-09-11",
     "slug": "2025-debt-tai",
-    "title": "2025 Debt TAI",
+    "title": "2025 Debt",
     "category": "Fixed Income",
     "categorySlug": "fixed-income",
     "publishedAt": "2025-09-11T00:00:00Z",
-    "summary": "Legacy fixed income document staged for manual review: 2025 Debt TAI.",
-    "synopsis": "This legacy research document has been staged from extractable document text and filename. The draft title and category require reviewer validation before any upload, access change, or publication decision. Topic cue: 2025 Debt TAI.",
+    "summary": "2025 Nigeria Debt Market outlook by Tajudeen Ibrahim.",
+    "synopsis": "2025 Nigeria Debt Market outlook by Tajudeen Ibrahim.",
     "analysts": [
       {
         "id": "6",
-        "name": "Chapel Hill Denham Research"
+        "name": "Tajudeen Ibrahim"
       }
     ],
     "tags": [
@@ -3429,8 +3429,8 @@ export const mvpResearchReports: NormalizedReport[] = [
   },
   {
     "id": "36a8fd3d-b4f0-4fa8-9e67-d8687fa13c02",
-    "slug": "q1-2025-review-tai",
-    "title": "Q1 2025 Review - TAI",
+    "slug": "q1-2025-review",
+    "title": "Q1 2025 Review",
     "category": "Strategy & Outlook",
     "categorySlug": "strategy-outlook",
     "publishedAt": "2025-04-02T00:00:00Z",
@@ -3535,69 +3535,5 @@ export const mvpResearchReports: NormalizedReport[] = [
     "isFallback": true,
     "downloadAvailable": false,
     "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/the-nigerian-banking-paradox.pdf"
-  },
-  {
-    "id": "mpc_february-2026-mpc-review",
-    "slug": "february-2026-mpc-review",
-    "title": "February 2026 MPC Review",
-    "category": "Fixed Income",
-    "categorySlug": "fixed-income",
-    "publishedAt": "2026-02-28T00:00:00Z",
-    "summary": "Chapel Hill Denham Research review of the February 2026 MPC meeting.",
-    "synopsis": "Chapel Hill Denham Research review of the February 2026 MPC meeting.",
-    "analysts": [{ "id": "6", "name": "Chapel Hill Denham Research" }],
-    "tags": ["monetary policy", "fixed income", "MPC"],
-    "documentType": "research",
-    "isFallback": false,
-    "downloadAvailable": true,
-    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/february-2026-mpc-review.pdf"
-  },
-  {
-    "id": "mpc_may-2025-mpc-report",
-    "slug": "may-2025-mpc-report",
-    "title": "May 2025 MPC Report",
-    "category": "Fixed Income",
-    "categorySlug": "fixed-income",
-    "publishedAt": "2025-05-31T00:00:00Z",
-    "summary": "Chapel Hill Denham Research review of the May 2025 MPC meeting.",
-    "synopsis": "Chapel Hill Denham Research review of the May 2025 MPC meeting.",
-    "analysts": [{ "id": "6", "name": "Chapel Hill Denham Research" }],
-    "tags": ["monetary policy", "fixed income", "MPC"],
-    "documentType": "research",
-    "isFallback": false,
-    "downloadAvailable": true,
-    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/may-2025-mpc-report.pdf"
-  },
-  {
-    "id": "mpc_may-2026-mpc-review",
-    "slug": "may-2026-mpc-review",
-    "title": "May 2026 MPC Review",
-    "category": "Fixed Income",
-    "categorySlug": "fixed-income",
-    "publishedAt": "2026-05-31T00:00:00Z",
-    "summary": "Chapel Hill Denham Research review of the May 2026 MPC meeting.",
-    "synopsis": "Chapel Hill Denham Research review of the May 2026 MPC meeting.",
-    "analysts": [{ "id": "6", "name": "Chapel Hill Denham Research" }],
-    "tags": ["monetary policy", "fixed income", "MPC"],
-    "documentType": "research",
-    "isFallback": false,
-    "downloadAvailable": true,
-    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/may-2026-mpc-review.pdf"
-  },
-  {
-    "id": "mpc_november-2025-monetary-policy-review",
-    "slug": "november-2025-monetary-policy-review",
-    "title": "November 2025 Monetary Policy Review",
-    "category": "Fixed Income",
-    "categorySlug": "fixed-income",
-    "publishedAt": "2025-11-30T00:00:00Z",
-    "summary": "Chapel Hill Denham Research review of the November 2025 MPC meeting.",
-    "synopsis": "Chapel Hill Denham Research review of the November 2025 MPC meeting.",
-    "analysts": [{ "id": "6", "name": "Chapel Hill Denham Research" }],
-    "tags": ["monetary policy", "fixed income", "MPC"],
-    "documentType": "research",
-    "isFallback": false,
-    "downloadAvailable": true,
-    "file_url": "https://lghesruafwaislqfadpo.supabase.co/storage/v1/object/public/research_vault/reports/unknown/november-2025-monetary-policy-review.pdf"
   }
 ];
